@@ -47,9 +47,10 @@ Most notebooks will consist of blank blocks of code. There will be questions ask
 ```
 
 What is the sum?
+
 **Answer**: Four, of course!
 
-As in the notes, create a variable called `my_fav_number` equal to your favorite number. Note: See those strange looking quotes around the variable name? Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font. Keep in mind that you do not copy the quotes themselves! 
+As in the notes, create a variable called `my_fav_number` equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.
 
 ```{python}
 # the solutions often show possible answers rather than

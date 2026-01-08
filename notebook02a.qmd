@@ -1,5 +1,15 @@
 ## Notebook02a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -12,4 +22,150 @@ theme_set(theme_minimal())
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+food = pl.read_csv(ub + "data/food.csv").drop(c.description)
+```
+
+### Questions
+
+We are going to do a number of data manipulation exercises here. Apologies that, because we are just getting started, the number of complete analyses and insights we will gain at this point are limited. We will get there soon! We will work with the `food` dataset again. Remember that in all questions you should just print out the results; don't save them unless ask.
+
+Start by sorting the food data by calories, with the lowest caloric foods at the top.
+
+```{python}
+(
+    food
+    .sort(c.calories)
+)
+```
+
+Next, sort by calories but with the highest caloric foods at the top.
+
+```{python}
+(
+    food
+    .sort(c.calories, descending=True)
+)
+```
+
+And now, sort by the food groups (alphabetical order) and then within each food group by calories. Note: When we say "sort" in general, that means ascending unless otherwise noted.
+
+```{python}
+(
+    food
+    .sort(c.food_group, c.calories)
+)
+```
+
+Now, take only the columns food group and calories from the dataset. Notice how close your code (should be) to the code in the previous block.
+
+```{python}
+(
+    food
+    .select(c.food_group, c.calories)
+)
+```
+
+Let's now chain several methods together. Create a dataset that has the ten items that have the largest amount of calories per serving.
+
+```{python}
+(
+    food
+    .sort(c.calories, descending=True)
+    .head(n=10)
+)
+```
+
+And now, in the next block of code grab just one row of the data that has the smallest amount of sugar amongst the 10 highest caloric foods.
+
+```{python}
+(
+    food
+    .sort(c.calories, descending=True)
+    .head(n=10)
+    .sort(c.sugar)
+    .head(n=1)
+)
+```
+
+Now, select just those rows where the amount of iron is more than 3mg.
+
+```{python}
+(
+    food
+    .filter(c.iron > 3)
+)
+```
+
+Now, instead, select those rows where the amount of iron is more than *or equal to* 3mg.
+
+```{python}
+(
+    food
+    .filter(c.iron >= 3)
+)
+```
+
+Select those rows where the food group is "fruit". 
+
+```{python}
+(
+    food
+    .filter(c.iron == 5)
+    .filter(c.food_group == "fruit")
+)
+```
+
+Select those rows where the food group is "fruit" and the iron is great than 3. Do this with two different calls to `.filter`.
+
+```{python}
+(
+    food
+    .filter(c.iron == 5)
+    .filter(c.food_group == "fruit")
+)
+```
+
+Repeat the previous question with a single `.filter` by using the `&` symbol.
+
+```{python}
+(
+    food
+    .filter((c.iron == 5) & (c.food_group == "fruit"))
+)
+```
+
+Select the rows where the food group is either "fruit" or "vegetable" using the `|` (or) operator.
+
+```{python}
+(
+    food
+    .filter((c.food_group == "fruit") | (c.food_group == "vegetable"))
+)
+```
+
+What would happen if we replaced the `|` operator with an `&` (and)?
+
+**Answer**: This would result in no rows, because nothing can be fruit AND vegetable. Notice that this can be confusing because it does not match common English conventions. For example, "bring me all of the fruits **and** vegetables from the bag" means bring all items that are (individually) either fruits **or** vegetables.
+
+Finally, select the rows that are fruits or vegetables using the `.is_in` method.
+
+```{python}
+(
+    food
+    .filter(c.food_group.is_in(["fruit", "vegetable"]))
+)
+```
+
+This last one is the preferred way to do this as it generalizes better to more categories and more clearly maps onto the way we commonly thing about being in a set. The `|` operator is very useful for other kinds of selections, such as selecting all of the vegetables OR foods with no saturated fats.
+
+
 

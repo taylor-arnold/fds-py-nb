@@ -17,3 +17,11 @@ python -m ensurepip
 python -m spacy download en_core_web_sm
 python -m spacy download fr_core_news_sm
 ```
+
+May need this on Colab if something goes wrong with `funs.py`:
+
+```python
+import sys
+sys.modules.pop("funs", None)
+```
+
