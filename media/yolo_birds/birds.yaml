@@ -1,0 +1,5 @@
+path: /Users/admin/gh/fda-py/media/yolo_birds/
+train: images/train
+val: images/val
+names:
+  0: bird
