@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -444,19 +447,2422 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="02c4328c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run all of the following before starting the notebook.</p>
+<div id="aea6dff1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="07d3d0e1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="93558c58" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>).drop(c.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>We are going to do a number of data manipulation exercises here. Apologies that, because we are just getting started, the number of complete analyses and insights we will gain at this point are limited. We will get there soon! We will work with the <code>food</code> dataset again. Remember that in all questions you should just print out the results; don’t save them unless ask.</p>
+<p>Start by sorting the food data by calories, with the lowest caloric foods at the top.</p>
+<div id="0eef6ab4" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.calories)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (61, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Cucumber"</td>
+<td>"vegetable"</td>
+<td>12</td>
+<td>0.1</td>
+<td>0.013</td>
+<td>0</td>
+<td>2</td>
+<td>2.16</td>
+<td>0.7</td>
+<td>1.38</td>
+<td>0.59</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>"cucumber"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Celery"</td>
+<td>"vegetable"</td>
+<td>14</td>
+<td>0.1</td>
+<td>0.043</td>
+<td>0</td>
+<td>80</td>
+<td>2.97</td>
+<td>1.6</td>
+<td>1.83</td>
+<td>0.69</td>
+<td>1</td>
+<td>9</td>
+<td>5</td>
+<td>"celery"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Lettuce"</td>
+<td>"vegetable"</td>
+<td>14</td>
+<td>0.1</td>
+<td>0.018</td>
+<td>0</td>
+<td>10</td>
+<td>2.97</td>
+<td>1.2</td>
+<td>1.76</td>
+<td>0.9</td>
+<td>2</td>
+<td>10</td>
+<td>5</td>
+<td>"lettuce"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Tomato"</td>
+<td>"vegetable"</td>
+<td>18</td>
+<td>0.0</td>
+<td>0.046</td>
+<td>0</td>
+<td>5</td>
+<td>3.92</td>
+<td>1.2</td>
+<td>2.63</td>
+<td>0.88</td>
+<td>2</td>
+<td>17</td>
+<td>21</td>
+<td>"tomato"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Pork"</td>
+<td>"meat"</td>
+<td>271</td>
+<td>17.0</td>
+<td>6.168</td>
+<td>90</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.34</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>"pork"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Beef"</td>
+<td>"meat"</td>
+<td>288</td>
+<td>19.5</td>
+<td>7.731</td>
+<td>87</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>26.33</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>"beef"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Lamb"</td>
+<td>"meat"</td>
+<td>292</td>
+<td>20.7</td>
+<td>8.756</td>
+<td>96</td>
+<td>394</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>24.32</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>"sheep"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Cheese"</td>
+<td>"dairy"</td>
+<td>350</td>
+<td>26.9</td>
+<td>16.609</td>
+<td>83</td>
+<td>955</td>
+<td>4.71</td>
+<td>0.0</td>
+<td>3.54</td>
+<td>22.21</td>
+<td>3</td>
+<td>16</td>
+<td>0</td>
+<td>"cheese"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"Oat"</td>
+<td>"grains"</td>
+<td>389</td>
+<td>6.0</td>
+<td>1.217</td>
+<td>0</td>
+<td>2</td>
+<td>66.27</td>
+<td>10.6</td>
+<td>0.0</td>
+<td>16.89</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>"oat"</td>
+<td>"brown"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Next, sort by calories but with the highest caloric foods at the top.</p>
+<div id="d3070bfe" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.calories, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (61, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Oat"</td>
+<td>"grains"</td>
+<td>389</td>
+<td>6.0</td>
+<td>1.217</td>
+<td>0</td>
+<td>2</td>
+<td>66.27</td>
+<td>10.6</td>
+<td>0.0</td>
+<td>16.89</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>"oat"</td>
+<td>"brown"</td>
+</tr>
+<tr class="even">
+<td>"Cheese"</td>
+<td>"dairy"</td>
+<td>350</td>
+<td>26.9</td>
+<td>16.609</td>
+<td>83</td>
+<td>955</td>
+<td>4.71</td>
+<td>0.0</td>
+<td>3.54</td>
+<td>22.21</td>
+<td>3</td>
+<td>16</td>
+<td>0</td>
+<td>"cheese"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"Lamb"</td>
+<td>"meat"</td>
+<td>292</td>
+<td>20.7</td>
+<td>8.756</td>
+<td>96</td>
+<td>394</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>24.32</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>"sheep"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Beef"</td>
+<td>"meat"</td>
+<td>288</td>
+<td>19.5</td>
+<td>7.731</td>
+<td>87</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>26.33</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>"beef"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Pork"</td>
+<td>"meat"</td>
+<td>271</td>
+<td>17.0</td>
+<td>6.168</td>
+<td>90</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.34</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>"pork"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Tomato"</td>
+<td>"vegetable"</td>
+<td>18</td>
+<td>0.0</td>
+<td>0.046</td>
+<td>0</td>
+<td>5</td>
+<td>3.92</td>
+<td>1.2</td>
+<td>2.63</td>
+<td>0.88</td>
+<td>2</td>
+<td>17</td>
+<td>21</td>
+<td>"tomato"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Celery"</td>
+<td>"vegetable"</td>
+<td>14</td>
+<td>0.1</td>
+<td>0.043</td>
+<td>0</td>
+<td>80</td>
+<td>2.97</td>
+<td>1.6</td>
+<td>1.83</td>
+<td>0.69</td>
+<td>1</td>
+<td>9</td>
+<td>5</td>
+<td>"celery"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Lettuce"</td>
+<td>"vegetable"</td>
+<td>14</td>
+<td>0.1</td>
+<td>0.018</td>
+<td>0</td>
+<td>10</td>
+<td>2.97</td>
+<td>1.2</td>
+<td>1.76</td>
+<td>0.9</td>
+<td>2</td>
+<td>10</td>
+<td>5</td>
+<td>"lettuce"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Cucumber"</td>
+<td>"vegetable"</td>
+<td>12</td>
+<td>0.1</td>
+<td>0.013</td>
+<td>0</td>
+<td>2</td>
+<td>2.16</td>
+<td>0.7</td>
+<td>1.38</td>
+<td>0.59</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>"cucumber"</td>
+<td>"green"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>And now, sort by the food groups (alphabetical order) and then within each food group by calories. Note: When we say “sort” in general, that means ascending unless otherwise noted.</p>
+<div id="93685b92" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.food_group, c.calories)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (61, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Milk"</td>
+<td>"dairy"</td>
+<td>60</td>
+<td>3.2</td>
+<td>1.865</td>
+<td>10</td>
+<td>40</td>
+<td>4.52</td>
+<td>0.0</td>
+<td>5.26</td>
+<td>3.22</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>"milk"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Yogurt"</td>
+<td>"dairy"</td>
+<td>99</td>
+<td>1.1</td>
+<td>0.742</td>
+<td>5</td>
+<td>53</td>
+<td>18.64</td>
+<td>0.0</td>
+<td>18.64</td>
+<td>3.98</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>"yogurt"</td>
+<td>"white"</td>
+</tr>
+<tr class="odd">
+<td>"Sour Cream"</td>
+<td>"dairy"</td>
+<td>214</td>
+<td>20.9</td>
+<td>13.047</td>
+<td>44</td>
+<td>53</td>
+<td>4.27</td>
+<td>0.0</td>
+<td>0.16</td>
+<td>3.16</td>
+<td>0</td>
+<td>13</td>
+<td>2</td>
+<td>"sour_cream"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Cheese"</td>
+<td>"dairy"</td>
+<td>350</td>
+<td>26.9</td>
+<td>16.609</td>
+<td>83</td>
+<td>955</td>
+<td>4.71</td>
+<td>0.0</td>
+<td>3.54</td>
+<td>22.21</td>
+<td>3</td>
+<td>16</td>
+<td>0</td>
+<td>"cheese"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"Crab"</td>
+<td>"fish"</td>
+<td>87</td>
+<td>1.0</td>
+<td>0.222</td>
+<td>78</td>
+<td>293</td>
+<td>0.04</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>18.06</td>
+<td>4</td>
+<td>0</td>
+<td>5</td>
+<td>"callinectes_sapidus"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Carrot"</td>
+<td>"vegetable"</td>
+<td>41</td>
+<td>0.2</td>
+<td>0.037</td>
+<td>0</td>
+<td>69</td>
+<td>9.58</td>
+<td>2.8</td>
+<td>4.54</td>
+<td>0.93</td>
+<td>2</td>
+<td>336</td>
+<td>10</td>
+<td>"carrot"</td>
+<td>"orange"</td>
+</tr>
+<tr class="even">
+<td>"Onion"</td>
+<td>"vegetable"</td>
+<td>42</td>
+<td>0.0</td>
+<td>0.026</td>
+<td>0</td>
+<td>3</td>
+<td>10.11</td>
+<td>1.4</td>
+<td>4.28</td>
+<td>0.92</td>
+<td>1</td>
+<td>0</td>
+<td>11</td>
+<td>"onion"</td>
+<td>"white"</td>
+</tr>
+<tr class="odd">
+<td>"Corn"</td>
+<td>"vegetable"</td>
+<td>86</td>
+<td>1.1</td>
+<td>0.182</td>
+<td>0</td>
+<td>15</td>
+<td>19.02</td>
+<td>2.7</td>
+<td>3.22</td>
+<td>3.22</td>
+<td>3</td>
+<td>4</td>
+<td>11</td>
+<td>"maize"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="even">
+<td>"Sweet Potato"</td>
+<td>"vegetable"</td>
+<td>86</td>
+<td>0.0</td>
+<td>0.018</td>
+<td>0</td>
+<td>55</td>
+<td>20.12</td>
+<td>3.0</td>
+<td>4.18</td>
+<td>1.57</td>
+<td>3</td>
+<td>284</td>
+<td>4</td>
+<td>"sweet_potato"</td>
+<td>"orange"</td>
+</tr>
+<tr class="odd">
+<td>"Potato"</td>
+<td>"vegetable"</td>
+<td>104</td>
+<td>2.0</td>
+<td>0.458</td>
+<td>0</td>
+<td>254</td>
+<td>19.36</td>
+<td>1.7</td>
+<td>0.82</td>
+<td>1.66</td>
+<td>2</td>
+<td>2</td>
+<td>12</td>
+<td>"potato"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, take only the columns food group and calories from the dataset. Notice how close your code (should be) to the code in the previous block.</p>
+<div id="23d40493" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .select(c.food_group, c.calories)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (61, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"fruit"</td>
+<td>52</td>
+</tr>
+<tr class="even">
+<td>"vegetable"</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>"fruit"</td>
+<td>160</td>
+</tr>
+<tr class="even">
+<td>"fruit"</td>
+<td>89</td>
+</tr>
+<tr class="odd">
+<td>"grains"</td>
+<td>180</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"vegetable"</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>"fish"</td>
+<td>153</td>
+</tr>
+<tr class="odd">
+<td>"meat"</td>
+<td>187</td>
+</tr>
+<tr class="even">
+<td>"vegetable"</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td>"dairy"</td>
+<td>99</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let’s now chain several methods together. Create a dataset that has the ten items that have the largest amount of calories per serving.</p>
+<div id="9e9e2722" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.calories, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    .head(n<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Oat"</td>
+<td>"grains"</td>
+<td>389</td>
+<td>6.0</td>
+<td>1.217</td>
+<td>0</td>
+<td>2</td>
+<td>66.27</td>
+<td>10.6</td>
+<td>0.0</td>
+<td>16.89</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>"oat"</td>
+<td>"brown"</td>
+</tr>
+<tr class="even">
+<td>"Cheese"</td>
+<td>"dairy"</td>
+<td>350</td>
+<td>26.9</td>
+<td>16.609</td>
+<td>83</td>
+<td>955</td>
+<td>4.71</td>
+<td>0.0</td>
+<td>3.54</td>
+<td>22.21</td>
+<td>3</td>
+<td>16</td>
+<td>0</td>
+<td>"cheese"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"Lamb"</td>
+<td>"meat"</td>
+<td>292</td>
+<td>20.7</td>
+<td>8.756</td>
+<td>96</td>
+<td>394</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>24.32</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>"sheep"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Beef"</td>
+<td>"meat"</td>
+<td>288</td>
+<td>19.5</td>
+<td>7.731</td>
+<td>87</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>26.33</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>"beef"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Pork"</td>
+<td>"meat"</td>
+<td>271</td>
+<td>17.0</td>
+<td>6.168</td>
+<td>90</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.34</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>"pork"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Catfish"</td>
+<td>"fish"</td>
+<td>240</td>
+<td>14.5</td>
+<td>3.246</td>
+<td>69</td>
+<td>398</td>
+<td>8.54</td>
+<td>0.5</td>
+<td>0.85</td>
+<td>17.57</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>"catfish"</td>
+<td>"white"</td>
+</tr>
+<tr class="odd">
+<td>"Halibut"</td>
+<td>"fish"</td>
+<td>239</td>
+<td>17.7</td>
+<td>3.102</td>
+<td>59</td>
+<td>103</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>18.42</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>"halibut"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Chicken"</td>
+<td>"meat"</td>
+<td>237</td>
+<td>13.4</td>
+<td>3.758</td>
+<td>87</td>
+<td>404</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.07</td>
+<td>7</td>
+<td>3</td>
+<td>0</td>
+<td>"chicken"</td>
+<td>"white"</td>
+</tr>
+<tr class="odd">
+<td>"Scallop"</td>
+<td>"fish"</td>
+<td>217</td>
+<td>10.9</td>
+<td>2.216</td>
+<td>54</td>
+<td>487</td>
+<td>10.49</td>
+<td>0.5</td>
+<td>0.82</td>
+<td>18.14</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>"scallop"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Sour Cream"</td>
+<td>"dairy"</td>
+<td>214</td>
+<td>20.9</td>
+<td>13.047</td>
+<td>44</td>
+<td>53</td>
+<td>4.27</td>
+<td>0.0</td>
+<td>0.16</td>
+<td>3.16</td>
+<td>0</td>
+<td>13</td>
+<td>2</td>
+<td>"sour_cream"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>And now, in the next block of code grab just one row of the data that has the smallest amount of sugar amongst the 10 highest caloric foods.</p>
+<div id="f96d9231" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.calories, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .head(n<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    .sort(c.sugar)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .head(n<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Oat"</td>
+<td>"grains"</td>
+<td>389</td>
+<td>6.0</td>
+<td>1.217</td>
+<td>0</td>
+<td>2</td>
+<td>66.27</td>
+<td>10.6</td>
+<td>0.0</td>
+<td>16.89</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>"oat"</td>
+<td>"brown"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, select just those rows where the amount of iron is more than 3mg.</p>
+<div id="403a99d1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iron <span class="op">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (25, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Chickpea"</td>
+<td>"grains"</td>
+<td>180</td>
+<td>2.9</td>
+<td>0.309</td>
+<td>0</td>
+<td>243</td>
+<td>29.98</td>
+<td>8.6</td>
+<td>5.29</td>
+<td>9.54</td>
+<td>17</td>
+<td>0</td>
+<td>3</td>
+<td>"chickpea"</td>
+<td>"brown"</td>
+</tr>
+<tr class="odd">
+<td>"String Bean"</td>
+<td>"vegetable"</td>
+<td>31</td>
+<td>0.1</td>
+<td>0.026</td>
+<td>0</td>
+<td>6</td>
+<td>7.13</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>1.82</td>
+<td>6</td>
+<td>14</td>
+<td>27</td>
+<td>"green_bean"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Beef"</td>
+<td>"meat"</td>
+<td>288</td>
+<td>19.5</td>
+<td>7.731</td>
+<td>87</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>26.33</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>"beef"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Crab"</td>
+<td>"fish"</td>
+<td>87</td>
+<td>1.0</td>
+<td>0.222</td>
+<td>78</td>
+<td>293</td>
+<td>0.04</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>18.06</td>
+<td>4</td>
+<td>0</td>
+<td>5</td>
+<td>"callinectes_sapidus"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Scallop"</td>
+<td>"fish"</td>
+<td>217</td>
+<td>10.9</td>
+<td>2.216</td>
+<td>54</td>
+<td>487</td>
+<td>10.49</td>
+<td>0.5</td>
+<td>0.82</td>
+<td>18.14</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>"scallop"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Shrimp"</td>
+<td>"fish"</td>
+<td>144</td>
+<td>2.3</td>
+<td>0.446</td>
+<td>206</td>
+<td>613</td>
+<td>1.24</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.59</td>
+<td>16</td>
+<td>4</td>
+<td>3</td>
+<td>"shrimp"</td>
+<td>"pink"</td>
+</tr>
+<tr class="odd">
+<td>"Swordfish"</td>
+<td>"fish"</td>
+<td>177</td>
+<td>8.2</td>
+<td>1.959</td>
+<td>47</td>
+<td>494</td>
+<td>0.49</td>
+<td>0.0</td>
+<td>0.11</td>
+<td>23.8</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>"swordfish"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Tuna"</td>
+<td>"fish"</td>
+<td>153</td>
+<td>3.9</td>
+<td>0.811</td>
+<td>53</td>
+<td>366</td>
+<td>0.41</td>
+<td>0.0</td>
+<td>0.09</td>
+<td>27.3</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>"tuna"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Turkey"</td>
+<td>"meat"</td>
+<td>187</td>
+<td>7.0</td>
+<td>1.999</td>
+<td>77</td>
+<td>69</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>28.9</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>"turkey_(bird)"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, instead, select those rows where the amount of iron is more than <em>or equal to</em> 3mg.</p>
+<div id="b79d98e1" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iron <span class="op">&gt;=</span> <span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (33, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Avocado"</td>
+<td>"fruit"</td>
+<td>160</td>
+<td>14.6</td>
+<td>2.126</td>
+<td>0</td>
+<td>7</td>
+<td>8.53</td>
+<td>6.7</td>
+<td>0.66</td>
+<td>2.0</td>
+<td>3</td>
+<td>3</td>
+<td>17</td>
+<td>"avocado"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Chickpea"</td>
+<td>"grains"</td>
+<td>180</td>
+<td>2.9</td>
+<td>0.309</td>
+<td>0</td>
+<td>243</td>
+<td>29.98</td>
+<td>8.6</td>
+<td>5.29</td>
+<td>9.54</td>
+<td>17</td>
+<td>0</td>
+<td>3</td>
+<td>"chickpea"</td>
+<td>"brown"</td>
+</tr>
+<tr class="even">
+<td>"String Bean"</td>
+<td>"vegetable"</td>
+<td>31</td>
+<td>0.1</td>
+<td>0.026</td>
+<td>0</td>
+<td>6</td>
+<td>7.13</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>1.82</td>
+<td>6</td>
+<td>14</td>
+<td>27</td>
+<td>"green_bean"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Beef"</td>
+<td>"meat"</td>
+<td>288</td>
+<td>19.5</td>
+<td>7.731</td>
+<td>87</td>
+<td>384</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>26.33</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>"beef"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Shrimp"</td>
+<td>"fish"</td>
+<td>144</td>
+<td>2.3</td>
+<td>0.446</td>
+<td>206</td>
+<td>613</td>
+<td>1.24</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>27.59</td>
+<td>16</td>
+<td>4</td>
+<td>3</td>
+<td>"shrimp"</td>
+<td>"pink"</td>
+</tr>
+<tr class="even">
+<td>"Sweet Potato"</td>
+<td>"vegetable"</td>
+<td>86</td>
+<td>0.0</td>
+<td>0.018</td>
+<td>0</td>
+<td>55</td>
+<td>20.12</td>
+<td>3.0</td>
+<td>4.18</td>
+<td>1.57</td>
+<td>3</td>
+<td>284</td>
+<td>4</td>
+<td>"sweet_potato"</td>
+<td>"orange"</td>
+</tr>
+<tr class="odd">
+<td>"Swordfish"</td>
+<td>"fish"</td>
+<td>177</td>
+<td>8.2</td>
+<td>1.959</td>
+<td>47</td>
+<td>494</td>
+<td>0.49</td>
+<td>0.0</td>
+<td>0.11</td>
+<td>23.8</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>"swordfish"</td>
+<td>"white"</td>
+</tr>
+<tr class="even">
+<td>"Tuna"</td>
+<td>"fish"</td>
+<td>153</td>
+<td>3.9</td>
+<td>0.811</td>
+<td>53</td>
+<td>366</td>
+<td>0.41</td>
+<td>0.0</td>
+<td>0.09</td>
+<td>27.3</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>"tuna"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Turkey"</td>
+<td>"meat"</td>
+<td>187</td>
+<td>7.0</td>
+<td>1.999</td>
+<td>77</td>
+<td>69</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>28.9</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>"turkey_(bird)"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select those rows where the food group is “fruit”.</p>
+<div id="5fd8d5e6" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iron <span class="op">==</span> <span class="dv">5</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.food_group <span class="op">==</span> <span class="st">"fruit"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (0, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select those rows where the food group is “fruit” and the iron is great than 3. Do this with two different calls to <code>.filter</code>.</p>
+<div id="6e1ff66f" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iron <span class="op">==</span> <span class="dv">5</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.food_group <span class="op">==</span> <span class="st">"fruit"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (0, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Repeat the previous question with a single <code>.filter</code> by using the <code>&amp;</code> symbol.</p>
+<div id="1ddce1da" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((c.iron <span class="op">==</span> <span class="dv">5</span>) <span class="op">&amp;</span> (c.food_group <span class="op">==</span> <span class="st">"fruit"</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (0, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select the rows where the food group is either “fruit” or “vegetable” using the <code>|</code> (or) operator.</p>
+<div id="2bb1043a" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((c.food_group <span class="op">==</span> <span class="st">"fruit"</span>) <span class="op">|</span> (c.food_group <span class="op">==</span> <span class="st">"vegetable"</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (32, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Apple"</td>
+<td>"fruit"</td>
+<td>52</td>
+<td>0.1</td>
+<td>0.028</td>
+<td>0</td>
+<td>1</td>
+<td>13.81</td>
+<td>2.4</td>
+<td>10.39</td>
+<td>0.26</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>"apple"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Avocado"</td>
+<td>"fruit"</td>
+<td>160</td>
+<td>14.6</td>
+<td>2.126</td>
+<td>0</td>
+<td>7</td>
+<td>8.53</td>
+<td>6.7</td>
+<td>0.66</td>
+<td>2.0</td>
+<td>3</td>
+<td>3</td>
+<td>17</td>
+<td>"avocado"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Banana"</td>
+<td>"fruit"</td>
+<td>89</td>
+<td>0.3</td>
+<td>0.112</td>
+<td>0</td>
+<td>1</td>
+<td>22.84</td>
+<td>2.6</td>
+<td>12.23</td>
+<td>1.09</td>
+<td>1</td>
+<td>1</td>
+<td>15</td>
+<td>"banana"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"String Bean"</td>
+<td>"vegetable"</td>
+<td>31</td>
+<td>0.1</td>
+<td>0.026</td>
+<td>0</td>
+<td>6</td>
+<td>7.13</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>1.82</td>
+<td>6</td>
+<td>14</td>
+<td>27</td>
+<td>"green_bean"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Strawberry"</td>
+<td>"fruit"</td>
+<td>32</td>
+<td>0.0</td>
+<td>0.015</td>
+<td>0</td>
+<td>1</td>
+<td>7.68</td>
+<td>2.0</td>
+<td>4.66</td>
+<td>0.67</td>
+<td>2</td>
+<td>0</td>
+<td>98</td>
+<td>"strawberry"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Sweet Potato"</td>
+<td>"vegetable"</td>
+<td>86</td>
+<td>0.0</td>
+<td>0.018</td>
+<td>0</td>
+<td>55</td>
+<td>20.12</td>
+<td>3.0</td>
+<td>4.18</td>
+<td>1.57</td>
+<td>3</td>
+<td>284</td>
+<td>4</td>
+<td>"sweet_potato"</td>
+<td>"orange"</td>
+</tr>
+<tr class="odd">
+<td>"Tangerine"</td>
+<td>"fruit"</td>
+<td>53</td>
+<td>0.3</td>
+<td>0.039</td>
+<td>0</td>
+<td>2</td>
+<td>13.34</td>
+<td>1.8</td>
+<td>10.58</td>
+<td>0.81</td>
+<td>1</td>
+<td>14</td>
+<td>45</td>
+<td>"tangerine"</td>
+<td>"orange"</td>
+</tr>
+<tr class="even">
+<td>"Tomato"</td>
+<td>"vegetable"</td>
+<td>18</td>
+<td>0.0</td>
+<td>0.046</td>
+<td>0</td>
+<td>5</td>
+<td>3.92</td>
+<td>1.2</td>
+<td>2.63</td>
+<td>0.88</td>
+<td>2</td>
+<td>17</td>
+<td>21</td>
+<td>"tomato"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Potato"</td>
+<td>"vegetable"</td>
+<td>104</td>
+<td>2.0</td>
+<td>0.458</td>
+<td>0</td>
+<td>254</td>
+<td>19.36</td>
+<td>1.7</td>
+<td>0.82</td>
+<td>1.66</td>
+<td>2</td>
+<td>2</td>
+<td>12</td>
+<td>"potato"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>What would happen if we replaced the <code>|</code> operator with an <code>&amp;</code> (and)?</p>
+<p><strong>Answer</strong>: This would result in no rows, because nothing can be fruit AND vegetable. Notice that this can be confusing because it does not match common English conventions. For example, “bring me all of the fruits <strong>and</strong> vegetables from the bag” means bring all items that are (individually) either fruits <strong>or</strong> vegetables.</p>
+<p>Finally, select the rows that are fruits or vegetables using the <code>.is_in</code> method.</p>
+<div id="a8ca3723" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.food_group.is_in([<span class="st">"fruit"</span>, <span class="st">"vegetable"</span>]))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (32, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">item</th>
+<th data-quarto-table-cell-role="th">food_group</th>
+<th data-quarto-table-cell-role="th">calories</th>
+<th data-quarto-table-cell-role="th">total_fat</th>
+<th data-quarto-table-cell-role="th">sat_fat</th>
+<th data-quarto-table-cell-role="th">cholesterol</th>
+<th data-quarto-table-cell-role="th">sodium</th>
+<th data-quarto-table-cell-role="th">carbs</th>
+<th data-quarto-table-cell-role="th">fiber</th>
+<th data-quarto-table-cell-role="th">sugar</th>
+<th data-quarto-table-cell-role="th">protein</th>
+<th data-quarto-table-cell-role="th">iron</th>
+<th data-quarto-table-cell-role="th">vitamin_a</th>
+<th data-quarto-table-cell-role="th">vitamin_c</th>
+<th data-quarto-table-cell-role="th">wiki</th>
+<th data-quarto-table-cell-role="th">color</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Apple"</td>
+<td>"fruit"</td>
+<td>52</td>
+<td>0.1</td>
+<td>0.028</td>
+<td>0</td>
+<td>1</td>
+<td>13.81</td>
+<td>2.4</td>
+<td>10.39</td>
+<td>0.26</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>"apple"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Asparagus"</td>
+<td>"vegetable"</td>
+<td>20</td>
+<td>0.1</td>
+<td>0.046</td>
+<td>0</td>
+<td>2</td>
+<td>3.88</td>
+<td>2.1</td>
+<td>1.88</td>
+<td>2.2</td>
+<td>12</td>
+<td>15</td>
+<td>9</td>
+<td>"asparagus"</td>
+<td>"green"</td>
+</tr>
+<tr class="odd">
+<td>"Avocado"</td>
+<td>"fruit"</td>
+<td>160</td>
+<td>14.6</td>
+<td>2.126</td>
+<td>0</td>
+<td>7</td>
+<td>8.53</td>
+<td>6.7</td>
+<td>0.66</td>
+<td>2.0</td>
+<td>3</td>
+<td>3</td>
+<td>17</td>
+<td>"avocado"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>"Banana"</td>
+<td>"fruit"</td>
+<td>89</td>
+<td>0.3</td>
+<td>0.112</td>
+<td>0</td>
+<td>1</td>
+<td>22.84</td>
+<td>2.6</td>
+<td>12.23</td>
+<td>1.09</td>
+<td>1</td>
+<td>1</td>
+<td>15</td>
+<td>"banana"</td>
+<td>"yellow"</td>
+</tr>
+<tr class="odd">
+<td>"String Bean"</td>
+<td>"vegetable"</td>
+<td>31</td>
+<td>0.1</td>
+<td>0.026</td>
+<td>0</td>
+<td>6</td>
+<td>7.13</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>1.82</td>
+<td>6</td>
+<td>14</td>
+<td>27</td>
+<td>"green_bean"</td>
+<td>"green"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Strawberry"</td>
+<td>"fruit"</td>
+<td>32</td>
+<td>0.0</td>
+<td>0.015</td>
+<td>0</td>
+<td>1</td>
+<td>7.68</td>
+<td>2.0</td>
+<td>4.66</td>
+<td>0.67</td>
+<td>2</td>
+<td>0</td>
+<td>98</td>
+<td>"strawberry"</td>
+<td>"red"</td>
+</tr>
+<tr class="even">
+<td>"Sweet Potato"</td>
+<td>"vegetable"</td>
+<td>86</td>
+<td>0.0</td>
+<td>0.018</td>
+<td>0</td>
+<td>55</td>
+<td>20.12</td>
+<td>3.0</td>
+<td>4.18</td>
+<td>1.57</td>
+<td>3</td>
+<td>284</td>
+<td>4</td>
+<td>"sweet_potato"</td>
+<td>"orange"</td>
+</tr>
+<tr class="odd">
+<td>"Tangerine"</td>
+<td>"fruit"</td>
+<td>53</td>
+<td>0.3</td>
+<td>0.039</td>
+<td>0</td>
+<td>2</td>
+<td>13.34</td>
+<td>1.8</td>
+<td>10.58</td>
+<td>0.81</td>
+<td>1</td>
+<td>14</td>
+<td>45</td>
+<td>"tangerine"</td>
+<td>"orange"</td>
+</tr>
+<tr class="even">
+<td>"Tomato"</td>
+<td>"vegetable"</td>
+<td>18</td>
+<td>0.0</td>
+<td>0.046</td>
+<td>0</td>
+<td>5</td>
+<td>3.92</td>
+<td>1.2</td>
+<td>2.63</td>
+<td>0.88</td>
+<td>2</td>
+<td>17</td>
+<td>21</td>
+<td>"tomato"</td>
+<td>"red"</td>
+</tr>
+<tr class="odd">
+<td>"Potato"</td>
+<td>"vegetable"</td>
+<td>104</td>
+<td>2.0</td>
+<td>0.458</td>
+<td>0</td>
+<td>254</td>
+<td>19.36</td>
+<td>1.7</td>
+<td>0.82</td>
+<td>1.66</td>
+<td>2</td>
+<td>2</td>
+<td>12</td>
+<td>"potato"</td>
+<td>"white"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>This last one is the preferred way to do this as it generalizes better to more categories and more clearly maps onto the way we commonly thing about being in a set. The <code>|</code> operator is very useful for other kinds of selections, such as selecting all of the vegetables OR foods with no saturated fats.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
