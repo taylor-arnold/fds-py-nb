@@ -1,0 +1,1127 @@
+character_id,play_id,name,role_description
+Hermia_MND,mnd,Hermia,
+Lysander_MND,mnd,Lysander,
+Helena_MND,mnd,Helena,
+Demetrius_MND,mnd,Demetrius,
+Theseus_MND,mnd,Theseus,duke of Athens
+Hippolyta_MND,mnd,Hippolyta,queen of the Amazons
+Egeus_MND,mnd,Egeus,father to Hermia
+Philostrate_MND,mnd,Philostrate,master of the revels to Theseus
+Bottom_MND,mnd,Nick Bottom,weaver
+Quince_MND,mnd,Peter Quince,carpenter
+Flute_MND,mnd,Francis Flute,bellows-mender
+Snout_MND,mnd,Tom Snout,tinker
+Snug_MND,mnd,Snug,joiner
+Starveling_MND,mnd,Robin Starveling,tailor
+Oberon_MND,mnd,Oberon,king of the Fairies
+Titania_MND,mnd,Titania,queen of the Fairies
+RobinGoodfellow_MND,mnd,Robin Goodfellow,"a “puck,” or hobgoblin, in Oberon’s service"
+FAIRIES.TITANIA.1_MND,mnd,A Fairy,in the service of Titania
+FAIRIES.TITANIA.Peaseblossom_MND,mnd,Peaseblossom,
+FAIRIES.TITANIA.Cobweb_MND,mnd,Cobweb,
+FAIRIES.TITANIA.Mote_MND,mnd,Mote,
+FAIRIES.TITANIA.Mustardseed_MND,mnd,Mustardseed,
+Helen_AWW,aww,Helen,a gentlewoman of Rossillion
+Bertram_AWW,aww,Bertram,Count of Rossillion
+Countess_AWW,aww,Countess,Bertram’s mother
+Steward_AWW,aww,Steward,
+Fool_AWW,aww,Fool,
+Page_AWW,aww,Page,
+Parolles_AWW,aww,Parolles,companion to Bertram
+King_AWW,aww,King,
+Lafew_AWW,aww,Lafew,a French lord
+LORDS.DUMAINE.1_AWW,aww,First Lord,
+LORDS.DUMAINE.2_AWW,aww,Second Lord,
+LORDS.COURT_AWW,aww,Lords,
+GENTLEMEN.1_AWW,aww,First Gentleman,
+GENTLEMEN.2_AWW,aww,Second Gentleman,
+GENTLEMEN.3_AWW,aww,Gentleman,a “gentle Astringer”
+SOLDIERS.Interpreter_AWW,aww,First Soldier,interpreter
+Duke_AWW,aww,Duke,
+Widow_AWW,aww,Widow,
+Diana_AWW,aww,Diana,the Widow’s daughter
+Mariana_AWW,aww,Mariana,the Widow’s neighbor
+Antony_JC,ant,Antony,a triumvir of Rome
+Cleopatra_Ant,ant,Cleopatra,Queen of Egypt
+Octavius_JC,ant,Octavius Caesar,a triumvir of Rome
+Octavia_Ant,ant,Octavia,"sister to Caesar, later wife to Antony"
+Lepidus_JC,ant,Lepidus,a triumvir of Rome
+Enobarbus_Ant,ant,Enobarbus,also called Domitius
+Ventidius_Ant,ant,Ventidius,
+Silius_Ant,ant,Silius,
+Eros_Ant,ant,Eros,
+Canidius_Ant,ant,Canidius,
+Scarus_Ant,ant,Scarus,
+GUARDS.Dercetus_Ant,ant,Dercetus,
+Demetrius_Ant,ant,Demetrius,
+Philo_Ant,ant,Philo,
+Ambassador_Ant,ant,A Schoolmaster,Antony’sAmbassador to Caesar
+Charmian_Ant,ant,Charmian,
+Iras_Ant,ant,Iras,
+Alexas_Ant,ant,Alexas,
+Mardian_Ant,ant,Mardian,a Eunuch
+Seleucus_Ant,ant,Seleucus,Cleopatra’s treasurer
+Diomedes_Ant,ant,Diomedes,
+Maecenas_Ant,ant,Maecenas,
+Agrippa_Ant,ant,Agrippa,
+Taurus_Ant,ant,Taurus,
+Thidias_Ant,ant,Thidias,
+Dolabella_Ant,ant,Dolabella,
+Gallus_Ant,ant,Gallus,
+Proculeius_Ant,ant,Proculeius,
+Pompey_Ant,ant,Sextus Pompeius,also called Pompey
+Menas_Ant,ant,Menas,
+Menecrates_Ant,ant,Menecrates,
+Varrius_Ant,ant,Varrius,
+MESSENGERS_Ant,ant,Messengers,
+MESSENGERS.ANTONY.1_Ant,ant,First Messenger to Antony,
+MESSENGERS.ANTONY.2_Ant,ant,Second Messenger to Antony,
+MESSENGERS.ANTONY.3_Ant,ant,Third Messenger to Antony,
+MESSENGERS.CAESAR.1_Ant,ant,First Messenger to Caesar,
+MESSENGERS.CAESAR.2_Ant,ant,Second Messenger to Caesar,
+MESSENGERS.X.1_Ant,ant,A member of the MESSENGERS group (first instance),
+MESSENGERS.X.2_Ant,ant,A member of the MESSENGERS group (second instance),
+MESSENGERS.X.3_Ant,ant,A member of the MESSENGERS group (third instance),
+MESSENGERS.X.4_Ant,ant,A member of the MESSENGERS group (fourth instance),
+MESSENGERS.X.5_Ant,ant,A member of the MESSENGERS group (fifth instance),
+SOLDIERS_Ant,ant,Soldiers,
+WATCHMEN_Ant,ant,Sentries,
+GUARDS_Ant,ant,Guardsmen,
+Soothsayer_Ant,ant,A Soothsayer,
+SERVANTS_Ant,ant,Servants,
+Boy_Ant,ant,A Boy,
+CAPTAINS.0.1_Ant,ant,A Captain,
+Egyptian_Ant,ant,An Egyptian,
+Countryman_Ant,ant,A Countryman,
+Orlando_AYL,ayl,Orlando,youngest son of Sir Rowland de Boys
+Oliver_AYL,ayl,Oliver,his elder brother
+SecondBrother_AYL,ayl,Second Brother,"brother to Orlando and Oliver, named Jaques"
+Adam_AYL,ayl,Adam,servant to Oliver and friend to Orlando
+Dennis_AYL,ayl,Dennis,servant to Oliver
+Rosalind_AYL,ayl,Rosalind,daughter to Duke Senior
+Celia_AYL,ayl,Celia,"Rosalind’s cousin, daughter to Duke Frederick"
+Touchstone_AYL,ayl,Touchstone,a court Fool
+DukeFrederick_AYL,ayl,Duke Frederick,the usurping duke
+Charles_AYL,ayl,Charles,wrestler at Duke Frederick’s court
+LORDS.FREDERICK.LeBeau_AYL,ayl,Le Beau,a courtier at Duke Frederick’s court
+LORDS.FREDERICK.0.1_AYL,ayl,First Lord,
+LORDS.FREDERICK.0.2_AYL,ayl,Second Lord,
+DukeSenior_AYL,ayl,Duke Senior,"the exiled duke, brother to Duke Frederick"
+Jaques_AYL,ayl,Jaques,
+LORDS.SENIOR.Amiens_AYL,ayl,Amiens,
+LORDS.SENIOR.0.1_AYL,ayl,First Lord,
+LORDS.SENIOR.0.2_AYL,ayl,Second Lord,
+SERVANTS.1_AYL,ayl,First Page,
+SERVANTS.2_AYL,ayl,Second Page,
+Corin_AYL,ayl,Corin,a shepherd
+Silvius_AYL,ayl,Silvius,a young shepherd in love
+Phoebe_AYL,ayl,Phoebe,a disdainful shepherdess
+Audrey_AYL,ayl,Audrey,a goat-keeper
+William_AYL,ayl,William,a country youth in love with Audrey
+OliverMartext_AYL,ayl,Sir Oliver Martext,a parish priest
+Hymen_AYL,ayl,Hymen,god of marriage
+Coriolanus_Cor,cor,Martius,later Caius Martius Coriolanus
+Volumnia_Cor,cor,Volumnia,his mother
+Virgilia_Cor,cor,Virgilia,his wife
+YoungMartius_Cor,cor,Young Martius,their son
+Valeria_Cor,cor,Valeria,friend to Volumnia and Virgilia
+Gentlewoman_Cor,cor,Gentlewoman,Volumnia’s attendant
+Menenius_Cor,cor,Menenius,patrician
+Cominius_Cor,cor,Cominius,patrician and general
+Lartius_Cor,cor,Lartius,patrician and military officer
+TRIBUNES.Sicinius_Cor,cor,Sicinius,tribune
+TRIBUNES.Brutus_Cor,cor,Brutus,tribune
+SENATORS.ROMAN_Cor,cor,Senators,
+SOLDIERS.ROMAN.Lieutenant_Cor,cor,Lieutenant,
+OFFICERS_Cor,cor,Officers,
+AEDILES_Cor,cor,Aediles,
+Herald_Cor,cor,Herald,
+SOLDIERS.ROMAN_Cor,cor,Soldiers,
+CITIZENS.ROMAN_Cor,cor,Citizens,
+MESSENGERS_Cor,cor,Messengers,
+Nicanor_Cor,cor,Roman,
+Aufidius_Cor,cor,Aufidius,general of the Volscians
+CONSPIRATORS_Cor,cor,Conspirators,
+SERVANTS_Cor,cor,Servingmen,
+LORDS.VOLSCIAN_Cor,cor,Senators,
+SOLDIERS.VOLSCIAN.Lieutenant_Cor,cor,Lieutenant,
+SOLDIERS.VOLSCIAN_Cor,cor,Soldiers,
+WATCHMEN_Cor,cor,Watch,
+CITIZENS.VOLSCIAN_Cor,cor,People,
+Adrian_Cor,cor,Volscian,
+CITIZENS.ANTIUM.1_Cor,cor,Citizen,
+Cymbeline_Cym,cym,Cymbeline,King of Britain
+Queen_Cym,cym,Queen,
+Imogen_Cym,cym,Imogen,daughter to Cymbeline by his former queen
+Posthumus_Cym,cym,Posthumus Leonatus,husband to Imogen
+Cloten_Cym,cym,Cloten,son to the present queen by a former husband
+Pisanio_Cym,cym,Pisanio,Posthumus’s servant
+Cornelius_Cym,cym,Cornelius,a physician in Cymbeline’s court
+Philario_Cym,cym,Philario,Posthumus’s host in Rome
+Iachimo_Cym,cym,Iachimo,friend to Philario
+Frenchman_Cym,cym,Frenchman,friend to Philario
+Lucius_Cym,cym,Caius Lucius,a Roman general
+Belarius_Cym,cym,Belarius,an exiled nobleman
+Guiderius_Cym,cym,Guiderius,
+Arviragus_Cym,cym,Arviragus,
+ATTENDANTS.CLOTEN_Cym,cym,Lords,
+ATTENDANTS.GENTLEMEN_Cym,cym,Gentlemen,
+LADIES.IMOGEN_Cym,cym,Lady,
+LADIES.QUEEN.0.1_Cym,cym,Lady,
+ATTENDANTS.3_Cym,cym,Lord,
+SOLDIERS.BRITON.CAPTAINS_Cym,cym,Captains,
+JAILERS_Cym,cym,Jailers,
+MESSENGERS_Cym,cym,Messengers,
+SENATORS_Cym,cym,Senators,
+TRIBUNES_Cym,cym,Tribunes,
+SOLDIERS.ROMAN.CAPTAINS_Cym,cym,Captains,
+Soothsayer_Cym,cym,Soothsayer,
+Jupiter_Cym,cym,Jupiter,
+GHOSTS.Father_Cym,cym,Sicilius Leonatus,Posthumus’s father
+GHOSTS.Mother_Cym,cym,Mother,
+GHOSTS.BROTHERS_Cym,cym,Brothers,
+Ghost_Ham,ham,The Ghost,
+Hamlet_Ham,ham,Hamlet,"Prince of Denmark, son of the late King Hamletand Queen Gertrude"
+Gertrude_Ham,ham,Queen Gertrude,"widow of King Hamlet, now married to Claudius"
+Claudius_Ham,ham,King Claudius,brother to the late King Hamlet
+Ophelia_Ham,ham,Ophelia,
+Laertes_Ham,ham,Laertes,her brother
+Polonius_Ham,ham,Polonius,"father of Ophelia and Laertes, councillor to King Claudius"
+Reynaldo_Ham,ham,Reynaldo,servant to Polonius
+Horatio_Ham,ham,Horatio,Hamlet’s friend and confidant
+Voltemand_Ham,ham,Voltemand,
+Cornelius_Ham,ham,Cornelius,
+Rosencrantz_Ham,ham,Rosencrantz,
+Guildenstern_Ham,ham,Guildenstern,
+Osric_Ham,ham,Osric,
+ATTENDANTS.GENTLEMEN_Ham,ham,Gentlemen,
+ATTENDANTS.2_Ham,ham,A Lord,
+Francisco_Ham,ham,Francisco,
+Barnardo_Ham,ham,Barnardo,
+Marcellus_Ham,ham,Marcellus,
+Fortinbras_Ham,ham,Fortinbras,Prince of Norway
+SOLDIERS.FORTINBRAS.Captain_Ham,ham,A Captain in Fortinbras’s army,
+AMBASSADORS_Ham,ham,Ambassadors to Denmark from England,
+PLAYERS_Ham,ham,"Players who take the roles of Prologue, Player King, Player Queen, and Lucianus in The Murder of Gonzago",
+MESSENGERS_Ham,ham,Two Messengers,
+SAILORS_Ham,ham,Sailors,
+Gravedigger_Ham,ham,Gravedigger,
+GravediggersCompanion_Ham,ham,Gravedigger’s companion,
+Doctor_Ham,ham,Doctor of Divinity,
+HenryIV_1H4,1h4,King Henry IV,formerly Henry Bolingbroke
+HenryV_H5,1h4,Prince Hal,Prince of Wales and heir to the throne (alsocalled Harry and Harry Monmouth)
+Bedford_H5,1h4,Lord John of Lancaster,younger son of King Henry
+Westmoreland_1H4,1h4,Earl of Westmoreland,
+Blunt_1H4,1h4,Sir Walter Blunt,
+Hotspur_R2,1h4,Hotspur,"(Sir Henry, or Harry, Percy)"
+LadyPercy_1H4,1h4,Lady Percy,(also called Kate)
+Northumberland_R2,1h4,Earl of Northumberland,"Henry Percy, Hotspur’s father"
+Worcester_1H4,1h4,Earl of Worcester,"Thomas Percy, Hotspur’s uncle"
+Mortimer_1H4,1h4,Edmund Mortimer,earl of March
+LadyMortimer_1H4,1h4,Lady Mortimer,(also called “the Welsh lady”)
+Glendower_1H4,1h4,Owen Glendower,"a Welsh lord, father of Lady Mortimer"
+Douglas_1H4,1h4,Douglas,"(Archibald, earl of Douglas)"
+Archbishop_1H4,1h4,Archbishop,"(Richard Scroop, archbishop of York)"
+SirMichael_1H4,1h4,Sir Michael,a priest or knight associated with the archbishop
+Vernon_1H4,1h4,Sir Richard Vernon,an English knight
+Falstaff_1H4,1h4,Sir John Falstaff,
+Poins_1H4,1h4,Poins,"(also called Edward, Yedward, and Ned)"
+Bardolph_1H4,1h4,Bardolph,
+Peto_1H4,1h4,Peto,
+Gadshill_1H4,1h4,Gadshill,setter for the robbers
+MistressQuickly_1H4,1h4,Hostess,(also called Mistress Quickly)
+Vintner_1H4,1h4,Vintner,or keeper of the tavern
+DRAWERS.Francis_1H4,1h4,Francis,an apprentice tapster
+Chorus_2H4,2h4,Rumor,Presenter of the Induction
+HenryIV_1H4,2h4,King Henry IV,formerly Henry Bolingbroke
+HenryV_H5,2h4,Prince Hal,"Prince of Wales and heir to the throne, later King Henry V"
+Bedford_H5,2h4,John of Lancaster,
+Clarence_2H4,2h4,Thomas of Clarence,
+Gloucester_2H4,2h4,Humphrey of Gloucester,
+Northumberland_R2,2h4,Earl of Northumberland,Henry Percy
+LadyNorthumberland_2H4,2h4,Northumberland’s wife,
+LadyPercy_1H4,2h4,Lady Percy,widow of Hotspur
+Archbishop_1H4,2h4,Archbishop,
+Mowbray_2H4,2h4,Lord Mowbray,
+Hastings_2H4,2h4,Lord Hastings,
+LordBardolph_2H4,2h4,Lord Bardolph,
+Travers_2H4,2h4,Travers,
+Morton_2H4,2h4,Morton,
+Colevile_2H4,2h4,Sir John Colevile,
+Westmoreland_1H4,2h4,Earl of Westmoreland,
+Warwick_2H4,2h4,Earl of Warwick,
+Surrey_2H4,2h4,Earl of Surrey,
+Blunt_2H4,2h4,Sir John Blunt,
+MESSENGERS.Gower_2H4,2h4,Gower,
+Harcourt_2H4,2h4,Harcourt,
+ChiefJustice_2H4,2h4,Lord Chief Justice,
+Falstaff_1H4,2h4,Sir John Falstaff,
+Poins_1H4,2h4,Poins,
+Bardolph_1H4,2h4,Bardolph,
+Peto_1H4,2h4,Peto,
+Pistol_2H4,2h4,Pistol,
+SERVANTS.FALSTAFF.1_2H4,2h4,Falstaff’s Page,
+MistressQuickly_1H4,2h4,Hostess,(also called Mistress Quickly)
+DollTearsheet_2H4,2h4,Doll Tearsheet,
+Shallow_2H4,2h4,Justice Robert Shallow,
+Silence_2H4,2h4,Justice Silence,
+Davy_2H4,2h4,Davy,servant to Shallow
+Mouldy_2H4,2h4,Mouldy,
+Shadow_2H4,2h4,Shadow,
+Wart_2H4,2h4,Wart,
+Feeble_2H4,2h4,Feeble,
+Bullcalf_2H4,2h4,Bullcalf,
+OFFICERS.Fang_2H4,2h4,Fang,
+OFFICERS.Snare_2H4,2h4,Snare,
+Epilogue_2H4,2h4,Epilogue,
+Chorus_H5,h5,Chorus,
+HenryV_H5,h5,"Henry V, King of England",
+Exeter_H5,h5,"Thomas, Duke of Exeter",uncle to the King
+Gloucester_2H4,h5,"Humphrey, Duke of Gloucester",
+Bedford_H5,h5,"John, Duke of Bedford",
+Clarence_2H4,h5,"Thomas, Duke of Clarence",
+York_H5,h5,Duke of York,
+Westmoreland_1H4,h5,Earl of Westmoreland,
+Cambridge_H5,h5,Earl of Cambridge,
+Warwick_2H4,h5,Earl of Warwick,
+Salisbury_H5,h5,Earl of Salisbury,
+ATTENDANTS.ENGLISH.Huntington_H5,h5,Earl of Huntington,
+Scroop_H5,h5,Lord Scroop of Masham,
+Grey_H5,h5,Sir Thomas Grey,
+MistressQuickly_1H4,h5,Hostess Quickly,
+Pistol_2H4,h5,Pistol,
+Nym_H5,h5,Nym,
+Bardolph_1H4,h5,Bardolph,
+Boy_H5,h5,Boy,their servant
+Erpingham_H5,h5,Sir Thomas Erpingham,
+Fluellen_H5,h5,Captain Fluellen,
+Gower_H5,h5,Captain Gower,
+MacMorris_H5,h5,Captain MacMorris,
+Jamy_H5,h5,Captain Jamy,
+HERALDS_H5,h5,English heralds,
+SOLDIERS.ENGLISH.Bates_H5,h5,John Bates,
+SOLDIERS.ENGLISH.Court_H5,h5,Alexander Court,
+SOLDIERS.ENGLISH.Williams_H5,h5,Michael Williams,
+BishopOfCanterbury_H5,h5,Bishop of Canterbury,
+BishopOfEly_H5,h5,Bishop of Ely,
+KingOfFrance_H5,h5,King of France,
+QueenOfFrance_H5,h5,Queen Isabel of France,
+Katherine_H5,h5,Katherine,Princess of France
+Alice_H5,h5,Alice,a gentlewoman attending on Katherine
+Dauphin_H5,h5,Dauphin,
+Berri_H5,h5,Duke of Berri,
+Brittany_H5,h5,Duke of Brittany,
+Orleans_H5,h5,Duke of Orléans,
+Bourbon_H5,h5,Duke of Bourbon,
+Burgundy_H5,h5,Duke of Burgundy,
+Constable_H5,h5,Constable of France,
+Grandpre_H5,h5,Lord Grandpré,
+Rambures_H5,h5,Lord Rambures,
+Beaumont_H5,h5,Lord Beaumont,
+Montjoy_H5,h5,Montjoy,French herald
+AMBASSADORS_H5,h5,French ambassadors to England,
+SOLDIERS.FRENCH.LeFer_H5,h5,Monsieur Le Fer,a French soldier
+Governor_H5,h5,Governor of Harfleur,
+HenryVI_1H6,1h6,King Henry VI,
+Talbot_1H6,1h6,Talbot,afterwards Earl of Shrewsbury
+JohnTalbot_1H6,1h6,John Talbot,his son
+Gloucester_2H4,1h6,Gloucester,"the king’s uncle, and Lord Protector"
+Bedford_H5,1h6,Bedford,"the king’s uncle, and Regent of France"
+Exeter_H5,1h6,Exeter,the king’s great-uncle
+CardinalBeaufort_1H6,1h6,Winchester,the king’s great-uncle
+Somerset_1H6,1h6,Somerset,
+York_1H6,1h6,Plantagenet,and Regent of France
+Warwick_2H4,1h6,Warwick,
+Salisbury_1H6,1h6,Salisbury,
+Suffolk_1H6,1h6,Suffolk,
+Mortimer_1H4,1h6,Mortimer,
+Glansdale_1H6,1h6,Glansdale,
+Gargrave_1H6,1h6,Gargrave,
+Fastolf_1H6,1h6,Fastolf,
+Lucy_1H6,1h6,Lucy,
+Woodville_1H6,1h6,Woodville,Lieutenant of the Tower of London
+Vernon_1H6,1h6,Vernon,of the White Rose or York faction
+Basset_1H6,1h6,Basset,of the Red Rose or Lancaster faction
+Lawyer_1H6,1h6,Lawyer,
+JAILERS_1H6,1h6,Jailors,
+Legate_1H6,1h6,Legate,
+Mayor_1H6,1h6,Mayor,
+Charles_1H6,1h6,Charles,
+Pucelle_1H6,1h6,Pucelle,
+Reignier_1H6,1h6,Reignier,"Duke of Anjou and Maine, King of Naples"
+QueenMargaret_1H6,1h6,Margaret,his daughter
+Alanson_1H6,1h6,Alanson,
+Bastard_1H6,1h6,Orleance,
+Burgundy_1H6,1h6,Burgundy,
+General_1H6,1h6,General,
+Countess_1H6,1h6,Countess,
+Porter_1H6,1h6,Porter,
+MasterGunner_1H6,1h6,Master Gunner,
+Boy_1H6,1h6,Boy,his son
+SOLDIERS.FRENCH.Sergeant_1H6,1h6,Sergeant,
+Shepherd_1H6,1h6,Shepherd,Pucelle’s father
+HenryVI_1H6,2h6,King Henry VI,
+QueenMargaret_1H6,2h6,Queen Margaret,
+Gloucester_2H4,2h6,Gloucester,"the king’s uncle, and Lord Protector"
+DuchessOfGloucester_2H6,2h6,Duchess,
+CardinalBeaufort_1H6,2h6,Cardinal,the king’s great-uncle
+Somerset_1H6,2h6,Somerset,
+Suffolk_1H6,2h6,Suffolk,earlier Marquess of Suffolk
+Buckingham_2H6,2h6,Buckingham,
+Clifford_2H6,2h6,Clifford,
+Clifford_3H6,2h6,Young Clifford,his son
+York_1H6,2h6,York,
+Salisbury_2H6,2h6,Salisbury,
+Warwick_2H6,2h6,Warwick,Salisbury’s son
+EdwardIV_3H6,2h6,Edward,Earl of March
+RichardIII_R3,2h6,Richard,
+Cade_2H6,2h6,Cade,leader of the Kentish rebellion
+Bevis_2H6,2h6,Bevis,
+Holland_2H6,2h6,Holland,
+Dick_2H6,2h6,Dick,
+Smith_2H6,2h6,Smith,
+Michael_2H6,2h6,Michael,
+George_2H6,2h6,George,
+Scales_2H6,2h6,Scales,
+Saye_2H6,2h6,Saye,
+Stafford_2H6,2h6,Stafford,
+WilliamStafford_2H6,2h6,Brother,
+Hume_2H6,2h6,Hume,a priest
+Southwell_2H6,2h6,Southwell,a priest
+Jourdain_2H6,2h6,Jourdain,a witch
+Bolingbroke_2H6,2h6,Bolingbroke,a conjurer
+Spirit_2H6,2h6,Spirit,
+Stanley_2H6,2h6,Stanley,
+Sheriff_2H6,2h6,Sheriff,
+Horner_2H6,2h6,Horner,the Duke of York’s armorer
+Thump_2H6,2h6,Thump,Horner the armorer’s man or prentice
+PETITIONERS_2H6,2h6,Petitioners,
+NEIGHBORS_2H6,2h6,Neighbors,
+PRENTICES_2H6,2h6,Prentices,friends of Thump
+CITIZENS.STALBANS.0.1_2H6,2h6,Man,
+Simpcox_2H6,2h6,Simpcox,supposed recipient of a miracle
+SimpcoxWife_2H6,2h6,Wife,
+MayorOfStAlbans_2H6,2h6,Mayor,
+Beadle_2H6,2h6,Beadle,
+Lieutenant_2H6,2h6,Lieutenant,captain of a ship
+Master_2H6,2h6,Master,
+Mate_2H6,2h6,Mate,
+Whitmore_2H6,2h6,Whitmore,a ship’s officer
+GENTLEMEN_2H6,2h6,Gentlemen,prisoners
+MESSENGERS_2H6,2h6,Messengers,
+SERVANTS_2H6,2h6,Servants,
+HERALDS_2H6,2h6,Herald,
+MESSENGERS.Post_2H6,2h6,Post,
+MURDERERS_2H6,2h6,Murderers,
+Vaux_2H6,2h6,Vaux,
+Clerk_2H6,2h6,Clerk,
+CITIZENS.LONDON_2H6,2h6,Citizens,
+Iden_2H6,2h6,Iden,a gentleman of Kent
+HenryVI_1H6,3h6,King Henry VI,
+QueenMargaret_1H6,3h6,Queen Margaret,
+PrinceEdward_3H6,3h6,Prince Edward,
+Clifford_3H6,3h6,Clifford,
+Northumberland_3H6,3h6,Northumberland,
+Westmorland_3H6,3h6,Westmorland,
+Exeter_3H6,3h6,Exeter,
+Oxford_3H6,3h6,Oxford,
+Somerville_3H6,3h6,Somerville,
+Warwick_2H6,3h6,Warwick,
+Montague_3H6,3h6,Montague,
+Somerset_3H6,3h6,Somerset,
+York_1H6,3h6,York,
+EdwardIV_3H6,3h6,Edward,"Earl of March, later King Edward IV"
+Clarence_3H6,3h6,George,later Duke of Clarence
+RichardIII_R3,3h6,Richard,later Duke of Gloucester
+Rutland_3H6,3h6,Rutland,
+JohnMortimer_3H6,3h6,Sir John,York’s uncle
+QueenElizabeth_3H6,3h6,Lady Grey,later Queen Elizabeth
+Rivers_3H6,3h6,Rivers,brother to the queen
+Norfolk_3H6,3h6,Norfolk,
+Pembroke_3H6,3h6,Pembroke,
+Stafford_3H6,3h6,Stafford,
+Hastings_3H6,3h6,Hastings,
+Stanley_3H6,3h6,Stanley,
+Montgomery_3H6,3h6,Montgomery,
+KingLewis_3H6,3h6,King Lewis,
+LadyBona_3H6,3h6,Lady Bona,his sister-in-law
+Tutor_3H6,3h6,Tutor,
+Son_3H6,3h6,Son,
+Father_3H6,3h6,Father,
+GAMEKEEPERS.1_3H6,3h6,First Gamekeeper,
+GAMEKEEPERS.2_3H6,3h6,Second Gamekeeper,
+ATTENDANTS.EDWARD.1_3H6,3h6,Nobleman,
+MESSENGERS.Post_3H6,3h6,Post,
+WATCHMEN.1_3H6,3h6,First Watch,
+WATCHMEN.2_3H6,3h6,Second Watch,
+WATCHMEN.3_3H6,3h6,Third Watch,
+Huntsman_3H6,3h6,Huntsman,
+Lieutenant_3H6,3h6,Lieutenant,
+MESSENGERS.1_3H6,3h6,First Messenger,
+MESSENGERS.2_3H6,3h6,Second Messenger,
+MESSENGERS_3H6,3h6,Messengers,
+MayorOfYork_3H6,3h6,Mayor,
+SOLDIERS.YORK.0.1_3H6,3h6,Soldier,
+HenryVIII_H8,h8,King Henry the Eighth,
+Norfolk_H8,h8,Duke of Norfolk,
+Suffolk_H8,h8,Duke of Suffolk,
+Wolsey_H8,h8,Cardinal Wolsey,Archbishop of Canterbury
+SECRETARIES_H8,h8,Secretaries to Wolsey,
+Cromwell_H8,h8,Cromwell,"servant to Wolsey, later secretary to the Privy Council"
+Campeius_H8,h8,Cardinal Campeius,Papal Legate
+Gardiner_H8,h8,Gardiner,"secretary to the king, later Bishop of Winchester"
+Page_H8,h8,Page to Gardiner,
+Katherine_H8,h8,Queen Katherine,"Henry’s first wife, later Princess Dowager"
+Griffith_H8,h8,Griffith,attendant on Katherine
+LADIES.KATHERINE.Patience_H8,h8,Patience,woman to Katherine
+Usher_H8,h8,Queen’s Gentleman Usher,
+Capuchius_H8,h8,Capuchius,ambassador from the Emperor Charles
+Buckingham_H8,h8,Duke of Buckingham,
+Abergavenny_H8,h8,Lord Abergavenny,Buckingham’s son-in-law
+Surrey_H8,h8,Earl of Surrey,Buckingham’s son-in-law
+Vaux_H8,h8,Sir Nicholas Vaux,
+Surveyor_H8,h8,"Knevet, former Surveyor to Buckingham",
+Brandon_H8,h8,Brandon,
+Sergeant_H8,h8,Sergeant at Arms,
+GENTLEMEN.1_H8,h8,First Gentleman,
+GENTLEMEN.2_H8,h8,Second Gentleman,
+Anne_H8,h8,Anne Bullen,"Katherine’s lady-in-waiting, later Henry’s second wife and queen"
+OldLady_H8,h8,Old Lady,with Anne Bullen
+Chamberlain_H8,h8,Lord Chamberlain,
+Sands_H8,h8,Lord Sands (also Sir Walter Sands),
+Lovell_H8,h8,Sir Thomas Lovell,
+Guilford_H8,h8,Sir Henry Guilford,
+BishopOfLincoln_H8,h8,Bishop of Lincoln,
+Cranmer_H8,h8,Cranmer,later Archbishop of Canterbury
+Chancellor_H8,h8,Lord Chancellor,
+Garter_H8,h8,Garter King of Arms,
+GENTLEMEN.3_H8,h8,Third Gentleman,
+Denny_H8,h8,Sir Anthony Denny,
+Butts_H8,h8,Doctor Butts,
+Keeper_H8,h8,Keeper,
+Scribe_H8,h8,Scribes,
+Crier_H8,h8,Crier,
+Prologue_H8,h8,Prologue,
+Epilogue_H8,h8,Epilogue,
+Caesar_JC,jc,Julius Caesar,
+Calphurnia_JC,jc,Calphurnia,his wife
+SERVANTS.CAESAR.1_JC,jc,Servant to them,
+Brutus_JC,jc,Marcus Brutus,
+Portia_JC,jc,Portia,his wife
+Lucius_JC,jc,Lucius,their servant
+Cassius_JC,jc,Caius Cassius,
+Casca_JC,jc,Casca,
+Cinna_JC,jc,Cinna,
+Decius_JC,jc,Decius Brutus,
+Ligarius_JC,jc,Caius Ligarius,
+Metellus_JC,jc,Metellus Cimber,
+Trebonius_JC,jc,Trebonius,
+Cicero_JC,jc,Cicero,
+Publius_JC,jc,Publius,
+Popilius_JC,jc,Popilius Lena,
+Flavius_JC,jc,Flavius,
+Marullus_JC,jc,Marullus,
+Antony_JC,jc,Mark Antony,
+Lepidus_JC,jc,Lepidus,
+Octavius_JC,jc,Octavius,
+SERVANTS.ANTONY.1_JC,jc,Servant to Antony,
+SERVANTS.OCTAVIUS.1_JC,jc,Servant to Octavius,
+SOLDIERS.BRUTUS.Lucilius_JC,jc,Lucilius,
+SOLDIERS.BRUTUS.Titinius_JC,jc,Titinius,
+SOLDIERS.BRUTUS.Messala_JC,jc,Messala,
+SOLDIERS.BRUTUS.Varro_JC,jc,Varro,
+SOLDIERS.BRUTUS.Claudius_JC,jc,Claudius,
+SOLDIERS.BRUTUS.Cato_JC,jc,Young Cato,
+SOLDIERS.BRUTUS.Strato_JC,jc,Strato,
+SOLDIERS.BRUTUS.Volumnius_JC,jc,Volumnius,
+SOLDIERS.BRUTUS.Labeo_JC,jc,Labeo,
+SOLDIERS.BRUTUS.Flavius_JC,jc,Flavius,
+SOLDIERS.BRUTUS.Dardanus_JC,jc,Dardanus,
+SOLDIERS.BRUTUS.Clitus_JC,jc,Clitus,
+COMMONERS.Carpenter_JC,jc,A Carpenter,
+COMMONERS.Cobbler_JC,jc,A Cobbler,
+Soothsayer_JC,jc,A Soothsayer,
+Artemidorus_JC,jc,Artemidorus,
+PLEBEIANS_JC,jc,"First, Second, Third, and Fourth Plebeians",
+CinnaPoet_JC,jc,Cinna,
+Pindarus_JC,jc,Pindarus,"slave to Cassius, freed upon Cassius’s death"
+SOLDIERS.BRUTUS_JC,jc,"First, Second, Third, and Fourth Soldiers in Brutus’s army",
+Poet_JC,jc,Another Poet,
+Messenger_JC,jc,A Messenger,
+SOLDIERS.ANTONY_JC,jc,First and Second Soldiers in Antony’s army,
+KingJohn_Jn,jn,John,"King of England, with dominion over assortedContinental territories"
+QueenEleanor_Jn,jn,Queen Eleanor,"King John’s mother, widow of King Henry II"
+Blanche_Jn,jn,Blanche,niece to King John
+PrinceHenry_Jn,jn,Prince Henry,son to King John
+Constance_Jn,jn,Constance,"widow of Geoffrey, King John’s elder brother"
+Arthur_Jn,jn,Arthur,"Duke of Brittany, her son"
+KingPhilip_Jn,jn,King Philip II,
+Dauphin_Jn,jn,Louis the Dauphin,his son
+Austria_Jn,jn,Duke of Austria,(also called Limoges)
+Chatillion_Jn,jn,Chatillion,ambassador from France to King John
+Melun_Jn,jn,Count Melun,
+HERALDS.FRENCH_Jn,jn,French Herald,
+Pandulph_Jn,jn,Cardinal Pandulph,Papal Legate
+LadyFaulconbridge_Jn,jn,Lady Faulconbridge,
+Bastard_Jn,jn,Bastard,"Philip Faulconbridge, her son by King Richard I"
+RobertFaulconbridge_Jn,jn,Robert Faulconbridge,her son by Sir Robert Faulconbridge
+Gurney_Jn,jn,James Gurney,her servant
+Hubert_Jn,jn,Hubert,supporter of King John
+Salisbury_Jn,jn,Earl of Salisbury,
+Pembroke_Jn,jn,Earl of Pembroke,
+Essex_Jn,jn,Earl of Essex,
+Bigot_Jn,jn,Lord Bigot,
+CITIZENS.0.1_Jn,jn,Citizen,
+Peter_Jn,jn,Peter,a Prophet
+HERALDS.ENGLISH_Jn,jn,English Herald,
+EXECUTIONERS_Jn,jn,Executioners,
+Lear_Lr,lr,Lear,king of Britain
+Goneril_Lr,lr,Goneril,Lear’s eldest daughter
+Albany_Lr,lr,Duke of Albany,her husband
+Oswald_Lr,lr,Oswald,her steward
+Regan_Lr,lr,Regan,Lear’s second daughter
+Cornwall_Lr,lr,Duke of Cornwall,her husband
+Cordelia_Lr,lr,Cordelia,Lear’s youngest daughter
+France_Lr,lr,King of France,her suitor and then husband
+Burgundy_Lr,lr,Duke of Burgundy,her suitor
+Kent_Lr,lr,Earl of Kent,
+Fool_Lr,lr,Fool,
+Gloucester_Lr,lr,Earl of Gloucester,
+Edgar_Lr,lr,Edgar,his elder son
+Edmund_Lr,lr,Edmund,his younger and illegitimate son
+Curan_Lr,lr,Curan,gentleman of Gloucester’s household
+OldMan_Lr,lr,Old Man,a tenant of Gloucester’s
+ATTENDANTS.X_Lr,lr,Gentlemen,
+SERVANTS_Lr,lr,Servants,
+MESSENGERS_Lr,lr,Messengers,
+Doctor_Lr,lr,Doctor,
+SOLDIERS.CAPTAINS_Lr,lr,Captains,
+Herald_Lr,lr,Herald,
+King_LLL,lll,King,also known as Ferdinand
+Berowne_LLL,lll,Berowne,
+Longaville_LLL,lll,Longaville,
+Dumaine_LLL,lll,Dumaine,
+Princess_LLL,lll,Princess,
+Rosaline_LLL,lll,Rosaline,
+Maria_LLL,lll,Maria,
+Katherine_LLL,lll,Katherine,
+Boyet_LLL,lll,Boyet,a lord attending the Princess
+Armado_LLL,lll,Armado,also known as Don Adriano de Armado
+Boy_LLL,lll,Boy,"Armado’s Page, also known as Mote"
+Jaquenetta_LLL,lll,Jaquenetta,the Wench
+Costard_LLL,lll,Costard,the Clown or Swain
+Dull_LLL,lll,Dull,the Constable
+Holofernes_LLL,lll,Holofernes,"the Pedant, or schoolmaster"
+Nathaniel_LLL,lll,Nathaniel,the Curate
+Forester_LLL,lll,Forester,
+Marcade_LLL,lll,Monsieur Marcade,a messenger from France
+WITCHES_Mac,mac,"Three Witches, the Weïrd Sisters",
+Duncan_Mac,mac,Duncan,king of Scotland
+Malcolm_Mac,mac,Malcolm,his elder son
+Donalbain_Mac,mac,Donalbain,Duncan’s younger son
+Macbeth_Mac,mac,Macbeth,thane of Glamis
+LadyMacbeth_Mac,mac,Lady Macbeth,
+Seyton_Mac,mac,Seyton,attendant to Macbeth
+MURDERERS_Mac,mac,Three Murderers in Macbeth’s service,
+Doctor2_Mac,mac,A Doctor,
+Gentlewoman_Mac,mac,A Gentlewoman,
+Porter_Mac,mac,A Porter,
+Banquo_Mac,mac,Banquo,"commander, with Macbeth, of Duncan’s army"
+Fleance_Mac,mac,Fleance,his son
+Macduff_Mac,mac,Macduff,a Scottish noble
+LadyMacduff_Mac,mac,Lady Macduff,
+MacduffsSon_Mac,mac,Their son,
+Lennox_Mac,mac,Lennox,
+Ross_Mac,mac,Ross,
+Angus_Mac,mac,Angus,
+Menteith_Mac,mac,Menteith,
+Caithness_Mac,mac,Caithness,
+Siward_Mac,mac,Siward,commander of the English forces
+YoungSiward_Mac,mac,Young Siward,Siward’s son
+SOLDIERS.Captain_Mac,mac,A Captain in Duncan’s army,
+OldMan_Mac,mac,An Old Man,
+Doctor1_Mac,mac,A Doctor at the English court,
+Hecate_Mac,mac,Hecate,
+SPIRITS_Mac,mac,"Apparitions: an Armed Head, a Bloody Child, a Crowned Child,and eight nonspeaking kings",
+Duke_MM,mm,Duke,later called Friar Lodowick
+Escalus_MM,mm,Escalus,a judge
+Provost_MM,mm,Provost,
+Elbow_MM,mm,Elbow,a constable
+Abhorson_MM,mm,Abhorson,an executioner
+Justice_MM,mm,Justice,
+Varrius_MM,mm,Varrius,friend to the Duke
+Angelo_MM,mm,Angelo,deputy to the Duke
+Mariana_MM,mm,Mariana,betrothed to Angelo
+Boy_MM,mm,Boy,
+SERVANTS.1_MM,mm,Servant,
+Messenger_MM,mm,Messenger,
+Isabella_MM,mm,Isabella,a novice in the Order of Saint Clare
+Nun_MM,mm,Francisca,a nun
+Claudio_MM,mm,Claudio,brother to Isabella
+Juliet_MM,mm,Juliet,betrothed to Claudio
+Lucio_MM,mm,Lucio,friend to Claudio
+GENTLEMEN_MM,mm,Two Gentlemen,
+FriarThomas_MM,mm,Friar Thomas,
+FriarPeter_MM,mm,Friar Peter,
+Bawd_MM,mm,Mistress Overdone,a bawd
+Pompey_MM,mm,Pompey,her servant
+Froth_MM,mm,Froth,Pompey’s customer
+Barnardine_MM,mm,Barnardine,a prisoner
+Leonato_Ado,ado,Leonato,Governor of Messina
+Hero_Ado,ado,Hero,his daughter
+Beatrice_Ado,ado,Beatrice,his niece
+LeonatosBrother_Ado,ado,Leonato’s Brother,
+Margaret_Ado,ado,Margaret,
+Ursula_Ado,ado,Ursula,
+DonPedro_Ado,ado,Don Pedro,Prince of Aragon
+Claudio_Ado,ado,Count Claudio,a young lord from Florence
+Benedick_Ado,ado,Signior Benedick,a gentleman from Padua
+Balthasar_Ado,ado,Balthasar,
+Antonio_Ado,ado,Signior Antonio,
+DonJohn_Ado,ado,Don John,Don Pedro’s brother
+Borachio_Ado,ado,Borachio,
+Conrade_Ado,ado,Conrade,
+Dogberry_Ado,ado,Dogberry,Master Constable in Messina
+Verges_Ado,ado,Verges,Dogberry’s partner
+WATCHMEN.Seacoal_Ado,ado,George Seacoal,leader of the Watch
+WATCHMEN.1_Ado,ado,First Watchman,
+WATCHMEN.2_Ado,ado,Second Watchman,
+Sexton_Ado,ado,Sexton,
+FriarFrancis_Ado,ado,Friar Francis,
+MESSENGERS.LEONATO.1_Ado,ado,Messenger,
+MESSENGERS.DONPEDRO.1_Ado,ado,Messenger,
+Boy_Ado,ado,Boy,
+Othello_Oth,oth,Othello,a Moorish general in the Venetian army
+Desdemona_Oth,oth,Desdemona,a Venetian lady
+Brabantio_Oth,oth,Brabantio,"a Venetian senator, father to Desdemona"
+Iago_Oth,oth,Iago,"Othello’s standard-bearer, or “ancient”"
+Emilia_Oth,oth,Emilia,Iago’s wife and Desdemona’s attendant
+Cassio_Oth,oth,Cassio,"Othello’s second-in-command, or lieutenant"
+Roderigo_Oth,oth,Roderigo,a Venetian gentleman
+Duke_Oth,oth,Duke of Venice,
+Lodovico_Oth,oth,Lodovico,
+Gratiano_Oth,oth,Gratiano,
+SENATORS_Oth,oth,Venetian senators,
+Montano_Oth,oth,Montano,an official in Cyprus
+Bianca_Oth,oth,Bianca,a woman in Cyprus in love with Cassio
+Clown_Oth,oth,Clown,a comic servant to Othello and Desdemona
+GENTLEMEN_Oth,oth,Gentlemen of Cyprus,
+Sailor_Oth,oth,Sailors,
+Gower_Per,per,Gower,fourteenth-century poet and Chorus of the play
+Pericles_Per,per,Pericles,prince of Tyre
+Thaisa_Per,per,Thaisa,princess of Pentapolis and wife to Pericles
+Marina_Per,per,Marina,daughter of Pericles and Thaisa
+Helicanus_Per,per,Helicanus,
+LORDS.TYRE.Escanes_Per,per,Escanes,
+LORDS.TYRE_Per,per,LORDS,
+Antiochus_Per,per,Antiochus,king of Antioch
+Daughter_Per,per,Daughter,princess of Antioch
+Thaliard_Per,per,Thaliard,nobleman of Antioch
+MESSENGERS.ANTIOCH.1_Per,per,Messenger,
+Cleon_Per,per,Cleon,governor of Tarsus
+Dionyza_Per,per,Dionyza,wife to Cleon
+Leonine_Per,per,Leonine,servant to Dionyza
+LORDS.TARSUS.1_Per,per,Lord,
+PIRATES_Per,per,Pirates,
+Simonides_Per,per,Simonides,king of Pentapolis
+FISHERMEN_Per,per,Fishermen,
+Marshal_Per,per,Marshal,
+KNIGHTS_Per,per,Knights,
+LORDS.PENTAPOLIS_Per,per,Lords,
+Lychorida_Per,per,Lychorida,"attendant to Thaisa and, later, to Marina"
+SAILORS_Per,per,Sailors,
+Cerimon_Per,per,Lord Cerimon,a wiseman/physician in Ephesus
+Philemon_Per,per,Philemon,servant to Cerimon
+SUPPLIANTS_Per,per,Suppliants,
+GENTLEMEN.EPHESUS_Per,per,Gentlemen,
+SERVANTS.CERIMON.0.1_Per,per,Servant,
+Diana_Per,per,Diana,goddess of chastity
+Lysimachus_Per,per,Lysimachus,governor of Mytilene
+Pander_Per,per,Pander,owner of brothel
+Bawd_Per,per,Bawd,mistress of brothel and wife to Pander
+Bolt_Per,per,Bolt,servant to Pander and Bawd
+GENTLEMEN.MYTILENE_Per,per,Gentlemen,
+SAILORS.TYRE.1_Per,per,Sailor,
+SAILORS.MYTILENE.1_Per,per,Sailor,
+GENTLEMEN.TYRE.0.1_Per,per,Gentleman,
+LORDS.MYTILENE.0.1_Per,per,Lord,
+RichardII_R2,r2,King Richard II,
+Bushy_R2,r2,Bushy,
+Bagot_R2,r2,Bagot,
+Green_R2,r2,Green,
+Queen_R2,r2,Queen,
+LADIES_R2,r2,Ladies-in-waiting,
+Gaunt_R2,r2,John of Gaunt,Duke of Lancaster
+HenryIV_1H4,r2,Henry Bolingbroke,"Duke of Hereford, son to John of Gaunt,and later King Henry IV"
+DuchessOfGloucester_R2,r2,Duchess of Gloucester,"widow to Thomas, Duke of Gloucester"
+York_R2,r2,Duke of York,
+DuchessOfYork_R2,r2,Duchess of York,
+Aumerle_R2,r2,Duke of Aumerle,"Earl of Rutland, son to Duke and Duchess of York"
+SERVANTS.YORK.1_R2,r2,Servingmen,
+Mowbray_R2,r2,Mowbray,Duke of Norfolk
+LordMarshal_R2,r2,Lord Marshal,
+HERALDS.1_R2,r2,First Herald,
+HERALDS.2_R2,r2,Second Herald,
+Salisbury_R2,r2,Earl of Salisbury,
+BishopOfCarlisle_R2,r2,Bishop of Carlisle,
+Scroop_R2,r2,Sir Stephen Scroop,
+Berkeley_R2,r2,Lord Berkeley,
+AbbotOfWestminster_R2,r2,Abbot of Westminster,
+WelshCaptain_R2,r2,Welsh Captain,
+Northumberland_R2,r2,Earl of Northumberland,
+Ross_R2,r2,Lord Ross,
+Willoughby_R2,r2,Lord Willoughby,
+Hotspur_R2,r2,Harry Percy,"son of Northumberland,later known as “Hotspur”"
+Fitzwater_R2,r2,Lord Fitzwater,
+Surrey_R2,r2,Duke of Surrey,
+LORDS.1_R2,r2,Another Lord,
+Gardener_R2,r2,Gardener,
+SERVANTS.GARDENER_R2,r2,Gardener’s Servingmen,
+Groom_R2,r2,Groom,
+Jailer_R2,r2,Keeper,
+Exton_R2,r2,Sir Pierce of Exton,
+SERVANTS.EXTON_R2,r2,Servingmen to Exton,
+RichardIII_R3,r3,Richard,"Duke of Gloucester, later King Richard III"
+LadyAnne_R3,r3,Lady Anne,"widow of Edward, son to the late King Henry VI;later wife to Richard"
+EdwardIV_3H6,r3,King Edward IV,brother to Richard
+QueenElizabeth_3H6,r3,Queen Elizabeth,"Edward’s wife, formerly the Lady Grey"
+EdwardV_R3,r3,Prince Edward,
+York_R3,r3,"Richard, Duke of York",
+Clarence_3H6,r3,"George, Duke of Clarence",brother to Edward and Richard
+ClarencesBoy_R3,r3,Boy,
+ClarencesDaughter_R3,r3,Daughter,
+DuchessOfYork_R3,r3,Duchess of York,"mother of Richard, Edward, and Clarence"
+QueenMargaret_1H6,r3,Queen Margaret,widow of King Henry VI
+Buckingham_R3,r3,Duke of Buckingham,
+Hastings_3H6,r3,"William, Lord Hastings",Lord Chamberlain
+Stanley_R3,r3,Lord Stanley,Earl of Derby
+Rivers_3H6,r3,Earl Rivers,brother to Queen Elizabeth
+Grey_R3,r3,Lord Grey,
+Dorset_R3,r3,Marquess of Dorset,
+Vaughan_R3,r3,Sir Thomas Vaughan,
+Catesby_R3,r3,Sir William Catesby,
+Ratcliffe_R3,r3,Sir Richard Ratcliffe,
+Lovell_R3,r3,Lord Lovell,
+Norfolk_R3,r3,Duke of Norfolk,
+Surrey_R3,r3,Earl of Surrey,
+HenryVII_R3,r3,Earl of Richmond,"Henry Tudor, later King Henry VII"
+Oxford_3H6,r3,Earl of Oxford,
+Blunt_R3,r3,Sir James Blunt,
+Herbert_R3,r3,Sir Walter Herbert,
+Brandon_R3,r3,Sir William Brandon,
+SirChristopher_R3,r3,Sir Christopher,a priest
+Archbishop_R3,r3,Archbishop,
+Cardinal_R3,r3,Cardinal,
+BishopOfEly_R3,r3,"John Morton, Bishop of Ely",
+Brakenbury_R3,r3,Sir Robert Brakenbury,Lieutenant of the Tower in London
+Tyrrel_R3,r3,James Tyrrel,gentleman
+GENTLEMEN.0.1_R3,r3,Gentleman,attending Lady Anne
+MURDERERS_R3,r3,Murderers,
+Jailer_R3,r3,Keeper,
+CITIZENS_R3,r3,Citizens,
+MayorOfLondon_R3,r3,Lord Mayor,
+Pursuivant_R3,r3,Pursuivant,
+SirJohn_R3,r3,Sir John,a priest
+Scrivener_R3,r3,Scrivener,
+ATTENDANTS.0.1_R3,r3,Page,
+Sheriff_R3,r3,Sheriff,
+MESSENGERS_R3,r3,Messengers,
+GHOSTS_R3,r3,Ghosts,
+Romeo_Rom,rom,Romeo,
+Montague_Rom,rom,Montague,his father
+LadyMontague_Rom,rom,Lady Montague,his mother
+Benvolio_Rom,rom,Benvolio,their kinsman
+SERVANTS.MONTAGUE.Abram_Rom,rom,Abram,a Montague servingman
+SERVANTS.MONTAGUE.Balthasar_Rom,rom,Balthasar,Romeo’s servingman
+Juliet_Rom,rom,Juliet,
+Capulet_Rom,rom,Capulet,her father
+LadyCapulet_Rom,rom,Lady Capulet,her mother
+Nurse_Rom,rom,Nurse,
+Tybalt_Rom,rom,Tybalt,kinsman to the Capulets
+Petruchio_Rom,rom,Petruchio,Tybalt’s companion
+Cousin_Rom,rom,Capulet’s Cousin,
+SERVANTS.CAPULET.Sampson_Rom,rom,Sampson,
+SERVANTS.CAPULET.Gregory_Rom,rom,Gregory,
+SERVANTS.CAPULET.Peter_Rom,rom,Peter,
+SERVANTS_Rom,rom,Other Servingmen,
+PrinceEscalus_Rom,rom,Escalus,Prince of Verona
+Paris_Rom,rom,Paris,the Prince’s kinsman and Juliet’s suitor
+Mercutio_Rom,rom,Mercutio,the Prince’s kinsman and Romeo’s friend
+SERVANTS.PARIS.1_Rom,rom,Paris’ Page,
+FriarLawrence_Rom,rom,Friar Lawrence,
+FriarJohn_Rom,rom,Friar John,
+Apothecary_Rom,rom,Apothecary,
+CITIZENS_Rom,rom,Three or four Citizens,
+MUSICIANS_Rom,rom,Three Musicians,
+WATCHMEN_Rom,rom,Three Watchmen,
+Chorus_Rom,rom,Chorus,
+Egeon_Err,err,Egeon,a merchant from Syracuse
+Duke_Err,err,Duke,
+AntipholusOfSyracuse_Err,err,Antipholus of Syracuse,a traveler in search of his motherand his brother
+DromioOfSyracuse_Err,err,Dromio of Syracuse,Antipholus of Syracuse’s servant
+Merchant1_Err,err,First Merchant,a citizen of Ephesus
+AntipholusOfEphesus_Err,err,Antipholus of Ephesus,a citizen of Ephesus
+DromioOfEphesus_Err,err,Dromio of Ephesus,Antipholus of Ephesus’s servant
+Adriana_Err,err,Adriana,Antipholus of Ephesus’s wife
+Luciana_Err,err,Luciana,Adriana’s sister
+Luce_Err,err,Luce,"(also called Nell), kitchen maid betrothed toDromio of Ephesus"
+Messenger_Err,err,Messenger,servant to Antipholus of Ephesus and Adriana
+Angelo_Err,err,Angelo,an Ephesian goldsmith
+Merchant2_Err,err,Second Merchant,a citizen of Ephesus to whomAngelo owes money
+Balthasar_Err,err,Balthasar,an Ephesian merchant invited to dinnerby Antipholus of Ephesus
+Courtesan_Err,err,Courtesan,hostess of Antipholus of Ephesus at dinner
+Pinch_Err,err,Dr. Pinch,"a schoolmaster, engaged as an exorcist"
+OFFICERS.Jailer_Err,err,Officer,"(also called Jailer), an Ephesian law officer"
+Abbess_Err,err,Lady Abbess,"(also called Emilia), head of a priory in Ephesus"
+Portia_MV,mv,Portia,an heiress of Belmont
+Nerissa_MV,mv,Nerissa,her waiting-gentlewoman
+ATTENDANTS.PORTIA.Balthazar_MV,mv,Balthazar,
+ATTENDANTS.PORTIA.Stephano_MV,mv,Stephano,
+Morocco_MV,mv,Morocco,
+Arragon_MV,mv,Arragon,
+Antonio_MV,mv,Antonio,a merchant of Venice
+Bassanio_MV,mv,Bassanio,"a Venetian gentleman, suitor to Portia"
+Solanio_MV,mv,Solanio,
+Salarino_MV,mv,Salarino,
+Gratiano_MV,mv,Gratiano,
+Lorenzo_MV,mv,Lorenzo,
+ATTENDANTS.BASSANIO.Leonardo_MV,mv,Leonardo,servant to Bassanio
+Shylock_MV,mv,Shylock,a Jewish moneylender in Venice
+Jessica_MV,mv,Jessica,his daughter
+Tubal_MV,mv,Tubal,another Jewish moneylender
+LanceletGobbo_MV,mv,Lancelet Gobbo,servant to Shylock and later to Bassanio
+OldGobbo_MV,mv,Old Gobbo,Lancelet’s father
+Salerio_MV,mv,Salerio,a messenger from Venice
+Jailer_MV,mv,Jailer,
+Duke_MV,mv,Duke of Venice,
+ATTENDANTS.DUKE_MV,mv,Magnificoes of Venice,
+SERVANTS_MV,mv,Servants,
+ATTENDANTS_MV,mv,Attendants and followers,
+Messenger_MV,mv,Messenger,
+MUSICIANS_MV,mv,Musicians,
+MistressFord_Wiv,wiv,Mistress Ford,
+MasterFord_Wiv,wiv,Ford,her husband
+John_Wiv,wiv,John,
+Robert_Wiv,wiv,Robert,
+MistressPage_Wiv,wiv,Mistress Page,
+MasterPage_Wiv,wiv,Page,her husband
+AnnePage_Wiv,wiv,Anne,their daughter
+WilliamPage_Wiv,wiv,William,their son
+DoctorCaius_Wiv,wiv,Doctor Caius,"a French doctor, suitor to Anne Page"
+MistressQuickly_1H4,wiv,Mistress Quickly,the doctor’s housekeeper
+Rugby_Wiv,wiv,John Rugby,the doctor’s manservant
+HughEvans_Wiv,wiv,Sir Hugh,a Welsh parson
+Host_Wiv,wiv,Host,
+BOYS_Wiv,wiv,"Windsor Children, disguised as fairies",
+Falstaff_1H4,wiv,Falstaff,an impoverished knight
+Robin_Wiv,wiv,Robin,his page
+Bardolph_1H4,wiv,Bardolph,
+Pistol_2H4,wiv,Pistol,
+Nym_H5,wiv,Nym,
+Fenton_Wiv,wiv,Fenton,"a gentleman, suitor to Anne Page"
+Shallow_2H4,wiv,Shallow,a visiting justice of the peace
+Slender_Wiv,wiv,Slender,"his nephew, a young gentleman suitor to Anne Page"
+Simple_Wiv,wiv,Simple,Slender’s servant
+Sly_Shr,shr,Christopher Sly,a beggar
+Hostess_Shr,shr,Hostess of an alehouse,
+Lord_Shr,shr,A Lord,
+HUNTSMEN_Shr,shr,Huntsmen of the Lord,
+Page_Shr,shr,Page (disguised as a lady),
+PLAYERS_Shr,shr,Players,
+SERVANTS.LORD_Shr,shr,Servingmen,
+Messenger_Shr,shr,Messenger,
+Baptista_Shr,shr,Baptista Minola,father to Katherine and Bianca
+Katherine_Shr,shr,Katherine,his elder daughter
+Bianca_Shr,shr,Bianca,his younger daughter
+Petruchio_Shr,shr,Petruchio,suitor to Katherine
+Gremio_Shr,shr,Gremio,
+Hortensio_Shr,shr,Hortensio,(later disguised as the teacher Litio)
+Lucentio_Shr,shr,Lucentio,(later disguised as the teacher Cambio)
+Vincentio_Shr,shr,Vincentio,Lucentio’s father
+Tranio_Shr,shr,Tranio,(later impersonating Lucentio)
+Biondello_Shr,shr,Biondello,
+Merchant_Shr,shr,A Merchant (later disguised as Vincentio),
+Grumio_Shr,shr,Grumio,
+Curtis_Shr,shr,Curtis,
+SERVANTS.PETRUCHIO.Nathaniel_Shr,shr,Nathaniel,
+SERVANTS.PETRUCHIO.Phillip_Shr,shr,Phillip,
+SERVANTS.PETRUCHIO.Joseph_Shr,shr,Joseph,
+SERVANTS.PETRUCHIO.Nicholas_Shr,shr,Nicholas,
+SERVANTS.PETRUCHIO.Peter_Shr,shr,Peter,
+Widow_Shr,shr,Widow,
+Tailor_Shr,shr,Tailor,
+Haberdasher_Shr,shr,Haberdasher,
+Officer_Shr,shr,Officer,
+SERVANTS_Shr,shr,Servants to Baptista and Petruchio,
+Prospero_Tmp,tmp,Prospero,"the former duke of Milan, now a magician ona Mediterranean island"
+Miranda_Tmp,tmp,Miranda,Prospero’s daughter
+Ariel_Tmp,tmp,Ariel,"a spirit, servant to Prospero"
+Caliban_Tmp,tmp,Caliban,"an inhabitant of the island, servant to Prospero"
+Ferdinand_Tmp,tmp,Ferdinand,prince of Naples
+Alonso_Tmp,tmp,Alonso,king of Naples
+Antonio_Tmp,tmp,Antonio,duke of Milan and Prospero’s brother
+Sebastian_Tmp,tmp,Sebastian,Alonso’s brother
+Gonzalo_Tmp,tmp,Gonzalo,councillor to Alonso and friend to Prospero
+Adrian_Tmp,tmp,Adrian,
+Francisco_Tmp,tmp,Francisco,
+Trinculo_Tmp,tmp,Trinculo,servant to Alonso
+Stephano_Tmp,tmp,Stephano,Alonso’s butler
+Shipmaster_Tmp,tmp,Shipmaster,
+Boatswain_Tmp,tmp,Boatswain,
+SAILORS_Tmp,tmp,Mariners,
+SPIRITS_Tmp,tmp,"Players who, as spirits, take the roles of Iris, Ceres, Juno, Nymphs, and Reapers in Prospero’s masque, and who, in other scenes, take the roles of “islanders” and of hunting dogs",
+Valentine_TGV,tgv,Valentine,a gentleman of Verona
+Speed_TGV,tgv,Speed,his servant
+Proteus_TGV,tgv,Proteus,a gentleman of Verona
+Lance_TGV,tgv,Lance,his servant
+Antonio_TGV,tgv,Antonio,Proteus’ father
+Pantino_TGV,tgv,Pantino,an attendant to Antonio
+Julia_TGV,tgv,Julia,a lady of Verona
+Lucetta_TGV,tgv,Lucetta,her waiting-gentlewoman
+Sylvia_TGV,tgv,Sylvia,a lady of Milan
+Duke_TGV,tgv,Duke,Sylvia’s father
+Thurio_TGV,tgv,Thurio,a gentleman
+Eglamour_TGV,tgv,Eglamour,a gentleman
+Host_TGV,tgv,Host,proprietor of an inn in Milan
+OUTLAWS_TGV,tgv,Outlaws,
+Leontes_WT,wt,Leontes,King of Sicilia
+Hermione_WT,wt,Hermione,Queen of Sicilia
+Mamillius_WT,wt,Mamillius,their son
+Perdita_WT,wt,Perdita,their daughter
+Perdita.Infant_WT,wt,Perdita as an infant,
+Polixenes_WT,wt,Polixenes,King of Bohemia
+Florizell_WT,wt,Florizell,his son
+Camillo_WT,wt,Camillo,"a courtier, friend to Leontes and then to Polixenes"
+Antigonus_WT,wt,Antigonus,a Sicilian courtier
+Paulina_WT,wt,Paulina,his wife and lady-in-waiting to Hermione
+Cleomenes_WT,wt,Cleomenes,
+Dion_WT,wt,Dion,
+LADIES.Emilia_WT,wt,Emilia,a lady-in-waiting to Hermione
+Shepherd_WT,wt,Shepherd,foster father to Perdita
+ShepherdsSon_WT,wt,Shepherd’s Son,
+Autolycus_WT,wt,Autolycus,"former servant to Florizell, now a rogue"
+Archidamus_WT,wt,Archidamus,a Bohemian courtier
+Chorus_WT,wt,Time,as Chorus
+LADIES_WT,wt,Two Ladies,
+LADIES.0_WT,wt,Indistinct members of the LADIES group,
+SERVANTS.X.1_WT,wt,Indeterminate member of the SERVANTS group,
+SERVANTS.X.2_WT,wt,Indeterminate member of the SERVANTS group,
+SERVANTS.X.3_WT,wt,Indeterminate member of the SERVANTS group,
+SERVANTS.0_WT,wt,Indistinct members of the SERVANTS group,
+ATTENDANTS.PAULINA_WT,wt,Paulina’s Attendants,
+ATTENDANTS.PAULINA.0.1_WT,wt,Indistinct member of Paulina’s ATTENDANTS group,
+OFFICERS.0.1_WT,wt,Officer,
+Sailor_WT,wt,Mariner,
+Jailer_WT,wt,Jailer,
+Mopsa_WT,wt,Mopsa,
+Dorcas_WT,wt,Dorcas,
+SERVANTS.SHEPHERD_WT,wt,Servants attending on the Shepherd,
+SERVANTS.SHEPHERD.1_WT,wt,Servant,
+SHEPHERDS_WT,wt,Shepherds,
+HERDSMEN_WT,wt,Countrymen,
+Timon_Tim,tim,Timon,a noble Athenian
+Flavius_Tim,tim,Flavius,his steward
+SERVANTS.TIMON.Lucilius_Tim,tim,Lucilius,
+SERVANTS.TIMON.Flaminius_Tim,tim,Flaminius,
+SERVANTS.TIMON.Servilius_Tim,tim,Servilius,
+SERVANTS.TIMON_Tim,tim,Servants,
+Apemantus_Tim,tim,Apemantus,a Cynic philosopher
+Alcibiades_Tim,tim,Alcibiades,an Athenian Captain
+Phrynia_Tim,tim,Phrynia,
+Timandra_Tim,tim,Timandra,
+SOLDIERS.1_Tim,tim,Soldier,
+LORDS_Tim,tim,Senators,
+FRIENDS.Lucius_Tim,tim,Lucius,
+FRIENDS.Lucullus_Tim,tim,Lucullus,
+FRIENDS.Sempronius_Tim,tim,Sempronius,
+FRIENDS.Ventidius_Tim,tim,Ventidius,
+FRIENDS_Tim,tim,Friends,
+SERVANTS.Caphis_Tim,tim,Caphis,servant to a Senator
+SERVANTS.ISIDORE.1_Tim,tim,Isidore’s Man,
+SERVANTS.VARRO_Tim,tim,Varro’s,
+SERVANTS.Titus_Tim,tim,Titus,
+SERVANTS.LUCIUS.1_Tim,tim,Lucius’ Man,
+SERVANTS.Hortensius_Tim,tim,Hortensius,
+SERVANTS.Philotus_Tim,tim,Philotus,
+Poet_Tim,tim,Poet,
+Painter_Tim,tim,Painter,
+Jeweler_Tim,tim,Jeweler,
+Merchant_Tim,tim,Merchant,
+OldMan_Tim,tim,Old Athenian,
+Fool_Tim,tim,Fool,
+SERVANTS.Page_Tim,tim,Page,
+STRANGERS_Tim,tim,Strangers,
+BANDITS_Tim,tim,Banditti,
+Titus_Tit,tit,Titus Andronicus,a noble Roman general
+Lavinia_Tit,tit,Lavinia,his daughter
+Lucius_Tit,tit,Lucius,
+Mutius_Tit,tit,Mutius,
+Martius_Tit,tit,Martius,
+Quintus_Tit,tit,Quintus,
+YoungLucius_Tit,tit,Young Lucius,his grandson
+Marcus_Tit,tit,Marcus Andronicus,"Titus’s brother, a Roman tribune"
+Publius_Tit,tit,Publius,his son
+Sempronius_Tit,tit,Sempronius,
+Caius_Tit,tit,Caius,
+Valentine_Tit,tit,Valentine,
+Saturninus_Tit,tit,Saturninus,"elder son of the former Roman emperor, later emperor"
+Bassianus_Tit,tit,Bassianus,younger son of the former emperor
+Tamora_Tit,tit,Tamora,"Queen of the Goths, later empress"
+Aaron_Tit,tit,Aaron,Tamora’s lover
+Alarbus_Tit,tit,Alarbus,
+Demetrius_Tit,tit,Demetrius,
+Chiron_Tit,tit,Chiron,
+Aemilius_Tit,tit,Aemilius,A Roman nobleman
+Messenger_Tit,tit,Messenger,
+Nurse_Tit,tit,Nurse,
+Captain_Tit,tit,Captain,
+CountryFellow_Tit,tit,Country Fellow,
+GOTHS.0.1_Tit,tit,First Goth,
+GOTHS.0.2_Tit,tit,Second Goth,
+Prologue_Tro,tro,Prologue,
+Priam_Tro,tro,Priam,king of Troy
+Cassandra_Tro,tro,Cassandra,"Priam’s daughter, a soothsayer"
+Troilus_Tro,tro,Troilus,
+Hector_Tro,tro,Hector,
+Paris_Tro,tro,Paris,
+Helenus_Tro,tro,Helenus,
+Deiphobus_Tro,tro,Deiphobus,
+Bastard_Tro,tro,Bastard,
+Andromache_Tro,tro,Andromache,Hector’s wife
+Aeneas_Tro,tro,Aeneas,
+Antenor_Tro,tro,Antenor,
+Boy_Tro,tro,Troilus’s Boy,
+SERVANTS.TROILUS.1_Tro,tro,Troilus’s Man,
+SERVANTS.PARIS.1_Tro,tro,Paris’s Servingman,
+Cressida_Tro,tro,Cressida,
+Calchas_Tro,tro,Calchas,her father
+Pandarus_Tro,tro,Pandarus,her uncle
+Alexander_Tro,tro,Alexander,her servant
+Agamemnon_Tro,tro,Agamemnon,the general
+Nestor_Tro,tro,Nestor,
+Ulysses_Tro,tro,Ulysses,
+Diomedes_Tro,tro,Diomedes,
+Menelaus_Tro,tro,Menelaus,brother to Agamemnon
+Ajax_Tro,tro,Ajax,
+Achilles_Tro,tro,Achilles,
+Helen_Tro,tro,Helen,Menelaus’s wife and queen
+Patroclus_Tro,tro,Patroclus,Achilles’ favorite companion
+MYRMIDONS_Tro,tro,Myrmidons,Achilles’ soldiers
+Thersites_Tro,tro,Thersites,cynical critic
+SERVANTS.DIOMEDES.1_Tro,tro,Diomedes’ Servingman,
+Viola_TN,tn,Viola,a lady of Messaline shipwrecked on the coast of Illyria(later disguised as Cesario)
+Olivia_TN,tn,Olivia,an Illyrian countess
+Maria_TN,tn,Maria,her waiting-gentlewoman
+TobyBelch_TN,tn,Sir Toby Belch,Olivia’s kinsman
+AndrewAguecheek_TN,tn,Sir Andrew Aguecheek,Sir Toby’s companion
+Malvolio_TN,tn,Malvolio,steward in Olivia’s household
+Feste_TN,tn,Fool,"Olivia’s jester, named Feste"
+Fabian_TN,tn,Fabian,a gentleman in Olivia’s household
+Orsino_TN,tn,Orsino,duke (or count) of Illyria
+ATTENDANTS.ORSINO.Valentine_TN,tn,Valentine,
+ATTENDANTS.ORSINO.Curio_TN,tn,Curio,
+Sebastian_TN,tn,Sebastian,Viola’s brother
+Antonio_TN,tn,Antonio,friend to Sebastian
+Captain_TN,tn,Captain,
+Priest_TN,tn,Priest,
+OFFICERS_TN,tn,Officers,
