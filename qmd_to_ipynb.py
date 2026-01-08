@@ -18,6 +18,7 @@ Behavior:
   output (no cell created), including any trailing blank lines.
 - In kept code cells, ALL lines starting with '#|' are removed
 - Markdown text is preserved as markdown cells
+- Lines starting with '**Answer**:' have everything after '**Answer**:' removed
 """
 
 import sys
@@ -80,6 +81,23 @@ def _strip_quarto_option_lines(lines):
     """Remove all Quarto option lines that start with '#|' (any indentation)."""
     return [ln for ln in lines if not ln.lstrip().startswith("#|")]
 
+def _strip_answer_content(lines):
+    """For lines starting with '**Answer**:', keep only '**Answer**:' and remove the rest."""
+    result = []
+    for ln in lines:
+        stripped = ln.lstrip()
+        if stripped.startswith("**Answer**:"):
+            # Find the position of '**Answer**:' in the original line (preserving leading whitespace)
+            idx = ln.find("**Answer**:")
+            # Keep leading whitespace + '**Answer**:' + newline if original had one
+            if ln.endswith("\n"):
+                result.append(ln[:idx] + "**Answer**:\n")
+            else:
+                result.append(ln[:idx] + "**Answer**:")
+        else:
+            result.append(ln)
+    return result
+
 # --- Core --------------------------------------------------------------------
 
 FENCE_RE = re.compile(
@@ -110,7 +128,7 @@ def qmd_to_ipynb(filepath: str):
                 cells.append({
                     "cell_type": "markdown",
                     "metadata": {},  # no tags/metadata carried over
-                    "source": text_chunk.splitlines(keepends=True)
+                    "source": _strip_answer_content(text_chunk.splitlines(keepends=True))
                 })
 
         if _is_executable_chunk(langspec):
@@ -143,7 +161,7 @@ def qmd_to_ipynb(filepath: str):
             cells.append({
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": fence_text.splitlines(keepends=True)
+                "source": _strip_answer_content(fence_text.splitlines(keepends=True))
             })
 
         pos = end
@@ -155,7 +173,7 @@ def qmd_to_ipynb(filepath: str):
             cells.append({
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": tail.splitlines(keepends=True)
+                "source": _strip_answer_content(tail.splitlines(keepends=True))
             })
 
     notebook = {
