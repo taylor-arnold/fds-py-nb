@@ -1,62 +1,12 @@
 [
   {
-    "objectID": "notebook01b.html",
-    "href": "notebook01b.html",
-    "title": "Notebook01a",
-    "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x32a1b3770&gt;",
-    "crumbs": [
-      "notebook01b.qmd"
-    ]
-  },
-  {
-    "objectID": "notebook01b.html#exploring-the-core-based-statistical-areas-cbsa-dataset",
-    "href": "notebook01b.html#exploring-the-core-based-statistical-areas-cbsa-dataset",
-    "title": "Foundations of Data Science: Notebooks",
-    "section": "Exploring the core-based statistical areas (CBSA) dataset",
-    "text": "Exploring the core-based statistical areas (CBSA) dataset\nNow, as in the text, we want to load the cbsa dataset. You should have seen the code to do this already, but we need to make an adjustment. In the text it is assumed that the data lives in the same place as our code. Here, our code is in Colab but the data is still over on GitHub. In order to load in the data, we have to start our path with the right address for the book on GitHub. It will be helpful to store this as a variable in Python, which we can do with the following code:\n\nubase = \"https://raw.githubusercontent.com/distant-viewing/hdpy/refs/heads/main/\"\n\nAll of the datasets in the book can be accessed by combining the url base above with the code that you see in the book. In Python, we can combine two strings by simply adding them together. So, here is the code to read the cbsa dataset. Make sure you compare it to what is in the text of the book.\n\ncbsa = pd.read_csv(ubase + \"data/acs_cbsa.csv\")\ncbsa\n\n\n\n\n\n\n\n\nname\ngeoid\nquad\nlon\nlat\npop\ndensity\nage_median\nhh_income_median\npercent_own\nrent_1br_median\nrent_perc_income\ndivision\n\n\n\n\n0\nNew York\n35620\nNE\n-74.101056\n40.768770\n20.011812\n1051.306467\n42.9\n86445\n55.3\n1430\n31.0\nMiddle Atlantic\n\n\n1\nLos Angeles\n31080\nW\n-118.148722\n34.219406\n13.202558\n1040.647281\n41.6\n81652\n51.3\n1468\n33.6\nPacific\n\n\n2\nChicago\n16980\nNC\n-87.958820\n41.700605\n9.607711\n508.629406\n41.9\n78790\n68.9\n1060\n29.0\nEast North Central\n\n\n3\nDallas\n19100\nS\n-96.970508\n32.849480\n7.543340\n323.181404\n41.3\n76916\n64.1\n1106\n29.1\nWest South Central\n\n\n4\nHouston\n26420\nS\n-95.401574\n29.787083\n7.048954\n316.543514\n41.0\n72551\n65.1\n997\n30.0\nWest South Central\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n929\nZapata\n49820\nS\n-99.168533\n27.000573\n0.013945\n5.081383\n41.4\n34406\n77.1\n321\n34.6\nWest South Central\n\n\n930\nKetchikan\n28540\nO\n-130.927217\n55.582484\n0.013939\n1.046556\n44.6\n77820\n67.5\n946\n31.2\nPacific\n\n\n931\nCraig\n18780\nW\n-108.207523\n40.618749\n0.013240\n1.077471\n44.5\n58583\n72.8\n485\n29.0\nMountain\n\n\n932\nVernon\n46900\nS\n-99.240853\n34.080611\n0.012887\n5.086411\n41.5\n45262\n62.0\n503\n22.0\nWest South Central\n\n\n933\nLamesa\n29500\nS\n-101.947637\n32.742488\n0.012371\n5.291467\n41.1\n42778\n71.5\n611\n34.5\nWest South Central\n\n\n\n\n934 rows × 13 columns\n\n\n\nA method is a function attached to an object. It is called by using the object name followed by the name of the function. From there, it works just like any other function. As shown in the text, use the describe method below to see a description of the columns in the cbsa dataset.\n\ncbsa.describe()\n\n\n\n\n\n\n\n\ngeoid\nlon\nlat\npop\ndensity\nage_median\nhh_income_median\npercent_own\nrent_1br_median\nrent_perc_income\n\n\n\n\ncount\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n934.000000\n\n\nmean\n29781.966809\n-92.394416\n37.957410\n0.337042\n61.887983\n42.074946\n58255.831906\n70.429872\n676.247323\n28.534475\n\n\nstd\n11392.177504\n14.296976\n5.615548\n1.118307\n94.127202\n2.454838\n13182.948368\n6.409416\n225.063659\n3.112188\n\n\nmin\n10100.000000\n-159.596797\n17.994296\n0.012371\n0.689335\n29.500000\n16456.000000\n49.300000\n134.000000\n18.000000\n\n\n25%\n19990.000000\n-98.352616\n34.359252\n0.039582\n17.210252\n40.825000\n50520.000000\n66.500000\n534.250000\n26.700000\n\n\n50%\n29760.000000\n-89.092801\n38.667286\n0.075735\n33.595815\n42.300000\n57063.500000\n70.900000\n627.500000\n28.400000\n\n\n75%\n39570.000000\n-82.598836\n41.745334\n0.188131\n63.262232\n43.600000\n64352.000000\n74.800000\n765.000000\n30.275000\n\n\nmax\n49820.000000\n-66.083671\n64.810098\n20.011812\n1051.306467\n48.800000\n138370.000000\n86.700000\n2227.000000\n44.600000\n\n\n\n\n\n\n\nAnd, now, use the info method to find basic information about each of the columns in the dataset.\n\ncbsa.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 934 entries, 0 to 933\nData columns (total 13 columns):\n #   Column            Non-Null Count  Dtype  \n---  ------            --------------  -----  \n 0   name              934 non-null    object \n 1   geoid             934 non-null    int64  \n 2   quad              934 non-null    object \n 3   lon               934 non-null    float64\n 4   lat               934 non-null    float64\n 5   pop               934 non-null    float64\n 6   density           934 non-null    float64\n 7   age_median        934 non-null    float64\n 8   hh_income_median  934 non-null    int64  \n 9   percent_own       934 non-null    float64\n 10  rent_1br_median   934 non-null    int64  \n 11  rent_perc_income  934 non-null    float64\n 12  division          934 non-null    object \ndtypes: float64(7), int64(3), object(3)\nmemory usage: 95.0+ KB\n\n\nThere are many more methods for DataFrame objects than the two shown in the text. Below, use the nunique method to see the number of unique values in each column. Go through each and make sure that they seem reasonable to you. Does anything seem surprising?\n\ncbsa.nunique()\n\nname                835\ngeoid               934\nquad                  5\nlon                 934\nlat                 934\npop                 931\ndensity             934\nage_median          127\nhh_income_median    923\npercent_own         274\nrent_1br_median     514\nrent_perc_income    152\ndivision              9\ndtype: int64\n\n\nSome methods also take arguments. For example, the sample method takes an argument called n. It will return a random set of n rows from the dataset. Call this method below with a value of 10. Think about how random samples of the rows might be helpful in a data analysis project. Note that you can use either a positional argument or a named argument here (try to do both!)\n\ncbsa.sample(n=10) # named argument\ncbsa.sample(10) # unnamed argument\n\n\n\n\n\n\n\n\nname\ngeoid\nquad\nlon\nlat\npop\ndensity\nage_median\nhh_income_median\npercent_own\nrent_1br_median\nrent_perc_income\ndivision\n\n\n\n\n343\nWenatchee\n48300\nW\n-120.264632\n47.818215\n0.121130\n9.684389\n41.8\n66663\n65.9\n808\n26.2\nPacific\n\n\n101\nChattanooga\n16860\nS\n-85.359078\n35.051467\n0.559860\n101.105324\n41.6\n58277\n69.8\n804\n28.2\nEast South Central\n\n\n842\nGrants\n24380\nW\n-108.000400\n34.913019\n0.027284\n2.318360\n43.2\n47300\n73.4\n531\n25.2\nMountain\n\n\n847\nGreensburg\n24700\nNC\n-85.501216\n39.306948\n0.026466\n27.393548\n44.1\n65000\n74.6\n569\n21.4\nEast North Central\n\n\n618\nPullman\n39420\nW\n-117.523085\n46.900806\n0.048197\n8.566939\n33.0\n43613\n51.4\n692\n40.9\nPacific\n\n\n111\nSanta Rosa\n42220\nW\n-122.887225\n38.528739\n0.492498\n119.725852\n43.8\n91607\n61.6\n1397\n32.2\nPacific\n\n\n673\nCedartown\n16340\nS\n-85.188169\n34.001819\n0.042692\n52.794087\n41.8\n48958\n64.2\n477\n32.3\nSouth Atlantic\n\n\n344\nOwensboro\n36980\nS\n-87.069943\n37.699576\n0.120720\n50.055861\n42.4\n58036\n71.8\n574\n26.4\nEast South Central\n\n\n82\nAkron\n10420\nNC\n-81.349655\n41.148694\n0.702464\n293.863591\n42.7\n63331\n70.8\n686\n28.9\nEast North Central\n\n\n748\nVincennes\n47180\nNC\n-87.418278\n38.688946\n0.036362\n26.812795\n41.7\n51784\n69.1\n532\n26.8\nEast North Central\n\n\n\n\n\n\n\nSometimes methods can return new DataFrame objects. In the code below, try out the isnull method. What happens?\n\ncbsa.isnull()\n\n\n\n\n\n\n\n\nname\ngeoid\nquad\nlon\nlat\npop\ndensity\nage_median\nhh_income_median\npercent_own\nrent_1br_median\nrent_perc_income\ndivision\n\n\n\n\n0\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n1\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n2\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n3\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n4\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n929\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n930\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n931\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n932\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n933\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\nFalse\n\n\n\n\n934 rows × 13 columns\n\n\n\nWhen one method returns another object, we can chain together methods by adding another method at the end of the result. Below, chain the isnull method with the sum method. Do you understand what this is doing?\n\ncbsa.isnull().sum()\n\nname                0\ngeoid               0\nquad                0\nlon                 0\nlat                 0\npop                 0\ndensity             0\nage_median          0\nhh_income_median    0\npercent_own         0\nrent_1br_median     0\nrent_perc_income    0\ndivision            0\ndtype: int64\n\n\nThe get method is another common DataFrame method that takes one argument which has the name of a column in the dataset. Use it below to get the ‘division’ column of the data.\n\ncbsa.get('division')\n\n0         Middle Atlantic\n1                 Pacific\n2      East North Central\n3      West South Central\n4      West South Central\n              ...        \n929    West South Central\n930               Pacific\n931              Mountain\n932    West South Central\n933    West South Central\nName: division, Length: 934, dtype: object\n\n\nThe value returned by the get method is a new kind of object called a Series. It represents a single column of the data. Series objects have their own methods. One particularly helpful method is value_counts. Chain this together below to see the number of areas in each region of the country.\n\ncbsa['division'].value_counts()\n\ndivision\nSouth Atlantic        162\nEast North Central    160\nWest South Central    130\nWest North Central    120\nEast South Central     95\nMountain               93\nPacific                82\nMiddle Atlantic        66\nNew England            26\nName: count, dtype: int64\n\n\nWe’ve already seen a lot of methods for DataFrame and Series objects, but there are many more. You can find all of the options for both on the following help pages:\n\nDataFrame\nSeries\n\nTake a moment to find a couple of the methods we have already seen and look at what the help pages for each look like.",
-    "crumbs": [
-      "notebook01b.qmd"
-    ]
-  },
-  {
-    "objectID": "notebook01b.html#loading-other-datasets-from-the-book.",
-    "href": "notebook01b.html#loading-other-datasets-from-the-book.",
-    "title": "Foundations of Data Science: Notebooks",
-    "section": "Loading other datasets from the book.",
-    "text": "Loading other datasets from the book.\nNow that you have an idea of how to load datasets from the book’s GitHub repository, modify the code from the text to load the food prices dataset in the chunk below:\n\nfood_prices = pd.read_csv(ubase + \"data/food_prices.csv\")\nfood_prices\n\n\n\n\n\n\n\n\nyear\ntea\nsugar\npeanuts\ncoffee\ncocoa\nwheat\nrye\nrice\ncorn\nbarley\npork\nbeef\nlamb\n\n\n\n\n0\n1870\n128.845647\n151.406650\n203.422160\n88.067280\n78.817566\n88.102178\n103.393214\n83.478261\n121.373971\n103.241107\n107.813162\n73.540373\n63.257185\n\n\n1\n1871\n131.730769\n167.156863\n221.774193\n108.728711\n66.686484\n118.157238\n105.251996\n84.543919\n88.393285\n130.236487\n68.466144\n86.755952\n73.411017\n\n\n2\n1872\n134.455128\n161.764706\n188.508064\n140.092762\n71.591359\n121.523799\n102.095808\n92.905405\n69.229178\n124.662162\n58.644715\n85.119048\n78.072034\n\n\n3\n1873\n136.337312\n154.104124\n178.826474\n172.869998\n65.752662\n116.056854\n106.028976\n91.034483\n67.136989\n166.034483\n62.871238\n93.563218\n84.444769\n\n\n4\n1874\n146.088815\n153.246661\n230.709444\n187.244900\n69.924808\n113.202047\n125.977031\n99.637681\n127.551727\n174.275362\n87.613692\n89.531573\n77.480963\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n141\n2011\n33.092175\n34.758403\n49.430540\n104.633987\n30.950856\n32.303050\n56.050786\n26.970989\n56.191498\n76.784074\n18.957462\n195.682011\n199.901823\n\n\n142\n2012\n32.169401\n28.216065\n50.480016\n70.519447\n24.339000\n32.329419\n54.278655\n27.791165\n60.997731\n87.240944\n17.266451\n196.471582\n179.915106\n\n\n143\n2013\n31.300000\n22.830000\n31.508720\n51.984920\n24.449543\n30.635729\n55.776368\n24.481270\n55.410171\n72.322420\n17.782412\n190.347418\n164.486798\n\n\n144\n2014\n29.530000\n21.790000\n29.420000\n74.140000\n30.470000\n26.370000\n53.558470\n19.970000\n36.750000\n50.220000\n20.960000\n229.492089\n184.540000\n\n\n145\n2015\n29.174600\n17.087190\n28.121785\n58.715669\n30.967121\n22.009427\n51.521938\n17.670020\n32.904916\n68.492986\n13.747636\n203.667366\n149.682263\n\n\n\n\n146 rows × 14 columns\n\n\n\nAnd, similarly, load the Wikipedia UK authors dataset.\n\nmeta = pd.read_csv(ubase + \"data/wiki_uk_meta.csv.gz\")\nmeta\n\n\n\n\n\n\n\n\ndoc_id\nborn\ndied\nera\ngender\nlink\nshort\n\n\n\n\n0\nMarie de France\n1160\n1215\nEarly\nfemale\nMarie_de_France\nMarie d. F.\n\n\n1\nGeoffrey Chaucer\n1343\n1400\nEarly\nmale\nGeoffrey_Chaucer\nChaucer\n\n\n2\nJohn Gower\n1330\n1408\nEarly\nmale\nJohn_Gower\nGower\n\n\n3\nWilliam Langland\n1332\n1386\nEarly\nmale\nWilliam_Langland\nLangland\n\n\n4\nMargery Kempe\n1373\n1438\nEarly\nfemale\nMargery_Kempe\nKempe\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n70\nStephen Spender\n1909\n1995\nTwentieth C\nmale\nStephen_Spender\nSpender\n\n\n71\nChristopher Isherwood\n1904\n1986\nTwentieth C\nmale\nChristopher_Isherwood\nIsherwood\n\n\n72\nEdward Upward\n1903\n2009\nTwentieth C\nmale\nEdward_Upward\nUpward\n\n\n73\nRex Warner\n1905\n1986\nTwentieth C\nmale\nRex_Warner\nWarner\n\n\n74\nSeamus Heaney\n1939\n1939\nTwentieth C\nmale\nSeamus_Heaney\nHeaney\n\n\n\n\n75 rows × 7 columns\n\n\n\nAll three of these will be used throughout the course notes. If you have questions about what they mean, now is a great time to ask!",
-    "crumbs": [
-      "notebook01b.qmd"
-    ]
-  },
-  {
-    "objectID": "notebook01b.html#loading-data-from-google-sheets",
-    "href": "notebook01b.html#loading-data-from-google-sheets",
-    "title": "Foundations of Data Science: Notebooks",
-    "section": "Loading data from Google sheets",
-    "text": "Loading data from Google sheets\nOnly working with data that has already been put online is fairly limiting. We will want to be able to get data in Python that we have created ourselves. Let’s see how to read data in from public Google sheets.\nBefore we get there, it will be helpful to see a very nice feature of Python called f-strings. If you put the letter “f” before a string, then anything in the string inside of curly braces will be evaluated as a Python variable and stuck inside of the string. That sounds more complicated than it really is. Change the code below to have your name in the variable called my_name and run it. Notice what happens with the string. Feel free to experiment and see what else this can do.\n\nmy_name = \"Taylor\"\nf\"My name is {my_name}\"\n\n'My name is Taylor'\n\n\nNow, to read data in from Google sheets we need to know the file id and the sheet id. The file ID is in the url of the sheet after the “/d/” and the sheet id is after the variable gid=. Adjust the values below to match the sheet that we have from class:\n\nfile_id = \"1CVHofm5ukU3CRh2-jvJdu_t4jPXRPFryOTZIo-lWN6E\"\nsheet_id = \"0\"\n\nNow that you have those, we can use them to construct a path the sheet that returns a CSV file. Run the code below to see what this looks like:\n\nurl = f\"https://docs.google.com/spreadsheets/d/{file_id}/export?format=csv&gid={sheet_id}\"\nurl\n\n'https://docs.google.com/spreadsheets/d/1CVHofm5ukU3CRh2-jvJdu_t4jPXRPFryOTZIo-lWN6E/export?format=csv&gid=0'\n\n\nNow that we have a URL, it is straightforward to download the dataset just as we did with the book ones above. Do that below:\n\ndf = pd.read_csv(url)\ndf\n\nTry out a few of the functions that we have above in the code block below. If you want, you can add new code blocks in order to have multiple outputs of each.\n\ndf.describe()\n\nGetting data locally on your machine into Colab is a little more complex, but we will see approaches to that in future notebooks.",
-    "crumbs": [
-      "notebook01b.qmd"
-    ]
-  },
-  {
-    "objectID": "notebook01a.html",
-    "href": "notebook01a.html",
-    "title": "Notebook01a",
-    "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nubase = \"\"\n\n\nfood = pl.read_csv(ubase + \"data/food.csv\")\nfood\n\n\nshape: (61, 17)\n\n\n\nitem\nfood_group\ncalories\ntotal_fat\nsat_fat\ncholesterol\nsodium\ncarbs\nfiber\nsugar\nprotein\niron\nvitamin_a\nvitamin_c\nwiki\ndescription\ncolor\n\n\nstr\nstr\ni64\nf64\nf64\ni64\ni64\nf64\nf64\nf64\nf64\ni64\ni64\ni64\nstr\nstr\nstr\n\n\n\n\n\"Apple\"\n\"fruit\"\n52\n0.1\n0.028\n0\n1\n13.81\n2.4\n10.39\n0.26\n1\n1\n8\n\"apple\"\n\"A common, round fruit produced…\n\"red\"\n\n\n\"Asparagus\"\n\"vegetable\"\n20\n0.1\n0.046\n0\n2\n3.88\n2.1\n1.88\n2.2\n12\n15\n9\n\"asparagus\"\n\"Any of various perennial plant…\n\"green\"\n\n\n\"Avocado\"\n\"fruit\"\n160\n14.6\n2.126\n0\n7\n8.53\n6.7\n0.66\n2.0\n3\n3\n17\n\"avocado\"\n\"The large, usually yellowish-g…\n\"green\"\n\n\n\"Banana\"\n\"fruit\"\n89\n0.3\n0.112\n0\n1\n22.84\n2.6\n12.23\n1.09\n1\n1\n15\n\"banana\"\n\"An elongated curved tropical f…\n\"yellow\"\n\n\n\"Chickpea\"\n\"grains\"\n180\n2.9\n0.309\n0\n243\n29.98\n8.6\n5.29\n9.54\n17\n0\n3\n\"chickpea\"\n\"An annual Asian plant (&lt;i&gt;Cice…\n\"brown\"\n\n\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n\n\n\"Tomato\"\n\"vegetable\"\n18\n0.0\n0.046\n0\n5\n3.92\n1.2\n2.63\n0.88\n2\n17\n21\n\"tomato\"\n\"A widely cultivated plant, &lt;i&gt;…\n\"red\"\n\n\n\"Tuna\"\n\"fish\"\n153\n3.9\n0.811\n53\n366\n0.41\n0.0\n0.09\n27.3\n5\n3\n4\n\"tuna\"\n\"Any of several species of fish…\n\"red\"\n\n\n\"Turkey\"\n\"meat\"\n187\n7.0\n1.999\n77\n69\n0.0\n0.0\n0.0\n28.9\n8\n0\n0\n\"turkey_(bird)\"\n\"Either of two species of bird …\n\"white\"\n\n\n\"Potato\"\n\"vegetable\"\n104\n2.0\n0.458\n0\n254\n19.36\n1.7\n0.82\n1.66\n2\n2\n12\n\"potato\"\n\"A plant tuber, &lt;i&gt;Solanum tube…\n\"white\"\n\n\n\"Yogurt\"\n\"dairy\"\n99\n1.1\n0.742\n5\n53\n18.64\n0.0\n18.64\n3.98\n0\n1\n1\n\"yogurt\"\n\"A milk-based product stiffened…\n\"white\"\n\n\n\n\n\n\n\nggplot(food, aes(\"vitamin_a\", \"vitamin_c\")) + geom_point()",
-    "crumbs": [
-      "Notebook01a"
-    ]
-  },
-  {
     "objectID": "notebook20b.html",
     "href": "notebook20b.html",
     "title": "Notebook20b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x167c43770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook20b.qmd"
+      "Notebook20b"
     ]
   },
   {
@@ -64,9 +14,9 @@
     "href": "notebook19b.html",
     "title": "Notebook19b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30c997770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook19b.qmd"
+      "Notebook19b"
     ]
   },
   {
@@ -74,9 +24,9 @@
     "href": "notebook18b.html",
     "title": "Notebook18b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17bab3770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook18b.qmd"
+      "Notebook18b"
     ]
   },
   {
@@ -84,9 +34,9 @@
     "href": "notebook17b.html",
     "title": "Notebook17b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30368b770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook17b.qmd"
+      "Notebook17b"
     ]
   },
   {
@@ -94,9 +44,9 @@
     "href": "notebook16b.html",
     "title": "Notebook16b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x323a77770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook16b.qmd"
+      "Notebook16b"
     ]
   },
   {
@@ -104,9 +54,9 @@
     "href": "notebook15b.html",
     "title": "Notebook15b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x31981f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook15b.qmd"
+      "Notebook15b"
     ]
   },
   {
@@ -114,9 +64,9 @@
     "href": "notebook14b.html",
     "title": "Notebook14b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3306b7770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook14b.qmd"
+      "Notebook14b"
     ]
   },
   {
@@ -124,9 +74,9 @@
     "href": "notebook13b.html",
     "title": "Notebook13b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x343acf770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook13b.qmd"
+      "Notebook13b"
     ]
   },
   {
@@ -134,9 +84,9 @@
     "href": "notebook12b.html",
     "title": "Notebook12b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x31324f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook12b.qmd"
+      "Notebook12b"
     ]
   },
   {
@@ -144,9 +94,9 @@
     "href": "notebook11b.html",
     "title": "Notebook11b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17b597770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook11b.qmd"
+      "Notebook11b"
     ]
   },
   {
@@ -154,9 +104,9 @@
     "href": "notebook10b.html",
     "title": "Notebook10b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x177a43770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook10b.qmd"
+      "Notebook10b"
     ]
   },
   {
@@ -164,9 +114,9 @@
     "href": "notebook09b.html",
     "title": "Notebook09b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x343287770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook09b.qmd"
+      "Notebook09b"
     ]
   },
   {
@@ -174,9 +124,9 @@
     "href": "notebook08b.html",
     "title": "Notebook08b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x32f973770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook08b.qmd"
+      "Notebook08b"
     ]
   },
   {
@@ -184,9 +134,9 @@
     "href": "notebook07b.html",
     "title": "Notebook07b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x314ffb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook07b.qmd"
+      "Notebook07b"
     ]
   },
   {
@@ -194,9 +144,9 @@
     "href": "notebook06b.html",
     "title": "Notebook06b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17f3af770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook06b.qmd"
+      "Notebook06b"
     ]
   },
   {
@@ -204,9 +154,9 @@
     "href": "notebook05b.html",
     "title": "Notebook05b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17f4c7770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook05b.qmd"
+      "Notebook05b"
     ]
   },
   {
@@ -214,9 +164,9 @@
     "href": "notebook04d.html",
     "title": "Notebook04d",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x32b513770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook04d.qmd"
+      "Notebook04d"
     ]
   },
   {
@@ -224,9 +174,9 @@
     "href": "notebook04b.html",
     "title": "Notebook04b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x33c2c3770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook04b.qmd"
+      "Notebook04b"
     ]
   },
   {
@@ -234,7 +184,7 @@
     "href": "notebook03d.html",
     "title": "Notebook03d",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x33bc1f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
       "Notebook03d"
     ]
@@ -244,9 +194,9 @@
     "href": "notebook03b.html",
     "title": "Notebook03b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3007cb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook03b.qmd"
+      "Notebook03b"
     ]
   },
   {
@@ -254,9 +204,9 @@
     "href": "notebook02d.html",
     "title": "Notebook02d",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x321bc7770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook02d.qmd"
+      "Notebook02d"
     ]
   },
   {
@@ -264,9 +214,19 @@
     "href": "notebook02b.html",
     "title": "Notebook02b",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30c8fb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
       "Notebook02b"
+    ]
+  },
+  {
+    "objectID": "notebook01a.html",
+    "href": "notebook01a.html",
+    "title": "Notebook01a",
+    "section": "",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"\n\n\nfood = pl.read_csv(ub + \"data/food.csv\")\nfood\n\n\nshape: (61, 17)\n\n\n\nitem\nfood_group\ncalories\ntotal_fat\nsat_fat\ncholesterol\nsodium\ncarbs\nfiber\nsugar\nprotein\niron\nvitamin_a\nvitamin_c\nwiki\ndescription\ncolor\n\n\nstr\nstr\ni64\nf64\nf64\ni64\ni64\nf64\nf64\nf64\nf64\ni64\ni64\ni64\nstr\nstr\nstr\n\n\n\n\n\"Apple\"\n\"fruit\"\n52\n0.1\n0.028\n0\n1\n13.81\n2.4\n10.39\n0.26\n1\n1\n8\n\"apple\"\n\"A common, round fruit produced…\n\"red\"\n\n\n\"Asparagus\"\n\"vegetable\"\n20\n0.1\n0.046\n0\n2\n3.88\n2.1\n1.88\n2.2\n12\n15\n9\n\"asparagus\"\n\"Any of various perennial plant…\n\"green\"\n\n\n\"Avocado\"\n\"fruit\"\n160\n14.6\n2.126\n0\n7\n8.53\n6.7\n0.66\n2.0\n3\n3\n17\n\"avocado\"\n\"The large, usually yellowish-g…\n\"green\"\n\n\n\"Banana\"\n\"fruit\"\n89\n0.3\n0.112\n0\n1\n22.84\n2.6\n12.23\n1.09\n1\n1\n15\n\"banana\"\n\"An elongated curved tropical f…\n\"yellow\"\n\n\n\"Chickpea\"\n\"grains\"\n180\n2.9\n0.309\n0\n243\n29.98\n8.6\n5.29\n9.54\n17\n0\n3\n\"chickpea\"\n\"An annual Asian plant (&lt;i&gt;Cice…\n\"brown\"\n\n\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n\n\n\"Tomato\"\n\"vegetable\"\n18\n0.0\n0.046\n0\n5\n3.92\n1.2\n2.63\n0.88\n2\n17\n21\n\"tomato\"\n\"A widely cultivated plant, &lt;i&gt;…\n\"red\"\n\n\n\"Tuna\"\n\"fish\"\n153\n3.9\n0.811\n53\n366\n0.41\n0.0\n0.09\n27.3\n5\n3\n4\n\"tuna\"\n\"Any of several species of fish…\n\"red\"\n\n\n\"Turkey\"\n\"meat\"\n187\n7.0\n1.999\n77\n69\n0.0\n0.0\n0.0\n28.9\n8\n0\n0\n\"turkey_(bird)\"\n\"Either of two species of bird …\n\"white\"\n\n\n\"Potato\"\n\"vegetable\"\n104\n2.0\n0.458\n0\n254\n19.36\n1.7\n0.82\n1.66\n2\n2\n12\n\"potato\"\n\"A plant tuber, &lt;i&gt;Solanum tube…\n\"white\"\n\n\n\"Yogurt\"\n\"dairy\"\n99\n1.1\n0.742\n5\n53\n18.64\n0.0\n18.64\n3.98\n0\n1\n1\n\"yogurt\"\n\"A milk-based product stiffened…\n\"white\"",
+    "crumbs": [
+      "Notebook01a"
     ]
   },
   {
@@ -274,7 +234,7 @@
     "href": "notebook02a.html",
     "title": "Notebook02a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30da0f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
       "Notebook02a"
     ]
@@ -284,7 +244,7 @@
     "href": "notebook02c.html",
     "title": "Notebook02c",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x312523770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
       "Notebook02c"
     ]
@@ -294,9 +254,9 @@
     "href": "notebook03a.html",
     "title": "Notebook03a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17f4b7770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook03a.qmd"
+      "Notebook03a"
     ]
   },
   {
@@ -304,9 +264,9 @@
     "href": "notebook03c.html",
     "title": "Notebook03c",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x32a8cb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook03c.qmd"
+      "Notebook03c"
     ]
   },
   {
@@ -314,7 +274,7 @@
     "href": "notebook04a.html",
     "title": "Notebook04a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3242cf770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
       "Notebook04a"
     ]
@@ -324,9 +284,9 @@
     "href": "notebook04c.html",
     "title": "Notebook04c",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30baff770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook04c.qmd"
+      "Notebook04c"
     ]
   },
   {
@@ -334,9 +294,9 @@
     "href": "notebook05a.html",
     "title": "Notebook05a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30bd8f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook05a.qmd"
+      "Notebook05a"
     ]
   },
   {
@@ -344,9 +304,9 @@
     "href": "notebook06a.html",
     "title": "Notebook06a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3497fb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook06a.qmd"
+      "Notebook06a"
     ]
   },
   {
@@ -354,9 +314,9 @@
     "href": "notebook07a.html",
     "title": "Notebook07a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x30a7ff770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook07a.qmd"
+      "Notebook07a"
     ]
   },
   {
@@ -364,9 +324,9 @@
     "href": "notebook08a.html",
     "title": "Notebook08a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x306827770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook08a.qmd"
+      "Notebook08a"
     ]
   },
   {
@@ -374,9 +334,9 @@
     "href": "notebook09a.html",
     "title": "Notebook09a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x31acff770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook09a.qmd"
+      "Notebook09a"
     ]
   },
   {
@@ -384,9 +344,9 @@
     "href": "notebook10a.html",
     "title": "Notebook10a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3162ab770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook10a.qmd"
+      "Notebook10a"
     ]
   },
   {
@@ -394,9 +354,9 @@
     "href": "notebook11a.html",
     "title": "Notebook11a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x31ae5f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook11a.qmd"
+      "Notebook11a"
     ]
   },
   {
@@ -404,9 +364,9 @@
     "href": "notebook12a.html",
     "title": "Notebook12a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17adfb770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook12a.qmd"
+      "Notebook12a"
     ]
   },
   {
@@ -414,9 +374,9 @@
     "href": "notebook13a.html",
     "title": "Notebook13a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x312657770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook13a.qmd"
+      "Notebook13a"
     ]
   },
   {
@@ -424,9 +384,9 @@
     "href": "notebook14a.html",
     "title": "Notebook14a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x33271f770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook14a.qmd"
+      "Notebook14a"
     ]
   },
   {
@@ -434,9 +394,9 @@
     "href": "notebook15a.html",
     "title": "Notebook15a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17719b770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook15a.qmd"
+      "Notebook15a"
     ]
   },
   {
@@ -444,9 +404,9 @@
     "href": "notebook16a.html",
     "title": "Notebook16a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x3474bf770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook16a.qmd"
+      "Notebook16a"
     ]
   },
   {
@@ -454,9 +414,9 @@
     "href": "notebook17a.html",
     "title": "Notebook17a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17c9cf770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook17a.qmd"
+      "Notebook17a"
     ]
   },
   {
@@ -464,9 +424,9 @@
     "href": "notebook18a.html",
     "title": "Notebook18a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x307547770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook18a.qmd"
+      "Notebook18a"
     ]
   },
   {
@@ -474,9 +434,9 @@
     "href": "notebook19a.html",
     "title": "Notebook19a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x301153770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook19a.qmd"
+      "Notebook19a"
     ]
   },
   {
@@ -484,9 +444,9 @@
     "href": "notebook20a.html",
     "title": "Notebook20a",
     "section": "",
-    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\n&lt;plotnine.themes.theme_minimal.theme_minimal at 0x17b387770&gt;",
+    "text": "import numpy as np\nimport polars as pl\n\nfrom funs import *\nfrom plotnine import *\nfrom polars import col as c\ntheme_set(theme_minimal())\n\nub = \"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/\"",
     "crumbs": [
-      "notebook20a.qmd"
+      "Notebook20a"
     ]
   }
 ]
