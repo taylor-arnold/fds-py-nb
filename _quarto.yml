@@ -1,0 +1,113 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+
+website:
+  title: "Foundations of Data Science: Notebooks"
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - file: notebook01a.qmd
+        text: Notebook01a
+      - file: notebook02a.qmd
+        text: Notebook02a
+      - file: notebook02b.qmd
+        text: Notebook02b
+      - file: notebook02c.qmd
+        text: Notebook02c
+      - file: notebook02d.qmd
+        text: Notebook02d
+      - file: notebook03a.qmd
+        text: Notebook03a
+      - file: notebook03b.qmd
+        text: Notebook03b
+      - file: notebook03c.qmd
+        text: Notebook03c
+      - file: notebook03d.qmd
+        text: Notebook03d
+      - file: notebook04a.qmd
+        text: Notebook04a
+      - file: notebook04b.qmd
+        text: Notebook04b
+      - file: notebook04c.qmd
+        text: Notebook04c
+      - file: notebook04d.qmd
+        text: Notebook04d
+      - file: notebook05a.qmd
+        text: Notebook05a
+      - file: notebook05b.qmd
+        text: Notebook05b
+      - file: notebook06a.qmd
+        text: Notebook06a
+      - file: notebook06b.qmd
+        text: Notebook06b
+      - file: notebook07a.qmd
+        text: Notebook07a
+      - file: notebook07b.qmd
+        text: Notebook07b
+      - file: notebook08a.qmd
+        text: Notebook08a
+      - file: notebook08b.qmd
+        text: Notebook08b
+      - file: notebook09a.qmd
+        text: Notebook09a
+      - file: notebook09b.qmd
+        text: Notebook09b
+      - file: notebook10a.qmd
+        text: Notebook10a
+      - file: notebook10b.qmd
+        text: Notebook10b
+      - file: notebook11a.qmd
+        text: Notebook11a
+      - file: notebook11b.qmd
+        text: Notebook11b
+      - file: notebook12a.qmd
+        text: Notebook12a
+      - file: notebook12b.qmd
+        text: Notebook12b
+      - file: notebook13a.qmd
+        text: Notebook13a
+      - file: notebook13b.qmd
+        text: Notebook13b
+      - file: notebook14a.qmd
+        text: Notebook14a
+      - file: notebook14b.qmd
+        text: Notebook14b
+      - file: notebook15a.qmd
+        text: Notebook15a
+      - file: notebook15b.qmd
+        text: Notebook15b
+      - file: notebook16a.qmd
+        text: Notebook16a
+      - file: notebook16b.qmd
+        text: Notebook16b
+      - file: notebook17a.qmd
+        text: Notebook17a
+      - file: notebook17b.qmd
+        text: Notebook17b
+      - file: notebook18a.qmd
+        text: Notebook18a
+      - file: notebook18b.qmd
+        text: Notebook18b
+      - file: notebook19a.qmd
+        text: Notebook19a
+      - file: notebook19b.qmd
+        text: Notebook19b
+      - file: notebook20a.qmd
+        text: Notebook20a
+      - file: notebook20b.qmd
+        text: Notebook20b
+
+format:
+  html:
+    theme:
+      - cosmo
+      - custom.scss
+    lightbox: true
+
+execute:
+  echo: true
+  eval: true
