@@ -1,58 +1,10 @@
-import math
-import re
-import warnings
-from io import StringIO
+from pathlib import Path
+from dataclasses import dataclass
 
-import cv2
-import geopandas as gpd
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import polars as pl
-import scipy
-import spacy
-import torch
-import torch.nn as nn
-import umap
-from mizani.breaks import breaks_width
-from patsy import dmatrices, ModelDesc
-from PIL import Image
-from pathlib import Path
-from plotnine import *
-from scipy.sparse import csr_matrix
-from scipy.stats import chi2_contingency
-from sklearn.cluster import DBSCAN, KMeans
-from sklearn.decomposition import PCA, TruncatedSVD
-from sklearn.ensemble import (
-    GradientBoostingClassifier,
-    GradientBoostingRegressor,
-    RandomForestClassifier,
-    RandomForestRegressor,
-)
-from sklearn.linear_model import (
-    ElasticNet,
-    ElasticNetCV,
-    LinearRegression,
-    LogisticRegression,
-    LogisticRegressionCV,
-)
-from sklearn.manifold import TSNE
-from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from torch.utils.data import DataLoader, TensorDataset
-from torchvision import transforms
-from transformers import AutoImageProcessor, AutoModel, AutoProcessor, AutoTokenizer, SiglipModel, ViTModel
 
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-from statsmodels.stats.anova import anova_lm
-
-warnings.filterwarnings('ignore')
-theme_set(theme_minimal())
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 __all__ = [
     "DSNetwork",
@@ -78,6 +30,33 @@ __all__ = [
 
 def dot_product(a, b, is_array=False):
     return (a * b).list.sum()
+
+
+def _is_vector(x):
+    return isinstance(x, (np.ndarray, pd.Series, pl.Series))
+
+
+def _round_any(x, accuracy, f = np.round):
+    if not _is_vector(x):
+        x = np.asarray(x)
+    return f(x / accuracy) * accuracy
+
+
+@dataclass
+class breaks_width:
+    width: float
+    offset: float | None = None
+
+    def __call__(self, limits):
+        offset = 0 if self.offset is None else self.offset
+        start = _round_any(limits[0], self.width, np.floor) + offset
+        end = _round_any(limits[1], self.width, np.ceil) + self.width
+        dtype = (
+            int
+            if isinstance(self.width, int) and isinstance(offset, int)
+            else float
+        )
+        return np.arange(start, end, self.width, dtype=dtype)
 
 
 # network data
@@ -340,6 +319,7 @@ class DSImage:
 
     @staticmethod
     def compute_colors(img_hsv):
+        import cv2
         h, s, v = cv2.split(img_hsv)
         valid = (s >= 50) & (v >= 50)
         valid.mean()
@@ -365,6 +345,10 @@ class DSImage:
 
     @staticmethod
     def plot_image_grid(df, ncol=10, label_name="label", filepath="filepath", limit=100):
+        import matplotlib.pyplot as plt
+        from PIL import Image
+        import math
+
         df = df.head(limit)
         n = df.height
         if n == 0:
@@ -376,6 +360,7 @@ class DSImage:
         labels = None
         if label_name is not None and label_name in df.columns:
             labels = df.select(label_name).to_series().to_list()
+
 
         fig, axes = plt.subplots(nrow, ncol, figsize=(ncol * 2, nrow * 2))
         axes = np.array(axes).ravel()
@@ -415,6 +400,8 @@ class DSImage:
         bbox_y1_col: str = "bbox_y1",
     ):
 
+        from PIL import Image
+
         def to_yolo_xywh(x0, y0, x1, y1, w, h):
             xc = ((x0 + x1) / 2) / w
             yc = ((y0 + y1) / 2) / h
@@ -438,6 +425,7 @@ class DSImage:
             dst_lbl = LBL_DIR / split / (src.stem + ".txt")
 
             if not dst_img.exists():
+                import shutil
                 shutil.copy2(src, dst_img)
 
             w, h = Image.open(src).size
@@ -463,6 +451,8 @@ class DSImage:
 # statistical inference
 
 def _parse_formula_vars(formula):
+    from patsy import ModelDesc
+
     desc = ModelDesc.from_formula(formula)
     lhs_vars = []
     for term in desc.lhs_termlist:
@@ -476,6 +466,8 @@ def _parse_formula_vars(formula):
 
 
 def _simple_table_to_polars(tbl):
+    from io import StringIO
+
     csv_str = tbl.as_csv()
     cleaned = "\n".join(
         ",".join(field.strip() for field in line.split(","))
@@ -490,6 +482,9 @@ class DSStatsmodels:
 
     @staticmethod
     def ttest1(df, formula):
+        from patsy import dmatrices
+        import statsmodels.api as sm
+
         pdf = df.to_pandas()
         y, _ = dmatrices(formula, data=pdf, return_type="dataframe")
         y = y.iloc[:, 0]
@@ -506,6 +501,9 @@ class DSStatsmodels:
 
     @staticmethod
     def ttest2(df, formula):
+        import statsmodels.formula.api as smf
+        import re
+
         pdf = df.to_pandas()
         model = smf.ols(formula=formula, data=pdf)
         result = model.fit()
@@ -554,6 +552,9 @@ class DSStatsmodels:
 
     @staticmethod
     def anova(df, formula):
+        import statsmodels.formula.api as smf
+        from statsmodels.stats.anova import anova_lm
+
         pdf = df.to_pandas()
         model = smf.ols(formula=formula, data=pdf)
         result = model.fit()
@@ -563,6 +564,8 @@ class DSStatsmodels:
 
     @staticmethod
     def chi2(df, formula):
+        from scipy.stats import chi2_contingency
+
         pdf = df.to_pandas()
         lhs_vars, rhs_vars = _parse_formula_vars(formula)
         row_var = lhs_vars[0]
@@ -577,6 +580,8 @@ class DSStatsmodels:
 
     @staticmethod
     def gtest(df, formula):
+        from scipy.stats import chi2_contingency
+
         pdf = df.to_pandas()
         lhs_vars, rhs_vars = _parse_formula_vars(formula)
         row_var = lhs_vars[0]
@@ -591,6 +596,8 @@ class DSStatsmodels:
 
     @staticmethod
     def ols(df, formula, raw=False, **kwargs):
+        import statsmodels.formula.api as smf
+
         pdf = df.to_pandas()
         model = smf.ols(formula=formula, data=pdf, **kwargs).fit(disp=False)
         if raw:
@@ -599,6 +606,8 @@ class DSStatsmodels:
 
     @staticmethod
     def wls(df, formula, raw=False, **kwargs):
+        import statsmodels.formula.api as smf
+
         pdf = df.to_pandas()
         model = smf.wls(formula=formula, data=pdf, **kwargs).fit(disp=False)
         if raw:
@@ -607,6 +616,8 @@ class DSStatsmodels:
 
     @staticmethod
     def glm(df, formula, raw=False, **kwargs):
+        import statsmodels.formula.api as smf
+
         pdf = df.to_pandas()
         model = smf.glm(formula=formula, data=pdf, **kwargs).fit(disp=False)
         if raw:
@@ -615,6 +626,8 @@ class DSStatsmodels:
 
     @staticmethod
     def logit(df, formula, raw=False, **kwargs):
+        import statsmodels.formula.api as smf
+
         pdf = df.to_pandas()
         model = smf.logit(formula=formula, data=pdf, **kwargs).fit(disp=False)
         if raw:
@@ -623,31 +636,6 @@ class DSStatsmodels:
 
 
 # sklearn
-
-SUPPORTED_MODELS = {
-    "linear_regression": LinearRegression,
-    "elastic_net": ElasticNet,
-    "elastic_net_cv": ElasticNetCV,
-    "logistic_regression": LogisticRegression,
-    "logistic_regression_cv": LogisticRegressionCV,
-    "gradient_boosting_classifier": GradientBoostingClassifier,
-    "gradient_boosting_regressor": GradientBoostingRegressor,
-    "random_forest_classifier": RandomForestClassifier,
-    "random_forest_regressor": RandomForestRegressor,
-}
-
-DIMRED_MODELS = {
-    "pca": PCA,
-    "tsne": TSNE,
-    "umap": umap.UMAP,
-    "tsvd": TruncatedSVD
-}
-
-CLUSTER_MODELS = {
-    "kmeans": KMeans,
-    "dbscan": DBSCAN,
-}
-
 
 class SkWrapperClass:
     def __init__(self, model_name, model, df, X, y, index, train_idx, test_idx, X_train, X_test, y_train, y_test, column_names):
@@ -773,6 +761,8 @@ class SkWrapperClass:
             }
 
     def confusion_matrix(self, kind="test"):
+        from sklearn.metrics import ConfusionMatrixDisplay
+
         if self.model_name not in ["logistic_regression", "logistic_regression_cv", "gradient_boosting_classifier", "random_forest_classifier"]:
             raise ValueError(f"Model '{self.model_name}' is not a classifier. Use logistic_regression, logistic_regression_cv, gradient_boosting_classifier, or random_forest_classifier.")
         if kind == "test":
@@ -892,6 +882,8 @@ def _extract_features(df, target_name, features, drop):
 
 
 def _fit_supervised(model_name, X, y, df, column_names, test_size, random_state, stratify_array, **kwargs):
+    from sklearn.model_selection import train_test_split
+
     index = np.arange(X.shape[0])
 
     train_idx, test_idx = train_test_split(
@@ -905,6 +897,34 @@ def _fit_supervised(model_name, X, y, df, column_names, test_size, random_state,
     X_test = X[test_idx]
     y_train = y[train_idx]
     y_test = y[test_idx]
+
+    from sklearn.ensemble import (
+        GradientBoostingClassifier,
+        GradientBoostingRegressor,
+        RandomForestClassifier,
+        RandomForestRegressor,
+    )
+    from sklearn.linear_model import (
+        ElasticNet,
+        ElasticNetCV,
+        LinearRegression,
+        LogisticRegression,
+        LogisticRegressionCV,
+    )
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    SUPPORTED_MODELS = {
+        "linear_regression": LinearRegression,
+        "elastic_net": ElasticNet,
+        "elastic_net_cv": ElasticNetCV,
+        "logistic_regression": LogisticRegression,
+        "logistic_regression_cv": LogisticRegressionCV,
+        "gradient_boosting_classifier": GradientBoostingClassifier,
+        "gradient_boosting_regressor": GradientBoostingRegressor,
+        "random_forest_classifier": RandomForestClassifier,
+        "random_forest_regressor": RandomForestRegressor,
+    }
 
     model_class = SUPPORTED_MODELS[model_name]
     pipeline = Pipeline([
@@ -932,11 +952,24 @@ def _fit_supervised(model_name, X, y, df, column_names, test_size, random_state,
 
 
 def _fit_dimred(model_name, X, df, column_names, scale=True, **kwargs):
+    from sklearn.preprocessing import StandardScaler
+
     if scale:
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
     else:
         X_scaled = X
+
+    import umap
+    from sklearn.decomposition import PCA, TruncatedSVD
+    from sklearn.manifold import TSNE
+
+    DIMRED_MODELS = {
+        "pca": PCA,
+        "tsne": TSNE,
+        "umap": umap.UMAP,
+        "tsvd": TruncatedSVD
+    }
 
     model_class = DIMRED_MODELS[model_name]
     model = model_class(**kwargs)
@@ -953,8 +986,17 @@ def _fit_dimred(model_name, X, df, column_names, scale=True, **kwargs):
 
 
 def _fit_cluster(model_name, X, df, column_names, **kwargs):
+    from sklearn.preprocessing import StandardScaler
+
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
+
+    from sklearn.cluster import DBSCAN, KMeans
+
+    CLUSTER_MODELS = {
+        "kmeans": KMeans,
+        "dbscan": DBSCAN,
+    }
 
     model_class = CLUSTER_MODELS[model_name]
     model = model_class(**kwargs)
@@ -1076,6 +1118,8 @@ def _build_dtm(
             rows.append(doc_to_idx[doc])
             cols.append(term_to_idx[term])
             data.append(val)
+
+    from scipy.sparse import csr_matrix
 
     sparse_matrix = csr_matrix((data, (rows, cols)), shape=(n_docs, n_terms))
     X = sparse_matrix.toarray()
@@ -1375,6 +1419,8 @@ DEFAULT_CRS = "EPSG:4326"
 
 
 def _gpd_to_pl(gdf, geometry_col="geometry"):
+    import geopandas as gpd
+
     if not isinstance(gdf, gpd.GeoDataFrame):
         raise TypeError("gdf must be a GeoDataFrame")
     if geometry_col not in gdf.columns:
@@ -1394,6 +1440,8 @@ def _gpd_to_pl(gdf, geometry_col="geometry"):
 
 
 def _pl_to_gpd(pl_df, geometry_col="geometry"):
+    import geopandas as gpd
+
     if not isinstance(pl_df, pl.DataFrame):
         raise TypeError("pl_df must be a Polars DataFrame")
     if geometry_col not in pl_df.columns:
@@ -1413,6 +1461,8 @@ class DSGeo:
 
     @staticmethod
     def read_file(path, geometry_col="geometry", **kwargs):
+        import geopandas as gpd
+
         gdf = gpd.read_file(path, **kwargs)
         if geometry_col != "geometry":
             gdf = gdf.rename_geometry(geometry_col)
@@ -1421,6 +1471,8 @@ class DSGeo:
 
     @staticmethod
     def from_latlon(pl_df, lat="lat", lon="lon", geometry_col="geometry"):
+        import geopandas as gpd
+
         if geometry_col in pl_df.columns:
             raise ValueError(f"Column '{geometry_col}' already exists")
 
@@ -1482,6 +1534,8 @@ class DSGeo:
         show=True,
         ax=None,
     ):
+        import matplotlib.pyplot as plt
+
         gdf = _pl_to_gpd(pl_df, geometry_col=geometry_col)
 
         if crs is not None:
@@ -1557,6 +1611,8 @@ class DSGeo:
         ax=None,
         defaults=None,
     ):
+        import matplotlib.pyplot as plt
+
         if not isinstance(layers, (list, tuple)) or len(layers) == 0:
             raise ValueError("layers must be a non-empty list/tuple")
 
@@ -1611,6 +1667,8 @@ class DSGeo:
         rsuffix="_right",
         **kwargs,
     ):
+        import geopandas as gpd
+
         gleft = _pl_to_gpd(left, geometry_col=geometry_col)
         gright = _pl_to_gpd(right, geometry_col=geometry_col)
 
@@ -1652,6 +1710,8 @@ class DSGeo:
         rsuffix="right",
         **kwargs,
     ):
+        import geopandas as gpd
+
         gleft = _pl_to_gpd(left, geometry_col=geometry_col)
         gright = _pl_to_gpd(right, geometry_col=geometry_col)
 
@@ -1794,45 +1854,53 @@ class DSGeo:
 
 class ViTEmbedder:
     def __init__(self, model_name="google/vit-base-patch16-224", pooling="mean"):
+        from transformers import AutoImageProcessor, ViTModel
+        import torch 
+
         self.pooling = pooling.lower()
-        self.device = torch.device(device) if device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.processor = AutoImageProcessor.from_pretrained(model_name, use_fast=True)
         self.model = ViTModel.from_pretrained(model_name, add_pooling_layer=False).eval().to(self.device)
 
-    @torch.inference_mode()
     def __call__(self, image_path):
-        inputs = {k: v.to(self.device) for k, v in self.processor(images=Image.open(image_path).convert("RGB"), return_tensors="pt").items()}
-        hidden = self.model(**inputs).last_hidden_state
-        vec = torch.nn.functional.normalize(hidden[:, 0, :] if self.pooling == "cls" else hidden[:, 1:, :].mean(dim=1), p=2, dim=-1)
-        return vec.squeeze(0).cpu().numpy()
+        import torch
+        from PIL import Image
+
+        with torch.inference_mode():
+            inputs = {k: v.to(self.device) for k, v in self.processor(images=Image.open(image_path).convert("RGB"), return_tensors="pt").items()}
+            hidden = self.model(**inputs).last_hidden_state
+            vec = torch.nn.functional.normalize(hidden[:, 0, :] if self.pooling == "cls" else hidden[:, 1:, :].mean(dim=1), p=2, dim=-1)
+            return vec.squeeze(0).cpu().numpy()
 
 
 class SigLIPEmbedder:
     def __init__(self, model_name="google/siglip-base-patch16-256", device=None):
-        self.device = torch.device(device) if device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        from transformers import AutoProcessor, SiglipModel
+        import torch 
+
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.processor = AutoProcessor.from_pretrained(model_name, use_fast=True)
         self.model = SiglipModel.from_pretrained(model_name).eval().to(self.device)
 
-    @torch.inference_mode()
     def embed_image(self, image_path):
-        inputs = self.processor(images=Image.open(image_path).convert("RGB"), return_tensors="pt")
-        inputs = {k: v.to(self.device) for k, v in inputs.items()}
-        vec = torch.nn.functional.normalize(self.model.get_image_features(**inputs), p=2, dim=-1)
-        return vec.squeeze(0).cpu().numpy()
+        import torch
+        from PIL import Image
 
-    @torch.inference_mode()
+        with torch.inference_mode():
+
+            inputs = self.processor(images=Image.open(image_path).convert("RGB"), return_tensors="pt")
+            inputs = {k: v.to(self.device) for k, v in inputs.items()}
+            vec = torch.nn.functional.normalize(self.model.get_image_features(**inputs), p=2, dim=-1)
+            return vec.squeeze(0).cpu().numpy()
+
     def embed_text(self, text):
-        inputs = self.processor(text=text, return_tensors="pt", padding="max_length")
-        inputs = {k: v.to(self.device) for k, v in inputs.items()}
-        vec = torch.nn.functional.normalize(self.model.get_text_features(**inputs), p=2, dim=-1)
-        return vec.squeeze(0).cpu().numpy()
+        import torch
 
-    def score(self, vecs):
-        similarity = np.dot(vecs[0], vecs[1])
-        temperature = self.model.logit_scale.item()
-        bias = self.model.logit_bias.item()
-        logit = bias + similarity * np.exp(temperature)
-        return scipy.special.expit(logit).item()
+        with torch.inference_mode():
+            inputs = self.processor(text=text, return_tensors="pt", padding="max_length")
+            inputs = {k: v.to(self.device) for k, v in inputs.items()}
+            vec = torch.nn.functional.normalize(self.model.get_text_features(**inputs), p=2, dim=-1)
+            return vec.squeeze(0).cpu().numpy()
 
 
 class E5TextEmbedder:
@@ -1844,7 +1912,10 @@ class E5TextEmbedder:
         prefix="query: ",
         batch_size=32,
     ):
-        self.device = torch.device(device) if device else torch.device(
+        from transformers import AutoModel, AutoTokenizer
+        import torch 
+        
+        self.device = torch.device(
             "cuda" if torch.cuda.is_available() else "cpu"
         )
         self.max_length = max_length
@@ -1878,35 +1949,38 @@ class E5TextEmbedder:
 
         return list(texts), False
 
-    @torch.inference_mode()
     def __call__(self, texts):
-        texts_list, is_single = self._as_list(texts)
+        import torch
 
-        prefixed = [f"{self.prefix}{t}" for t in texts_list]
+        with torch.inference_mode():
 
-        all_vecs = []
+            texts_list, is_single = self._as_list(texts)
 
-        for i in range(0, len(prefixed), self.batch_size):
-            batch = prefixed[i : i + self.batch_size]
+            prefixed = [f"{self.prefix}{t}" for t in texts_list]
 
-            inputs = self.tokenizer(
-                batch,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-                max_length=self.max_length,
-            )
-            inputs = {k: v.to(self.device) for k, v in inputs.items()}
+            all_vecs = []
 
-            outputs = self.model(**inputs)
-            pooled = self._mean_pool(outputs.last_hidden_state, inputs["attention_mask"])
-            normalized = torch.nn.functional.normalize(pooled, p=2, dim=1)
+            for i in range(0, len(prefixed), self.batch_size):
+                batch = prefixed[i : i + self.batch_size]
 
-            all_vecs.append(normalized.cpu().numpy())
+                inputs = self.tokenizer(
+                    batch,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=self.max_length,
+                )
+                inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
-        vecs = np.vstack(all_vecs)
+                outputs = self.model(**inputs)
+                pooled = self._mean_pool(outputs.last_hidden_state, inputs["attention_mask"])
+                normalized = torch.nn.functional.normalize(pooled, p=2, dim=1)
 
-        return vecs[0] if is_single else vecs
+                all_vecs.append(normalized.cpu().numpy())
+
+            vecs = np.vstack(all_vecs)
+
+            return vecs[0] if is_single else vecs
 
 
 # pytorch
@@ -1917,6 +1991,9 @@ class DSTorch:
 
     @staticmethod
     def load_image(df, label_name="label", filepath="filepath", index="index", scale=False, flatten=False):
+        import torch
+        from PIL import Image
+
         imgs = [np.array(Image.open(fp)) for fp in df[filepath]]
         X = np.stack(imgs)
         if X.ndim == 3:
@@ -1946,6 +2023,9 @@ class DSTorch:
 
     @staticmethod
     def load_text(df, model, tokens_expr, label_expr, max_length=200, pad_idx=0, unknown_policy="drop", class_order="sorted"):
+        import torch
+        from sklearn.model_selection import train_test_split
+
         word_to_idx = model.wv.key_to_index
 
         if unknown_policy == "drop":
@@ -1987,9 +2067,11 @@ class DSTorch:
     @staticmethod
     def train(
         model, optimizer, X_train, y_train, num_epochs=18, batch_size=32):
+        import torch
+
         model.train()
         n_samples = len(X_train)
-        criterion = nn.CrossEntropyLoss()
+        criterion = torch.nn.CrossEntropyLoss()
 
         for epoch in range(num_epochs):
             total_loss = 0
@@ -2013,6 +2095,8 @@ class DSTorch:
 
     @staticmethod
     def score_image(model, X, y, cn):
+        import torch
+
         model.eval()
         with torch.no_grad():
             logits = model(X)
@@ -2021,6 +2105,8 @@ class DSTorch:
 
     @staticmethod
     def score_text(model, X, y):
+        import torch
+
         model.eval()
         with torch.no_grad():
             outputs = model(X)
@@ -2030,6 +2116,8 @@ class DSTorch:
 
     @staticmethod
     def predict(model, X, y, cn):
+        import torch
+
         model.eval()
         with torch.no_grad():
             logits = model(X)
@@ -2042,6 +2130,8 @@ class DSTorch:
 
     @staticmethod
     def predict_proba(model, X, y, cn):
+        import torch
+
         model.eval()
         with torch.no_grad():
             logits = model(X)
@@ -2061,6 +2151,9 @@ class DSTorch:
 
     @staticmethod
     def confusion_matrix(model, X, y, cn):
+        import torch
+        from sklearn.metrics import ConfusionMatrixDisplay
+
         model.eval()
         with torch.no_grad():
             logits = model(X)

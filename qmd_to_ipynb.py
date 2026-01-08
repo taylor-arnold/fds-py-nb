@@ -17,7 +17,8 @@ Behavior:
 - Blocks marked with #| tags: [remove] are completely removed from the
   output (no cell created), including any trailing blank lines.
 - In kept code cells, ALL lines starting with '#|' are removed
-- Markdown text is preserved as markdown cells
+- Markdown text is preserved as markdown cells, with each paragraph
+  (text separated by blank lines) becoming a separate cell
 - Lines starting with '**Answer**:' have everything after '**Answer**:' removed
 """
 
@@ -98,6 +99,17 @@ def _strip_answer_content(lines):
             result.append(ln)
     return result
 
+def _split_into_paragraphs(text: str) -> list:
+    """Split text into paragraphs (separated by one or more blank lines).
+
+    Returns a list of non-empty paragraph strings.
+    """
+    # Split on one or more blank lines (two or more consecutive newlines)
+    # This regex matches: newline + optional whitespace-only lines + newline
+    paragraphs = re.split(r'\n\s*\n', text)
+    # Filter out empty paragraphs and strip each one
+    return [p.strip() for p in paragraphs if p.strip()]
+
 # --- Core --------------------------------------------------------------------
 
 FENCE_RE = re.compile(
@@ -121,14 +133,14 @@ def qmd_to_ipynb(filepath: str):
         langspec = m.group(1).strip()
         body = m.group(2)
 
-        # Preceding text -> markdown
+        # Preceding text -> markdown (split into separate cells per paragraph)
         if start > pos:
             text_chunk = content[pos:start]
-            if text_chunk.strip():
+            for para in _split_into_paragraphs(text_chunk):
                 cells.append({
                     "cell_type": "markdown",
                     "metadata": {},  # no tags/metadata carried over
-                    "source": _strip_answer_content(text_chunk.splitlines(keepends=True))
+                    "source": _strip_answer_content(para.splitlines(keepends=True))
                 })
 
         if _is_executable_chunk(langspec):
@@ -166,14 +178,14 @@ def qmd_to_ipynb(filepath: str):
 
         pos = end
 
-    # Trailing text
+    # Trailing text (split into separate cells per paragraph)
     if pos < len(content):
         tail = content[pos:]
-        if tail.strip():
+        for para in _split_into_paragraphs(tail):
             cells.append({
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": _strip_answer_content(tail.splitlines(keepends=True))
+                "source": _strip_answer_content(para.splitlines(keepends=True))
             })
 
     notebook = {

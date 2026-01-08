@@ -1,4 +1,4 @@
-path: /Users/admin/gh/fda-py/media/yolo_birds/
+path: /Users/admin/gh/fds-py/media/yolo_birds/
 train: images/train
 val: images/val
 names:

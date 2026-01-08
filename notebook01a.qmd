@@ -4,7 +4,9 @@ This is our first Python notebook! The idea is just to have something to show (h
 
 ### Setup
 
-Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. Run each of these cells in order by clicking on the triangular play button to their left. Wait for each to finish before continuing. 
+Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. We won't actually be using the data this time, but I've included it here just to demonstrate the normal process.
+
+Run each of these cells in order by clicking on the triangular play button to the left when hoving on the cell. Wait for each to finish before continuing. 
 
 ```{python}
 #| tags: [noclear]
@@ -71,6 +73,7 @@ We have seen in the examples above that we can run Python code in Colab with no 
 
 - Under Editor change "Indentation width in spaces" to 4.
 - Under Editor, unclick "Automatically close brackets..."
+- Under Editor, under "Code Diagnostics" select "None"
 - Under AI Assistance, click the "Hide generative AI features" and unclick everything else (very important!)
 
 There are also two very important keyboard shortcuts to know:
