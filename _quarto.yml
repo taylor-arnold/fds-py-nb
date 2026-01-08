@@ -12,6 +12,8 @@ website:
     contents:
       - file: notebook01a.qmd
         text: Notebook01a
+      - file: notebook01b.qmd
+        text: Notebook01b
       - file: notebook02a.qmd
         text: Notebook02a
       - file: notebook02b.qmd

@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -147,6 +144,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./notebook01a.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Notebook01a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook01b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook01b</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -441,287 +444,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="43497200" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is our first Python notebook! The idea is just to have something to show (hopefully) how easy it is to get up and running in Python using Colab. Anyone can open this file and see the code. In order to run it, you’ll need to be signed into a Google account.</p>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. Run each of these cells in order by clicking on the triangular play button to their left. Wait for each to finish before continuing.</p>
+<div id="480d9cd7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="daec5e75" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>food</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (61, 17)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">item</th>
-<th data-quarto-table-cell-role="th">food_group</th>
-<th data-quarto-table-cell-role="th">calories</th>
-<th data-quarto-table-cell-role="th">total_fat</th>
-<th data-quarto-table-cell-role="th">sat_fat</th>
-<th data-quarto-table-cell-role="th">cholesterol</th>
-<th data-quarto-table-cell-role="th">sodium</th>
-<th data-quarto-table-cell-role="th">carbs</th>
-<th data-quarto-table-cell-role="th">fiber</th>
-<th data-quarto-table-cell-role="th">sugar</th>
-<th data-quarto-table-cell-role="th">protein</th>
-<th data-quarto-table-cell-role="th">iron</th>
-<th data-quarto-table-cell-role="th">vitamin_a</th>
-<th data-quarto-table-cell-role="th">vitamin_c</th>
-<th data-quarto-table-cell-role="th">wiki</th>
-<th data-quarto-table-cell-role="th">description</th>
-<th data-quarto-table-cell-role="th">color</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Apple"</td>
-<td>"fruit"</td>
-<td>52</td>
-<td>0.1</td>
-<td>0.028</td>
-<td>0</td>
-<td>1</td>
-<td>13.81</td>
-<td>2.4</td>
-<td>10.39</td>
-<td>0.26</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>"apple"</td>
-<td>"A common, round fruit produced…</td>
-<td>"red"</td>
-</tr>
-<tr class="even">
-<td>"Asparagus"</td>
-<td>"vegetable"</td>
-<td>20</td>
-<td>0.1</td>
-<td>0.046</td>
-<td>0</td>
-<td>2</td>
-<td>3.88</td>
-<td>2.1</td>
-<td>1.88</td>
-<td>2.2</td>
-<td>12</td>
-<td>15</td>
-<td>9</td>
-<td>"asparagus"</td>
-<td>"Any of various perennial plant…</td>
-<td>"green"</td>
-</tr>
-<tr class="odd">
-<td>"Avocado"</td>
-<td>"fruit"</td>
-<td>160</td>
-<td>14.6</td>
-<td>2.126</td>
-<td>0</td>
-<td>7</td>
-<td>8.53</td>
-<td>6.7</td>
-<td>0.66</td>
-<td>2.0</td>
-<td>3</td>
-<td>3</td>
-<td>17</td>
-<td>"avocado"</td>
-<td>"The large, usually yellowish-g…</td>
-<td>"green"</td>
-</tr>
-<tr class="even">
-<td>"Banana"</td>
-<td>"fruit"</td>
-<td>89</td>
-<td>0.3</td>
-<td>0.112</td>
-<td>0</td>
-<td>1</td>
-<td>22.84</td>
-<td>2.6</td>
-<td>12.23</td>
-<td>1.09</td>
-<td>1</td>
-<td>1</td>
-<td>15</td>
-<td>"banana"</td>
-<td>"An elongated curved tropical f…</td>
-<td>"yellow"</td>
-</tr>
-<tr class="odd">
-<td>"Chickpea"</td>
-<td>"grains"</td>
-<td>180</td>
-<td>2.9</td>
-<td>0.309</td>
-<td>0</td>
-<td>243</td>
-<td>29.98</td>
-<td>8.6</td>
-<td>5.29</td>
-<td>9.54</td>
-<td>17</td>
-<td>0</td>
-<td>3</td>
-<td>"chickpea"</td>
-<td>"An annual Asian plant (&lt;i&gt;Cice…</td>
-<td>"brown"</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Tomato"</td>
-<td>"vegetable"</td>
-<td>18</td>
-<td>0.0</td>
-<td>0.046</td>
-<td>0</td>
-<td>5</td>
-<td>3.92</td>
-<td>1.2</td>
-<td>2.63</td>
-<td>0.88</td>
-<td>2</td>
-<td>17</td>
-<td>21</td>
-<td>"tomato"</td>
-<td>"A widely cultivated plant, &lt;i&gt;…</td>
-<td>"red"</td>
-</tr>
-<tr class="even">
-<td>"Tuna"</td>
-<td>"fish"</td>
-<td>153</td>
-<td>3.9</td>
-<td>0.811</td>
-<td>53</td>
-<td>366</td>
-<td>0.41</td>
-<td>0.0</td>
-<td>0.09</td>
-<td>27.3</td>
-<td>5</td>
-<td>3</td>
-<td>4</td>
-<td>"tuna"</td>
-<td>"Any of several species of fish…</td>
-<td>"red"</td>
-</tr>
-<tr class="odd">
-<td>"Turkey"</td>
-<td>"meat"</td>
-<td>187</td>
-<td>7.0</td>
-<td>1.999</td>
-<td>77</td>
-<td>69</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>28.9</td>
-<td>8</td>
-<td>0</td>
-<td>0</td>
-<td>"turkey_(bird)"</td>
-<td>"Either of two species of bird …</td>
-<td>"white"</td>
-</tr>
-<tr class="even">
-<td>"Potato"</td>
-<td>"vegetable"</td>
-<td>104</td>
-<td>2.0</td>
-<td>0.458</td>
-<td>0</td>
-<td>254</td>
-<td>19.36</td>
-<td>1.7</td>
-<td>0.82</td>
-<td>1.66</td>
-<td>2</td>
-<td>2</td>
-<td>12</td>
-<td>"potato"</td>
-<td>"A plant tuber, &lt;i&gt;Solanum tube…</td>
-<td>"white"</td>
-</tr>
-<tr class="odd">
-<td>"Yogurt"</td>
-<td>"dairy"</td>
-<td>99</td>
-<td>1.1</td>
-<td>0.742</td>
-<td>5</td>
-<td>53</td>
-<td>18.64</td>
-<td>0.0</td>
-<td>18.64</td>
-<td>3.98</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>"yogurt"</td>
-<td>"A milk-based product stiffened…</td>
-<td>"white"</td>
-</tr>
-</tbody>
-</table>
+<div id="bc2b3c21" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="769c1e4e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding <strong>Answer</strong>: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let’s try this out! In the block below, use Python to compute the sum of two plus two.</p>
+<div id="41adb792" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>4</code></pre>
 </div>
 </div>
+<p>What is the sum? <strong>Answer</strong>: Four, of course!</p>
+<p>As in the notes, create a variable called <code>my_fav_number</code> equal to your favorite number. Note: See those strange looking quotes around the variable name? Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font. Keep in mind that you do not copy the quotes themselves!</p>
+<div id="683a20bd" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the solutions often show possible answers rather than</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the only answer; also, there may be comments such as this</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that start with the # symbol and provide additional </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># feedback on the answer</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>my_fav_number <span class="op">=</span> <span class="dv">8</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now, use the function <code>np.log</code>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</p>
+<div id="04b41b4c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>np.float64(2.302585092994046)</code></pre>
+</div>
+</div>
+<p>If you are less mathematically-oriented, you might be worried that we are starting with a lot of mathematics? Don’t be! This is only because it’s the easiest thing to do before we have learned any of the data-specific functions that will come up in the next chapter. If you are very mathematically-oriented, you may be worried about by why the logarithm of 10 is not 1. The reason for this is the Python, like most programming languages but unlike most mathematical texts, uses the term log to indicate the natural logarithm (i.e., base e).</p>
+</section>
+<section id="colab-setup" class="level3">
+<h3 class="anchored" data-anchor-id="colab-setup">Colab Setup</h3>
+<p>We have seen in the examples above that we can run Python code in Colab with no Colab-specific setup required. There are a few things that will be helpful to change in the default settings going forward. If you set these once from your Google account, they should persist without having the reset them each time. To start, click on Tools and Settings to open the settings box. Then:</p>
+<ul>
+<li>Under Editor change “Indentation width in spaces” to 4.</li>
+<li>Under Editor, unclick “Automatically close brackets…”</li>
+<li>Under AI Assistance, click the “Hide generative AI features” and unclick everything else (very important!)</li>
+</ul>
+<p>There are also two very important keyboard shortcuts to know:</p>
+<ul>
+<li><strong>Run selected cell in place</strong>: Cmd + Enter (macOS), Ctrl + Enter (Windows)</li>
+<li><strong>Run cell and move to next cell</strong>: Shift + Enter (macOS and Windows)</li>
+</ul>
+<p>A few other things are helpful to know about Colab. Under File, you can click on “Save a Copy in Drive”. This will save your work in a special Colab folder within your Google Drive. Otherwise, you will loss all of your work when closing the window.</p>
+<p>If you reopen the Notebook from your Google Drive, it will use your default language settings, which may be difficult to use if it is not in English. You can change this by selecting Help (always the last item in the menu) and “Show in English” (always the last item in the pull-down menu).</p>
+<p>Finally, it seems that Google has been giving free Colab Pro accounts to students and educators. If you get a pop-up about this, it is worth going through the steps. While Colab is free, you’ll get more powerful options for running code with the Pro version, which could be useful (but not necessary) in the later chapters.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
