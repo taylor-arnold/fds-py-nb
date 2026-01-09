@@ -30,6 +30,8 @@ website:
         text: Notebook03c
       - file: notebook03d.qmd
         text: Notebook03d
+      - file: notebook03e.qmd
+        text: Notebook03e
       - file: notebook04a.qmd
         text: Notebook04a
       - file: notebook04b.qmd
