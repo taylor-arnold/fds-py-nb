@@ -1,0 +1,112 @@
+## Notebook03a
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
+import numpy as np
+import polars as pl
+
+from funs import *
+from plotnine import *
+from polars import col as c
+theme_set(theme_minimal())
+
+ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+food = pl.read_csv(ub + "data/food.csv").drop(c.description)
+```
+
+### Questions
+
+We will continue working with the `food` dataset, this time focusing on visualizations using `plotnine`. Remember to look at your output after each question to understand what each piece of code does.
+
+Create a scatter plot with vitamin A on the x-axis and iron on the y-axis.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("vitamin_a", "iron"))
+    + geom_point()
+)
+```
+
+Now create a scatter plot with protein on the x-axis and fiber on the y-axis.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_point()
+)
+```
+
+Recreate the previous plot, but this time color the points by food group. Notice that `color` goes inside `aes()` when mapping to a variable.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_point(aes(color="food_group"))
+)
+```
+
+Use a [Color Wheel](https://htmlcolorcodes.com/color-wheel/) to select a fun color. In the code below, update the previous plot to use this fixed color in place of the food group-based colors. Notice that when using a fixed color (not mapped to data), `color` goes outside of `aes()`.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_point(color="#E3763B")
+)
+```
+
+Instead of points, use text labels to display the item names. Replace `geom_point()` with `geom_text()` and map the `label` aesthetic to the `item` column.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_text(aes(label="item"))
+)
+```
+
+That's hard to read with so many items! We should filter the data to only include fruits, then create the same text plot. To do this, add `.filter(c.food_group == "fruit")` as the first line of the chain before calling `.pipe`.
+
+```{python}
+(
+    food
+    .filter(c.food_group == "fruit")
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_text(aes(label="item"))
+)
+```
+
+Finally, add both points and text labels to the plot. Use `nudge_y` to shift the text up slightly so it doesn't overlap with the points.
+
+```{python}
+(
+    food
+    .filter(c.food_group == "fruit")
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_text(aes(label="item"), nudge_y=0.25)
+    + geom_point()
+)
+```

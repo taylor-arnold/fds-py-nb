@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>notebook01b – Foundations of Data Science: Notebooks</title>
+<title>notebook03e – Foundations of Data Science: Notebooks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -75,6 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-8b99633e97494cb736d7188ebc41eb6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,9 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook01b.html">Notebook01b</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook03e.html">Notebook03e</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebook01b.html" class="sidebar-item-text sidebar-link active">
+  <a href="./notebook01b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebook01b</span></a>
   </div>
 </li>
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebook03e.html" class="sidebar-item-text sidebar-link">
+  <a href="./notebook03e.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Notebook03e</span></a>
   </div>
 </li>
@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook01b</h1>
+<h1 class="title">Notebook03a</h1>
 </div>
 
 
@@ -456,10 +456,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="4504809d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="a6e5a170" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2b128760" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="2d77beb0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -470,517 +470,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6406573c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="38fc5d4a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>).drop(c.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
-<p>Let’s look at the <code>food</code> dataset that we loaded above. To get an idea about its structure, write the name of the dataset in the block below and run the cell with nothing else. This will show the column names and data types along with the first five and last five rows.</p>
-<div id="2ebd5021" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>food</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will continue working with the <code>food</code> dataset, this time focusing on visualizations using <code>plotnine</code>. Remember to look at your output after each question to understand what each piece of code does.</p>
+<p>Create a scatter plot with vitamin A on the x-axis and iron on the y-axis.</p>
+<div id="eab6cd33" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"vitamin_a"</span>, <span class="st">"iron"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (61, 16)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">item</th>
-<th data-quarto-table-cell-role="th">food_group</th>
-<th data-quarto-table-cell-role="th">calories</th>
-<th data-quarto-table-cell-role="th">total_fat</th>
-<th data-quarto-table-cell-role="th">sat_fat</th>
-<th data-quarto-table-cell-role="th">cholesterol</th>
-<th data-quarto-table-cell-role="th">sodium</th>
-<th data-quarto-table-cell-role="th">carbs</th>
-<th data-quarto-table-cell-role="th">fiber</th>
-<th data-quarto-table-cell-role="th">sugar</th>
-<th data-quarto-table-cell-role="th">protein</th>
-<th data-quarto-table-cell-role="th">iron</th>
-<th data-quarto-table-cell-role="th">vitamin_a</th>
-<th data-quarto-table-cell-role="th">vitamin_c</th>
-<th data-quarto-table-cell-role="th">wiki</th>
-<th data-quarto-table-cell-role="th">color</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Apple"</td>
-<td>"fruit"</td>
-<td>52</td>
-<td>0.1</td>
-<td>0.028</td>
-<td>0</td>
-<td>1</td>
-<td>13.81</td>
-<td>2.4</td>
-<td>10.39</td>
-<td>0.26</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>"apple"</td>
-<td>"red"</td>
-</tr>
-<tr class="even">
-<td>"Asparagus"</td>
-<td>"vegetable"</td>
-<td>20</td>
-<td>0.1</td>
-<td>0.046</td>
-<td>0</td>
-<td>2</td>
-<td>3.88</td>
-<td>2.1</td>
-<td>1.88</td>
-<td>2.2</td>
-<td>12</td>
-<td>15</td>
-<td>9</td>
-<td>"asparagus"</td>
-<td>"green"</td>
-</tr>
-<tr class="odd">
-<td>"Avocado"</td>
-<td>"fruit"</td>
-<td>160</td>
-<td>14.6</td>
-<td>2.126</td>
-<td>0</td>
-<td>7</td>
-<td>8.53</td>
-<td>6.7</td>
-<td>0.66</td>
-<td>2.0</td>
-<td>3</td>
-<td>3</td>
-<td>17</td>
-<td>"avocado"</td>
-<td>"green"</td>
-</tr>
-<tr class="even">
-<td>"Banana"</td>
-<td>"fruit"</td>
-<td>89</td>
-<td>0.3</td>
-<td>0.112</td>
-<td>0</td>
-<td>1</td>
-<td>22.84</td>
-<td>2.6</td>
-<td>12.23</td>
-<td>1.09</td>
-<td>1</td>
-<td>1</td>
-<td>15</td>
-<td>"banana"</td>
-<td>"yellow"</td>
-</tr>
-<tr class="odd">
-<td>"Chickpea"</td>
-<td>"grains"</td>
-<td>180</td>
-<td>2.9</td>
-<td>0.309</td>
-<td>0</td>
-<td>243</td>
-<td>29.98</td>
-<td>8.6</td>
-<td>5.29</td>
-<td>9.54</td>
-<td>17</td>
-<td>0</td>
-<td>3</td>
-<td>"chickpea"</td>
-<td>"brown"</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Tomato"</td>
-<td>"vegetable"</td>
-<td>18</td>
-<td>0.0</td>
-<td>0.046</td>
-<td>0</td>
-<td>5</td>
-<td>3.92</td>
-<td>1.2</td>
-<td>2.63</td>
-<td>0.88</td>
-<td>2</td>
-<td>17</td>
-<td>21</td>
-<td>"tomato"</td>
-<td>"red"</td>
-</tr>
-<tr class="even">
-<td>"Tuna"</td>
-<td>"fish"</td>
-<td>153</td>
-<td>3.9</td>
-<td>0.811</td>
-<td>53</td>
-<td>366</td>
-<td>0.41</td>
-<td>0.0</td>
-<td>0.09</td>
-<td>27.3</td>
-<td>5</td>
-<td>3</td>
-<td>4</td>
-<td>"tuna"</td>
-<td>"red"</td>
-</tr>
-<tr class="odd">
-<td>"Turkey"</td>
-<td>"meat"</td>
-<td>187</td>
-<td>7.0</td>
-<td>1.999</td>
-<td>77</td>
-<td>69</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>28.9</td>
-<td>8</td>
-<td>0</td>
-<td>0</td>
-<td>"turkey_(bird)"</td>
-<td>"white"</td>
-</tr>
-<tr class="even">
-<td>"Potato"</td>
-<td>"vegetable"</td>
-<td>104</td>
-<td>2.0</td>
-<td>0.458</td>
-<td>0</td>
-<td>254</td>
-<td>19.36</td>
-<td>1.7</td>
-<td>0.82</td>
-<td>1.66</td>
-<td>2</td>
-<td>2</td>
-<td>12</td>
-<td>"potato"</td>
-<td>"white"</td>
-</tr>
-<tr class="odd">
-<td>"Yogurt"</td>
-<td>"dairy"</td>
-<td>99</td>
-<td>1.1</td>
-<td>0.742</td>
-<td>5</td>
-<td>53</td>
-<td>18.64</td>
-<td>0.0</td>
-<td>18.64</td>
-<td>3.98</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>"yogurt"</td>
-<td>"white"</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="notebook03e_files/figure-html/cell-6-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
 </div>
 </div>
 </div>
-<p>What kinds of information in this dataset are stored as numbers?</p>
-<p><strong>Answer</strong>: All of the nutritional data is stored as numbers (calories, total_fat, sat_fat, cholesterol, sodium, carbs, fiber, sugar, protein, iron, vitamin_a, vitamin_c).</p>
-<p>What variables in this dataset are stored as strings?</p>
-<p><strong>Answer</strong>: The food name (<code>item</code>), the food group, a string called <code>wiki</code>, and a color.</p>
-<p>How many observations are there in the dataset?</p>
-<p><strong>Answer</strong>: There are 61 observations. We can see that in the shape parameter printed out above the DataFrame.</p>
-<p>Can you figure out how the rows of the data are ordered?</p>
-<p><strong>Answer</strong>: Based on the first and last rows, it appears to be alphabetically by the food item name (starts with Apple and three other A’s, then Banana and Chickpea, ending with Yogurt).</p>
-<p>Throughout this book, we will want to apply data manipulation, visualization, and modeling functions to data. Whenever possible, which is most of the time, we will write these are <em>method chains</em> in a very specific format. The first line of a code block starts with an opening parenthesis and the final line has the closing parenthesis. Inside, each of the steps of the analysis will get placed with four leading spaces (you should be able to hit tab in Colab to get this), with one step on each line. The dataset goes on its own line.</p>
-<p>In the code below, greate a method chain that starts with <code>food</code> (on its own line), applies the method <code>.head(10)</code> to grab the first ten rows, and the applies the method <code>.tail(3)</code> to grab the last three rows the remaining data. Hint: The code should have five total lines.</p>
-<div id="429e8622" class="cell" data-execution_count="6">
+<p>Now create a scatter plot with protein on the x-axis and fiber on the y-axis.</p>
+<div id="c6492f89" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    food</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (3, 16)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">item</th>
-<th data-quarto-table-cell-role="th">food_group</th>
-<th data-quarto-table-cell-role="th">calories</th>
-<th data-quarto-table-cell-role="th">total_fat</th>
-<th data-quarto-table-cell-role="th">sat_fat</th>
-<th data-quarto-table-cell-role="th">cholesterol</th>
-<th data-quarto-table-cell-role="th">sodium</th>
-<th data-quarto-table-cell-role="th">carbs</th>
-<th data-quarto-table-cell-role="th">fiber</th>
-<th data-quarto-table-cell-role="th">sugar</th>
-<th data-quarto-table-cell-role="th">protein</th>
-<th data-quarto-table-cell-role="th">iron</th>
-<th data-quarto-table-cell-role="th">vitamin_a</th>
-<th data-quarto-table-cell-role="th">vitamin_c</th>
-<th data-quarto-table-cell-role="th">wiki</th>
-<th data-quarto-table-cell-role="th">color</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Bell Pepper"</td>
-<td>"vegetable"</td>
-<td>26</td>
-<td>0.0</td>
-<td>0.059</td>
-<td>0</td>
-<td>2</td>
-<td>6.03</td>
-<td>2.0</td>
-<td>4.2</td>
-<td>0.99</td>
-<td>2</td>
-<td>63</td>
-<td>317</td>
-<td>"bell_pepper"</td>
-<td>"green"</td>
-</tr>
-<tr class="even">
-<td>"Crab"</td>
-<td>"fish"</td>
-<td>87</td>
-<td>1.0</td>
-<td>0.222</td>
-<td>78</td>
-<td>293</td>
-<td>0.04</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>18.06</td>
-<td>4</td>
-<td>0</td>
-<td>5</td>
-<td>"callinectes_sapidus"</td>
-<td>"red"</td>
-</tr>
-<tr class="odd">
-<td>"Broccoli"</td>
-<td>"vegetable"</td>
-<td>34</td>
-<td>0.3</td>
-<td>0.039</td>
-<td>0</td>
-<td>33</td>
-<td>6.64</td>
-<td>2.6</td>
-<td>1.7</td>
-<td>2.82</td>
-<td>4</td>
-<td>12</td>
-<td>149</td>
-<td>"broccoli"</td>
-<td>"green"</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="notebook03e_files/figure-html/cell-7-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
 </div>
 </div>
 </div>
-<p>What rows, relatively to the original dataset, are returned by the sequence of steps above? <strong>Answer</strong>: We have the 8th, 9th, and 10th rows from the original dataset. This comes from first taking off the first 10 rows with <code>head</code> and then grabbing the last 3 rows of the result with <code>tail</code>.</p>
-<p>Note that method chains never modify the original dataset. After running the code above <code>food</code> still has all of the original data and the new version you printed out is no longer available. If we want to save a copy of the output, we need to add something like <code>new_name =</code> before the paranthesis on the first line of the code. When we do this, the original dataset will remain but we have a copy in the <code>new_name</code> object. In the code below, repeat the steps we did above with <code>food</code> but create a new object <code>food_sub</code> that consists of the subset of three rows.</p>
-<div id="d577a9e4" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>food_sub <span class="op">=</span> (</span>
+<p>Recreate the previous plot, but this time color the points by food group. Notice that <code>color</code> goes inside <code>aes()</code> when mapping to a variable.</p>
+<div id="e0c7d701" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    food</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"food_group"</span>))</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-8-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="notebook03e_files/figure-html/cell-8-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
 </div>
-<p>Notice that we do not get to see the output of the operation above. Python does not print out the result because we saved it as a new variable. To see the result, we would need to write the name of the dataset as an extra row in the code block all on its own. This, for example, is how we printed the <code>food</code> dataset in the first question above. Do this below, recreating the <code>food_sub</code> and then including the name <code>food_sub</code> on its own line to see the data.</p>
-<div id="9d8286e4" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>food_sub <span class="op">=</span> (</span>
+</div>
+</div>
+<p>Use a <a href="https://htmlcolorcodes.com/color-wheel/">Color Wheel</a> to select a fun color. In the code below, update the previous plot to use this fixed color in place of the food group-based colors. Notice that when using a fixed color (not mapped to data), <code>color</code> goes outside of <code>aes()</code>.</p>
+<div id="9c7018b2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    food</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">3</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>food_sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(color<span class="op">=</span><span class="st">"#E3763B"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (3, 16)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">item</th>
-<th data-quarto-table-cell-role="th">food_group</th>
-<th data-quarto-table-cell-role="th">calories</th>
-<th data-quarto-table-cell-role="th">total_fat</th>
-<th data-quarto-table-cell-role="th">sat_fat</th>
-<th data-quarto-table-cell-role="th">cholesterol</th>
-<th data-quarto-table-cell-role="th">sodium</th>
-<th data-quarto-table-cell-role="th">carbs</th>
-<th data-quarto-table-cell-role="th">fiber</th>
-<th data-quarto-table-cell-role="th">sugar</th>
-<th data-quarto-table-cell-role="th">protein</th>
-<th data-quarto-table-cell-role="th">iron</th>
-<th data-quarto-table-cell-role="th">vitamin_a</th>
-<th data-quarto-table-cell-role="th">vitamin_c</th>
-<th data-quarto-table-cell-role="th">wiki</th>
-<th data-quarto-table-cell-role="th">color</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Bell Pepper"</td>
-<td>"vegetable"</td>
-<td>26</td>
-<td>0.0</td>
-<td>0.059</td>
-<td>0</td>
-<td>2</td>
-<td>6.03</td>
-<td>2.0</td>
-<td>4.2</td>
-<td>0.99</td>
-<td>2</td>
-<td>63</td>
-<td>317</td>
-<td>"bell_pepper"</td>
-<td>"green"</td>
-</tr>
-<tr class="even">
-<td>"Crab"</td>
-<td>"fish"</td>
-<td>87</td>
-<td>1.0</td>
-<td>0.222</td>
-<td>78</td>
-<td>293</td>
-<td>0.04</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>18.06</td>
-<td>4</td>
-<td>0</td>
-<td>5</td>
-<td>"callinectes_sapidus"</td>
-<td>"red"</td>
-</tr>
-<tr class="odd">
-<td>"Broccoli"</td>
-<td>"vegetable"</td>
-<td>34</td>
-<td>0.3</td>
-<td>0.039</td>
-<td>0</td>
-<td>33</td>
-<td>6.64</td>
-<td>2.6</td>
-<td>1.7</td>
-<td>2.82</td>
-<td>4</td>
-<td>12</td>
-<td>149</td>
-<td>"broccoli"</td>
-<td>"green"</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="notebook03e_files/figure-html/cell-9-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
 </div>
 </div>
 </div>
-<p>In these notebooks, please only save the output with a new object name if specifically instructed to do so. When asked to create a new object, include the object name as an extra line at the end so that we can also see and understand the results.</p>
+<p>Instead of points, use text labels to display the item names. Replace <code>geom_point()</code> with <code>geom_text()</code> and map the <code>label</code> aesthetic to the <code>item</code> column.</p>
+<div id="52a3373a" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"item"</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-10-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="notebook03e_files/figure-html/cell-10-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s hard to read with so many items! We should filter the data to only include fruits, then create the same text plot. To do this, add <code>.filter(c.food_group == "fruit")</code> as the first line of the chain before calling <code>.pipe</code>.</p>
+<div id="d4cbecad" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.food_group <span class="op">==</span> <span class="st">"fruit"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"item"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="notebook03e_files/figure-html/cell-11-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, add both points and text labels to the plot. Use <code>nudge_y</code> to shift the text up slightly so it doesn’t overlap with the points.</p>
+<div id="dec664aa" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    food</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.food_group <span class="op">==</span> <span class="st">"fruit"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"protein"</span>, <span class="st">"fiber"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"item"</span>), nudge_y<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+<figure class="figure">
+<p><a href="notebook03e_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="notebook03e_files/figure-html/cell-12-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -1386,6 +990,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
