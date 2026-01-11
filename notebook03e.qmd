@@ -68,6 +68,17 @@ Recreate the previous plot, but this time color the points by food group. Notice
 )
 ```
 
+Now, create the same plot but use the color-blind friendly scale `scale_color_cmap_d()`.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("protein", "fiber"))
+    + geom_point(aes(color="food_group"))
+    + scale_color_cmap_d()
+)
+```
+
 Use a [Color Wheel](https://htmlcolorcodes.com/color-wheel/) to select a fun color. In the code below, update the previous plot to use this fixed color in place of the food group-based colors. Notice that when using a fixed color (not mapped to data), `color` goes outside of `aes()`.
 
 ```{python}

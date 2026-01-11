@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -222,12 +225,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./notebook04c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebook04c</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebook04d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notebook04d</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -450,19 +447,1971 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cd0a95a7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run all of the following before starting the notebook.</p>
+<div id="f73f6f5a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="50c78d3a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2e0b08df" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/countries.csv"</span>).drop(c.lang)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>In this notebook, we will continue practicing data manipulation techniques using a dataset of countries. The <code>country</code> dataset contains information about various countries including their geographic coordinates (latitude and longitude), life expectancy, happiness scores, population, GDP per capita, and the region of the world they belong to.</p>
+<p>Start by finding the country with the highest life expectancy. Your result should show just that one row.</p>
+<div id="f33f7398" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.lexp, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SGP"</td>
+<td>"Singapore"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>5.871</td>
+<td>85.63</td>
+<td>1.3</td>
+<td>103.8</td>
+<td>0.946</td>
+<td>137906</td>
+<td>null</td>
+<td>66.54</td>
+<td>145.5</td>
+<td>100.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, select all countries that are located in both the Northern Hemisphere (latitude greater than 0) and the Eastern Hemisphere (longitude greater than 0).</p>
+<div id="11d8603b" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also combine into a single filter using `&amp;`</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lat <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lon <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (83, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
+</tr>
+<tr class="even">
+<td>"LKA"</td>
+<td>"Sri Lanka"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>23.229</td>
+<td>78.51</td>
+<td>7.0</td>
+<td>81.0</td>
+<td>0.776</td>
+<td>14380</td>
+<td>39.3</td>
+<td>36.02</td>
+<td>83.1</td>
+<td>90.77437</td>
+</tr>
+<tr class="odd">
+<td>"SGP"</td>
+<td>"Singapore"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>5.871</td>
+<td>85.63</td>
+<td>1.3</td>
+<td>103.8</td>
+<td>0.946</td>
+<td>137906</td>
+<td>null</td>
+<td>66.54</td>
+<td>145.5</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"BGR"</td>
+<td>"Bulgaria"</td>
+<td>"Europe"</td>
+<td>"Eastern Europe"</td>
+<td>6.715</td>
+<td>74.33</td>
+<td>42.75</td>
+<td>25.5</td>
+<td>0.845</td>
+<td>36211</td>
+<td>40.3</td>
+<td>55.9</td>
+<td>137.1</td>
+<td>86.00395</td>
+</tr>
+<tr class="odd">
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>43.844</td>
+<td>65.11</td>
+<td>33.0</td>
+<td>66.0</td>
+<td>0.496</td>
+<td>2093</td>
+<td>27.8</td>
+<td>14.46</td>
+<td>36.1</td>
+<td>47.47762</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"THA"</td>
+<td>"Thailand"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>71.62</td>
+<td>79.78</td>
+<td>14.0</td>
+<td>101.0</td>
+<td>0.798</td>
+<td>22696</td>
+<td>35.0</td>
+<td>62.82</td>
+<td>104.6</td>
+<td>97.79091</td>
+</tr>
+<tr class="even">
+<td>"ALB"</td>
+<td>"Albania"</td>
+<td>"Europe"</td>
+<td>"Southern Europe"</td>
+<td>2.772</td>
+<td>79.67</td>
+<td>41.0</td>
+<td>20.0</td>
+<td>0.81</td>
+<td>20362</td>
+<td>30.8</td>
+<td>54.45</td>
+<td>91.9</td>
+<td>98.5473</td>
+</tr>
+<tr class="odd">
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>35.978</td>
+<td>76.03</td>
+<td>3.7805111</td>
+<td>102.314362</td>
+<td>0.819</td>
+<td>35990</td>
+<td>46.2</td>
+<td>58.68</td>
+<td>118.2</td>
+<td>95.69194</td>
+</tr>
+<tr class="even">
+<td>"CYP"</td>
+<td>"Cyprus"</td>
+<td>"Asia"</td>
+<td>"Western Asia"</td>
+<td>1.371</td>
+<td>81.77</td>
+<td>35.0</td>
+<td>33.0</td>
+<td>0.913</td>
+<td>55720</td>
+<td>31.2</td>
+<td>60.71</td>
+<td>123.1</td>
+<td>99.41781</td>
+</tr>
+<tr class="odd">
+<td>"PAK"</td>
+<td>"Pakistan"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>255.22</td>
+<td>66.71</td>
+<td>30.0</td>
+<td>71.0</td>
+<td>0.544</td>
+<td>5717</td>
+<td>29.6</td>
+<td>45.49</td>
+<td>49.8</td>
+<td>61.92651</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Next, select all countries that are located in either the Northern Hemisphere (latitude greater than 0) or the Eastern Hemisphere (longitude greater than 0). This should return more countries than the previous question.</p>
+<div id="455a1b87" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((c.lat <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">|</span> (c.lon <span class="op">&gt;</span> <span class="dv">0</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (128, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SEN"</td>
+<td>"Senegal"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>18.932</td>
+<td>70.43</td>
+<td>14.366667</td>
+<td>-14.283333</td>
+<td>0.53</td>
+<td>4871</td>
+<td>38.1</td>
+<td>50.93</td>
+<td>66.0</td>
+<td>54.93987</td>
+</tr>
+<tr class="even">
+<td>"VEN"</td>
+<td>"Venezuela, Bolivarian Republic…</td>
+<td>"Americas"</td>
+<td>"South America"</td>
+<td>28.517</td>
+<td>76.18</td>
+<td>8.0</td>
+<td>-67.0</td>
+<td>0.709</td>
+<td>8899</td>
+<td>44.8</td>
+<td>57.65</td>
+<td>96.8</td>
+<td>95.66913</td>
+</tr>
+<tr class="odd">
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
+</tr>
+<tr class="even">
+<td>"USA"</td>
+<td>"United States of America"</td>
+<td>"Americas"</td>
+<td>"Northern America"</td>
+<td>347.276</td>
+<td>79.83</td>
+<td>39.828175</td>
+<td>-98.5795</td>
+<td>0.938</td>
+<td>78389</td>
+<td>47.7</td>
+<td>65.21</td>
+<td>91.7</td>
+<td>99.72235</td>
+</tr>
+<tr class="odd">
+<td>"LKA"</td>
+<td>"Sri Lanka"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>23.229</td>
+<td>78.51</td>
+<td>7.0</td>
+<td>81.0</td>
+<td>0.776</td>
+<td>14380</td>
+<td>39.3</td>
+<td>36.02</td>
+<td>83.1</td>
+<td>90.77437</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"ALB"</td>
+<td>"Albania"</td>
+<td>"Europe"</td>
+<td>"Southern Europe"</td>
+<td>2.772</td>
+<td>79.67</td>
+<td>41.0</td>
+<td>20.0</td>
+<td>0.81</td>
+<td>20362</td>
+<td>30.8</td>
+<td>54.45</td>
+<td>91.9</td>
+<td>98.5473</td>
+</tr>
+<tr class="even">
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>35.978</td>
+<td>76.03</td>
+<td>3.7805111</td>
+<td>102.314362</td>
+<td>0.819</td>
+<td>35990</td>
+<td>46.2</td>
+<td>58.68</td>
+<td>118.2</td>
+<td>95.69194</td>
+</tr>
+<tr class="odd">
+<td>"SLV"</td>
+<td>"El Salvador"</td>
+<td>"Americas"</td>
+<td>"Central America"</td>
+<td>6.366</td>
+<td>76.98</td>
+<td>13.668889</td>
+<td>-88.866111</td>
+<td>0.678</td>
+<td>12221</td>
+<td>38.3</td>
+<td>64.82</td>
+<td>126.9</td>
+<td>86.19786</td>
+</tr>
+<tr class="even">
+<td>"CYP"</td>
+<td>"Cyprus"</td>
+<td>"Asia"</td>
+<td>"Western Asia"</td>
+<td>1.371</td>
+<td>81.77</td>
+<td>35.0</td>
+<td>33.0</td>
+<td>0.913</td>
+<td>55720</td>
+<td>31.2</td>
+<td>60.71</td>
+<td>123.1</td>
+<td>99.41781</td>
+</tr>
+<tr class="odd">
+<td>"PAK"</td>
+<td>"Pakistan"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>255.22</td>
+<td>66.71</td>
+<td>30.0</td>
+<td>71.0</td>
+<td>0.544</td>
+<td>5717</td>
+<td>29.6</td>
+<td>45.49</td>
+<td>49.8</td>
+<td>61.92651</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select only the countries that are in Africa.</p>
+<div id="8b272f1b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.region <span class="op">==</span> <span class="st">"Africa"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (37, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SEN"</td>
+<td>"Senegal"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>18.932</td>
+<td>70.43</td>
+<td>14.366667</td>
+<td>-14.283333</td>
+<td>0.53</td>
+<td>4871</td>
+<td>38.1</td>
+<td>50.93</td>
+<td>66.0</td>
+<td>54.93987</td>
+</tr>
+<tr class="even">
+<td>"GAB"</td>
+<td>"Gabon"</td>
+<td>"Africa"</td>
+<td>"Middle Africa"</td>
+<td>2.593</td>
+<td>68.68</td>
+<td>-0.683331</td>
+<td>11.5</td>
+<td>0.733</td>
+<td>19543</td>
+<td>38.0</td>
+<td>51.04</td>
+<td>93.6</td>
+<td>49.20331</td>
+</tr>
+<tr class="odd">
+<td>"TZA"</td>
+<td>"Tanzania, United Republic of"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>70.546</td>
+<td>68.59</td>
+<td>-6.306944</td>
+<td>34.853889</td>
+<td>0.555</td>
+<td>3924</td>
+<td>40.5</td>
+<td>40.42</td>
+<td>46.9</td>
+<td>26.78297</td>
+</tr>
+<tr class="even">
+<td>"MWI"</td>
+<td>"Malawi"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>22.216</td>
+<td>66.2</td>
+<td>-13.0</td>
+<td>34.0</td>
+<td>0.517</td>
+<td>1689</td>
+<td>38.5</td>
+<td>32.72</td>
+<td>21.0</td>
+<td>38.45707</td>
+</tr>
+<tr class="odd">
+<td>"GHA"</td>
+<td>"Ghana"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>35.064</td>
+<td>67.41</td>
+<td>7.9465</td>
+<td>-1.0232</td>
+<td>0.628</td>
+<td>7404</td>
+<td>43.5</td>
+<td>42.98</td>
+<td>68.4</td>
+<td>22.67011</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"ETH"</td>
+<td>"Ethiopia"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>135.472</td>
+<td>70.68</td>
+<td>9.0</td>
+<td>40.0</td>
+<td>0.497</td>
+<td>3107</td>
+<td>35.0</td>
+<td>40.93</td>
+<td>7.6</td>
+<td>8.04716</td>
+</tr>
+<tr class="even">
+<td>"CMR"</td>
+<td>"Cameroon"</td>
+<td>"Africa"</td>
+<td>"Middle Africa"</td>
+<td>29.879</td>
+<td>64.52</td>
+<td>5.133333</td>
+<td>12.65</td>
+<td>0.588</td>
+<td>5107</td>
+<td>46.6</td>
+<td>49.46</td>
+<td>43.9</td>
+<td>41.90133</td>
+</tr>
+<tr class="odd">
+<td>"LBR"</td>
+<td>"Liberia"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>5.731</td>
+<td>67.61</td>
+<td>6.533333</td>
+<td>-9.75</td>
+<td>0.51</td>
+<td>1752</td>
+<td>35.3</td>
+<td>44.94</td>
+<td>38.7</td>
+<td>19.63094</td>
+</tr>
+<tr class="even">
+<td>"MAR"</td>
+<td>"Morocco"</td>
+<td>"Africa"</td>
+<td>"Northern Africa"</td>
+<td>38.431</td>
+<td>74.71</td>
+<td>32.0</td>
+<td>-6.0</td>
+<td>0.71</td>
+<td>9583</td>
+<td>39.5</td>
+<td>44.87</td>
+<td>98.5</td>
+<td>84.47591</td>
+</tr>
+<tr class="odd">
+<td>"GMB"</td>
+<td>"Gambia"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>2.822</td>
+<td>68.16</td>
+<td>13.5</td>
+<td>-15.5</td>
+<td>0.524</td>
+<td>3199</td>
+<td>null</td>
+<td>46.91</td>
+<td>76.7</td>
+<td>46.90722</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, select countries that are in either Africa or Europe. Note: Do this without using the <code>|</code> (or) operator.</p>
+<div id="237c343f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.region.is_in([<span class="st">"Africa"</span>, <span class="st">"Europe"</span>]))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (75, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SEN"</td>
+<td>"Senegal"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>18.932</td>
+<td>70.43</td>
+<td>14.366667</td>
+<td>-14.283333</td>
+<td>0.53</td>
+<td>4871</td>
+<td>38.1</td>
+<td>50.93</td>
+<td>66.0</td>
+<td>54.93987</td>
+</tr>
+<tr class="even">
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
+</tr>
+<tr class="odd">
+<td>"GAB"</td>
+<td>"Gabon"</td>
+<td>"Africa"</td>
+<td>"Middle Africa"</td>
+<td>2.593</td>
+<td>68.68</td>
+<td>-0.683331</td>
+<td>11.5</td>
+<td>0.733</td>
+<td>19543</td>
+<td>38.0</td>
+<td>51.04</td>
+<td>93.6</td>
+<td>49.20331</td>
+</tr>
+<tr class="even">
+<td>"BGR"</td>
+<td>"Bulgaria"</td>
+<td>"Europe"</td>
+<td>"Eastern Europe"</td>
+<td>6.715</td>
+<td>74.33</td>
+<td>42.75</td>
+<td>25.5</td>
+<td>0.845</td>
+<td>36211</td>
+<td>40.3</td>
+<td>55.9</td>
+<td>137.1</td>
+<td>86.00395</td>
+</tr>
+<tr class="odd">
+<td>"TZA"</td>
+<td>"Tanzania, United Republic of"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>70.546</td>
+<td>68.59</td>
+<td>-6.306944</td>
+<td>34.853889</td>
+<td>0.555</td>
+<td>3924</td>
+<td>40.5</td>
+<td>40.42</td>
+<td>46.9</td>
+<td>26.78297</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"LUX"</td>
+<td>"Luxembourg"</td>
+<td>"Europe"</td>
+<td>"Western Europe"</td>
+<td>0.68</td>
+<td>83.82</td>
+<td>49.77</td>
+<td>6.13</td>
+<td>0.922</td>
+<td>131038</td>
+<td>34.9</td>
+<td>70.16</td>
+<td>143.3</td>
+<td>97.60054</td>
+</tr>
+<tr class="even">
+<td>"LTU"</td>
+<td>"Lithuania"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>2.83</td>
+<td>77.19</td>
+<td>55.2</td>
+<td>24.0</td>
+<td>0.895</td>
+<td>49761</td>
+<td>35.3</td>
+<td>65.53</td>
+<td>157.9</td>
+<td>92.73568</td>
+</tr>
+<tr class="odd">
+<td>"MNE"</td>
+<td>"Montenegro"</td>
+<td>"Europe"</td>
+<td>"Southern Europe"</td>
+<td>0.633</td>
+<td>76.92</td>
+<td>42.766667</td>
+<td>19.216667</td>
+<td>0.862</td>
+<td>29492</td>
+<td>29.4</td>
+<td>58.13</td>
+<td>185.1</td>
+<td>96.657</td>
+</tr>
+<tr class="even">
+<td>"GMB"</td>
+<td>"Gambia"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>2.822</td>
+<td>68.16</td>
+<td>13.5</td>
+<td>-15.5</td>
+<td>0.524</td>
+<td>3199</td>
+<td>null</td>
+<td>46.91</td>
+<td>76.7</td>
+<td>46.90722</td>
+</tr>
+<tr class="odd">
+<td>"ALB"</td>
+<td>"Albania"</td>
+<td>"Europe"</td>
+<td>"Southern Europe"</td>
+<td>2.772</td>
+<td>79.67</td>
+<td>41.0</td>
+<td>20.0</td>
+<td>0.81</td>
+<td>20362</td>
+<td>30.8</td>
+<td>54.45</td>
+<td>91.9</td>
+<td>98.5473</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find the happiest country in each region. That is, for each region, return only the country with the highest happiness score.</p>
+<div id="0c482f5c" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.happy, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.region)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
+</tr>
+<tr class="even">
+<td>"Asia"</td>
+<td>"KWT"</td>
+<td>"Kuwait"</td>
+<td>"Western Asia"</td>
+<td>5.026</td>
+<td>82.62</td>
+<td>29.166667</td>
+<td>47.6</td>
+<td>0.852</td>
+<td>46572</td>
+<td>null</td>
+<td>71.3</td>
+<td>135.2</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Oceania"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>"Australia and New Zealand"</td>
+<td>26.974</td>
+<td>83.79</td>
+<td>-25.0</td>
+<td>133.0</td>
+<td>0.958</td>
+<td>61943</td>
+<td>32.4</td>
+<td>70.25</td>
+<td>101.6</td>
+<td>99.99923</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"CRI"</td>
+<td>"Costa Rica"</td>
+<td>"Central America"</td>
+<td>5.153</td>
+<td>81.33</td>
+<td>10.0</td>
+<td>-84.0</td>
+<td>0.833</td>
+<td>28390</td>
+<td>49.3</td>
+<td>73.84</td>
+<td>68.7</td>
+<td>97.47361</td>
+</tr>
+<tr class="odd">
+<td>"Africa"</td>
+<td>"LBY"</td>
+<td>"Libya"</td>
+<td>"Northern Africa"</td>
+<td>7.459</td>
+<td>77.15</td>
+<td>27.0</td>
+<td>17.0</td>
+<td>0.721</td>
+<td>14636</td>
+<td>null</td>
+<td>59.7</td>
+<td>167.7</td>
+<td>92.10514</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The population column in our dataset is given in millions. Create a new column that contains the raw population (i.e., the actual number of people rather than millions of people).</p>
+<div id="66557d7b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python allows, optionally, to use underscores in a number</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "as visual separators for digit grouping purposes" (PEP 515)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># these do not affect the subsequent code but make it much</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># easier to read large numbers</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        pop_raw <span class="op">=</span> c.pop <span class="op">*</span> <span class="dv">1_000_000</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (135, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+<th data-quarto-table-cell-role="th">pop_raw</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SEN"</td>
+<td>"Senegal"</td>
+<td>"Africa"</td>
+<td>"Western Africa"</td>
+<td>18.932</td>
+<td>70.43</td>
+<td>14.366667</td>
+<td>-14.283333</td>
+<td>0.53</td>
+<td>4871</td>
+<td>38.1</td>
+<td>50.93</td>
+<td>66.0</td>
+<td>54.93987</td>
+<td>1.8932e7</td>
+</tr>
+<tr class="even">
+<td>"VEN"</td>
+<td>"Venezuela, Bolivarian Republic…</td>
+<td>"Americas"</td>
+<td>"South America"</td>
+<td>28.517</td>
+<td>76.18</td>
+<td>8.0</td>
+<td>-67.0</td>
+<td>0.709</td>
+<td>8899</td>
+<td>44.8</td>
+<td>57.65</td>
+<td>96.8</td>
+<td>95.66913</td>
+<td>2.8517e7</td>
+</tr>
+<tr class="odd">
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
+<td>5.623e6</td>
+</tr>
+<tr class="even">
+<td>"USA"</td>
+<td>"United States of America"</td>
+<td>"Americas"</td>
+<td>"Northern America"</td>
+<td>347.276</td>
+<td>79.83</td>
+<td>39.828175</td>
+<td>-98.5795</td>
+<td>0.938</td>
+<td>78389</td>
+<td>47.7</td>
+<td>65.21</td>
+<td>91.7</td>
+<td>99.72235</td>
+<td>3.47276e8</td>
+</tr>
+<tr class="odd">
+<td>"LKA"</td>
+<td>"Sri Lanka"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>23.229</td>
+<td>78.51</td>
+<td>7.0</td>
+<td>81.0</td>
+<td>0.776</td>
+<td>14380</td>
+<td>39.3</td>
+<td>36.02</td>
+<td>83.1</td>
+<td>90.77437</td>
+<td>2.3229e7</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"ALB"</td>
+<td>"Albania"</td>
+<td>"Europe"</td>
+<td>"Southern Europe"</td>
+<td>2.772</td>
+<td>79.67</td>
+<td>41.0</td>
+<td>20.0</td>
+<td>0.81</td>
+<td>20362</td>
+<td>30.8</td>
+<td>54.45</td>
+<td>91.9</td>
+<td>98.5473</td>
+<td>2.772e6</td>
+</tr>
+<tr class="even">
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>"Asia"</td>
+<td>"South-eastern Asia"</td>
+<td>35.978</td>
+<td>76.03</td>
+<td>3.7805111</td>
+<td>102.314362</td>
+<td>0.819</td>
+<td>35990</td>
+<td>46.2</td>
+<td>58.68</td>
+<td>118.2</td>
+<td>95.69194</td>
+<td>3.5978e7</td>
+</tr>
+<tr class="odd">
+<td>"SLV"</td>
+<td>"El Salvador"</td>
+<td>"Americas"</td>
+<td>"Central America"</td>
+<td>6.366</td>
+<td>76.98</td>
+<td>13.668889</td>
+<td>-88.866111</td>
+<td>0.678</td>
+<td>12221</td>
+<td>38.3</td>
+<td>64.82</td>
+<td>126.9</td>
+<td>86.19786</td>
+<td>6.366e6</td>
+</tr>
+<tr class="even">
+<td>"CYP"</td>
+<td>"Cyprus"</td>
+<td>"Asia"</td>
+<td>"Western Asia"</td>
+<td>1.371</td>
+<td>81.77</td>
+<td>35.0</td>
+<td>33.0</td>
+<td>0.913</td>
+<td>55720</td>
+<td>31.2</td>
+<td>60.71</td>
+<td>123.1</td>
+<td>99.41781</td>
+<td>1.371e6</td>
+</tr>
+<tr class="odd">
+<td>"PAK"</td>
+<td>"Pakistan"</td>
+<td>"Asia"</td>
+<td>"Southern Asia"</td>
+<td>255.22</td>
+<td>66.71</td>
+<td>30.0</td>
+<td>71.0</td>
+<td>0.544</td>
+<td>5717</td>
+<td>29.6</td>
+<td>45.49</td>
+<td>49.8</td>
+<td>61.92651</td>
+<td>2.5522e8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The GDP per capita of the United States (in the dataset) is 78_389. Compute the absolute distance using <code>.abs</code> of each country’s GDP to this value and sort the dataset by the distance.</p>
+<div id="9912790b" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        gdp_dist <span class="op">=</span> (c.gdp <span class="op">-</span> <span class="dv">78_389</span>).<span class="bu">abs</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.gdp_dist)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (135, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+<th data-quarto-table-cell-role="th">gdp_dist</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"USA"</td>
+<td>"United States of America"</td>
+<td>"Americas"</td>
+<td>"Northern America"</td>
+<td>347.276</td>
+<td>79.83</td>
+<td>39.828175</td>
+<td>-98.5795</td>
+<td>0.938</td>
+<td>78389</td>
+<td>47.7</td>
+<td>65.21</td>
+<td>91.7</td>
+<td>99.72235</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>"DNK"</td>
+<td>"Denmark"</td>
+<td>"Europe"</td>
+<td>"Northern Europe"</td>
+<td>6.003</td>
+<td>82.02</td>
+<td>56.0</td>
+<td>10.0</td>
+<td>0.962</td>
+<td>77337</td>
+<td>27.7</td>
+<td>75.04</td>
+<td>115.7</td>
+<td>99.59723</td>
+<td>1052</td>
+</tr>
+<tr class="odd">
+<td>"NLD"</td>
+<td>"Netherlands, Kingdom of the"</td>
+<td>"Europe"</td>
+<td>"Western Europe"</td>
+<td>18.347</td>
+<td>82.55</td>
+<td>52.366667</td>
+<td>4.883333</td>
+<td>0.955</td>
+<td>73384</td>
+<td>null</td>
+<td>72.55</td>
+<td>114.4</td>
+<td>97.71353</td>
+<td>5005</td>
+</tr>
+<tr class="even">
+<td>"ARE"</td>
+<td>"United Arab Emirates"</td>
+<td>"Asia"</td>
+<td>"Western Asia"</td>
+<td>11.346</td>
+<td>74.94</td>
+<td>24.4</td>
+<td>54.3</td>
+<td>0.94</td>
+<td>72660</td>
+<td>26.0</td>
+<td>67.28</td>
+<td>157.5</td>
+<td>99.10363</td>
+<td>5729</td>
+</tr>
+<tr class="odd">
+<td>"CHE"</td>
+<td>"Switzerland"</td>
+<td>"Europe"</td>
+<td>"Western Europe"</td>
+<td>8.967</td>
+<td>84.85</td>
+<td>46.798562</td>
+<td>8.231973</td>
+<td>0.97</td>
+<td>84311</td>
+<td>33.1</td>
+<td>69.69</td>
+<td>123.2</td>
+<td>99.89987</td>
+<td>5922</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"YEM"</td>
+<td>"Yemen"</td>
+<td>"Asia"</td>
+<td>"Western Asia"</td>
+<td>41.774</td>
+<td>69.27</td>
+<td>15.5</td>
+<td>48.0</td>
+<td>0.47</td>
+<td>1722</td>
+<td>35.9</td>
+<td>35.32</td>
+<td>41.4</td>
+<td>52.61741</td>
+<td>76667</td>
+</tr>
+<tr class="even">
+<td>"MDG"</td>
+<td>"Madagascar"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>32.741</td>
+<td>67.03</td>
+<td>-20.0</td>
+<td>47.0</td>
+<td>0.487</td>
+<td>1720</td>
+<td>42.6</td>
+<td>44.33</td>
+<td>34.8</td>
+<td>12.1276</td>
+<td>76669</td>
+</tr>
+<tr class="odd">
+<td>"MWI"</td>
+<td>"Malawi"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>22.216</td>
+<td>66.2</td>
+<td>-13.0</td>
+<td>34.0</td>
+<td>0.517</td>
+<td>1689</td>
+<td>38.5</td>
+<td>32.72</td>
+<td>21.0</td>
+<td>38.45707</td>
+<td>76700</td>
+</tr>
+<tr class="even">
+<td>"COD"</td>
+<td>"Congo, Democratic Republic of …</td>
+<td>"Africa"</td>
+<td>"Middle Africa"</td>
+<td>112.832</td>
+<td>66.25</td>
+<td>-2.88</td>
+<td>23.656111</td>
+<td>0.522</td>
+<td>1566</td>
+<td>42.1</td>
+<td>33.83</td>
+<td>17.2</td>
+<td>17.04284</td>
+<td>76823</td>
+</tr>
+<tr class="odd">
+<td>"MOZ"</td>
+<td>"Mozambique"</td>
+<td>"Africa"</td>
+<td>"Eastern Africa"</td>
+<td>35.632</td>
+<td>60.06</td>
+<td>-19.0</td>
+<td>35.0</td>
+<td>0.493</td>
+<td>1531</td>
+<td>54.0</td>
+<td>57.04</td>
+<td>31.4</td>
+<td>30.56033</td>
+<td>76858</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find the country in each region that has the closest GDP per capita to the United States. Note: You will probably want to first copy your answer above and make changes rather than starting from scratch.</p>
+<div id="01c56eed" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        gdp_dist <span class="op">=</span> (c.gdp <span class="op">-</span> <span class="dv">78_389</span>).<span class="bu">abs</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.gdp_dist)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.region)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+<th data-quarto-table-cell-role="th">gdp_dist</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Oceania"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>"Australia and New Zealand"</td>
+<td>26.974</td>
+<td>83.79</td>
+<td>-25.0</td>
+<td>133.0</td>
+<td>0.958</td>
+<td>61943</td>
+<td>32.4</td>
+<td>70.25</td>
+<td>101.6</td>
+<td>99.99923</td>
+<td>16446</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"DNK"</td>
+<td>"Denmark"</td>
+<td>"Northern Europe"</td>
+<td>6.003</td>
+<td>82.02</td>
+<td>56.0</td>
+<td>10.0</td>
+<td>0.962</td>
+<td>77337</td>
+<td>27.7</td>
+<td>75.04</td>
+<td>115.7</td>
+<td>99.59723</td>
+<td>1052</td>
+</tr>
+<tr class="odd">
+<td>"Asia"</td>
+<td>"ARE"</td>
+<td>"United Arab Emirates"</td>
+<td>"Western Asia"</td>
+<td>11.346</td>
+<td>74.94</td>
+<td>24.4</td>
+<td>54.3</td>
+<td>0.94</td>
+<td>72660</td>
+<td>26.0</td>
+<td>67.28</td>
+<td>157.5</td>
+<td>99.10363</td>
+<td>5729</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"MUS"</td>
+<td>"Mauritius"</td>
+<td>"Eastern Africa"</td>
+<td>1.268</td>
+<td>76.35</td>
+<td>-20.2</td>
+<td>57.5</td>
+<td>0.806</td>
+<td>28927</td>
+<td>36.8</td>
+<td>57.59</td>
+<td>92.8</td>
+<td>95.45876</td>
+<td>49462</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"USA"</td>
+<td>"United States of America"</td>
+<td>"Northern America"</td>
+<td>347.276</td>
+<td>79.83</td>
+<td>39.828175</td>
+<td>-98.5795</td>
+<td>0.938</td>
+<td>78389</td>
+<td>47.7</td>
+<td>65.21</td>
+<td>91.7</td>
+<td>99.72235</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The United States is, of course, the closest to itself in “Americas”. Finally, modify the previous code to remove the United States from the data so that we can see what other country it is closest to in its own region. Note: When we say “modify” in these notes, that means to copy and then modify; don’t change the original code itself.</p>
+<div id="94fbeee4" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iso <span class="op">!=</span> <span class="st">"USA"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        gdp_dist <span class="op">=</span> (c.gdp <span class="op">-</span> <span class="dv">78_389</span>).<span class="bu">abs</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    .sort(c.gdp_dist)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    .group_by(c.region)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">full_name</th>
+<th data-quarto-table-cell-role="th">subregion</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">lexp</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">hdi</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">gini</th>
+<th data-quarto-table-cell-role="th">happy</th>
+<th data-quarto-table-cell-role="th">cellphone</th>
+<th data-quarto-table-cell-role="th">water_access</th>
+<th data-quarto-table-cell-role="th">gdp_dist</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Oceania"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>"Australia and New Zealand"</td>
+<td>26.974</td>
+<td>83.79</td>
+<td>-25.0</td>
+<td>133.0</td>
+<td>0.958</td>
+<td>61943</td>
+<td>32.4</td>
+<td>70.25</td>
+<td>101.6</td>
+<td>99.99923</td>
+<td>16446</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"CAN"</td>
+<td>"Canada"</td>
+<td>"Northern America"</td>
+<td>40.127</td>
+<td>83.15</td>
+<td>56.0</td>
+<td>-109.0</td>
+<td>0.939</td>
+<td>58422</td>
+<td>33.3</td>
+<td>68.41</td>
+<td>75.5</td>
+<td>98.92568</td>
+<td>19967</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"DNK"</td>
+<td>"Denmark"</td>
+<td>"Northern Europe"</td>
+<td>6.003</td>
+<td>82.02</td>
+<td>56.0</td>
+<td>10.0</td>
+<td>0.962</td>
+<td>77337</td>
+<td>27.7</td>
+<td>75.04</td>
+<td>115.7</td>
+<td>99.59723</td>
+<td>1052</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"MUS"</td>
+<td>"Mauritius"</td>
+<td>"Eastern Africa"</td>
+<td>1.268</td>
+<td>76.35</td>
+<td>-20.2</td>
+<td>57.5</td>
+<td>0.806</td>
+<td>28927</td>
+<td>36.8</td>
+<td>57.59</td>
+<td>92.8</td>
+<td>95.45876</td>
+<td>49462</td>
+</tr>
+<tr class="odd">
+<td>"Asia"</td>
+<td>"ARE"</td>
+<td>"United Arab Emirates"</td>
+<td>"Western Asia"</td>
+<td>11.346</td>
+<td>74.94</td>
+<td>24.4</td>
+<td>54.3</td>
+<td>0.94</td>
+<td>72660</td>
+<td>26.0</td>
+<td>67.28</td>
+<td>157.5</td>
+<td>99.10363</td>
+<td>5729</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>And there we go, already a fairly intricate manipulation of the data with just a few simple functions!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

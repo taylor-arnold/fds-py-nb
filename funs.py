@@ -20,6 +20,7 @@ __all__ = [
     "SigLIPEmbedder",
     "E5TextEmbedder",
 
+    "print_rows",
     "dot_product",
     "breaks_width",
     "Path"
@@ -40,6 +41,15 @@ def _round_any(x, accuracy, f = np.round):
     if not _is_vector(x):
         x = np.asarray(x)
     return f(x / accuracy) * accuracy
+
+
+def print_rows(df: pl.DataFrame, n= -1):
+    with pl.Config(tbl_rows=n):
+        try:
+            from IPython.display import display
+            display(df)
+        except ImportError:
+            print(df)
 
 
 @dataclass

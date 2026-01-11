@@ -1,5 +1,15 @@
 ## Notebook03d
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,94 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+food = pl.read_csv("data/food.csv")
+```
+
+### Questions
+
+In this notebook, we will continue exploring data visualization using the `food` dataset. We'll start with a few review questions before moving on to some new techniques for layering data, adding labels, creating faceted plots, and customizing plot annotations.
+
+Create a histogram of the calorie content of the foods in the dataset. Use a bin width of 25 calories.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("calories"))
+    + geom_histogram(fill="white", color="black", binwidth=25, boundary=0)
+)
+```
+
+Create a boxplot showing the distribution of protein content for each food group. Order the categories in the plot by their protein amount.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("reorder(food_group, protein)", "protein"))
+    + geom_boxplot()
+)
+```
+
+We will look again at the smaller dataset of food items today to get a sense of how the final set of graphics commands works. Start by picking a fun color from the [Color Wheel](https://htmlcolorcodes.com/color-wheel/). We will use this throughout the notebook.
+
+Start by creating a dataset containing only dairy products. Then, plot the full `food` dataset with total fat on the x-axis and calories on the y-axis. Color these points in light grey (`#d3d3d3`). Layer the dairy products on top using the accent color that you selected.
+
+```{python}
+food_dairy = food.filter(c.food_group == "dairy")
+(
+    food
+    .pipe(ggplot, aes("total_fat", "calories"))
+    + geom_point(color="#d3d3d3")
+    + geom_point(color="#8916D0", data=food_dairy)
+)
+```
+
+Now add the names of the dairy products to the plot. Use your accent color for the text and add a vertical nudge so the labels don't overlap with the points.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("total_fat", "calories"))
+    + geom_point(color="#d3d3d3")
+    + geom_point(color="#8916D0", data=food_dairy)
+    + geom_text(aes(label="item"), color="#8916D0", data=food_dairy, nudge_y=10)
+)
+```
+
+Create a scatter plot of total fat versus calories, with the points colored by food group. Use faceting to create a separate panel for each food group. Since the color and facet show the same information, you can hide the legend.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("total_fat", "calories"))
+    + geom_point(aes(color="food_group"), show_legend=False)
+    + facet_wrap("food_group")
+    + scale_color_cmap_d()
+)
+```
+
+Create a scatter plot of total fat versus calories, colored by food group. This time, add informative manually created labels: a title, subtitle, caption, and clear axis and legend labels.
+
+```{python}
+(
+    food
+    .pipe(ggplot, aes("total_fat", "calories"))
+    + geom_point(aes(color="food_group"))
+    + scale_color_cmap_d()
+    + labs(
+        x="Total grams of fat in 100g serving",
+        y="Total calories in 100g serving",
+        color="Food group",
+        title="Relationship between fat and calories",
+        subtitle="A study of 61 common food types",
+        caption="Data from WikiData"
+    )
+)
+```

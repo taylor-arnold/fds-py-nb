@@ -1,5 +1,15 @@
 ## Notebook04a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,149 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+movie = pl.read_csv("data/movies_50_years.csv")
+color = pl.read_csv("data/movies_50_years_color.csv")
+genre = pl.read_csv("data/movies_50_years_genre.csv")
+people = pl.read_csv("data/movies_50_years_people.csv")
+```
+
+
+### Questions
+
+In this notebook, we will learn how to combine information from multiple datasets using joins. The movie data has been split into several tables: `movie` contains basic information about each film (runtime, rating, etc.), `genre` lists the genres associated with each film, `color` contains information about the colors in each movie's poster, and `people` has information about the cast and crew. Because some movie titles are duplicated across different years, we will always join by both year and title to ensure we match records correctly.
+
+Create a new column in the `movie` dataset that computes the ratio of the number of ratings to the runtime. This gives a rough sense of audience engagement per minute of film.
+
+```{python}
+(
+    movie
+    .with_columns(
+        ratings_per_minute = c.rating_count / c.runtime
+    )
+)
+```
+
+Using the `movie` dataset, create a scatter plot with runtime on the x-axis and the IMDB rating on the y-axis.
+
+```{python}
+(
+    movie
+    .pipe(ggplot, aes("runtime", "rating"))
+    + geom_point()
+)
+```
+
+Create a boxplot showing the distribution of poster brightness for each MPA rating category.
+
+```{python}
+(
+    movie
+    .pipe(ggplot, aes("mpa", "poster_brightness"))
+    + geom_boxplot()
+)
+```
+
+Now let's start working with multiple tables. Join the `genre` table to the `movie` table. Remember to join on both year and title since some titles appear in multiple years.
+
+```{python}
+(
+    genre
+    .join(movie, on=[c.year, c.title])
+)
+```
+
+Using the joined data, compute the average poster brightness and average poster saturation for each genre. Then create a scatter plot of these averages with genre labels next to each point.
+
+```{python}
+(
+    genre
+    .join(movie, on=[c.year, c.title])
+    .group_by(c.genre)
+    .agg(
+        poster_brightness_mean = c.poster_brightness.mean(),
+        poster_saturation = c.poster_saturation.mean()
+    )
+    .pipe(ggplot, aes("poster_brightness_mean", "poster_saturation"))
+    + geom_point()
+    + geom_text(aes(label="genre"), nudge_y=2)
+)
+```
+
+The `people` table contains information about cast and crew, including a predicted gender and a confidence score for that prediction. Filter the people data to only starring roles where the gender confidence is greater than 0.8. Then join this to the genre table. For each genre, compute the proportion of these roles that are female and the total count. Sort by the proportion of female roles and display all results.
+
+```{python}
+(
+    people
+    .filter(c.role == "starring")
+    .filter(c.gender_conf > 0.8)
+    .join(genre, on=[c.year, c.title])
+    .group_by(c.genre)
+    .agg(
+        avg_female = (c.gender == "female").mean(),
+        count = pl.count()
+    )
+    .sort(c.avg_female)
+    .pipe(print_rows)
+)
+```
+
+Let's find the most common dominant poster color for each genre. Start with the `color` table and filter to just the hue colors. For each movie, find the color with the highest percentage (this is the dominant hue). Keep only movies where the dominant hue makes up more than 5% of the poster. Join this to the genre table, then count how often each color appears as the dominant hue within each genre. Finally, find the single most common dominant color for each genre.
+
+```{python}
+(
+    color
+    .filter(c.color_type == "hue")
+    .sort(c.percentage, descending=True)
+    .group_by(c.year, c.title)
+    .head(1)
+    .filter(c.percentage > 5)
+    .join(genre, on=[c.year, c.title])
+    .group_by(c.genre, c.color)
+    .agg(count = pl.count())
+    .sort(c.count, descending=True)
+    .group_by(c.genre)
+    .head(1)
+    .pipe(print_rows)
+)
+```
+
+Now, let's see an example of how to use an semi-join. First, create a table called `movie_long` that consists of all films that have a run time greater than 2.5 hours (150 minutes).
+
+```{python}
+movie_long = movie.filter(c.runtime > 2.5 * 60)
+```
+
+Then, draw a plot showing the number films that have a long runtime by their genre using a semi-join. Try to make the plot look nice. Note: Yes, you could do this in other ways in this simple case. Semi- and anti-joins are very useful as our analyses become more complex.
+
+```{python}
+(
+    genre
+    .join(movie_long, on=[c.year, c.title], how="semi")
+    .group_by(c.genre)
+    .agg(count = pl.len())
+    .pipe(ggplot, aes("reorder(genre, count)", "count"))
+    + geom_col()
+    + coord_flip()
+)
+```
+
+We've mentioned that some titles are repeated in the data and therefore we always need to group by title and year. Find all of the titles that are repeated. Print all of the rows of the result and order by the counts. 
+
+```{python}
+(
+    movie
+    .group_by(c.title)
+    .agg(count = pl.len())
+    .filter(c.count > 1)
+    .sort(c.count, descending=True)
+    .pipe(print_rows)
+)
+```

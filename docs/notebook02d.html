@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -222,12 +225,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./notebook04c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebook04c</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebook04d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notebook04d</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -450,19 +447,2919 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cab2fa8b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run all of the following before starting the notebook.</p>
+<div id="dc1e665a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e0cd3369" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4e34dc61" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>This notebook is a review of the data manipulation techniques we have learned so far. We will work with the <code>metro</code> dataset, which contains information about US metropolitan areas from the American Community Survey. The dataset includes variables such as population (in millions), population density, median age, median household income, home ownership rates, median rent for a one-bedroom apartment, and geographic information including which census division each metro area belongs to.</p>
+<p>Sort the metropolitan areas by population, with the largest metros at the top.</p>
+<div id="ce8d7119" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.pop, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (934, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Chicago"</td>
+<td>16980</td>
+<td>"NC"</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+</tr>
+<tr class="even">
+<td>"Dallas"</td>
+<td>19100</td>
+<td>"S"</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="odd">
+<td>"Houston"</td>
+<td>26420</td>
+<td>"S"</td>
+<td>-95.401574</td>
+<td>29.787083</td>
+<td>7.048954</td>
+<td>316.543514</td>
+<td>41.0</td>
+<td>72551</td>
+<td>65.1</td>
+<td>997</td>
+<td>30.0</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Craig"</td>
+<td>18780</td>
+<td>"W"</td>
+<td>-108.207523</td>
+<td>40.618749</td>
+<td>0.01324</td>
+<td>1.077471</td>
+<td>44.5</td>
+<td>58583</td>
+<td>72.8</td>
+<td>485</td>
+<td>29.0</td>
+<td>"Mountain"</td>
+</tr>
+<tr class="even">
+<td>"Vernon"</td>
+<td>46900</td>
+<td>"S"</td>
+<td>-99.240853</td>
+<td>34.080611</td>
+<td>0.012887</td>
+<td>5.086411</td>
+<td>41.5</td>
+<td>45262</td>
+<td>62.0</td>
+<td>503</td>
+<td>22.0</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find the metro area with the highest median household income.</p>
+<div id="bec5fef6" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.hh_income_median, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"San Jose"</td>
+<td>41940</td>
+<td>"W"</td>
+<td>-121.372676</td>
+<td>36.908496</td>
+<td>1.995351</td>
+<td>286.41767</td>
+<td>41.4</td>
+<td>138370</td>
+<td>58.5</td>
+<td>2227</td>
+<td>27.8</td>
+<td>"Pacific"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Sort the data by median age, with the youngest metros first. Which places have the youngest populations?</p>
+<div id="b1f324a6" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.age_median)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (934, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Rexburg"</td>
+<td>39940</td>
+<td>"W"</td>
+<td>-111.518023</td>
+<td>44.139654</td>
+<td>0.064349</td>
+<td>10.507575</td>
+<td>29.5</td>
+<td>55621</td>
+<td>60.4</td>
+<td>743</td>
+<td>35.2</td>
+<td>"Mountain"</td>
+</tr>
+<tr class="even">
+<td>"Jacksonville"</td>
+<td>27340</td>
+<td>"S"</td>
+<td>-77.432055</td>
+<td>34.732017</td>
+<td>0.201597</td>
+<td>97.063568</td>
+<td>29.6</td>
+<td>54732</td>
+<td>57.3</td>
+<td>646</td>
+<td>29.6</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Fort Leonard Wood"</td>
+<td>22780</td>
+<td>"NC"</td>
+<td>-92.20759</td>
+<td>37.824461</td>
+<td>0.05346</td>
+<td>37.446904</td>
+<td>31.4</td>
+<td>59252</td>
+<td>56.2</td>
+<td>500</td>
+<td>22.8</td>
+<td>"West North Central"</td>
+</tr>
+<tr class="even">
+<td>"Laramie"</td>
+<td>29660</td>
+<td>"W"</td>
+<td>-105.724306</td>
+<td>41.652174</td>
+<td>0.037311</td>
+<td>3.348232</td>
+<td>31.9</td>
+<td>50733</td>
+<td>54.9</td>
+<td>681</td>
+<td>35.1</td>
+<td>"Mountain"</td>
+</tr>
+<tr class="odd">
+<td>"Pullman"</td>
+<td>39420</td>
+<td>"W"</td>
+<td>-117.523085</td>
+<td>46.900806</td>
+<td>0.048197</td>
+<td>8.566939</td>
+<td>33.0</td>
+<td>43613</td>
+<td>51.4</td>
+<td>692</td>
+<td>40.9</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Rockport"</td>
+<td>40530</td>
+<td>"S"</td>
+<td>-96.993507</td>
+<td>28.124829</td>
+<td>0.024149</td>
+<td>31.96932</td>
+<td>47.5</td>
+<td>51509</td>
+<td>79.0</td>
+<td>737</td>
+<td>27.7</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Torrington"</td>
+<td>45860</td>
+<td>"NE"</td>
+<td>-73.245421</td>
+<td>41.792216</td>
+<td>0.185175</td>
+<td>75.802872</td>
+<td>47.8</td>
+<td>84797</td>
+<td>80.3</td>
+<td>948</td>
+<td>29.6</td>
+<td>"New England"</td>
+</tr>
+<tr class="odd">
+<td>"Barnstable Town"</td>
+<td>12700</td>
+<td>"NE"</td>
+<td>-70.290799</td>
+<td>41.724385</td>
+<td>0.227942</td>
+<td>200.358553</td>
+<td>48.5</td>
+<td>82619</td>
+<td>82.0</td>
+<td>926</td>
+<td>33.3</td>
+<td>"New England"</td>
+</tr>
+<tr class="even">
+<td>"Punta Gorda"</td>
+<td>39460</td>
+<td>"S"</td>
+<td>-81.912254</td>
+<td>26.905608</td>
+<td>0.184837</td>
+<td>95.408719</td>
+<td>48.7</td>
+<td>57887</td>
+<td>82.3</td>
+<td>853</td>
+<td>34.8</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Vineyard Haven"</td>
+<td>47240</td>
+<td>"NE"</td>
+<td>-70.650085</td>
+<td>41.396102</td>
+<td>0.020277</td>
+<td>66.210273</td>
+<td>48.8</td>
+<td>77392</td>
+<td>75.7</td>
+<td>1090</td>
+<td>30.6</td>
+<td>"New England"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select only the metropolitan areas located in the South (where the quad column equals “S”).</p>
+<div id="479cb4ca" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.quad <span class="op">==</span> <span class="st">"S"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (377, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Dallas"</td>
+<td>19100</td>
+<td>"S"</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Houston"</td>
+<td>26420</td>
+<td>"S"</td>
+<td>-95.401574</td>
+<td>29.787083</td>
+<td>7.048954</td>
+<td>316.543514</td>
+<td>41.0</td>
+<td>72551</td>
+<td>65.1</td>
+<td>997</td>
+<td>30.0</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="odd">
+<td>"Washington"</td>
+<td>47900</td>
+<td>"S"</td>
+<td>-77.513075</td>
+<td>38.812484</td>
+<td>6.332069</td>
+<td>363.732689</td>
+<td>42.4</td>
+<td>111252</td>
+<td>67.4</td>
+<td>1601</td>
+<td>28.8</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Miami"</td>
+<td>33100</td>
+<td>"S"</td>
+<td>-80.506307</td>
+<td>26.155369</td>
+<td>6.105897</td>
+<td>430.103162</td>
+<td>43.9</td>
+<td>62870</td>
+<td>60.8</td>
+<td>1230</td>
+<td>36.8</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Atlanta"</td>
+<td>12060</td>
+<td>"S"</td>
+<td>-84.399567</td>
+<td>33.691787</td>
+<td>6.026734</td>
+<td>263.275821</td>
+<td>41.9</td>
+<td>75267</td>
+<td>67.3</td>
+<td>1181</td>
+<td>30.3</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Sweetwater"</td>
+<td>45020</td>
+<td>"S"</td>
+<td>-100.405986</td>
+<td>32.303445</td>
+<td>0.014727</td>
+<td>6.220819</td>
+<td>41.2</td>
+<td>44700</td>
+<td>62.6</td>
+<td>577</td>
+<td>24.8</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Pecos"</td>
+<td>37780</td>
+<td>"S"</td>
+<td>-103.669712</td>
+<td>31.43003</td>
+<td>0.014667</td>
+<td>1.70508</td>
+<td>39.1</td>
+<td>53448</td>
+<td>74.7</td>
+<td>818</td>
+<td>27.4</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Vernon"</td>
+<td>46900</td>
+<td>"S"</td>
+<td>-99.240853</td>
+<td>34.080611</td>
+<td>0.012887</td>
+<td>5.086411</td>
+<td>41.5</td>
+<td>45262</td>
+<td>62.0</td>
+<td>503</td>
+<td>22.0</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select metros that have a population density greater than 500 people per square mile.</p>
+<div id="a895d5ad" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.density <span class="op">&gt;</span> <span class="dv">500</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (11, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Chicago"</td>
+<td>16980</td>
+<td>"NC"</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+</tr>
+<tr class="even">
+<td>"Philadelphia"</td>
+<td>37980</td>
+<td>"NE"</td>
+<td>-75.302635</td>
+<td>39.905213</td>
+<td>6.215222</td>
+<td>506.06813</td>
+<td>42.6</td>
+<td>79070</td>
+<td>71.1</td>
+<td>1083</td>
+<td>30.0</td>
+<td>"Middle Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Boston"</td>
+<td>14460</td>
+<td>"NE"</td>
+<td>-71.099912</td>
+<td>42.555194</td>
+<td>4.91203</td>
+<td>517.827702</td>
+<td>42.2</td>
+<td>99039</td>
+<td>66.4</td>
+<td>1390</td>
+<td>29.5</td>
+<td>"New England"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"San Juan"</td>
+<td>41980</td>
+<td>"O"</td>
+<td>-66.112516</td>
+<td>18.27534</td>
+<td>2.096657</td>
+<td>554.930629</td>
+<td>41.8</td>
+<td>24755</td>
+<td>69.3</td>
+<td>379</td>
+<td>31.9</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Urban Honolulu"</td>
+<td>46520</td>
+<td>"O"</td>
+<td>-158.092955</td>
+<td>21.504652</td>
+<td>1.015167</td>
+<td>631.92199</td>
+<td>41.3</td>
+<td>92600</td>
+<td>61.4</td>
+<td>1399</td>
+<td>33.4</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Bridgeport"</td>
+<td>14860</td>
+<td>"NE"</td>
+<td>-73.389374</td>
+<td>41.270839</td>
+<td>0.956446</td>
+<td>566.341806</td>
+<td>44.9</td>
+<td>101194</td>
+<td>69.3</td>
+<td>1329</td>
+<td>32.2</td>
+<td>"New England"</td>
+</tr>
+<tr class="even">
+<td>"New Haven"</td>
+<td>35300</td>
+<td>"NE"</td>
+<td>-72.931983</td>
+<td>41.410527</td>
+<td>0.864751</td>
+<td>538.957509</td>
+<td>43.3</td>
+<td>75043</td>
+<td>66.0</td>
+<td>1040</td>
+<td>30.7</td>
+<td>"New England"</td>
+</tr>
+<tr class="odd">
+<td>"Trenton"</td>
+<td>45940</td>
+<td>"NE"</td>
+<td>-74.701703</td>
+<td>40.283417</td>
+<td>0.384951</td>
+<td>650.172055</td>
+<td>44.7</td>
+<td>85687</td>
+<td>65.7</td>
+<td>1126</td>
+<td>30.2</td>
+<td>"Middle Atlantic"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find all metros where residents spend more than 30 percent of their income on rent.</p>
+<div id="6cb11a93" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.rent_perc_income <span class="op">&gt;</span> <span class="dv">30</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (256, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Miami"</td>
+<td>33100</td>
+<td>"S"</td>
+<td>-80.506307</td>
+<td>26.155369</td>
+<td>6.105897</td>
+<td>430.103162</td>
+<td>43.9</td>
+<td>62870</td>
+<td>60.8</td>
+<td>1230</td>
+<td>36.8</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Atlanta"</td>
+<td>12060</td>
+<td>"S"</td>
+<td>-84.399567</td>
+<td>33.691787</td>
+<td>6.026734</td>
+<td>263.275821</td>
+<td>41.9</td>
+<td>75267</td>
+<td>67.3</td>
+<td>1181</td>
+<td>30.3</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Riverside"</td>
+<td>40140</td>
+<td>"W"</td>
+<td>-116.127488</td>
+<td>34.549836</td>
+<td>4.580402</td>
+<td>64.511974</td>
+<td>40.2</td>
+<td>73424</td>
+<td>65.2</td>
+<td>1120</td>
+<td>34.0</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Helena"</td>
+<td>25760</td>
+<td>"S"</td>
+<td>-90.849045</td>
+<td>34.427273</td>
+<td>0.016923</td>
+<td>8.97778</td>
+<td>44.8</td>
+<td>32235</td>
+<td>50.4</td>
+<td>406</td>
+<td>33.5</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Fairfield"</td>
+<td>21840</td>
+<td>"NC"</td>
+<td>-91.948906</td>
+<td>41.03177</td>
+<td>0.015846</td>
+<td>14.022545</td>
+<td>45.7</td>
+<td>47950</td>
+<td>66.3</td>
+<td>498</td>
+<td>32.0</td>
+<td>"West North Central"</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Select metros that are in either the Pacific or New England divisions.</p>
+<div id="e69c5e45" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.division.is_in([<span class="st">"Pacific"</span>, <span class="st">"New England"</span>]))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (108, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>"Boston"</td>
+<td>14460</td>
+<td>"NE"</td>
+<td>-71.099912</td>
+<td>42.555194</td>
+<td>4.91203</td>
+<td>517.827702</td>
+<td>42.2</td>
+<td>99039</td>
+<td>66.4</td>
+<td>1390</td>
+<td>29.5</td>
+<td>"New England"</td>
+</tr>
+<tr class="odd">
+<td>"San Francisco"</td>
+<td>41860</td>
+<td>"W"</td>
+<td>-122.166182</td>
+<td>37.780765</td>
+<td>4.725584</td>
+<td>712.992772</td>
+<td>41.9</td>
+<td>118547</td>
+<td>58.4</td>
+<td>1940</td>
+<td>28.3</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>"Riverside"</td>
+<td>40140</td>
+<td>"W"</td>
+<td>-116.127488</td>
+<td>34.549836</td>
+<td>4.580402</td>
+<td>64.511974</td>
+<td>40.2</td>
+<td>73424</td>
+<td>65.2</td>
+<td>1120</td>
+<td>34.0</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Seattle"</td>
+<td>42660</td>
+<td>"W"</td>
+<td>-121.853072</td>
+<td>47.554512</td>
+<td>3.971125</td>
+<td>256.189989</td>
+<td>40.6</td>
+<td>97675</td>
+<td>64.7</td>
+<td>1478</td>
+<td>29.1</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Hood River"</td>
+<td>26220</td>
+<td>"W"</td>
+<td>-121.650975</td>
+<td>45.518799</td>
+<td>0.023915</td>
+<td>17.352394</td>
+<td>42.4</td>
+<td>77815</td>
+<td>72.1</td>
+<td>670</td>
+<td>26.3</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>"Brookings"</td>
+<td>15060</td>
+<td>"W"</td>
+<td>-124.156281</td>
+<td>42.456681</td>
+<td>0.023234</td>
+<td>5.491924</td>
+<td>47.1</td>
+<td>57553</td>
+<td>76.3</td>
+<td>782</td>
+<td>27.7</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Othello"</td>
+<td>36830</td>
+<td>"W"</td>
+<td>-118.561139</td>
+<td>46.983525</td>
+<td>0.020353</td>
+<td>4.081837</td>
+<td>39.9</td>
+<td>54573</td>
+<td>60.5</td>
+<td>602</td>
+<td>25.2</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="even">
+<td>"Vineyard Haven"</td>
+<td>47240</td>
+<td>"NE"</td>
+<td>-70.650085</td>
+<td>41.396102</td>
+<td>0.020277</td>
+<td>66.210273</td>
+<td>48.8</td>
+<td>77392</td>
+<td>75.7</td>
+<td>1090</td>
+<td>30.6</td>
+<td>"New England"</td>
+</tr>
+<tr class="odd">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find metros in the South that have a median household income above $80,000. Use two separate filter steps.</p>
+<div id="f205b802" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.quad <span class="op">==</span> <span class="st">"S"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.hh_income_median <span class="op">&gt;</span> <span class="dv">80_000</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (7, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Washington"</td>
+<td>47900</td>
+<td>"S"</td>
+<td>-77.513075</td>
+<td>38.812484</td>
+<td>6.332069</td>
+<td>363.732689</td>
+<td>42.4</td>
+<td>111252</td>
+<td>67.4</td>
+<td>1601</td>
+<td>28.8</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"Baltimore"</td>
+<td>12580</td>
+<td>"S"</td>
+<td>-76.579833</td>
+<td>39.3381</td>
+<td>2.837237</td>
+<td>404.661335</td>
+<td>42.4</td>
+<td>87513</td>
+<td>70.6</td>
+<td>1132</td>
+<td>30.0</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Austin"</td>
+<td>12420</td>
+<td>"S"</td>
+<td>-97.654303</td>
+<td>30.261635</td>
+<td>2.2343</td>
+<td>201.447732</td>
+<td>39.6</td>
+<td>85398</td>
+<td>64.0</td>
+<td>1216</td>
+<td>28.8</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"Raleigh"</td>
+<td>39580</td>
+<td>"S"</td>
+<td>-78.46101</td>
+<td>35.756718</td>
+<td>1.391801</td>
+<td>250.282432</td>
+<td>41.8</td>
+<td>83581</td>
+<td>69.6</td>
+<td>1104</td>
+<td>28.1</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Midland"</td>
+<td>33260</td>
+<td>"S"</td>
+<td>-101.991236</td>
+<td>32.08914</td>
+<td>0.172177</td>
+<td>36.548597</td>
+<td>38.9</td>
+<td>87812</td>
+<td>70.7</td>
+<td>1128</td>
+<td>26.8</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"California"</td>
+<td>15680</td>
+<td>"S"</td>
+<td>-76.605579</td>
+<td>38.302342</td>
+<td>0.113209</td>
+<td>108.79725</td>
+<td>42.4</td>
+<td>102859</td>
+<td>75.6</td>
+<td>1266</td>
+<td>26.4</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="odd">
+<td>"Andrews"</td>
+<td>11380</td>
+<td>"S"</td>
+<td>-102.637752</td>
+<td>32.305129</td>
+<td>0.018184</td>
+<td>4.673626</td>
+<td>38.5</td>
+<td>80518</td>
+<td>69.2</td>
+<td>1066</td>
+<td>25.0</td>
+<td>"West South Central"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For each census division, compute the average median household income and the number of metros in that division.</p>
+<div id="a1bf6a69" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        hh_income_mean <span class="op">=</span> c.hh_income_median.mean(),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (9, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">hh_income_mean</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"South Atlantic"</td>
+<td>52636.734568</td>
+<td>162</td>
+</tr>
+<tr class="even">
+<td>"New England"</td>
+<td>73872.653846</td>
+<td>26</td>
+</tr>
+<tr class="odd">
+<td>"Pacific"</td>
+<td>70178.268293</td>
+<td>82</td>
+</tr>
+<tr class="even">
+<td>"East South Central"</td>
+<td>49271.568421</td>
+<td>95</td>
+</tr>
+<tr class="odd">
+<td>"Middle Atlantic"</td>
+<td>62316.318182</td>
+<td>66</td>
+</tr>
+<tr class="even">
+<td>"Mountain"</td>
+<td>63649.376344</td>
+<td>93</td>
+</tr>
+<tr class="odd">
+<td>"West South Central"</td>
+<td>52675.646154</td>
+<td>130</td>
+</tr>
+<tr class="even">
+<td>"West North Central"</td>
+<td>60065.508333</td>
+<td>120</td>
+</tr>
+<tr class="odd">
+<td>"East North Central"</td>
+<td>58998.2875</td>
+<td>160</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find the most populous metro area in each quadrant of the country.</p>
+<div id="9af9cf7a" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.pop, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.quad)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"S"</td>
+<td>"Dallas"</td>
+<td>19100</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+</tr>
+<tr class="even">
+<td>"W"</td>
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"NE"</td>
+<td>"New York"</td>
+<td>35620</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+</tr>
+<tr class="even">
+<td>"NC"</td>
+<td>"Chicago"</td>
+<td>16980</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+</tr>
+<tr class="odd">
+<td>"O"</td>
+<td>"San Juan"</td>
+<td>41980</td>
+<td>-66.112516</td>
+<td>18.27534</td>
+<td>2.096657</td>
+<td>554.930629</td>
+<td>41.8</td>
+<td>24755</td>
+<td>69.3</td>
+<td>379</td>
+<td>31.9</td>
+<td>"South Atlantic"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The population in our dataset is given in millions. Create a new column that shows the population in thousands instead.</p>
+<div id="9c174f25" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        pop_thousands <span class="op">=</span> c.pop <span class="op">*</span> <span class="dv">1_000</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (934, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">pop_thousands</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+<td>20011.812</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+<td>13202.558</td>
+</tr>
+<tr class="odd">
+<td>"Chicago"</td>
+<td>16980</td>
+<td>"NC"</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+<td>9607.711</td>
+</tr>
+<tr class="even">
+<td>"Dallas"</td>
+<td>19100</td>
+<td>"S"</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+<td>7543.34</td>
+</tr>
+<tr class="odd">
+<td>"Houston"</td>
+<td>26420</td>
+<td>"S"</td>
+<td>-95.401574</td>
+<td>29.787083</td>
+<td>7.048954</td>
+<td>316.543514</td>
+<td>41.0</td>
+<td>72551</td>
+<td>65.1</td>
+<td>997</td>
+<td>30.0</td>
+<td>"West South Central"</td>
+<td>7048.954</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+<td>13.945</td>
+</tr>
+<tr class="even">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+<td>13.939</td>
+</tr>
+<tr class="odd">
+<td>"Craig"</td>
+<td>18780</td>
+<td>"W"</td>
+<td>-108.207523</td>
+<td>40.618749</td>
+<td>0.01324</td>
+<td>1.077471</td>
+<td>44.5</td>
+<td>58583</td>
+<td>72.8</td>
+<td>485</td>
+<td>29.0</td>
+<td>"Mountain"</td>
+<td>13.24</td>
+</tr>
+<tr class="even">
+<td>"Vernon"</td>
+<td>46900</td>
+<td>"S"</td>
+<td>-99.240853</td>
+<td>34.080611</td>
+<td>0.012887</td>
+<td>5.086411</td>
+<td>41.5</td>
+<td>45262</td>
+<td>62.0</td>
+<td>503</td>
+<td>22.0</td>
+<td>"West South Central"</td>
+<td>12.887</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+<td>12.371</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Create a new column that computes the annual rent for a one-bedroom apartment (the current rent column shows monthly rent).</p>
+<div id="843c77a4" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        rent_1br_annual <span class="op">=</span> c.rent_1br_median <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (934, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">rent_1br_annual</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+<td>17160</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+<td>17616</td>
+</tr>
+<tr class="odd">
+<td>"Chicago"</td>
+<td>16980</td>
+<td>"NC"</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+<td>12720</td>
+</tr>
+<tr class="even">
+<td>"Dallas"</td>
+<td>19100</td>
+<td>"S"</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+<td>13272</td>
+</tr>
+<tr class="odd">
+<td>"Houston"</td>
+<td>26420</td>
+<td>"S"</td>
+<td>-95.401574</td>
+<td>29.787083</td>
+<td>7.048954</td>
+<td>316.543514</td>
+<td>41.0</td>
+<td>72551</td>
+<td>65.1</td>
+<td>997</td>
+<td>30.0</td>
+<td>"West South Central"</td>
+<td>11964</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+<td>3852</td>
+</tr>
+<tr class="even">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+<td>11352</td>
+</tr>
+<tr class="odd">
+<td>"Craig"</td>
+<td>18780</td>
+<td>"W"</td>
+<td>-108.207523</td>
+<td>40.618749</td>
+<td>0.01324</td>
+<td>1.077471</td>
+<td>44.5</td>
+<td>58583</td>
+<td>72.8</td>
+<td>485</td>
+<td>29.0</td>
+<td>"Mountain"</td>
+<td>5820</td>
+</tr>
+<tr class="even">
+<td>"Vernon"</td>
+<td>46900</td>
+<td>"S"</td>
+<td>-99.240853</td>
+<td>34.080611</td>
+<td>0.012887</td>
+<td>5.086411</td>
+<td>41.5</td>
+<td>45262</td>
+<td>62.0</td>
+<td>503</td>
+<td>22.0</td>
+<td>"West South Central"</td>
+<td>6036</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+<td>7332</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The median household income is given as an exact figure, but it can be useful to round it. Create a new column that rounds the income to the nearest $10,000. Hint: Use the same integer division technique we used for computing decades from years.</p>
+<div id="2b5f3afe" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        income_rounded <span class="op">=</span> (c.hh_income_median <span class="op">//</span> <span class="dv">10_000</span> <span class="op">*</span> <span class="dv">10_000</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (934, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">income_rounded</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"New York"</td>
+<td>35620</td>
+<td>"NE"</td>
+<td>-74.101056</td>
+<td>40.76877</td>
+<td>20.011812</td>
+<td>1051.306467</td>
+<td>42.9</td>
+<td>86445</td>
+<td>55.3</td>
+<td>1430</td>
+<td>31.0</td>
+<td>"Middle Atlantic"</td>
+<td>80000</td>
+</tr>
+<tr class="even">
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>"W"</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+<td>80000</td>
+</tr>
+<tr class="odd">
+<td>"Chicago"</td>
+<td>16980</td>
+<td>"NC"</td>
+<td>-87.95882</td>
+<td>41.700605</td>
+<td>9.607711</td>
+<td>508.629406</td>
+<td>41.9</td>
+<td>78790</td>
+<td>68.9</td>
+<td>1060</td>
+<td>29.0</td>
+<td>"East North Central"</td>
+<td>70000</td>
+</tr>
+<tr class="even">
+<td>"Dallas"</td>
+<td>19100</td>
+<td>"S"</td>
+<td>-96.970508</td>
+<td>32.84948</td>
+<td>7.54334</td>
+<td>323.181404</td>
+<td>41.3</td>
+<td>76916</td>
+<td>64.1</td>
+<td>1106</td>
+<td>29.1</td>
+<td>"West South Central"</td>
+<td>70000</td>
+</tr>
+<tr class="odd">
+<td>"Houston"</td>
+<td>26420</td>
+<td>"S"</td>
+<td>-95.401574</td>
+<td>29.787083</td>
+<td>7.048954</td>
+<td>316.543514</td>
+<td>41.0</td>
+<td>72551</td>
+<td>65.1</td>
+<td>997</td>
+<td>30.0</td>
+<td>"West South Central"</td>
+<td>70000</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+<td>"West South Central"</td>
+<td>30000</td>
+</tr>
+<tr class="even">
+<td>"Ketchikan"</td>
+<td>28540</td>
+<td>"O"</td>
+<td>-130.927217</td>
+<td>55.582484</td>
+<td>0.013939</td>
+<td>1.046556</td>
+<td>44.6</td>
+<td>77820</td>
+<td>67.5</td>
+<td>946</td>
+<td>31.2</td>
+<td>"Pacific"</td>
+<td>70000</td>
+</tr>
+<tr class="odd">
+<td>"Craig"</td>
+<td>18780</td>
+<td>"W"</td>
+<td>-108.207523</td>
+<td>40.618749</td>
+<td>0.01324</td>
+<td>1.077471</td>
+<td>44.5</td>
+<td>58583</td>
+<td>72.8</td>
+<td>485</td>
+<td>29.0</td>
+<td>"Mountain"</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td>"Vernon"</td>
+<td>46900</td>
+<td>"S"</td>
+<td>-99.240853</td>
+<td>34.080611</td>
+<td>0.012887</td>
+<td>5.086411</td>
+<td>41.5</td>
+<td>45262</td>
+<td>62.0</td>
+<td>503</td>
+<td>22.0</td>
+<td>"West South Central"</td>
+<td>40000</td>
+</tr>
+<tr class="odd">
+<td>"Lamesa"</td>
+<td>29500</td>
+<td>"S"</td>
+<td>-101.947637</td>
+<td>32.742488</td>
+<td>0.012371</td>
+<td>5.291467</td>
+<td>41.1</td>
+<td>42778</td>
+<td>71.5</td>
+<td>611</td>
+<td>34.5</td>
+<td>"West South Central"</td>
+<td>40000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, count how many metro areas fall into each income bracket (rounded to the nearest $10,000).</p>
+<div id="4b3c0d82" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        income_rounded <span class="op">=</span> (c.hh_income_median <span class="op">//</span> <span class="dv">10_000</span> <span class="op">*</span> <span class="dv">10_000</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    .group_by(c.income_rounded)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    .sort(c.income_rounded)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (13, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">income_rounded</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>i64</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10000</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>20000</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>30000</td>
+<td>38</td>
+</tr>
+<tr class="even">
+<td>40000</td>
+<td>168</td>
+</tr>
+<tr class="odd">
+<td>50000</td>
+<td>353</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>90000</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>100000</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>110000</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>120000</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>130000</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For each census division, find the metro area with the lowest median rent. Sort the final result alphabetically by division name.</p>
+<div id="9d0e0b8d" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rent_1br_median)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.division)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (9, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geoid</th>
+<th data-quarto-table-cell-role="th">quad</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">density</th>
+<th data-quarto-table-cell-role="th">age_median</th>
+<th data-quarto-table-cell-role="th">hh_income_median</th>
+<th data-quarto-table-cell-role="th">percent_own</th>
+<th data-quarto-table-cell-role="th">rent_1br_median</th>
+<th data-quarto-table-cell-role="th">rent_perc_income</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"East North Central"</td>
+<td>"Scottsburg"</td>
+<td>42500</td>
+<td>"NC"</td>
+<td>-85.747482</td>
+<td>38.685054</td>
+<td>0.02429</td>
+<td>48.696781</td>
+<td>41.5</td>
+<td>45794</td>
+<td>71.8</td>
+<td>356</td>
+<td>28.7</td>
+</tr>
+<tr class="even">
+<td>"East South Central"</td>
+<td>"Cleveland"</td>
+<td>17380</td>
+<td>"S"</td>
+<td>-90.880722</td>
+<td>33.796866</td>
+<td>0.031301</td>
+<td>13.306982</td>
+<td>41.0</td>
+<td>33729</td>
+<td>56.8</td>
+<td>297</td>
+<td>35.1</td>
+</tr>
+<tr class="odd">
+<td>"Middle Atlantic"</td>
+<td>"Johnstown"</td>
+<td>27780</td>
+<td>"NE"</td>
+<td>-78.713799</td>
+<td>40.495051</td>
+<td>0.134048</td>
+<td>74.797763</td>
+<td>45.6</td>
+<td>51018</td>
+<td>79.4</td>
+<td>438</td>
+<td>27.6</td>
+</tr>
+<tr class="even">
+<td>"Mountain"</td>
+<td>"Española"</td>
+<td>21580</td>
+<td>"W"</td>
+<td>-106.692234</td>
+<td>36.509588</td>
+<td>0.040347</td>
+<td>2.642677</td>
+<td>42.7</td>
+<td>46994</td>
+<td>79.7</td>
+<td>330</td>
+<td>26.4</td>
+</tr>
+<tr class="odd">
+<td>"New England"</td>
+<td>"Berlin"</td>
+<td>13620</td>
+<td>"NE"</td>
+<td>-71.305824</td>
+<td>44.688233</td>
+<td>0.03136</td>
+<td>6.629293</td>
+<td>47.4</td>
+<td>52054</td>
+<td>77.3</td>
+<td>553</td>
+<td>27.1</td>
+</tr>
+<tr class="even">
+<td>"Pacific"</td>
+<td>"Ontario"</td>
+<td>36620</td>
+<td>"W"</td>
+<td>-117.589277</td>
+<td>43.218942</td>
+<td>0.056241</td>
+<td>2.103687</td>
+<td>42.9</td>
+<td>52486</td>
+<td>65.8</td>
+<td>538</td>
+<td>23.4</td>
+</tr>
+<tr class="odd">
+<td>"South Atlantic"</td>
+<td>"Coco"</td>
+<td>17640</td>
+<td>"O"</td>
+<td>-66.255037</td>
+<td>18.007166</td>
+<td>0.026208</td>
+<td>136.329824</td>
+<td>40.8</td>
+<td>18563</td>
+<td>76.1</td>
+<td>134</td>
+<td>24.3</td>
+</tr>
+<tr class="even">
+<td>"West North Central"</td>
+<td>"Kennett"</td>
+<td>28380</td>
+<td>"NC"</td>
+<td>-90.091077</td>
+<td>36.271631</td>
+<td>0.028592</td>
+<td>20.176489</td>
+<td>42.4</td>
+<td>42194</td>
+<td>64.1</td>
+<td>369</td>
+<td>27.5</td>
+</tr>
+<tr class="odd">
+<td>"West South Central"</td>
+<td>"Zapata"</td>
+<td>49820</td>
+<td>"S"</td>
+<td>-99.168533</td>
+<td>27.000573</td>
+<td>0.013945</td>
+<td>5.081383</td>
+<td>41.4</td>
+<td>34406</td>
+<td>77.1</td>
+<td>321</td>
+<td>34.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Find the divisions that have more than 75 metro areas. Show the average home ownership rate for each of these divisions, sorted from highest to lowest ownership rate.</p>
+<div id="7094aabf" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        percent_own_mean <span class="op">=</span> c.percent_own.mean(),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">75</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    .sort(c.percent_own_mean, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (7, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">percent_own_mean</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"East North Central"</td>
+<td>74.1825</td>
+<td>160</td>
+</tr>
+<tr class="even">
+<td>"West North Central"</td>
+<td>71.874167</td>
+<td>120</td>
+</tr>
+<tr class="odd">
+<td>"Mountain"</td>
+<td>70.933333</td>
+<td>93</td>
+</tr>
+<tr class="even">
+<td>"East South Central"</td>
+<td>69.44</td>
+<td>95</td>
+</tr>
+<tr class="odd">
+<td>"South Atlantic"</td>
+<td>68.708025</td>
+<td>162</td>
+</tr>
+<tr class="even">
+<td>"West South Central"</td>
+<td>68.266923</td>
+<td>130</td>
+</tr>
+<tr class="odd">
+<td>"Pacific"</td>
+<td>64.862195</td>
+<td>82</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For each division with more than 75 metro areas, show the name of the metro with the highest population density. Use <code>print_rows</code> to display all results.</p>
+<div id="b275d758" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.density, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        densest_metro <span class="op">=</span> c.name.first(),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">75</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (7, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">densest_metro</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"West South Central"</td>
+<td>"Dallas"</td>
+<td>130</td>
+</tr>
+<tr class="even">
+<td>"Pacific"</td>
+<td>"Los Angeles"</td>
+<td>82</td>
+</tr>
+<tr class="odd">
+<td>"East South Central"</td>
+<td>"Louisville/Jefferson County"</td>
+<td>95</td>
+</tr>
+<tr class="even">
+<td>"East North Central"</td>
+<td>"Chicago"</td>
+<td>160</td>
+</tr>
+<tr class="odd">
+<td>"Mountain"</td>
+<td>"Boulder"</td>
+<td>93</td>
+</tr>
+<tr class="even">
+<td>"South Atlantic"</td>
+<td>"San Juan"</td>
+<td>162</td>
+</tr>
+<tr class="odd">
+<td>"West North Central"</td>
+<td>"Minneapolis"</td>
+<td>120</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

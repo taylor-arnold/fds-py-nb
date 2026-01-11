@@ -1,5 +1,15 @@
 ## Notebook04c
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -11,5 +21,145 @@ from polars import col as c
 theme_set(theme_minimal())
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+rva = pl.read_csv("data/flightsrva_flights.csv.gz", null_values=["NA"])
+airport = pl.read_csv("data/flightsrva_airports.csv.gz", null_values=["NA"])
+airline = pl.read_csv("data/flightsrva_airlines.csv.gz", null_values=["NA"])
+```
+
+### Questions
+
+In this notebook, we will analyze flight data from Richmond International Airport (RVA). The `rva` dataset contains information about individual flights including departure time, destination, delays, distance, and air time. We also have lookup tables: `airport` contains geographic information about airports, and `airline` maps carrier codes to airline names.
+
+Count the number of flights departing at each hour of the day and create a line plot showing this pattern.
+
+```{python}
+(
+    rva
+    .group_by(c.hour)
+    .agg(
+        count = pl.len()
+    )
+    .pipe(ggplot, aes("hour", "count"))
+    + geom_line()
+    + scale_x_continuous(breaks=breaks_width(1))
+)
+```
+
+Modify the previous plot to color the line using the hex color `#F54927`.
+
+```{python}
+(
+    rva
+    .group_by(c.hour)
+    .agg(
+        count = pl.len()
+    )
+    .pipe(ggplot, aes("hour", "count"))
+    + geom_line(color="#F54927")
+    + scale_x_continuous(breaks=breaks_width(1))
+)
+```
+
+Now create a version that shows a separate line for each month, with each month in a different color.
+
+```{python}
+(
+    rva
+    .group_by(c.month, c.hour)
+    .agg(
+        count = pl.len()
+    )
+    .pipe(ggplot, aes("hour", "count"))
+    + geom_line(aes(color="factor(month)"))
+    + scale_x_continuous(breaks=breaks_width(1))
+    + scale_color_cmap_d()
+)
+```
+
+For each destination, compute the average air time and average distance. Create a scatter plot of these averages and add a linear trend line.
+
+```{python}
+(
+    rva
+    .group_by(c.dest)
+    .agg(
+        air_time_mean = c.air_time.mean(),
+        distance_mean = c.distance.mean(),
+        count = pl.len()
+    )
+    .pipe(ggplot, aes("air_time_mean", "distance_mean"))
+    + geom_point()
+    + geom_smooth(method="lm", se=False)
+)
+```
+
+For each destination, compute the proportion of flights that arrive more than 15 minutes late and the proportion that depart more than 15 minutes late. Filter to destinations with more than 1000 flights. Create a scatter plot of these delay rates with destination labels.
+
+```{python}
+(
+    rva
+    .group_by(c.dest)
+    .agg(
+        arr_delay_avg = (c.arr_delay > 15).mean(),
+        dep_delay_avg = (c.dep_delay > 15).mean(),
+        count = pl.len()
+    )
+    .filter(c.count > 1000)
+    .pipe(ggplot, aes("arr_delay_avg", "dep_delay_avg"))
+    + geom_point()
+    + geom_text(aes(label="dest"), nudge_y=0.003)
+)
+```
+
+For each hour of the day, compute the proportion of flights that arrive more than 30 minutes late. Create a scatter plot showing this pattern.
+
+```{python}
+(
+    rva
+    .group_by(c.hour)
+    .agg(
+        delayed_prop = (c.arr_delay > 30).mean()
+    )
+    .pipe(ggplot, aes("factor(hour)", "delayed_prop"))
+    + geom_point()
+)
+```
+
+Count the number of flights for each carrier and join this to the airline table to get the full airline names. Create a horizontal bar chart of flight counts, ordered from fewest to most flights.
+
+```{python}
+(
+    rva
+    .group_by(c.carrier)
+    .agg(count = pl.len())
+    .join(airline, on="carrier")
+    .pipe(ggplot, aes("reorder(name, count)", "count"))
+    + geom_col()
+    + coord_flip()
+)
+```
+
+Count the number of flights to each destination and join this to the airport table to get the latitude and longitude of each destination. Create a scatter plot using longitude and latitude as the axes, with point sizes proportional to the number of flights. This creates a simple map of where flights from Richmond go.
+
+```{python}
+(
+    rva
+    .group_by(c.dest)
+    .agg(count = pl.len())
+    .join(airport, left_on="dest", right_on="faa")
+    .pipe(ggplot, aes("lon", "lat"))
+    + geom_point(aes(size="count"))
+    + scale_size_area()
+)
 ```
 

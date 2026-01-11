@@ -1,5 +1,15 @@
 ## Notebook02c
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,159 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+film = pl.read_csv("data/criterion.csv").filter(~c.rating_imdb.is_null())
+```
+
+### Questions
+
+In this notebook, we will practice data manipulation using a dataset of films from the Criterion Collection. The `film` dataset contains information about each movie including its title, director, year of release, runtime, and IMDB rating.
+
+Start by sorting the films by their IMDB rating, with the lowest-rated films at the top.
+
+```{python}
+(
+    film
+    .sort(c.rating_imdb)
+)
+```
+
+Now, sort the films by runtime with the longest films at the top.
+
+```{python}
+(
+    film
+    .sort(c.runtime_raw, descending=True)
+)
+```
+
+Select only the films that are less than 60 minutes long (i.e., short films).
+
+```{python}
+(
+    film
+    .filter(c.runtime_raw < 60)
+)
+```
+
+Select all films directed by Charles Chaplin.
+
+```{python}
+(
+    film
+    .filter(c.director == "Charles Chaplin")
+)
+```
+
+Select all films directed by either Charles Chaplin or Jean-Luc Godard.
+
+```{python}
+(
+    film
+    .filter(c.director.is_in(["Charles Chaplin", "Jean-Luc Godard"]))
+)
+```
+
+Find the highest-rated film from each year. Sort the final result by year so it is easier to read.
+
+```{python}
+(
+    film
+    .sort(c.rating_imdb, descending=True)
+    .group_by(c.year)
+    .head(1)
+    .sort(c.year)
+)
+```
+
+For each director, compute the average IMDB rating of their films and the number of films they have in the collection.
+
+```{python}
+(
+    film
+    .group_by(c.director)
+    .agg(
+        rating_imdb_mean = c.rating_imdb.mean(),
+        count = pl.len()
+    )
+)
+```
+
+We often want to group data by decade rather than individual years. To compute the decade from a year, we can use the expression `c.year // 10 * 10`. The `//` operator performs integer division (dividing and dropping the remainder), so for example `1987 // 10` gives `198`, and multiplying by 10 gives `1980`. Create a new column containing the decade each film was released in.
+
+```{python}
+(
+    film
+    .with_columns(
+        decade =  (c.year // 10 * 10)
+    )
+)
+```
+
+Now, count how many films in the collection were released in each decade.
+
+```{python}
+(
+    film
+    .with_columns(
+        decade =  (c.year // 10 * 10)
+    )
+    .group_by(c.decade)
+    .agg(
+        count = pl.len()   
+    )
+)
+```
+
+Find the directors with more than 5 films in the collection, showing their average IMDB rating. Sort the results so the highest-rated directors appear at the top.
+
+```{python}
+(
+    film
+    .group_by(c.director)
+    .agg(
+        rating_imdb_mean = c.rating_imdb.mean(),
+        count = pl.len()
+    )
+    .filter(c.count > 5)
+    .sort(c.rating_imdb_mean, descending=True)
+)
+```
+
+For each director with more than 5 films in the collection, show their highest-rated film. Hint: If you sort by rating before grouping, the first title in each group will be that director's highest-rated film.
+
+```{python}
+(
+    film
+    .sort(c.rating_imdb, descending=True)
+    .group_by(c.director)
+    .agg(
+        title = c.title.first(),
+        count = pl.len()
+    )
+    .filter(c.count > 5)
+)
+```
+
+By default, only the first few rows of a result are displayed. To see more rows, we can pipe the result through the `print_rows` function. Modify your previous answer to display all of the results.
+
+```{python}
+(
+    film
+    .sort(c.rating_imdb, descending=True)
+    .group_by(c.director)
+    .agg(
+        title = c.title.first(),
+        count = pl.len()
+    )
+    .filter(c.count > 5)
+    .pipe(print_rows)
+)
+```

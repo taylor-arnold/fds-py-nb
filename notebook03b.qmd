@@ -1,4 +1,14 @@
-## Notebook03b
+## Notebook03a
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
 
 ```{python}
 #| tags: [noclear]
@@ -13,3 +23,124 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+metro = pl.read_csv("data/acs_cbsa.csv").filter(c.quad != "O")
+```
+
+### Questions
+
+Today, we will look at the `metro` dataset. Start by plotting the household median income on the x-axis of the regions on the x-axis and the density on the y-axis.
+
+```{python}
+(
+    metro
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_point()
+)
+```
+
+This is going to be messy. Let's modify the plot to only include those where the population is greater than 2 million people (remember, population is recorded in millions in the data).
+
+```{python}
+(
+    metro
+    .filter(c.pop > 2)
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_point()
+)
+```
+
+Recreate the previous plot, but this time color the points by division. Notice that `color` goes inside `aes()` when mapping to a variable.
+
+```{python}
+(
+    metro
+    .filter(c.pop > 2)
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_point(aes(color="division"))
+)
+```
+
+Use a [Color Wheel](https://htmlcolorcodes.com/color-wheel/) to select a fun color. In the code below, update the previous plot to use this fixed color in place of the divsion-based colors. Notice that when using a fixed color (not mapped to data), `color` goes outside of `aes()`.
+
+
+```{python}
+# Of course, you will have a different color value in your own code,
+# but the rest should look the same.
+(
+    metro
+    .filter(c.pop > 2)
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_point(color="#E3763B")
+)
+```
+
+Now, instead of points, use text labels to display the item names. Replace `geom_point()` with `geom_text()` and map the `label` aesthetic to the `name` column. Keep the fixed color you choose.
+
+```{python}
+(
+    metro
+    .filter(c.pop > 2)
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_text(aes(label="name"), color="#E3763B")
+)
+```
+
+Next, add both points and text labels to the plot. Use `nudge_y` to shift the text up slightly so it doesn't overlap with the points and set the size a bit smaller to make it all easier to read. Keep the fixed color, keeping in mind where it needs to go in the code.
+
+```{python}
+# The specific values for size and nudge_y are flexible; as long as
+# it looks good your fine!
+(
+    metro
+    .filter(c.pop > 2)
+    .pipe(ggplot, aes("hh_income_median", "density"))
+    + geom_point(aes(label="name"), color="#E3763B")
+    + geom_text(aes(label="name"), color="#E3763B", size=8, nudge_y=25)
+)
+```
+
+Now, summarize the data by counting the number of metro regions (from the whole dataset, not just those with a population greater than 2 million) within each division. Plot this using a bar/column plot with division on the x-axis and count on the y-axis.
+
+```{python}
+(
+    metro
+    .group_by(c.division)
+    .agg(count = pl.len())
+    .pipe(ggplot, aes("division", "count"))
+    + geom_col()
+)
+```
+
+Modify your previous plot by flipping the axes and ordering the divisions by the counts.
+
+```{python}
+(
+    metro
+    .group_by(c.division)
+    .agg(count = pl.len())
+    .pipe(ggplot, aes("reorder(division, count)", "count"))
+    + geom_col()
+    + coord_flip()
+)
+```
+
+Finally, modify the plot by making the bars *filled* with the custom color you selected above.
+
+```{python}
+(
+    metro
+    .group_by(c.division)
+    .agg(count = pl.len())
+    .pipe(ggplot, aes("reorder(division, count)", "count"))
+    + geom_col(fill="#E3763B")
+    + coord_flip()
+)
+```
