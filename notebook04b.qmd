@@ -1,5 +1,15 @@
 ## Notebook04b
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -11,5 +21,204 @@ from polars import col as c
 theme_set(theme_minimal())
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+film = pl.read_csv("data/criterion.csv")
+```
+
+### Questions
+
+The Criterion Films dataset effecively has multiple tables inside of it. However, these are stored inside a single larger table keyed on the movie. The language, genre, director, writer, and country are stored with one or more values pushed together with a vertical pipe. Using the text from the notes, we can convert this into data with a unit of observation about any of these columns. And, what's nice about this is we get a join with the movie-data for free: all of those columns already exist. 
+
+To get a sense of what this looks like, create a version of the data with one row for each film and language pair. You should see that the number of rows increases from the original dataset.
+
+```{python}
+(
+    film
+    .with_columns(
+        language = c.language.str.split("|")
+    )
+    .explode(c.language)
+)
+```
+
+Using the exploded language data, count the number of films in each language and create a histogram of these counts for languages with counts less than 50. Use a bin width of 5.
+
+```{python}
+(
+    film
+    .with_columns(
+        language = c.language.str.split("|")
+    )
+    .explode(c.language)
+    .group_by(c.language)
+    .agg(count = pl.len())
+    .filter(c.count < 50)
+    .pipe(ggplot, aes("count"))
+    + geom_histogram(fill="white", color="black", binwidth=5, boundary=0)
+)
+```
+
+Using the exploded language data, compute the average IMDB rating and the number of films for each language. Create a scatter plot with the count on the x-axis and the average rating on the y-axis.
+
+```{python}
+(
+    film
+    .with_columns(
+        language = c.language.str.split("|")
+    )
+    .explode(c.language)
+    .group_by(c.language)
+    .agg(
+        rating_mean = c.rating_imdb.mean(),
+        count = pl.len()
+    )
+    .pipe(ggplot, aes("count", "rating_mean"))
+    + geom_point()
+)
+```
+
+Filter to only these languages: English, French, Japanese, Italian, and German. Create a boxplot showing the distribution of runtimes for films in each of these languages.
+
+```{python}
+(
+    film
+    .with_columns(
+        language = c.language.str.split("|")
+    )
+    .explode(c.language)
+    .filter(c.language.is_in(["English", "French", "Japanese", "Italian", "German"]))
+    .pipe(ggplot, aes("language", "runtime_raw"))
+    + geom_boxplot()
+)
+```
+
+Now, we are going to compute the number of films from each country, sorting from the most to the least and taking the top 10 countries. We will count a country anytime it is listed as at least one of the countries a film was produced in. Save the dataset as `top_countries` and then make sure to still print it out on the last line. Do any of the responses surprise you?
+
+```{python}
+top_countries = (
+    film
+    .with_columns(
+        country = c.country.str.split("|")
+    )
+    .explode(c.country)
+    .group_by(c.country)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .head(10)
+)
+```
+
+Now, count the combinations of decade and country, keeping only those countries that are in the `top_countries` dataset. Use a semi-join for the filtering and sort the final results by count, but keep all of the rows. You do not need to save the output. 
+
+```{python}
+(
+    film
+    .with_columns(
+        country = c.country.str.split("|"),
+        decade = c.year // 10 * 10
+    )
+    .explode(c.country)
+    .join(top_countries, on=c.country)
+    .group_by(c.country, c.decade)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+)
+```
+
+Now, add to what you have above a pivot that puts the countries in the columns of the dataset. Use the method `.fill_null(0)` afterwards to fill in the missing values (these are combinations that never occur). The final table is a way of seeing how the number of films from each country in the collection changes by decade. 
+
+```{python}
+(
+    film
+    .with_columns(
+        country = c.country.str.split("|"),
+        decade = c.year // 10 * 10
+    )
+    .explode(c.country)
+    .join(top_countries, on=c.country)
+    .group_by(c.country, c.decade)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .pivot(index="decade", on="country", values="count")
+    .fill_null(0)
+    .sort(c.decade)
+    .pipe(print_rows)
+)
+```
+
+Let's do one more analysis with two columns split apart. This creates a dataset with all combinations of the two categories. Note that we have to do two different calls to `.explode`. Start by expanding the director and writer columns.
+
+```{python}
+(
+    film
+    .with_columns(
+        writer = c.writer.str.split("|"),
+        director = c.director.str.split("|")
+    )
+    .explode(c.writer)
+    .explode(c.director)
+)
+```
+
+Now, determine which films have at least one directory equal to at least one of its writers. Then, compute the average of films over each decade and sort by decade. Be careful about the unit of observation here!
+
+```{python}
+(
+    film
+    .with_columns(
+        writer = c.writer.str.split("|"),
+        director = c.director.str.split("|"),
+        decade = c.year // 10 * 10
+    )
+    .explode(c.writer)
+    .explode(c.director)
+    .group_by(c.title, c.decade)
+    .agg(
+        any_match = (c.writer == c.director).any()
+    )
+    .group_by(c.decade)
+    .agg(
+        proportion_match = c.any_match.mean()
+    )
+    .sort(c.decade)
+    .pipe(print_rows)
+)
+```
+
+Finish by turning the plot into a visualization with decade on the x-axis, proportion of the y-axis, using a line geometry. Make the x-axis have breaks every decade and the y-axis limits go from 0 to 1 to make the scale of the plot easier to comprehend.
+
+```{python}
+(
+    film
+    .with_columns(
+        writer = c.writer.str.split("|"),
+        director = c.director.str.split("|"),
+        decade = c.year // 10 * 10
+    )
+    .explode(c.writer)
+    .explode(c.director)
+    .group_by(c.title, c.decade)
+    .agg(
+        any_match = (c.writer == c.director).any()
+    )
+    .group_by(c.decade)
+    .agg(
+        proportion_match = c.any_match.mean()
+    )
+    .sort(c.decade)
+    .pipe(ggplot, aes("decade", "proportion_match"))
+    + geom_line()
+    + scale_x_continuous(breaks=breaks_width(10))
+    + scale_y_continuous(limits=[0, 1])
+)
 ```
 

@@ -1,5 +1,15 @@
 ## Notebook02b
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,134 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+country = pl.read_csv(ub + "data/countries.csv").drop(c.lang)
+```
+
+### Questions
+
+In this notebook, we will continue practicing data manipulation techniques using a dataset of countries. The `country` dataset contains information about various countries including their geographic coordinates (latitude and longitude), life expectancy, happiness scores, population, GDP per capita, and the region of the world they belong to.
+
+Start by finding the country with the highest life expectancy. Your result should show just that one row.
+
+```{python}
+(
+    country
+    .sort(c.lexp, descending=True)
+    .head(1)
+)
+```
+
+Now, select all countries that are located in both the Northern Hemisphere (latitude greater than 0) and the Eastern Hemisphere (longitude greater than 0).
+
+```{python}
+# Can also combine into a single filter using `&`
+(
+    country
+    .filter(c.lat > 0)
+    .filter(c.lon > 0)
+)
+```
+
+Next, select all countries that are located in either the Northern Hemisphere (latitude greater than 0) or the Eastern Hemisphere (longitude greater than 0). This should return more countries than the previous question.
+
+```{python}
+(
+    country
+    .filter((c.lat > 0) | (c.lon > 0))
+)
+```
+
+Select only the countries that are in Africa.
+
+```{python}
+(
+    country
+    .filter(c.region == "Africa")
+)
+```
+
+Now, select countries that are in either Africa or Europe. Note: Do this without using the `|` (or) operator.
+
+```{python}
+(
+    country
+    .filter(c.region.is_in(["Africa", "Europe"]))
+)
+```
+
+Find the happiest country in each region. That is, for each region, return only the country with the highest happiness score.
+
+```{python}
+(
+    country
+    .sort(c.happy, descending=True)
+    .group_by(c.region)
+    .head(1)
+)
+```
+
+The population column in our dataset is given in millions. Create a new column that contains the raw population (i.e., the actual number of people rather than millions of people).
+
+```{python}
+# Python allows, optionally, to use underscores in a number
+# "as visual separators for digit grouping purposes" (PEP 515)
+# these do not affect the subsequent code but make it much
+# easier to read large numbers
+(
+    country
+    .with_columns(
+        pop_raw = c.pop * 1_000_000
+    )
+)
+```
+
+The GDP per capita of the United States (in the dataset) is 78_389. Compute the absolute distance using `.abs` of each country's GDP to this value and sort the dataset by the distance. 
+
+```{python}
+(
+    country
+    .with_columns(
+        gdp_dist = (c.gdp - 78_389).abs()
+    )
+    .sort(c.gdp_dist)
+)
+```
+
+Find the country in each region that has the closest GDP per capita to the United States. Note: You will probably want to first copy your answer above and make changes rather than starting from scratch.
+
+```{python}
+(
+    country
+    .with_columns(
+        gdp_dist = (c.gdp - 78_389).abs()
+    )
+    .sort(c.gdp_dist)
+    .group_by(c.region)
+    .head(1)
+)
+```
+
+The United States is, of course, the closest to itself in "Americas". Finally, modify the previous code to remove the United States from the data so that we can see what other country it is closest to in its own region. Note: When we say "modify" in these notes, that means to copy and then modify; don't change the original code itself.
+
+```{python}
+(
+    country
+    .filter(c.iso != "USA")
+    .with_columns(
+        gdp_dist = (c.gdp - 78_389).abs()
+    )
+    .sort(c.gdp_dist)
+    .group_by(c.region)
+    .head(1)
+)
+```
+
+And there we go, already a fairly intricate manipulation of the data with just a few simple functions!

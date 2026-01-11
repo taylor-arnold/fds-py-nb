@@ -226,12 +226,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebook04d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notebook04d</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./notebook05a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebook05a</span></a>
   </div>
@@ -455,10 +449,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. We won’t actually be using the data this time, but I’ve included it here just to demonstrate the normal process.</p>
 <p>Run each of these cells in order by clicking on the triangular play button to the left when hoving on the cell. Wait for each to finish before continuing.</p>
-<div id="7cf388b7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="0e6c9835" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="19d8d87a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="7d497fe5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -469,14 +463,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7a608900" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="a48df44d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding <strong>Answer</strong>: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let’s try this out! In the block below, use Python to compute the sum of two plus two.</p>
-<div id="9978281c" class="cell" data-execution_count="5">
+<div id="1d438f18" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>4</code></pre>
@@ -485,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What is the sum?</p>
 <p><strong>Answer</strong>: Four, of course!</p>
 <p>As in the notes, create a variable called <code>my_fav_number</code> equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.</p>
-<div id="f78d8e18" class="cell" data-execution_count="6">
+<div id="9cc72ff1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the solutions often show possible answers rather than</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the only answer; also, there may be comments such as this</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that start with the # symbol and provide additional </span></span>
@@ -493,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>my_fav_number <span class="op">=</span> <span class="dv">8</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, use the function <code>np.log</code>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</p>
-<div id="95560cf7" class="cell" data-execution_count="7">
+<div id="c5aff979" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>np.float64(2.302585092994046)</code></pre>

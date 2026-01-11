@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -75,6 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-8b99633e97494cb736d7188ebc41eb6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,6 +105,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -222,12 +228,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./notebook04c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebook04c</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebook04d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notebook04d</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -450,19 +450,1122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="debee805" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run all of the following before starting the notebook.</p>
+<div id="c197a661" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="901dd49a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c3c802d6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(<span class="st">"data/criterion.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<p>The Criterion Films dataset effecively has multiple tables inside of it. However, these are stored inside a single larger table keyed on the movie. The language, genre, director, writer, and country are stored with one or more values pushed together with a vertical pipe. Using the text from the notes, we can convert this into data with a unit of observation about any of these columns. And, what’s nice about this is we get a join with the movie-data for free: all of those columns already exist.</p>
+<p>To get a sense of what this looks like, create a version of the data with one row for each film and language pair. You should see that the number of rows increases from the original dataset.</p>
+<div id="4c6a5889" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        language <span class="op">=</span> c.language.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    .explode(c.language)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2_605, 18)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">imdb_id</th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">language</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">director</th>
+<th data-quarto-table-cell-role="th">writer</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">imdb_votes</th>
+<th data-quarto-table-cell-role="th">rating_imdb</th>
+<th data-quarto-table-cell-role="th">rating_rt</th>
+<th data-quarto-table-cell-role="th">rating_mc</th>
+<th data-quarto-table-cell-role="th">runtime_raw</th>
+<th data-quarto-table-cell-role="th">wikipedia_pageid</th>
+<th data-quarto-table-cell-role="th">wikipedia_description</th>
+<th data-quarto-table-cell-role="th">wikipedia_extract</th>
+<th data-quarto-table-cell-role="th">budget_raw</th>
+<th data-quarto-table-cell-role="th">box_office_raw</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"tt0012349"</td>
+<td>"The Kid"</td>
+<td>1921</td>
+<td>"None"</td>
+<td>"Comedy|Drama|Family"</td>
+<td>"Charles Chaplin"</td>
+<td>"Charles Chaplin"</td>
+<td>"United States"</td>
+<td>142797</td>
+<td>8.2</td>
+<td>100</td>
+<td>null</td>
+<td>68</td>
+<td>1346905</td>
+<td>"1921 silent film by Charlie Ch…</td>
+<td>"The Kid is a 1921 American sil…</td>
+<td>250000</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt0012349"</td>
+<td>"The Kid"</td>
+<td>1921</td>
+<td>"English"</td>
+<td>"Comedy|Drama|Family"</td>
+<td>"Charles Chaplin"</td>
+<td>"Charles Chaplin"</td>
+<td>"United States"</td>
+<td>142797</td>
+<td>8.2</td>
+<td>100</td>
+<td>null</td>
+<td>68</td>
+<td>1346905</td>
+<td>"1921 silent film by Charlie Ch…</td>
+<td>"The Kid is a 1921 American sil…</td>
+<td>250000</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt0012364"</td>
+<td>"The Phantom Carriage"</td>
+<td>1921</td>
+<td>"None"</td>
+<td>"Drama|Fantasy|Horror"</td>
+<td>"Victor Sjöström"</td>
+<td>"Selma Lagerlöf|Victor Sjöström"</td>
+<td>"Sweden"</td>
+<td>15311</td>
+<td>8.0</td>
+<td>100</td>
+<td>null</td>
+<td>106</td>
+<td>7329426</td>
+<td>"1921 film by Victor Sjöström"</td>
+<td>"The Phantom Carriage is a 1921…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt0012364"</td>
+<td>"The Phantom Carriage"</td>
+<td>1921</td>
+<td>"Swedish"</td>
+<td>"Drama|Fantasy|Horror"</td>
+<td>"Victor Sjöström"</td>
+<td>"Selma Lagerlöf|Victor Sjöström"</td>
+<td>"Sweden"</td>
+<td>15311</td>
+<td>8.0</td>
+<td>100</td>
+<td>null</td>
+<td>106</td>
+<td>7329426</td>
+<td>"1921 film by Victor Sjöström"</td>
+<td>"The Phantom Carriage is a 1921…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt0013257"</td>
+<td>"Häxan"</td>
+<td>1922</td>
+<td>"Swedish"</td>
+<td>"Documentary|Fantasy|Horror"</td>
+<td>"Benjamin Christensen"</td>
+<td>"Benjamin Christensen"</td>
+<td>"Sweden|Denmark"</td>
+<td>18391</td>
+<td>7.6</td>
+<td>93</td>
+<td>null</td>
+<td>107</td>
+<td>3644898</td>
+<td>"Swedish 1922 silent horror ess…</td>
+<td>"Häxan is a 1922 Swedish-Danish…</td>
+<td>2000000</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"Hindi"</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Payal Kapadia|Himanshu Prajapa…</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"Marathi"</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Payal Kapadia|Himanshu Prajapa…</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"English"</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Payal Kapadia|Himanshu Prajapa…</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"German"</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Payal Kapadia|Himanshu Prajapa…</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt32163934"</td>
+<td>"Flow"</td>
+<td>2024</td>
+<td>"Norwegian"</td>
+<td>"Documentary|Short"</td>
+<td>"Anne Haugsgjerd"</td>
+<td>"Anne Haugsgjerd"</td>
+<td>"Norway"</td>
+<td>null</td>
+<td>null</td>
+<td>97</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Using the exploded language data, count the number of films in each language and create a histogram of these counts for languages with counts less than 50. Use a bin width of 5.</p>
+<div id="294056b3" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        language <span class="op">=</span> c.language.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .explode(c.language)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.language)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&lt;</span> <span class="dv">50</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"count"</span>))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_histogram(fill<span class="op">=</span><span class="st">"white"</span>, color<span class="op">=</span><span class="st">"black"</span>, binwidth<span class="op">=</span><span class="dv">5</span>, boundary<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<figure class="figure">
+<p><a href="notebook04b_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="notebook04b_files/figure-html/cell-7-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Using the exploded language data, compute the average IMDB rating and the number of films for each language. Create a scatter plot with the count on the x-axis and the average rating on the y-axis.</p>
+<div id="1f8a4324" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        language <span class="op">=</span> c.language.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .explode(c.language)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.language)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        rating_mean <span class="op">=</span> c.rating_imdb.mean(),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"count"</span>, <span class="st">"rating_mean"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/plotnine/layer.py:374: PlotnineWarning: geom_point : Removed 1 rows containing missing values.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><a href="notebook04b_files/figure-html/cell-8-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="notebook04b_files/figure-html/cell-8-output-2.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Filter to only these languages: English, French, Japanese, Italian, and German. Create a boxplot showing the distribution of runtimes for films in each of these languages.</p>
+<div id="2c83b165" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        language <span class="op">=</span> c.language.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    .explode(c.language)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.language.is_in([<span class="st">"English"</span>, <span class="st">"French"</span>, <span class="st">"Japanese"</span>, <span class="st">"Italian"</span>, <span class="st">"German"</span>]))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"language"</span>, <span class="st">"runtime_raw"</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/plotnine/layer.py:293: PlotnineWarning: stat_boxplot : Removed 55 rows containing non-finite values.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<figure class="figure">
+<p><a href="notebook04b_files/figure-html/cell-9-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="notebook04b_files/figure-html/cell-9-output-2.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, we are going to compute the number of films from each country, sorting from the most to the least and taking the top 10 countries. We will count a country anytime it is listed as at least one of the countries a film was produced in. Save the dataset as <code>top_countries</code> and then make sure to still print it out on the last line. Do any of the responses surprise you?</p>
+<div id="8ad5d5b6" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>top_countries <span class="op">=</span> (</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> c.country.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    .explode(c.country)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.country)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, count the combinations of decade and country, keeping only those countries that are in the <code>top_countries</code> dataset. Use a semi-join for the filtering and sort the final results by count, but keep all of the rows. You do not need to save the output.</p>
+<div id="752ef086" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> c.country.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span> c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    .explode(c.country)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    .join(top_countries, on<span class="op">=</span>c.country)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.country, c.decade)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (85, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">decade</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"United States"</td>
+<td>1970</td>
+<td>85</td>
+</tr>
+<tr class="even">
+<td>"United States"</td>
+<td>1980</td>
+<td>85</td>
+</tr>
+<tr class="odd">
+<td>"United States"</td>
+<td>1990</td>
+<td>84</td>
+</tr>
+<tr class="even">
+<td>"Japan"</td>
+<td>1960</td>
+<td>80</td>
+</tr>
+<tr class="odd">
+<td>"France"</td>
+<td>1960</td>
+<td>73</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Germany"</td>
+<td>1920</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"Italy"</td>
+<td>1990</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"Sweden"</td>
+<td>2010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"United Kingdom"</td>
+<td>1920</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"France"</td>
+<td>1920</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, add to what you have above a pivot that puts the countries in the columns of the dataset. Use the method <code>.fill_null(0)</code> afterwards to fill in the missing values (these are combinations that never occur). The final table is a way of seeing how the number of films from each country in the collection changes by decade.</p>
+<div id="6ad08680" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> c.country.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span> c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .explode(c.country)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .join(top_countries, on<span class="op">=</span>c.country)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.country, c.decade)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    .pivot(index<span class="op">=</span><span class="st">"decade"</span>, on<span class="op">=</span><span class="st">"country"</span>, values<span class="op">=</span><span class="st">"count"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    .fill_null(<span class="dv">0</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    .sort(c.decade)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (11, 11)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">decade</th>
+<th data-quarto-table-cell-role="th">United States</th>
+<th data-quarto-table-cell-role="th">Japan</th>
+<th data-quarto-table-cell-role="th">France</th>
+<th data-quarto-table-cell-role="th">Italy</th>
+<th data-quarto-table-cell-role="th">West Germany</th>
+<th data-quarto-table-cell-role="th">United Kingdom</th>
+<th data-quarto-table-cell-role="th">Sweden</th>
+<th data-quarto-table-cell-role="th">Germany</th>
+<th data-quarto-table-cell-role="th">Hong Kong</th>
+<th data-quarto-table-cell-role="th">Canada</th>
+</tr>
+<tr class="even">
+<th>i64</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1920</td>
+<td>13</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1930</td>
+<td>40</td>
+<td>19</td>
+<td>31</td>
+<td>0</td>
+<td>0</td>
+<td>15</td>
+<td>5</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1940</td>
+<td>50</td>
+<td>17</td>
+<td>16</td>
+<td>8</td>
+<td>0</td>
+<td>25</td>
+<td>6</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1950</td>
+<td>47</td>
+<td>35</td>
+<td>31</td>
+<td>24</td>
+<td>2</td>
+<td>13</td>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1960</td>
+<td>55</td>
+<td>80</td>
+<td>73</td>
+<td>48</td>
+<td>9</td>
+<td>21</td>
+<td>22</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>1970</td>
+<td>85</td>
+<td>22</td>
+<td>49</td>
+<td>21</td>
+<td>29</td>
+<td>17</td>
+<td>9</td>
+<td>0</td>
+<td>10</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>1980</td>
+<td>85</td>
+<td>9</td>
+<td>30</td>
+<td>6</td>
+<td>16</td>
+<td>25</td>
+<td>4</td>
+<td>0</td>
+<td>9</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>1990</td>
+<td>84</td>
+<td>11</td>
+<td>40</td>
+<td>1</td>
+<td>0</td>
+<td>26</td>
+<td>3</td>
+<td>10</td>
+<td>13</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>2000</td>
+<td>42</td>
+<td>4</td>
+<td>23</td>
+<td>6</td>
+<td>0</td>
+<td>10</td>
+<td>3</td>
+<td>14</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>2010</td>
+<td>32</td>
+<td>3</td>
+<td>21</td>
+<td>6</td>
+<td>0</td>
+<td>8</td>
+<td>1</td>
+<td>9</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>22</td>
+<td>5</td>
+<td>23</td>
+<td>4</td>
+<td>0</td>
+<td>9</td>
+<td>6</td>
+<td>9</td>
+<td>0</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let’s do one more analysis with two columns split apart. This creates a dataset with all combinations of the two categories. Note that we have to do two different calls to <code>.explode</code>. Start by expanding the director and writer columns.</p>
+<div id="20e63fb2" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> c.writer.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        director <span class="op">=</span> c.director.<span class="bu">str</span>.split(<span class="st">"|"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    .explode(c.writer)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    .explode(c.director)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (3_212, 18)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">imdb_id</th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">language</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">director</th>
+<th data-quarto-table-cell-role="th">writer</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">imdb_votes</th>
+<th data-quarto-table-cell-role="th">rating_imdb</th>
+<th data-quarto-table-cell-role="th">rating_rt</th>
+<th data-quarto-table-cell-role="th">rating_mc</th>
+<th data-quarto-table-cell-role="th">runtime_raw</th>
+<th data-quarto-table-cell-role="th">wikipedia_pageid</th>
+<th data-quarto-table-cell-role="th">wikipedia_description</th>
+<th data-quarto-table-cell-role="th">wikipedia_extract</th>
+<th data-quarto-table-cell-role="th">budget_raw</th>
+<th data-quarto-table-cell-role="th">box_office_raw</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"tt0012349"</td>
+<td>"The Kid"</td>
+<td>1921</td>
+<td>"None|English"</td>
+<td>"Comedy|Drama|Family"</td>
+<td>"Charles Chaplin"</td>
+<td>"Charles Chaplin"</td>
+<td>"United States"</td>
+<td>142797</td>
+<td>8.2</td>
+<td>100</td>
+<td>null</td>
+<td>68</td>
+<td>1346905</td>
+<td>"1921 silent film by Charlie Ch…</td>
+<td>"The Kid is a 1921 American sil…</td>
+<td>250000</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt0012364"</td>
+<td>"The Phantom Carriage"</td>
+<td>1921</td>
+<td>"None|Swedish"</td>
+<td>"Drama|Fantasy|Horror"</td>
+<td>"Victor Sjöström"</td>
+<td>"Selma Lagerlöf"</td>
+<td>"Sweden"</td>
+<td>15311</td>
+<td>8.0</td>
+<td>100</td>
+<td>null</td>
+<td>106</td>
+<td>7329426</td>
+<td>"1921 film by Victor Sjöström"</td>
+<td>"The Phantom Carriage is a 1921…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt0012364"</td>
+<td>"The Phantom Carriage"</td>
+<td>1921</td>
+<td>"None|Swedish"</td>
+<td>"Drama|Fantasy|Horror"</td>
+<td>"Victor Sjöström"</td>
+<td>"Victor Sjöström"</td>
+<td>"Sweden"</td>
+<td>15311</td>
+<td>8.0</td>
+<td>100</td>
+<td>null</td>
+<td>106</td>
+<td>7329426</td>
+<td>"1921 film by Victor Sjöström"</td>
+<td>"The Phantom Carriage is a 1921…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt0013257"</td>
+<td>"Häxan"</td>
+<td>1922</td>
+<td>"Swedish|Danish"</td>
+<td>"Documentary|Fantasy|Horror"</td>
+<td>"Benjamin Christensen"</td>
+<td>"Benjamin Christensen"</td>
+<td>"Sweden|Denmark"</td>
+<td>18391</td>
+<td>7.6</td>
+<td>93</td>
+<td>null</td>
+<td>107</td>
+<td>3644898</td>
+<td>"Swedish 1922 silent horror ess…</td>
+<td>"Häxan is a 1922 Swedish-Danish…</td>
+<td>2000000</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt0014429"</td>
+<td>"Safety Last!"</td>
+<td>1923</td>
+<td>"English"</td>
+<td>"Action|Comedy|Thriller"</td>
+<td>"Fred C. Newmeyer"</td>
+<td>"Hal Roach"</td>
+<td>"United States"</td>
+<td>23503</td>
+<td>8.1</td>
+<td>97</td>
+<td>null</td>
+<td>73</td>
+<td>76313</td>
+<td>"1923 American silent romantic …</td>
+<td>"Safety Last! is a 1923 America…</td>
+<td>121000</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"tt32085997"</td>
+<td>"Misericordia"</td>
+<td>2024</td>
+<td>"French"</td>
+<td>"Comedy|Crime|Drama"</td>
+<td>"Alain Guiraudie"</td>
+<td>"Alain Guiraudie"</td>
+<td>"France|Spain|Portugal"</td>
+<td>2537</td>
+<td>7.1</td>
+<td>94</td>
+<td>83</td>
+<td>103</td>
+<td>76603314</td>
+<td>"2024 film by Alain Guiraudie"</td>
+<td>"Misericordia is a 2024 black c…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"Malayalam|Hindi|Marathi|Englis…</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Payal Kapadia"</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"Malayalam|Hindi|Marathi|Englis…</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Himanshu Prajapati"</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"tt32086077"</td>
+<td>"All We Imagine as Light"</td>
+<td>2024</td>
+<td>"Malayalam|Hindi|Marathi|Englis…</td>
+<td>"Drama|Romance"</td>
+<td>"Payal Kapadia"</td>
+<td>"Naseem Azad"</td>
+<td>"France|India|Netherlands|Luxem…</td>
+<td>10253</td>
+<td>7.1</td>
+<td>100</td>
+<td>93</td>
+<td>118</td>
+<td>76585159</td>
+<td>"2024 film by Payal Kapadia"</td>
+<td>"All We Imagine as Light is a 2…</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"tt32163934"</td>
+<td>"Flow"</td>
+<td>2024</td>
+<td>"Norwegian"</td>
+<td>"Documentary|Short"</td>
+<td>"Anne Haugsgjerd"</td>
+<td>"Anne Haugsgjerd"</td>
+<td>"Norway"</td>
+<td>null</td>
+<td>null</td>
+<td>97</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, determine which films have at least one directory equal to at least one of its writers. Then, compute the average of films over each decade and sort by decade. Be careful about the unit of observation here!</p>
+<div id="da4ac199" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> c.writer.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        director <span class="op">=</span> c.director.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span> c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    .explode(c.writer)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    .explode(c.director)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    .group_by(c.title, c.decade)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        any_match <span class="op">=</span> (c.writer <span class="op">==</span> c.director).<span class="bu">any</span>()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    .group_by(c.decade)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        proportion_match <span class="op">=</span> c.any_match.mean()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    .sort(c.decade)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (11, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">decade</th>
+<th data-quarto-table-cell-role="th">proportion_match</th>
+</tr>
+<tr class="even">
+<th>i64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1920</td>
+<td>0.736842</td>
+</tr>
+<tr class="even">
+<td>1930</td>
+<td>0.436975</td>
+</tr>
+<tr class="odd">
+<td>1940</td>
+<td>0.467213</td>
+</tr>
+<tr class="even">
+<td>1950</td>
+<td>0.617284</td>
+</tr>
+<tr class="odd">
+<td>1960</td>
+<td>0.636964</td>
+</tr>
+<tr class="even">
+<td>1970</td>
+<td>0.698276</td>
+</tr>
+<tr class="odd">
+<td>1980</td>
+<td>0.719298</td>
+</tr>
+<tr class="even">
+<td>1990</td>
+<td>0.75817</td>
+</tr>
+<tr class="odd">
+<td>2000</td>
+<td>0.825581</td>
+</tr>
+<tr class="even">
+<td>2010</td>
+<td>0.813559</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>0.807692</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Finish by turning the plot into a visualization with decade on the x-axis, proportion of the y-axis, using a line geometry. Make the x-axis have breaks every decade and the y-axis limits go from 0 to 1 to make the scale of the plot easier to comprehend.</p>
+<div id="2bde53e7" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> c.writer.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        director <span class="op">=</span> c.director.<span class="bu">str</span>.split(<span class="st">"|"</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span> c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    .explode(c.writer)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    .explode(c.director)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    .group_by(c.title, c.decade)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        any_match <span class="op">=</span> (c.writer <span class="op">==</span> c.director).<span class="bu">any</span>()</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    .group_by(c.decade)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        proportion_match <span class="op">=</span> c.any_match.mean()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    .sort(c.decade)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"decade"</span>, <span class="st">"proportion_match"</span>))</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line()</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_x_continuous(breaks<span class="op">=</span>breaks_width(<span class="dv">10</span>))</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_y_continuous(limits<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+<figure class="figure">
+<p><a href="notebook04b_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="notebook04b_files/figure-html/cell-15-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -865,6 +1968,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
