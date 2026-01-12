@@ -450,10 +450,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="8cbd6c27" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="b0510b53" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5694819e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="9b703a95" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -464,15 +464,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5767a38c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> pl.read_csv(<span class="st">"data/movies_50_years.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f60d4e50" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will explore data visualization techniques using a dataset of popular movies from the past 50 years. The <code>movie</code> dataset includes information about each film’s runtime (in minutes), release year, MPA rating (G, PG, PG-13, R), IMDB rating, and the number of ratings it received.</p>
 <p>Start by creating a histogram of movie runtimes.</p>
-<div id="d9a93c4b" class="cell" data-execution_count="5">
+<div id="0341cdfe" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"runtime"</span>))</span>
@@ -491,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The default bin settings make it hard to interpret. Modify your histogram to use a bin width of 10 minutes, with bins starting at 0.</p>
-<div id="0e38e8af" class="cell" data-execution_count="6">
+<div id="e30db2df" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"runtime"</span>))</span>
@@ -509,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>There are some extremely long films in the dataset. Filter to keep only movies shorter than 3 hours, convert the runtime to hours, and create a histogram with 15-minute bins (that’s 0.25 hours).</p>
-<div id="dddec15b" class="cell" data-execution_count="7">
+<div id="7afc51b7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.runtime <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">60</span>)</span>
@@ -528,9 +528,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Within a 15-minute bucket, what is the most popular duration for a film in this dataset?</p>
-<p><strong>Answer</strong> It’s 1h30m to 1h45m. A fairly typical time for movies of all genres across the past fifty years.</p>
+<p><strong>Answer</strong>: It’s 1h30m to 1h45m. A fairly typical time for movies of all genres across the past fifty years.</p>
 <p>Create a boxplot showing the distribution of runtimes for each MPA rating category.</p>
-<div id="a0a2d6cc" class="cell" data-execution_count="8">
+<div id="f6a4d84c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"mpa"</span>, <span class="st">"runtime"</span>))</span>
@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Let’s see how runtimes have changed over time. Filter to movies under 3 hours, create a column for the 5-year period each movie belongs to, and make a boxplot of runtime by period. Use <code>factor()</code> around the period variable so that it is treated as a categorical variable. Hint: The 5-year period can be done the same way we did for decades, but now with 5 replacing 10 in the integer division.</p>
-<div id="ddc1b604" class="cell" data-execution_count="9">
+<div id="d4ffecdc" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.runtime <span class="op">&lt;</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">60</span>)</span>
@@ -567,7 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now let’s look at how audience engagement has changed. Group the data by 5-year periods and compute the average number of ratings per movie in each period. Create a scatter plot of this trend and add a linear trend line.</p>
-<div id="f674054a" class="cell" data-execution_count="10">
+<div id="c752f780" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -590,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Filter to just movies from 2010 and create a scatter plot with the number of ratings on the x-axis and the IMDB rating on the y-axis. Color the points by MPA rating using the color-blind friendly color scale.</p>
-<div id="5a151f6a" class="cell" data-execution_count="11">
+<div id="3b24a513" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.year <span class="op">==</span> <span class="dv">2010</span>)</span>
@@ -607,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The rating counts span a huge range, making most points cluster on the left. Modify the previous plot to use a logarithmic scale on the x-axis so we can better see the full distribution.</p>
-<div id="c783efed" class="cell" data-execution_count="12">
+<div id="4e81b0e3" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.year <span class="op">==</span> <span class="dv">2010</span>)</span>
