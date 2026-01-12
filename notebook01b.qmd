@@ -71,6 +71,7 @@ In the code below, greate a method chain that starts with `food` (on its own lin
 ```
 
 What rows, relatively to the original dataset, are returned by the sequence of steps above?
+
 **Answer**: We have the 8th, 9th, and 10th rows from the original dataset. This comes from first taking off the first 10 rows with `head` and then grabbing the last 3 rows of the result with `tail`.
 
 Note that method chains never modify the original dataset. After running the code above `food` still has all of the original data and the new version you printed out is no longer available. If we want to save a copy of the output, we need to add something like `new_name =` before the paranthesis on the first line of the code. When we do this, the original dataset will remain but we have a copy in the `new_name` object. In the code below, repeat the steps we did above with `food` but create a new object `food_sub` that consists of the subset of three rows.
