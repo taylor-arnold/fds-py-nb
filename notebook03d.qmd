@@ -31,7 +31,7 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-food = pl.read_csv("data/food.csv")
+food = pl.read_csv(ub + "data/food.csv")
 ```
 
 ### Questions

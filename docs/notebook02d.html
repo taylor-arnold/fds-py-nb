@@ -450,10 +450,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="dc1e665a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="d9623b9e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e0cd3369" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="b2f19dc0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -464,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4e34dc61" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="b1dfd5a4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>This notebook is a review of the data manipulation techniques we have learned so far. We will work with the <code>metro</code> dataset, which contains information about US metropolitan areas from the American Community Survey. The dataset includes variables such as population (in millions), population density, median age, median household income, home ownership rates, median rent for a one-bedroom apartment, and geographic information including which census division each metro area belongs to.</p>
 <p>Sort the metropolitan areas by population, with the largest metros at the top.</p>
-<div id="ce8d7119" class="cell" data-execution_count="5">
+<div id="fb3f868f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.pop, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -691,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the metro area with the highest median household income.</p>
-<div id="bec5fef6" class="cell" data-execution_count="6">
+<div id="72138178" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.hh_income_median, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -761,7 +761,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Sort the data by median age, with the youngest metros first. Which places have the youngest populations?</p>
-<div id="b1f324a6" class="cell" data-execution_count="7">
+<div id="b648430e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.age_median)</span>
@@ -980,7 +980,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select only the metropolitan areas located in the South (where the quad column equals “S”).</p>
-<div id="479cb4ca" class="cell" data-execution_count="8">
+<div id="76ad6d90" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.quad <span class="op">==</span> <span class="st">"S"</span>)</span>
@@ -1199,7 +1199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select metros that have a population density greater than 500 people per square mile.</p>
-<div id="a895d5ad" class="cell" data-execution_count="9">
+<div id="5a8276c8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.density <span class="op">&gt;</span> <span class="dv">500</span>)</span>
@@ -1418,7 +1418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find all metros where residents spend more than 30 percent of their income on rent.</p>
-<div id="6cb11a93" class="cell" data-execution_count="10">
+<div id="02c2684a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.rent_perc_income <span class="op">&gt;</span> <span class="dv">30</span>)</span>
@@ -1637,7 +1637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select metros that are in either the Pacific or New England divisions.</p>
-<div id="e69c5e45" class="cell" data-execution_count="11">
+<div id="5d7465d9" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.division.is_in([<span class="st">"Pacific"</span>, <span class="st">"New England"</span>]))</span>
@@ -1856,7 +1856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find metros in the South that have a median household income above $80,000. Use two separate filter steps.</p>
-<div id="f205b802" class="cell" data-execution_count="12">
+<div id="6cd09f3c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.quad <span class="op">==</span> <span class="st">"S"</span>)</span>
@@ -2016,7 +2016,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each census division, compute the average median household income and the number of metros in that division.</p>
-<div id="a1bf6a69" class="cell" data-execution_count="13">
+<div id="9df1e212" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
@@ -2049,34 +2049,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"South Atlantic"</td>
-<td>52636.734568</td>
-<td>162</td>
+<td>"West North Central"</td>
+<td>60065.508333</td>
+<td>120</td>
 </tr>
 <tr class="even">
+<td>"East North Central"</td>
+<td>58998.2875</td>
+<td>160</td>
+</tr>
+<tr class="odd">
 <td>"New England"</td>
 <td>73872.653846</td>
 <td>26</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>"Pacific"</td>
 <td>70178.268293</td>
 <td>82</td>
-</tr>
-<tr class="even">
-<td>"East South Central"</td>
-<td>49271.568421</td>
-<td>95</td>
-</tr>
-<tr class="odd">
-<td>"Middle Atlantic"</td>
-<td>62316.318182</td>
-<td>66</td>
-</tr>
-<tr class="even">
-<td>"Mountain"</td>
-<td>63649.376344</td>
-<td>93</td>
 </tr>
 <tr class="odd">
 <td>"West South Central"</td>
@@ -2084,14 +2074,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>130</td>
 </tr>
 <tr class="even">
-<td>"West North Central"</td>
-<td>60065.508333</td>
-<td>120</td>
+<td>"Mountain"</td>
+<td>63649.376344</td>
+<td>93</td>
 </tr>
 <tr class="odd">
-<td>"East North Central"</td>
-<td>58998.2875</td>
-<td>160</td>
+<td>"Middle Atlantic"</td>
+<td>62316.318182</td>
+<td>66</td>
+</tr>
+<tr class="even">
+<td>"East South Central"</td>
+<td>49271.568421</td>
+<td>95</td>
+</tr>
+<tr class="odd">
+<td>"South Atlantic"</td>
+<td>52636.734568</td>
+<td>162</td>
 </tr>
 </tbody>
 </table>
@@ -2099,7 +2099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the most populous metro area in each quadrant of the country.</p>
-<div id="9af9cf7a" class="cell" data-execution_count="14">
+<div id="90400f60" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.pop, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -2150,6 +2150,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td>"O"</td>
+<td>"San Juan"</td>
+<td>41980</td>
+<td>-66.112516</td>
+<td>18.27534</td>
+<td>2.096657</td>
+<td>554.930629</td>
+<td>41.8</td>
+<td>24755</td>
+<td>69.3</td>
+<td>379</td>
+<td>31.9</td>
+<td>"South Atlantic"</td>
+</tr>
+<tr class="even">
 <td>"S"</td>
 <td>"Dallas"</td>
 <td>19100</td>
@@ -2163,21 +2178,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1106</td>
 <td>29.1</td>
 <td>"West South Central"</td>
-</tr>
-<tr class="even">
-<td>"W"</td>
-<td>"Los Angeles"</td>
-<td>31080</td>
-<td>-118.148722</td>
-<td>34.219406</td>
-<td>13.202558</td>
-<td>1040.647281</td>
-<td>41.6</td>
-<td>81652</td>
-<td>51.3</td>
-<td>1468</td>
-<td>33.6</td>
-<td>"Pacific"</td>
 </tr>
 <tr class="odd">
 <td>"NE"</td>
@@ -2195,6 +2195,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"Middle Atlantic"</td>
 </tr>
 <tr class="even">
+<td>"W"</td>
+<td>"Los Angeles"</td>
+<td>31080</td>
+<td>-118.148722</td>
+<td>34.219406</td>
+<td>13.202558</td>
+<td>1040.647281</td>
+<td>41.6</td>
+<td>81652</td>
+<td>51.3</td>
+<td>1468</td>
+<td>33.6</td>
+<td>"Pacific"</td>
+</tr>
+<tr class="odd">
 <td>"NC"</td>
 <td>"Chicago"</td>
 <td>16980</td>
@@ -2209,28 +2224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>29.0</td>
 <td>"East North Central"</td>
 </tr>
-<tr class="odd">
-<td>"O"</td>
-<td>"San Juan"</td>
-<td>41980</td>
-<td>-66.112516</td>
-<td>18.27534</td>
-<td>2.096657</td>
-<td>554.930629</td>
-<td>41.8</td>
-<td>24755</td>
-<td>69.3</td>
-<td>379</td>
-<td>31.9</td>
-<td>"South Atlantic"</td>
-</tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
 <p>The population in our dataset is given in millions. Create a new column that shows the population in thousands instead.</p>
-<div id="9c174f25" class="cell" data-execution_count="15">
+<div id="2056e7b4" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2464,7 +2464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Create a new column that computes the annual rent for a one-bedroom apartment (the current rent column shows monthly rent).</p>
-<div id="843c77a4" class="cell" data-execution_count="16">
+<div id="0cd7516d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2698,7 +2698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The median household income is given as an exact figure, but it can be useful to round it. Create a new column that rounds the income to the nearest $10,000. Hint: Use the same integer division technique we used for computing decades from years.</p>
-<div id="2b5f3afe" class="cell" data-execution_count="17">
+<div id="9c2f397d" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2932,7 +2932,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, count how many metro areas fall into each income bracket (rounded to the nearest $10,000).</p>
-<div id="4b3c0d82" class="cell" data-execution_count="18">
+<div id="d32a7011" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -3015,7 +3015,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each census division, find the metro area with the lowest median rent. Sort the final result alphabetically by division name.</p>
-<div id="9d0e0b8d" class="cell" data-execution_count="19">
+<div id="1051f9af" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rent_1br_median)</span>
@@ -3207,7 +3207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the divisions that have more than 75 metro areas. Show the average home ownership rate for each of these divisions, sorted from highest to lowest ownership rate.</p>
-<div id="7094aabf" class="cell" data-execution_count="20">
+<div id="3ddcb026" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.division)</span>
@@ -3282,7 +3282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each division with more than 75 metro areas, show the name of the metro with the highest population density. Use <code>print_rows</code> to display all results.</p>
-<div id="b275d758" class="cell" data-execution_count="21">
+<div id="0dd8d83e" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.density, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -3323,24 +3323,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>130</td>
 </tr>
 <tr class="even">
-<td>"Pacific"</td>
-<td>"Los Angeles"</td>
-<td>82</td>
+<td>"Mountain"</td>
+<td>"Boulder"</td>
+<td>93</td>
 </tr>
 <tr class="odd">
+<td>"West North Central"</td>
+<td>"Minneapolis"</td>
+<td>120</td>
+</tr>
+<tr class="even">
 <td>"East South Central"</td>
 <td>"Louisville/Jefferson County"</td>
 <td>95</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>"East North Central"</td>
 <td>"Chicago"</td>
 <td>160</td>
-</tr>
-<tr class="odd">
-<td>"Mountain"</td>
-<td>"Boulder"</td>
-<td>93</td>
 </tr>
 <tr class="even">
 <td>"South Atlantic"</td>
@@ -3348,9 +3348,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>162</td>
 </tr>
 <tr class="odd">
-<td>"West North Central"</td>
-<td>"Minneapolis"</td>
-<td>120</td>
+<td>"Pacific"</td>
+<td>"Los Angeles"</td>
+<td>82</td>
 </tr>
 </tbody>
 </table>

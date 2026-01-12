@@ -31,7 +31,7 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-movie = pl.read_csv("data/movies_50_years.csv")
+movie = pl.read_csv(ub + "data/movies_50_years.csv")
 ```
 
 ### Questions
@@ -74,7 +74,7 @@ There are some extremely long films in the dataset. Filter to keep only movies s
 
 Within a 15-minute bucket, what is the most popular duration for a film in this dataset?
 
-**Answer** It's 1h30m to 1h45m. A fairly typical time for movies of all genres across the past fifty years.
+**Answer**: It's 1h30m to 1h45m. A fairly typical time for movies of all genres across the past fifty years.
 
 Create a boxplot showing the distribution of runtimes for each MPA rating category.
 

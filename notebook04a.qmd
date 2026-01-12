@@ -31,10 +31,10 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-movie = pl.read_csv("data/movies_50_years.csv")
-color = pl.read_csv("data/movies_50_years_color.csv")
-genre = pl.read_csv("data/movies_50_years_genre.csv")
-people = pl.read_csv("data/movies_50_years_people.csv")
+movie = pl.read_csv(ub + "data/movies_50_years.csv")
+color = pl.read_csv(ub + "data/movies_50_years_color.csv")
+genre = pl.read_csv(ub + "data/movies_50_years_genre.csv")
+people = pl.read_csv(ub + "data/movies_50_years_people.csv")
 ```
 
 

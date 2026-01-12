@@ -31,9 +31,9 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-rva = pl.read_csv("data/flightsrva_flights.csv.gz", null_values=["NA"])
-airport = pl.read_csv("data/flightsrva_airports.csv.gz", null_values=["NA"])
-airline = pl.read_csv("data/flightsrva_airlines.csv.gz", null_values=["NA"])
+rva = pl.read_csv(ub + "data/flightsrva_flights.csv.gz", null_values=["NA"])
+airport = pl.read_csv(ub + "data/flightsrva_airports.csv.gz", null_values=["NA"])
+airline = pl.read_csv(ub + "data/flightsrva_airlines.csv.gz", null_values=["NA"])
 ```
 
 ### Questions
