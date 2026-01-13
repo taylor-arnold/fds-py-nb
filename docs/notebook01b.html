@@ -450,10 +450,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="7addb5b0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="f92c0e3a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3f0d5440" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="4098c436" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -464,14 +464,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="adc20d1a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="6942b3f4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>).drop(c.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>Let’s look at the <code>food</code> dataset that we loaded above. To get an idea about its structure, write the name of the dataset in the block below and run the cell with nothing else. This will show the column names and data types along with the first five and last five rows.</p>
-<div id="c0eed18b" class="cell" data-execution_count="5">
+<div id="13173c39" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>food</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Answer</strong>: Based on the first and last rows, it appears to be alphabetically by the food item name (starts with Apple and three other A’s, then Banana and Chickpea, ending with Yogurt).</p>
 <p>Throughout this book, we will want to apply data manipulation, visualization, and modeling functions to data. Whenever possible, which is most of the time, we will write these are <em>method chains</em> in a very specific format. The first line of a code block starts with an opening parenthesis and the final line has the closing parenthesis. Inside, each of the steps of the analysis will get placed with four leading spaces (you should be able to hit tab in Colab to get this), with one step on each line. The dataset goes on its own line.</p>
 <p>In the code below, greate a method chain that starts with <code>food</code> (on its own line), applies the method <code>.head(10)</code> to grab the first ten rows, and the applies the method <code>.tail(3)</code> to grab the last three rows the remaining data. Hint: The code should have five total lines.</p>
-<div id="3264b1be" class="cell" data-execution_count="6">
+<div id="e70b5463" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    food</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
@@ -849,9 +849,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>What rows, relatively to the original dataset, are returned by the sequence of steps above? <strong>Answer</strong>: We have the 8th, 9th, and 10th rows from the original dataset. This comes from first taking off the first 10 rows with <code>head</code> and then grabbing the last 3 rows of the result with <code>tail</code>.</p>
+<p>What rows, relatively to the original dataset, are returned by the sequence of steps above?</p>
+<p><strong>Answer</strong>: We have the 8th, 9th, and 10th rows from the original dataset. This comes from first taking off the first 10 rows with <code>head</code> and then grabbing the last 3 rows of the result with <code>tail</code>.</p>
 <p>Note that method chains never modify the original dataset. After running the code above <code>food</code> still has all of the original data and the new version you printed out is no longer available. If we want to save a copy of the output, we need to add something like <code>new_name =</code> before the paranthesis on the first line of the code. When we do this, the original dataset will remain but we have a copy in the <code>new_name</code> object. In the code below, repeat the steps we did above with <code>food</code> but create a new object <code>food_sub</code> that consists of the subset of three rows.</p>
-<div id="8a3a1bae" class="cell" data-execution_count="7">
+<div id="1b06f983" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>food_sub <span class="op">=</span> (</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    food</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
@@ -859,7 +860,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that we do not get to see the output of the operation above. Python does not print out the result because we saved it as a new variable. To see the result, we would need to write the name of the dataset as an extra row in the code block all on its own. This, for example, is how we printed the <code>food</code> dataset in the first question above. Do this below, recreating the <code>food_sub</code> and then including the name <code>food_sub</code> on its own line to see the data.</p>
-<div id="4e10f47e" class="cell" data-execution_count="8">
+<div id="c7b54b4d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>food_sub <span class="op">=</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    food</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>

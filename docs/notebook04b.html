@@ -453,10 +453,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="66c91b3a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="90b22472" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fb9e81c7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="2e1dcbfb" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="86feafae" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="0490b9cc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -475,7 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>The Criterion Films dataset effecively has multiple tables inside of it. However, these are stored inside a single larger table keyed on the movie. The language, genre, director, writer, and country are stored with one or more values pushed together with a vertical pipe. Using the text from the notes, we can convert this into data with a unit of observation about any of these columns. And, what’s nice about this is we get a join with the movie-data for free: all of those columns already exist.</p>
 <p>To get a sense of what this looks like, create a version of the data with one row for each film and language pair. You should see that the number of rows increases from the original dataset.</p>
-<div id="640cfdad" class="cell" data-execution_count="5">
+<div id="3b1e858a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -762,7 +762,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the exploded language data, count the number of films in each language and create a histogram of these counts for languages with counts less than 50. Use a bin width of 5.</p>
-<div id="1027b947" class="cell" data-execution_count="6">
+<div id="6f1a41c0" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -784,7 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the exploded language data, compute the average IMDB rating and the number of films for each language. Create a scatter plot with the count on the x-axis and the average rating on the y-axis.</p>
-<div id="7b0ff4c6" class="cell" data-execution_count="7">
+<div id="6fda13a7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -811,7 +811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Filter to only these languages: English, French, Japanese, Italian, and German. Create a boxplot showing the distribution of runtimes for films in each of these languages.</p>
-<div id="bfd9f065" class="cell" data-execution_count="8">
+<div id="77019cfe" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -834,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, we are going to compute the number of films from each country, sorting from the most to the least and taking the top 10 countries. We will count a country anytime it is listed as at least one of the countries a film was produced in. Save the dataset as <code>top_countries</code> and then make sure to still print it out on the last line. Do any of the responses surprise you?</p>
-<div id="4f504fba" class="cell" data-execution_count="9">
+<div id="b5649063" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>top_countries <span class="op">=</span> (</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -848,7 +848,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, count the combinations of decade and country, keeping only those countries that are in the <code>top_countries</code> dataset. Use a semi-join for the filtering and sort the final results by count, but keep all of the rows. You do not need to save the output.</p>
-<div id="f9972e04" class="cell" data-execution_count="10">
+<div id="e4651d15" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -915,28 +915,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"Germany"</td>
-<td>1940</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"United Kingdom"</td>
+<td>"France"</td>
 <td>1920</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>"Italy"</td>
 <td>1990</td>
 <td>1</td>
 </tr>
+<tr class="odd">
+<td>"Germany"</td>
+<td>1920</td>
+<td>1</td>
+</tr>
 <tr class="even">
-<td>"Sweden"</td>
-<td>2010</td>
+<td>"Germany"</td>
+<td>1940</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"France"</td>
-<td>1920</td>
+<td>"Sweden"</td>
+<td>2010</td>
 <td>1</td>
 </tr>
 </tbody>
@@ -945,7 +945,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, add to what you have above a pivot that puts the countries in the columns of the dataset. Use the method <code>.fill_null(0)</code> afterwards to fill in the missing values (these are combinations that never occur). The final table is a way of seeing how the number of films from each country in the collection changes by decade.</p>
-<div id="c57bb6d8" class="cell" data-execution_count="11">
+<div id="52f8ec26" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -1150,7 +1150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Let’s do one more analysis with two columns split apart. This creates a dataset with all combinations of the two categories. Note that we have to do two different calls to <code>.explode</code>. Start by expanding the director and writer columns.</p>
-<div id="d9c0b3b3" class="cell" data-execution_count="12">
+<div id="711725c5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -1439,7 +1439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, determine which films have at least one directory equal to at least one of its writers. Then, compute the average of films over each decade and sort by decade. Be careful about the unit of observation here!</p>
-<div id="d2403a8a" class="cell" data-execution_count="13">
+<div id="fc9f2ba8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -1531,7 +1531,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Finish by turning the plot into a visualization with decade on the x-axis, proportion of the y-axis, using a line geometry. Make the x-axis have breaks every decade and the y-axis limits go from 0 to 1 to make the scale of the plot easier to comprehend.</p>
-<div id="8f9ed2fb" class="cell" data-execution_count="14">
+<div id="fc56e525" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>

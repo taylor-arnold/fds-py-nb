@@ -450,10 +450,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="41d8857e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="41e1b546" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="01ba0a2c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="2fbf12f3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -464,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4f3ef77a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="9af760b6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/countries.csv"</span>).drop(c.lang)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will continue practicing data manipulation techniques using a dataset of countries. The <code>country</code> dataset contains information about various countries including their geographic coordinates (latitude and longitude), life expectancy, happiness scores, population, GDP per capita, and the region of the world they belong to.</p>
 <p>Start by finding the country with the highest life expectancy. Your result should show just that one row.</p>
-<div id="e863e09d" class="cell" data-execution_count="5">
+<div id="9f26fa08" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.lexp, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, select all countries that are located in both the Northern Hemisphere (latitude greater than 0) and the Eastern Hemisphere (longitude greater than 0).</p>
-<div id="fb494626" class="cell" data-execution_count="6">
+<div id="e79a539f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also combine into a single filter using `&amp;`</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    country</span>
@@ -779,7 +779,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Next, select all countries that are located in either the Northern Hemisphere (latitude greater than 0) or the Eastern Hemisphere (longitude greater than 0). This should return more countries than the previous question.</p>
-<div id="0c0fcc40" class="cell" data-execution_count="7">
+<div id="e31670de" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((c.lat <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">|</span> (c.lon <span class="op">&gt;</span> <span class="dv">0</span>))</span>
@@ -1011,7 +1011,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select only the countries that are in Africa.</p>
-<div id="b250c80b" class="cell" data-execution_count="8">
+<div id="bf554aab" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.region <span class="op">==</span> <span class="st">"Africa"</span>)</span>
@@ -1243,7 +1243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, select countries that are in either Africa or Europe. Note: Do this without using the <code>|</code> (or) operator.</p>
-<div id="539a7305" class="cell" data-execution_count="9">
+<div id="ea4118e6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.region.is_in([<span class="st">"Africa"</span>, <span class="st">"Europe"</span>]))</span>
@@ -1475,7 +1475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the happiest country in each region. That is, for each region, return only the country with the highest happiness score.</p>
-<div id="4ffbbd63" class="cell" data-execution_count="10">
+<div id="1203a833" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.happy, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -1528,20 +1528,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Europe"</td>
-<td>"FIN"</td>
-<td>"Finland"</td>
-<td>"Northern Europe"</td>
-<td>5.623</td>
-<td>82.84</td>
-<td>65.0</td>
-<td>27.0</td>
-<td>0.948</td>
-<td>57574</td>
-<td>27.7</td>
-<td>76.99</td>
-<td>156.4</td>
-<td>99.44798</td>
+<td>"Asia"</td>
+<td>"KWT"</td>
+<td>"Kuwait"</td>
+<td>"Western Asia"</td>
+<td>5.026</td>
+<td>82.62</td>
+<td>29.166667</td>
+<td>47.6</td>
+<td>0.852</td>
+<td>46572</td>
+<td>null</td>
+<td>71.3</td>
+<td>135.2</td>
+<td>100.0</td>
 </tr>
 <tr class="even">
 <td>"Oceania"</td>
@@ -1592,20 +1592,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>92.10514</td>
 </tr>
 <tr class="odd">
-<td>"Asia"</td>
-<td>"KWT"</td>
-<td>"Kuwait"</td>
-<td>"Western Asia"</td>
-<td>5.026</td>
-<td>82.62</td>
-<td>29.166667</td>
-<td>47.6</td>
-<td>0.852</td>
-<td>46572</td>
-<td>null</td>
-<td>71.3</td>
-<td>135.2</td>
-<td>100.0</td>
+<td>"Europe"</td>
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Northern Europe"</td>
+<td>5.623</td>
+<td>82.84</td>
+<td>65.0</td>
+<td>27.0</td>
+<td>0.948</td>
+<td>57574</td>
+<td>27.7</td>
+<td>76.99</td>
+<td>156.4</td>
+<td>99.44798</td>
 </tr>
 </tbody>
 </table>
@@ -1613,7 +1613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The population column in our dataset is given in millions. Create a new column that contains the raw population (i.e., the actual number of people rather than millions of people).</p>
-<div id="0a78ba16" class="cell" data-execution_count="11">
+<div id="cd9426da" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python allows, optionally, to use underscores in a number</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "as visual separators for digit grouping purposes" (PEP 515)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># these do not affect the subsequent code but make it much</span></span>
@@ -1864,7 +1864,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The GDP per capita of the United States (in the dataset) is 78_389. Compute the absolute distance using <code>.abs</code> of each country’s GDP to this value and sort the dataset by the distance.</p>
-<div id="40f5a013" class="cell" data-execution_count="12">
+<div id="b531c3e5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2112,7 +2112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the country in each region that has the closest GDP per capita to the United States. Note: You will probably want to first copy your answer above and make changes rather than starting from scratch.</p>
-<div id="28b007b2" class="cell" data-execution_count="13">
+<div id="30aac070" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2170,23 +2170,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Americas"</td>
-<td>"USA"</td>
-<td>"United States of America"</td>
-<td>"Northern America"</td>
-<td>347.276</td>
-<td>79.83</td>
-<td>39.828175</td>
-<td>-98.5795</td>
-<td>0.938</td>
-<td>78389</td>
-<td>47.7</td>
-<td>65.21</td>
-<td>91.7</td>
-<td>99.72235</td>
-<td>0</td>
-</tr>
-<tr class="even">
 <td>"Europe"</td>
 <td>"DNK"</td>
 <td>"Denmark"</td>
@@ -2202,23 +2185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>115.7</td>
 <td>99.59723</td>
 <td>1052</td>
-</tr>
-<tr class="odd">
-<td>"Oceania"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>"Australia and New Zealand"</td>
-<td>26.974</td>
-<td>83.79</td>
-<td>-25.0</td>
-<td>133.0</td>
-<td>0.958</td>
-<td>61943</td>
-<td>32.4</td>
-<td>70.25</td>
-<td>101.6</td>
-<td>99.99923</td>
-<td>16446</td>
 </tr>
 <tr class="even">
 <td>"Africa"</td>
@@ -2238,6 +2204,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>49462</td>
 </tr>
 <tr class="odd">
+<td>"Oceania"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>"Australia and New Zealand"</td>
+<td>26.974</td>
+<td>83.79</td>
+<td>-25.0</td>
+<td>133.0</td>
+<td>0.958</td>
+<td>61943</td>
+<td>32.4</td>
+<td>70.25</td>
+<td>101.6</td>
+<td>99.99923</td>
+<td>16446</td>
+</tr>
+<tr class="even">
 <td>"Asia"</td>
 <td>"ARE"</td>
 <td>"United Arab Emirates"</td>
@@ -2254,13 +2237,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>99.10363</td>
 <td>5729</td>
 </tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"USA"</td>
+<td>"United States of America"</td>
+<td>"Northern America"</td>
+<td>347.276</td>
+<td>79.83</td>
+<td>39.828175</td>
+<td>-98.5795</td>
+<td>0.938</td>
+<td>78389</td>
+<td>47.7</td>
+<td>65.21</td>
+<td>91.7</td>
+<td>99.72235</td>
+<td>0</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
 <p>The United States is, of course, the closest to itself in “Americas”. Finally, modify the previous code to remove the United States from the data so that we can see what other country it is closest to in its own region. Note: When we say “modify” in these notes, that means to copy and then modify; don’t change the original code itself.</p>
-<div id="53fa4147" class="cell" data-execution_count="14">
+<div id="336de562" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    country</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.iso <span class="op">!=</span> <span class="st">"USA"</span>)</span>
@@ -2319,21 +2319,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Europe"</td>
-<td>"DNK"</td>
-<td>"Denmark"</td>
-<td>"Northern Europe"</td>
-<td>6.003</td>
-<td>82.02</td>
+<td>"Africa"</td>
+<td>"MUS"</td>
+<td>"Mauritius"</td>
+<td>"Eastern Africa"</td>
+<td>1.268</td>
+<td>76.35</td>
+<td>-20.2</td>
+<td>57.5</td>
+<td>0.806</td>
+<td>28927</td>
+<td>36.8</td>
+<td>57.59</td>
+<td>92.8</td>
+<td>95.45876</td>
+<td>49462</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"CAN"</td>
+<td>"Canada"</td>
+<td>"Northern America"</td>
+<td>40.127</td>
+<td>83.15</td>
 <td>56.0</td>
-<td>10.0</td>
-<td>0.962</td>
-<td>77337</td>
-<td>27.7</td>
-<td>75.04</td>
-<td>115.7</td>
-<td>99.59723</td>
-<td>1052</td>
+<td>-109.0</td>
+<td>0.939</td>
+<td>58422</td>
+<td>33.3</td>
+<td>68.41</td>
+<td>75.5</td>
+<td>98.92568</td>
+<td>19967</td>
+</tr>
+<tr class="odd">
+<td>"Asia"</td>
+<td>"ARE"</td>
+<td>"United Arab Emirates"</td>
+<td>"Western Asia"</td>
+<td>11.346</td>
+<td>74.94</td>
+<td>24.4</td>
+<td>54.3</td>
+<td>0.94</td>
+<td>72660</td>
+<td>26.0</td>
+<td>67.28</td>
+<td>157.5</td>
+<td>99.10363</td>
+<td>5729</td>
 </tr>
 <tr class="even">
 <td>"Oceania"</td>
@@ -2353,55 +2387,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>16446</td>
 </tr>
 <tr class="odd">
-<td>"Americas"</td>
-<td>"CAN"</td>
-<td>"Canada"</td>
-<td>"Northern America"</td>
-<td>40.127</td>
-<td>83.15</td>
+<td>"Europe"</td>
+<td>"DNK"</td>
+<td>"Denmark"</td>
+<td>"Northern Europe"</td>
+<td>6.003</td>
+<td>82.02</td>
 <td>56.0</td>
-<td>-109.0</td>
-<td>0.939</td>
-<td>58422</td>
-<td>33.3</td>
-<td>68.41</td>
-<td>75.5</td>
-<td>98.92568</td>
-<td>19967</td>
-</tr>
-<tr class="even">
-<td>"Africa"</td>
-<td>"MUS"</td>
-<td>"Mauritius"</td>
-<td>"Eastern Africa"</td>
-<td>1.268</td>
-<td>76.35</td>
-<td>-20.2</td>
-<td>57.5</td>
-<td>0.806</td>
-<td>28927</td>
-<td>36.8</td>
-<td>57.59</td>
-<td>92.8</td>
-<td>95.45876</td>
-<td>49462</td>
-</tr>
-<tr class="odd">
-<td>"Asia"</td>
-<td>"ARE"</td>
-<td>"United Arab Emirates"</td>
-<td>"Western Asia"</td>
-<td>11.346</td>
-<td>74.94</td>
-<td>24.4</td>
-<td>54.3</td>
-<td>0.94</td>
-<td>72660</td>
-<td>26.0</td>
-<td>67.28</td>
-<td>157.5</td>
-<td>99.10363</td>
-<td>5729</td>
+<td>10.0</td>
+<td>0.962</td>
+<td>77337</td>
+<td>27.7</td>
+<td>75.04</td>
+<td>115.7</td>
+<td>99.59723</td>
+<td>1052</td>
 </tr>
 </tbody>
 </table>
