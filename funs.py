@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 import polars as pl
-
+from plotnine import geom_text
 
 __all__ = [
     "DSNetwork",
@@ -23,7 +23,8 @@ __all__ = [
     "print_rows",
     "dot_product",
     "breaks_width",
-    "Path"
+    "Path",
+    "geom_text_repel"
 ]
 
 
@@ -67,6 +68,87 @@ class breaks_width:
             else float
         )
         return np.arange(start, end, self.width, dtype=dtype)
+
+
+class geom_text_repel(geom_text):
+    DEFAULT_AES = geom_text.DEFAULT_AES.copy()
+    REQUIRED_AES = geom_text.REQUIRED_AES
+    DEFAULT_PARAMS = geom_text.DEFAULT_PARAMS.copy()
+    DEFAULT_PARAMS.update({
+        'padding': 0.25,
+        'box_scale': 1.0,
+        'adjust_text': {'arrowprops': {'arrowstyle': '-'}},
+    })
+
+    def draw_panel(self, data, panel_params, coord, ax, **params):
+        padding = self.params.get('padding', 0.25)
+        box_scale = self.params.get('box_scale', 1.0)
+        
+        # Check if adjustText is available
+        try:
+            import adjustText
+            has_adjust_text = True
+        except ImportError:
+            has_adjust_text = False
+        
+        data = data.copy().reset_index(drop=True)
+        
+        x_range = panel_params.x.range
+        y_range = panel_params.y.range
+        x_scale = x_range[1] - x_range[0]
+        y_scale = y_range[1] - y_range[0]
+        
+        # If adjustText isn't available, disable it and add a default nudge
+        if not has_adjust_text:
+            params['adjust_text'] = None
+            if self.params.get('nudge_y') is None and params.get('nudge_y') is None:
+                data['y'] = data['y'] + 0.05 * y_scale
+        
+        fig = ax.get_figure()
+        bbox = ax.get_window_extent(fig.canvas.get_renderer())
+        ax_width_px = bbox.width
+        ax_height_px = bbox.height
+        
+        data_per_px_x = x_scale / ax_width_px
+        data_per_px_y = y_scale / ax_height_px
+        
+        dpi = fig.dpi
+        
+        def get_text_size_in_data_units(row):
+            fontsize = row['size']
+            char_width_px = fontsize * (dpi / 72) * 0.6
+            char_height_px = fontsize * (dpi / 72)
+            
+            label_str = str(row['label']) if row['label'] is not None else ''
+            width_px = len(label_str) * char_width_px
+            height_px = char_height_px
+            
+            return (width_px * data_per_px_x * box_scale, 
+                    height_px * data_per_px_y * box_scale)
+        
+        def labels_overlap(i, j):
+            row_i, row_j = data.loc[i], data.loc[j]
+            xi, yi = row_i['x'], row_i['y']
+            xj, yj = row_j['x'], row_j['y']
+            
+            wi, hi = get_text_size_in_data_units(row_i)
+            wj, hj = get_text_size_in_data_units(row_j)
+            
+            pad_x = (wi + wj) / 2 * padding
+            pad_y = (hi + hj) / 2 * padding
+            
+            dx, dy = abs(xi - xj), abs(yi - yj)
+            
+            return (dx < (wi + wj) / 2 + pad_x) and (dy < (hi + hj) / 2 + pad_y)
+        
+        keep_indices = []
+        for i in range(len(data)):
+            if not any(labels_overlap(i, j) for j in keep_indices):
+                keep_indices.append(i)
+        
+        data_filtered = data.loc[keep_indices]
+        
+        return super().draw_panel(data_filtered, panel_params, coord, ax, **params)
 
 
 # network data

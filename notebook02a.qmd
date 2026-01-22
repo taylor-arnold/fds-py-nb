@@ -96,40 +96,30 @@ And now, in the next block of code grab just one row of the data that has the sm
 )
 ```
 
-Now, select just those rows where the amount of iron is more than 3mg.
+Now, select just those rows where the amount of iron is more than 1mg.
 
 ```{python}
 (
     food
-    .filter(c.iron > 3)
+    .filter(c.iron > 1)
 )
 ```
 
-Now, instead, select those rows where the amount of iron is more than *or equal to* 3mg.
+Now, instead, select those rows where the amount of iron is more than *or equal to* 1mg.
 
 ```{python}
 (
     food
-    .filter(c.iron >= 3)
+    .filter(c.iron >= 1)
 )
 ```
 
-Select those rows where the food group is "fruit". 
+Select those rows where the food group is "fruit" and the iron is greater than 1. Do this with two different calls to `.filter`.
 
 ```{python}
 (
     food
-    .filter(c.iron == 5)
-    .filter(c.food_group == "fruit")
-)
-```
-
-Select those rows where the food group is "fruit" and the iron is great than 3. Do this with two different calls to `.filter`.
-
-```{python}
-(
-    food
-    .filter(c.iron == 5)
+    .filter(c.iron > 1)
     .filter(c.food_group == "fruit")
 )
 ```
@@ -139,7 +129,7 @@ Repeat the previous question with a single `.filter` by using the `&` symbol.
 ```{python}
 (
     food
-    .filter((c.iron == 5) & (c.food_group == "fruit"))
+    .filter((c.iron > 1) & (c.food_group == "fruit"))
 )
 ```
 
