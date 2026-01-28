@@ -110,7 +110,7 @@ The `people` table contains information about cast and crew, including a predict
     .group_by(c.genre)
     .agg(
         avg_female = (c.gender == "female").mean(),
-        count = pl.count()
+        count = pl.len()
     )
     .sort(c.avg_female)
     .pipe(print_rows)
@@ -129,7 +129,7 @@ Let's find the most common dominant poster color for each genre. Start with the 
     .filter(c.percentage > 5)
     .join(genre, on=[c.year, c.title])
     .group_by(c.genre, c.color)
-    .agg(count = pl.count())
+    .agg(count = pl.len())
     .sort(c.count, descending=True)
     .group_by(c.genre)
     .head(1)
