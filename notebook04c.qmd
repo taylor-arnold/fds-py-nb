@@ -142,7 +142,7 @@ Count the number of flights for each carrier and join this to the airline table 
     rva
     .group_by(c.carrier)
     .agg(count = pl.len())
-    .join(airline, on="carrier")
+    .join(airline, on=c.carrier)
     .pipe(ggplot, aes("reorder(name, count)", "count"))
     + geom_col()
     + coord_flip()
@@ -156,7 +156,7 @@ Count the number of flights to each destination and join this to the airport tab
     rva
     .group_by(c.dest)
     .agg(count = pl.len())
-    .join(airport, left_on="dest", right_on="faa")
+    .join(airport, left_on=c.dest, right_on=c.faa)
     .pipe(ggplot, aes("lon", "lat"))
     + geom_point(aes(size="count"))
     + scale_size_area()

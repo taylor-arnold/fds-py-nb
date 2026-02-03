@@ -95,7 +95,7 @@ Using the joined data, compute the average poster brightness and average poster 
     )
     .pipe(ggplot, aes("poster_brightness_mean", "poster_saturation"))
     + geom_point()
-    + geom_text(aes(label="genre"), nudge_y=2)
+    + geom_text_repel(aes(label="genre"))
 )
 ```
 
