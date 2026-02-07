@@ -13,3 +13,83 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+
+
+
+
+```{python}
+us_pop = pl.read_csv("data/us_city_population.csv").drop_nulls()
+us_pop
+```
+
+
+```{python}
+(
+    us_pop
+    .pipe(ggplot, aes("lon", "lat"))
+    + geom_point()
+)
+```
+
+```{python}
+us_pop = DSGeo.from_latlon(us_pop)
+us_pop
+```
+
+```{python}
+DSGeo.plot(us_pop, crs=5069)
+```
+
+
+```{python}
+DSGeo.explore(us_pop, tooltip=[c.city])
+```
+
+
+```{python}
+DSGeo.explore(us_pop, tooltip=[c.city], column=c.population)
+```
+
+```{python}
+state_geo = DSGeo.read_file(ub + "data/acs_state.geojson")
+```
+
+
+```{python}
+DSGeo.plot(us_pop, crs=6875)
+```
+
+```{python}
+DSGeo.plot(state_geo, crs=6875)
+```
+
+
+```{python}
+df1 = DSGeo.add_area(state_geo, crs=5069)
+```
+
+
+```{python}
+df2 = DSGeo.add_area(state_geo, crs=6875)
+```
+
+```{python}
+(
+    df1
+    .join(df2, on="abb")
+    .pipe(ggplot, aes("area", "area_right"))
+    + geom_point()
+    + geom_text_repel(aes(label="abb"))
+    + geom_abline()
+)
+```
+
+
+```{python}
+country_geo = DSGeo.read_file("data/countries_polygons.geojson")
+country_geo
+```
+
+```{python}
+DSGeo.explore(country_geo)
+```
