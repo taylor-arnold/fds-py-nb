@@ -1524,7 +1524,10 @@ def _gpd_to_pl(gdf, geometry_col="geometry"):
         gdf = gdf.to_crs(DEFAULT_CRS)
 
     pdf = gdf.copy()
-    pdf[geometry_col] = gdf.geometry.to_wkb()
+    try:
+        pdf[geometry_col] = gdf.geometry.to_wkb()
+    except UserWarning:
+        pass
     pl_df = pl.from_pandas(pdf).with_columns(pl.col(geometry_col).cast(pl.Binary))
 
     other_cols = [c for c in pl_df.columns if c != geometry_col]
