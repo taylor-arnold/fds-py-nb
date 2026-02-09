@@ -173,8 +173,9 @@ DSGeo.explore(country_geo, tooltip=[c.name])
 Now, pick a country, and use the following code to find its region in the country dataset.
 
 ```{python}
+#| tags: [noclear]
 (
-    country.filter(c.full_name == "Japan")
+    country.filter(c.iso == "JPN")
 )
 ```
 
