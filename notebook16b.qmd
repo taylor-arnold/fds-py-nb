@@ -17,9 +17,12 @@ ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/
 
 ```{python}
 #| tags: [noclear]
+country = pl.read_csv("data/countries.csv")
 country_geo = DSGeo.read_file("data/countries_polygons.geojson")
 country_geo
 ```
+
+
 
 ```{python}
 city = pl.read_csv("data/countries_cities.csv")
@@ -27,62 +30,72 @@ city = DSGeo.from_latlon(city)
 city
 ```
 
-```{python}
-from shapely.geometry import box
-import geopandas as gpd
-from funs import _pl_to_gpd, _gpd_to_pl
 
-world_bbox = box(-180, -90, 180, 90)
-world_box_gdf = gpd.GeoDataFrame(geometry=[world_bbox], crs='EPSG:4326')
-gdf = _pl_to_gpd(country_geo, geometry_col="geometry")
-gdf['geometry'] = gdf['geometry'].make_valid()
-
-
-world_landmass = gdf.dissolve()
-
-# Extract the actual geometry object from the landmass
-landmass_geom = world_landmass.geometry.iloc[0]
-world_box_geom = world_box_gdf.geometry.iloc[0]
-
-# Do the difference operation on the geometries directly
-ocean_geom = world_box_geom.difference(landmass_geom)
-
-# Wrap it in a GeoDataFrame
-oceans_gdf = gpd.GeoDataFrame(geometry=[ocean_geom], crs=world_box_gdf.crs)
-
-#world_landmass = _gpd_to_pl(world_landmass)
-#oceans_gdf = _gpd_to_pl(oceans_gdf)
-#DSGeo.explore(oceans_gdf)
-```
 
 ```{python}
-city_gpd = _pl_to_gpd(city, geometry_col="geometry")
-
-world_landmass_proj = world_landmass.to_crs('ESRI:54009')
-cities_proj = city_gpd.to_crs('ESRI:54009')
-
-cities_proj['distance_to_coast'] = cities_proj.geometry.distance(world_landmass_proj.geometry.iloc[0])
-cities_proj
+ocean = DSGeo.read_file("data/oceans.geojson")
 ```
 
 
-###
+
+```{python}
+DSGeo.explore(ocean)
+```
 
 
 ```{python}
-city_country = (
-    DSGeo.sjoin(city, country_geo)
-    .select(c.city, c.lat, c.lon, c.iso, c.pop)
+geo_dist = (
+    DSGeo.sjoin_nearest(city, ocean, distance_col="dist", crs="ESRI:54009")
+    .with_columns(dist = c.dist / 1000)
+    .sort(c.dist)
 )
-city_country
+```
+
+
+
+```{python}
+(
+    geo_dist
+    .pipe(DSGeo.sjoin, country_geo)
+    .join(country, on=c.iso)
+    .with_columns(is_coastal = (c.dist < 25))
+    .group_by(c.subregion)
+    .agg(
+        prop_coastal = (c.pop * c.is_coastal).sum() / c.pop.sum()
+    )
+    .sort(c.prop_coastal)
+)
 ```
 
 ```{python}
-city_largest = (
-    city_country
-    .sort(c.pop, descending=True)
+(
+    geo_dist
+    .pipe(DSGeo.sjoin, country_geo)
+    .join(country, on=c.iso)
+    .with_columns(is_coastal = (c.dist < 25).cast(pl.Int64))
+    .pipe(DSGeo.explore, column=c.is_coastal)
+)
+```
+
+
+```{python}
+country_meta = (
+    geo_dist
+    .pipe(DSGeo.sjoin, country_geo)
+    .join(country, on=c.iso)
+    .with_columns(is_coastal = (c.dist < 25))
     .group_by(c.iso)
-    .agg(city = c.city.first())
+    .agg(
+        prop_coastal = (c.pop * c.is_coastal).sum() / c.pop.sum()
+    )
+    .sort(c.prop_coastal)
+)
+
+(
+    country_geo
+    .join(country_meta, on=c.iso)
+    .pipe(DSGeo.explore, column=c.prop_coastal, tooltip=[c.iso])
 )
 ```
+
 

@@ -1,5 +1,12 @@
 ## Notebook16a
 
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -11,9 +18,19 @@ from polars import col as c
 theme_set(theme_minimal())
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
-
-country = pl.read_csv("data/countries.csv")
 ```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+country = pl.read_csv(ub + "data/countries.csv")
+```
+
 
 **Research Question(s)**: How much does the choice of a map projection effect the measurement of polygon areas? How distorted are the perceptions that people may have if their mental image of the world comes from popular map projections such as Web Mercator (used in most online interactive maps, including ours)?
 
@@ -143,7 +160,7 @@ Next, we will move to a dataset of countries. Use the code below to read the Geo
 
 ```{python}
 #| tags: [noclear]
-country_geo = DSGeo.read_file("data/countries_polygons.geojson")
+country_geo = DSGeo.read_file(ub + "data/countries_polygons.geojson")
 country_geo
 ```
 
