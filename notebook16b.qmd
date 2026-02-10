@@ -2,6 +2,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
@@ -13,89 +19,169 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
+ub = ""
+```
+
+**Research Question(s)**: How many people live in 
+
 ### Datasets
+
+We will start by loading all of the datasets we need for today. There are a few different ones, so let's make sure we understand what is available for the analysis. We have the spatial country dataset:
 
 ```{python}
 #| tags: [noclear]
-country = pl.read_csv("data/countries.csv")
 country_geo = DSGeo.read_file("data/countries_polygons.geojson")
 country_geo
 ```
 
-
+We also have all of the metadata about the countries. To simplify the following analyses, we will join these into the geographic data here once so that we can use it in all of the following code. I will select just those columns that we will need in our analysis
 
 ```{python}
-city = pl.read_csv("data/countries_cities.csv")
+#| tags: [noclear]
+country_geo = (
+    country_geo
+    .join(pl.read_csv(ub + "data/countries.csv"), on=c.iso)
+    .select(c.iso, c.name, c.region, c.subregion, c.geometry)
+)
+```
+
+We will also use a dataset of world cities. This has both the longitude and latitude of the city as well as the population.
+
+```{python}
+#| tags: [noclear]
+city = pl.read_csv(ub + "data/countries_cities.csv")
 city = DSGeo.from_latlon(city)
 city
 ```
 
-
+Finally, we have a dataset of the oceans (it's a single row with all of the main bodies of water as a single massive polygon).
 
 ```{python}
+#| tags: [noclear]
 ocean = DSGeo.read_file("data/oceans.geojson")
+ocean
 ```
 
+### Analysis
 
+Let's start with a little bit of data augmentation. In the code below, do a spatial join of the city data with the country data to associate each city with a country. **After** you verify that the code does what you want, overwrite the city dataset with the output. Make sure that you join `city` into `country_geo` to preserve the city geometry.
 
 ```{python}
-DSGeo.explore(ocean)
+city = (
+    city
+    .pipe(DSGeo.sjoin, country_geo)
+)
+city
 ```
 
+Now, do a spatial join of city with the ocean data with `DSGeo.sjoin_nearest`. Use the World Equidistant Cylindrical projection (4087) and add the option `distance_col="dist"` to create a column with the distances added to the output. When you are happy with the output, save the result as a DataFrame called `city_dist`. Note: This may take a minute or two to finish.
 
 ```{python}
-geo_dist = (
-    DSGeo.sjoin_nearest(city, ocean, distance_col="dist", crs="ESRI:54009")
-    .with_columns(dist = c.dist / 1000)
+city_dist = (
+    city
+    .pipe(DSGeo.sjoin_nearest, ocean, distance_col="dist", crs=4087)
+)
+city_dist
+```
+
+Now, we want to understand what cities are close to the ocean. The distance column you just created is in meters. Let's create a new column in the dataset called `is_coastal` defined as whether a city is within 25000 meters of the ocean. Convert the column into an integer (look at Chapter 21 to see any example of casting), sort in increasing order by distance to the ocean, and save the data by overwriting `city_dist`.
+
+```{python}
+city_dist = (
+    city_dist
+    .with_columns(
+        is_coastal = (c.dist < 25000).cast(pl.Int64)
+    )
     .sort(c.dist)
 )
 ```
 
-
+Let's try now to understand the distribution of people in cities on the ocean verse not on the ocean. Grouping by region, compute the percentage of cities that are coastal and the precentage of people that are in coastal cities (these are not the same). Sort by the percentage of people. Take several moments to understand the results. Are there differences across the world?
 
 ```{python}
 (
-    geo_dist
-    .pipe(DSGeo.sjoin, country_geo)
-    .join(country, on=c.iso)
-    .with_columns(is_coastal = (c.dist < 25))
-    .group_by(c.subregion)
+    city_dist
+    .group_by(c.region)
     .agg(
-        prop_coastal = (c.pop * c.is_coastal).sum() / c.pop.sum()
+        percentage_city = c.is_coastal.mean() * 100,
+        percentage_people = (c.is_coastal * c.pop).sum() / c.pop.sum() * 100
     )
-    .sort(c.prop_coastal)
+    .sort(c.percentage_people)
 )
 ```
+
+Now, recompute the same thing you did above, but now by individual country. Note what countries have a zero percentage and which have a very high percentage.
+
 
 ```{python}
 (
-    geo_dist
-    .pipe(DSGeo.sjoin, country_geo)
-    .join(country, on=c.iso)
-    .with_columns(is_coastal = (c.dist < 25).cast(pl.Int64))
-    .pipe(DSGeo.explore, column=c.is_coastal)
+    city_dist
+    .group_by(c.iso, c.name)
+    .agg(
+        percentage_city = c.is_coastal.mean() * 100,
+        percentage_people = (c.is_coastal * c.pop).sum() / c.pop.sum() * 100
+    )
+    .sort(c.percentage_people)
 )
 ```
 
+You should see that there are some large differences across the world. Let's try to draw a choropleth map of this. Create a choropleth map with the `percentage_people` metric you created above (recreate it) using an interactive plot. Note that this may take two or more steps to get the map looking correct.
 
 ```{python}
-country_meta = (
-    geo_dist
-    .pipe(DSGeo.sjoin, country_geo)
-    .join(country, on=c.iso)
-    .with_columns(is_coastal = (c.dist < 25))
+country_metrics = (
+    city_dist
     .group_by(c.iso)
     .agg(
-        prop_coastal = (c.pop * c.is_coastal).sum() / c.pop.sum()
+        percentage_city = c.is_coastal.mean() * 100,
+        percentage_people = (c.is_coastal * c.pop).sum() / c.pop.sum() * 100
     )
-    .sort(c.prop_coastal)
+    .sort(c.percentage_people)
 )
-
 (
     country_geo
-    .join(country_meta, on=c.iso)
-    .pipe(DSGeo.explore, column=c.prop_coastal, tooltip=[c.iso])
+    .join(country_metrics, on=c.iso)
+    .pipe(DSGeo.explore, column=c.percentage_people, tooltip=[c.iso])
 )
 ```
 
+Okay, that's interesting, but some countries are land-locked and others are islands. So, it's not surprising that Chad has no cities on the ocean and Malta has a lot. What is more interesting is how biased cities are to being on the ocean verse being placed an random.
 
+Below, I have used the buffer function to increase the size of the ocean by 25km in all directions.
+
+```{python}
+#| tags: [noclear]
+ocean_buffered = (
+    ocean
+    .pipe(DSGeo.buffer, distance=25000, crs=4087)
+
+)
+```
+
+Use an interactive exploration of the newly created dataset to see what this looks like and how it corresponds to the buffer within each country.
+
+```{python}
+DSGeo.explore(ocean_buffered)
+```
+
+Now, use the function `DSGeo.difference` and apply it to the country geometry data and the buffered ocean data. Pass this to the exploration function to understand what the output looks like.
+
+```{python}
+(
+    country_geo
+    .pipe(DSGeo.difference, ocean_buffered)
+    .pipe(DSGeo.explore)
+)
+```
+
+Now it's up to you! You have all of the building blocks. Come up with a way to measure what countries have the greatest and lowest bias towards beind on the water, based on area of the country that is within 25km of the ocean. Try to visualize the output in an interesting way. I suggest filter out countries with no coastline and possibly filter out countries that have almost all of their territory within an ocean.
+
+```{python}
+
+```
