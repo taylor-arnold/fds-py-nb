@@ -29,7 +29,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 ub = ""
 ```
 
-**Research Question(s)**: How many people live in 
+**Research Question(s)**: How many people live close to the ocean? How "biased" are countries to having their large cities on the ocean? Are there differences across regions or cultures?
 
 ### Datasets
 
@@ -37,7 +37,7 @@ We will start by loading all of the datasets we need for today. There are a few 
 
 ```{python}
 #| tags: [noclear]
-country_geo = DSGeo.read_file("data/countries_polygons.geojson")
+country_geo = DSGeo.read_file(ub + "data/countries_polygons.geojson")
 country_geo
 ```
 
@@ -65,7 +65,7 @@ Finally, we have a dataset of the oceans (it's a single row with all of the main
 
 ```{python}
 #| tags: [noclear]
-ocean = DSGeo.read_file("data/oceans.geojson")
+ocean = DSGeo.read_file(ub + "data/oceans.geojson")
 ocean
 ```
 
