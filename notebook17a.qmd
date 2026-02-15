@@ -31,13 +31,13 @@ covid
 
 ```{python}
 #| tags: [noclear]
-prov = DSGeo.read_file("data/it_province.geojson")
+prov = DSGeo.read_file(ub + "data/it_province.geojson")
 prov
 ```
 
 ```{python}
 #| tags: [noclear]
-it_city = pl.read_csv("data/it_cities.csv")
+it_city = pl.read_csv(ub + "data/it_cities.csv")
 it_city = DSGeo.from_latlon(it_city)
 it_city
 ```
@@ -163,6 +163,7 @@ prov_pop.sort(c.population)
 9. In this last question, I have written the code for you. Your job is just to run it and evaluate what's going on. This is code to create a moving visualization of data, something that I don't generally find particularly useful in most cases, but has a lot of utility when working with spatio-temporal data (data that has both spatial and temporal dimensions) because there is no way to show both fully on the same static plot, even with the aid of color. If for some reason you have trouble getting this to run, please look at the solutions for an itneractive version.
 
 ```{python}
+#| tags: [noclear]
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
@@ -188,6 +189,6 @@ def update(week_num):
     DSGeo.plot(frame_data, color_by=c.rate, ax=ax, show=False, vmin=0, vmax=3000)
     ax.set_title(f"COVID-19 Rates - Week {week_num}, 2020")
 
-ani = FuncAnimation(fig, update, frames=list(range(1,52)), interval=0.5)
+ani = FuncAnimation(fig, update, frames=list(range(1,52)), interval=50)
 HTML(ani.to_jshtml())
 ```
