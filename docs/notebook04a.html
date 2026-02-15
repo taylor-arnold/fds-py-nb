@@ -433,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook04a</h1>
+<div class="quarto-title-block"><div><h1 class="title">Notebook04a</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -453,10 +453,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="fd75643a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="39cf5e70" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="83599a1c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="f9c92d56" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -466,25 +471,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="0ab4c6d6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="93d30105" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_color.csv"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>genre <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_genre.csv"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_people.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will learn how to combine information from multiple datasets using joins. The movie data has been split into several tables: <code>movie</code> contains basic information about each film (runtime, rating, etc.), <code>genre</code> lists the genres associated with each film, <code>color</code> contains information about the colors in each movie’s poster, and <code>people</code> has information about the cast and crew. Because some movie titles are duplicated across different years, we will always join by both year and title to ensure we match records correctly.</p>
 <p>Create a new column in the <code>movie</code> dataset that computes the ratio of the number of ratings to the runtime. This gives a rough sense of audience engagement per minute of film.</p>
-<div id="25e1dfd3" class="cell" data-execution_count="5">
+<div id="b9acc1c6" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        ratings_per_minute <span class="op">=</span> c.rating_count <span class="op">/</span> c.runtime</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
@@ -699,12 +711,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the <code>movie</code> dataset, create a scatter plot with runtime on the x-axis and the IMDB rating on the y-axis.</p>
-<div id="a1b33133" class="cell" data-execution_count="6">
+<div id="eee4678b" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"runtime"</span>, <span class="st">"rating"</span>))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/plotnine/layer.py:374: PlotnineWarning: geom_point : Removed 387 rows containing missing values.</code></pre>
 </div>
@@ -717,12 +732,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Create a boxplot showing the distribution of poster brightness for each MPA rating category.</p>
-<div id="5e435db7" class="cell" data-execution_count="7">
+<div id="5a5dfac9" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"mpa"</span>, <span class="st">"poster_brightness"</span>))</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/plotnine/layer.py:293: PlotnineWarning: stat_boxplot : Removed 461 rows containing non-finite values.</code></pre>
 </div>
@@ -735,11 +753,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now let’s start working with multiple tables. Join the <code>genre</code> table to the <code>movie</code> table. Remember to join on both year and title since some titles appear in multiple years.</p>
-<div id="1979524e" class="cell" data-execution_count="8">
+<div id="2d12dba4" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    genre</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .join(movie, on<span class="op">=</span>[c.year, c.title])</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
 .dataframe > thead > tr,
@@ -954,7 +975,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the joined data, compute the average poster brightness and average poster saturation for each genre. Then create a scatter plot of these averages with genre labels next to each point.</p>
-<div id="4b5b3307" class="cell" data-execution_count="9">
+<div id="2396e4b2" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    genre</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .join(movie, on<span class="op">=</span>[c.year, c.title])</span>
@@ -967,6 +990,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text_repel(aes(label<span class="op">=</span><span class="st">"genre"</span>))</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <figure class="figure">
@@ -976,7 +1000,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>people</code> table contains information about cast and crew, including a predicted gender and a confidence score for that prediction. Filter the people data to only starring roles where the gender confidence is greater than 0.8. Then join this to the genre table. For each genre, compute the proportion of these roles that are female and the total count. Sort by the proportion of female roles and display all results.</p>
-<div id="614f5504" class="cell" data-execution_count="10">
+<div id="be0b4018" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    people</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.role <span class="op">==</span> <span class="st">"starring"</span>)</span>
@@ -990,6 +1016,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    .sort(c.avg_female)</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div><style>
 .dataframe > thead > tr,
@@ -1124,7 +1151,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Let’s find the most common dominant poster color for each genre. Start with the <code>color</code> table and filter to just the hue colors. For each movie, find the color with the highest percentage (this is the dominant hue). Keep only movies where the dominant hue makes up more than 5% of the poster. Join this to the genre table, then count how often each color appears as the dominant hue within each genre. Finally, find the single most common dominant color for each genre.</p>
-<div id="50dbfb60" class="cell" data-execution_count="11">
+<div id="996abe1a" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    color</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.color_type <span class="op">==</span> <span class="st">"hue"</span>)</span>
@@ -1140,6 +1169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div><style>
 .dataframe > thead > tr,
@@ -1164,54 +1194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Comedy"</td>
+<td>"red"</td>
+<td>1018</td>
+</tr>
+<tr class="even">
 <td>"Musical"</td>
 <td>"red"</td>
 <td>30</td>
-</tr>
-<tr class="even">
-<td>"Family"</td>
-<td>"red"</td>
-<td>159</td>
-</tr>
-<tr class="odd">
-<td>"History"</td>
-<td>"red"</td>
-<td>39</td>
-</tr>
-<tr class="even">
-<td>"Music"</td>
-<td>"red"</td>
-<td>70</td>
-</tr>
-<tr class="odd">
-<td>"Crime"</td>
-<td>"red"</td>
-<td>432</td>
-</tr>
-<tr class="even">
-<td>"Short"</td>
-<td>"red"</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"Adventure"</td>
-<td>"blue"</td>
-<td>374</td>
-</tr>
-<tr class="even">
-<td>"Romance"</td>
-<td>"red"</td>
-<td>436</td>
-</tr>
-<tr class="odd">
-<td>"Sport"</td>
-<td>"red"</td>
-<td>69</td>
-</tr>
-<tr class="even">
-<td>"Biography"</td>
-<td>"red"</td>
-<td>84</td>
 </tr>
 <tr class="odd">
 <td>"Thriller"</td>
@@ -1219,9 +1209,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>294</td>
 </tr>
 <tr class="even">
+<td>"Fantasy"</td>
+<td>"red"</td>
+<td>148</td>
+</tr>
+<tr class="odd">
+<td>"Western"</td>
+<td>"red"</td>
+<td>30</td>
+</tr>
+<tr class="even">
 <td>"Drama"</td>
 <td>"red"</td>
 <td>971</td>
+</tr>
+<tr class="odd">
+<td>"War"</td>
+<td>"red"</td>
+<td>28</td>
+</tr>
+<tr class="even">
+<td>"Sport"</td>
+<td>"red"</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td>"Music"</td>
+<td>"red"</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td>"Biography"</td>
+<td>"red"</td>
+<td>84</td>
+</tr>
+<tr class="odd">
+<td>"History"</td>
+<td>"red"</td>
+<td>39</td>
+</tr>
+<tr class="even">
+<td>"Crime"</td>
+<td>"red"</td>
+<td>432</td>
+</tr>
+<tr class="odd">
+<td>"Sci-Fi"</td>
+<td>"blue"</td>
+<td>155</td>
+</tr>
+<tr class="even">
+<td>"Family"</td>
+<td>"red"</td>
+<td>159</td>
+</tr>
+<tr class="odd">
+<td>"Short"</td>
+<td>"red"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"Adventure"</td>
+<td>"blue"</td>
+<td>374</td>
+</tr>
+<tr class="odd">
+<td>"Mystery"</td>
+<td>"red"</td>
+<td>139</td>
+</tr>
+<tr class="even">
+<td>"Action"</td>
+<td>"red"</td>
+<td>535</td>
 </tr>
 <tr class="odd">
 <td>"Animation"</td>
@@ -1234,39 +1294,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>160</td>
 </tr>
 <tr class="odd">
-<td>"War"</td>
+<td>"Romance"</td>
 <td>"red"</td>
-<td>28</td>
-</tr>
-<tr class="even">
-<td>"Mystery"</td>
-<td>"red"</td>
-<td>139</td>
-</tr>
-<tr class="odd">
-<td>"Action"</td>
-<td>"red"</td>
-<td>535</td>
-</tr>
-<tr class="even">
-<td>"Sci-Fi"</td>
-<td>"blue"</td>
-<td>155</td>
-</tr>
-<tr class="odd">
-<td>"Fantasy"</td>
-<td>"red"</td>
-<td>148</td>
-</tr>
-<tr class="even">
-<td>"Comedy"</td>
-<td>"red"</td>
-<td>1018</td>
-</tr>
-<tr class="odd">
-<td>"Western"</td>
-<td>"red"</td>
-<td>30</td>
+<td>436</td>
 </tr>
 </tbody>
 </table>
@@ -1274,11 +1304,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, let’s see an example of how to use an semi-join. First, create a table called <code>movie_long</code> that consists of all films that have a run time greater than 2.5 hours (150 minutes).</p>
-<div id="703eb7f3" class="cell" data-execution_count="12">
+<div id="be1d0ded" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>movie_long <span class="op">=</span> movie.<span class="bu">filter</span>(c.runtime <span class="op">&gt;</span> <span class="fl">2.5</span> <span class="op">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Then, draw a plot showing the number films that have a long runtime by their genre using a semi-join. Try to make the plot look nice. Note: Yes, you could do this in other ways in this simple case. Semi- and anti-joins are very useful as our analyses become more complex.</p>
-<div id="a4e6cc7a" class="cell" data-execution_count="13">
+<div id="67205381" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    genre</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .join(movie_long, on<span class="op">=</span>[c.year, c.title], how<span class="op">=</span><span class="st">"semi"</span>)</span>
@@ -1288,6 +1323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_col()</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> coord_flip()</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 <figure class="figure">
@@ -1297,7 +1333,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We’ve mentioned that some titles are repeated in the data and therefore we always need to group by title and year. Find all of the titles that are repeated. Print all of the rows of the result and order by the counts.</p>
-<div id="b71cd799" class="cell" data-execution_count="14">
+<div id="6f725537" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    movie</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.title)</span>
@@ -1306,6 +1344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div><style>
 .dataframe > thead > tr,
@@ -1328,343 +1367,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"The Adventures of Pinocchio"</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>"Hercules"</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>"Robin Hood"</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>"Halloween"</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>"Shaft"</td>
-<td>3</td>
-</tr>
-<tr class="even">
 <td>"Godzilla"</td>
 <td>3</td>
 </tr>
-<tr class="odd">
-<td>"Pet Sematary"</td>
-<td>2</td>
-</tr>
 <tr class="even">
-<td>"The Karate Kid"</td>
-<td>2</td>
+<td>"Shaft"</td>
+<td>3</td>
 </tr>
 <tr class="odd">
-<td>"Pete's Dragon"</td>
-<td>2</td>
+<td>"Halloween"</td>
+<td>3</td>
 </tr>
 <tr class="even">
-<td>"Les Misérables"</td>
-<td>2</td>
+<td>"The Adventures of Pinocchio"</td>
+<td>3</td>
 </tr>
 <tr class="odd">
-<td>"Mother Knows Best"</td>
-<td>2</td>
+<td>"Hercules"</td>
+<td>3</td>
 </tr>
 <tr class="even">
-<td>"The Three Musketeers"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Threesome"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Emma"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Nobody's Fool"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Player"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Guardian"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Island"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Stepford Wives"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Mother"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Billy Boy"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Omen"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Life"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Gone in 60 Seconds"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Mummy"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Neighbors"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Friday the 13th"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Hot Pursuit"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Rookie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"A Christmas Carol"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Hairspray"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Clash of the Titans"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Annie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Fantastic Four"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Getaway"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Total Recall"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Carrie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Halloween II"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Grease 2"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Going in Style"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Twilight"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Charlotte's Web"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Heartbreak Kid"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Dawn of the Dead"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Gladiator"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Project X"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Amityville Horror"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Ghostbusters"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Footloose"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"When a Stranger Calls"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Avengers"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Grease"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Scream"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Circle"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Poltergeist"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Last House on the Left"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Hellboy"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Bad Boys"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Crazies"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"No Escape"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Hills Have Eyes"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"A Nightmare on Elm Street"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Green Hornet"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Beauty and the Beast"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Animal"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"RoboCop"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Arthur"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Jungle Book"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Addams Family"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Teenage Mutant Ninja Turtles"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Freaky Friday"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Aladdin"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Child's Play"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Strangers"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Crossroads"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Night School"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Intruder"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Death Wish"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Sahara"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Island of Dr. Moreau"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"King Kong"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Lion King"</td>
-<td>2</td>
+<td>"Robin Hood"</td>
+<td>3</td>
 </tr>
 <tr class="odd">
 <td>"Vacation"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Serenity"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Fog"</td>
 <td>2</td>
 </tr>
 <tr class="even">
@@ -1672,19 +1399,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>2</td>
 </tr>
 <tr class="odd">
-<td>"A Star Is Born"</td>
+<td>"Billy Boy"</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td>"The Kid"</td>
+<td>"Mother Knows Best"</td>
 <td>2</td>
 </tr>
 <tr class="odd">
-<td>"My Little Pony: The Movie"</td>
+<td>"Scream"</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td>"Red Dawn"</td>
+<td>"The Animal"</td>
 <td>2</td>
 </tr>
 <tr class="odd">
@@ -1692,7 +1419,319 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>2</td>
 </tr>
 <tr class="even">
+<td>"Ghostbusters"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Mummy"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Rookie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Grease 2"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Emma"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Bad Boys"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Sahara"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Three Musketeers"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"A Star Is Born"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Red Dawn"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Neighbors"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"A Christmas Carol"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Grease"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Serenity"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Island"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Gladiator"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Poltergeist"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Jungle Book"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Player"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Life"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Hellboy"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Gone in 60 Seconds"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"No Escape"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Karate Kid"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"King Kong"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Circle"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Halloween II"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Stepford Wives"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Arthur"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Pet Sematary"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Omen"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Night School"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Amityville Horror"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Project X"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Beauty and the Beast"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Fog"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Avengers"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Hills Have Eyes"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Guardian"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Footloose"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Carrie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"RoboCop"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Hot Pursuit"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Mother"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Child's Play"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Charlotte's Web"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Teenage Mutant Ninja Turtles"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Heartbreak Kid"</td>
+<td>2</td>
+</tr>
+<tr class="even">
 <td>"Sparkle"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Last House on the Left"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Lion King"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Nobody's Fool"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Threesome"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Addams Family"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Island of Dr. Moreau"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Green Hornet"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Annie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Intruder"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Clash of the Titans"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Crossroads"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Strangers"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Pete's Dragon"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Going in Style"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Les Misérables"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"My Little Pony: The Movie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Fantastic Four"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Friday the 13th"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"When a Stranger Calls"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Kid"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Total Recall"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Getaway"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"A Nightmare on Elm Street"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Death Wish"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Crazies"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Freaky Friday"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Aladdin"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Hairspray"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Dawn of the Dead"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Twilight"</td>
 <td>2</td>
 </tr>
 </tbody>
@@ -1701,6 +1740,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 
+
+<!-- -->
 
 </section>
 
@@ -1774,6 +1815,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -2103,7 +2195,180 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook04a</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Run all of the following before starting the notebook.</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [remove]</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years.csv"</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_color.csv"</span>)</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>genre <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_genre.csv"</span>)</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years_people.csv"</span>)</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Questions</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>In this notebook, we will learn how to combine information from multiple datasets using joins. The movie data has been split into several tables: <span class="in">`movie`</span> contains basic information about each film (runtime, rating, etc.), <span class="in">`genre`</span> lists the genres associated with each film, <span class="in">`color`</span> contains information about the colors in each movie's poster, and <span class="in">`people`</span> has information about the cast and crew. Because some movie titles are duplicated across different years, we will always join by both year and title to ensure we match records correctly.</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>Create a new column in the <span class="in">`movie`</span> dataset that computes the ratio of the number of ratings to the runtime. This gives a rough sense of audience engagement per minute of film.</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>    movie</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>        ratings_per_minute <span class="op">=</span> c.rating_count <span class="op">/</span> c.runtime</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>Using the <span class="in">`movie`</span> dataset, create a scatter plot with runtime on the x-axis and the IMDB rating on the y-axis.</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>    movie</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"runtime"</span>, <span class="st">"rating"</span>))</span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>Create a boxplot showing the distribution of poster brightness for each MPA rating category.</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>    movie</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"mpa"</span>, <span class="st">"poster_brightness"</span>))</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>Now let's start working with multiple tables. Join the <span class="in">`genre`</span> table to the <span class="in">`movie`</span> table. Remember to join on both year and title since some titles appear in multiple years.</span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>    genre</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>    .join(movie, on<span class="op">=</span>[c.year, c.title])</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>Using the joined data, compute the average poster brightness and average poster saturation for each genre. Then create a scatter plot of these averages with genre labels next to each point.</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>    genre</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>    .join(movie, on<span class="op">=</span>[c.year, c.title])</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>    .group_by(c.genre)</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>        poster_brightness_mean <span class="op">=</span> c.poster_brightness.mean(),</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>        poster_saturation <span class="op">=</span> c.poster_saturation.mean()</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"poster_brightness_mean"</span>, <span class="st">"poster_saturation"</span>))</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text_repel(aes(label<span class="op">=</span><span class="st">"genre"</span>))</span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a>The <span class="in">`people`</span> table contains information about cast and crew, including a predicted gender and a confidence score for that prediction. Filter the people data to only starring roles where the gender confidence is greater than 0.8. Then join this to the genre table. For each genre, compute the proportion of these roles that are female and the total count. Sort by the proportion of female roles and display all results.</span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>    people</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.role <span class="op">==</span> <span class="st">"starring"</span>)</span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.gender_conf <span class="op">&gt;</span> <span class="fl">0.8</span>)</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a>    .join(genre, on<span class="op">=</span>[c.year, c.title])</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a>    .group_by(c.genre)</span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>        avg_female <span class="op">=</span> (c.gender <span class="op">==</span> <span class="st">"female"</span>).mean(),</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a>    .sort(c.avg_female)</span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a>Let's find the most common dominant poster color for each genre. Start with the <span class="in">`color`</span> table and filter to just the hue colors. For each movie, find the color with the highest percentage (this is the dominant hue). Keep only movies where the dominant hue makes up more than 5% of the poster. Join this to the genre table, then count how often each color appears as the dominant hue within each genre. Finally, find the single most common dominant color for each genre.</span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a>    color</span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.color_type <span class="op">==</span> <span class="st">"hue"</span>)</span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a>    .sort(c.percentage, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a>    .group_by(c.year, c.title)</span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.percentage <span class="op">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a>    .join(genre, on<span class="op">=</span>[c.year, c.title])</span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a>    .group_by(c.genre, c.color)</span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a>    .group_by(c.genre)</span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a>Now, let's see an example of how to use an semi-join. First, create a table called <span class="in">`movie_long`</span> that consists of all films that have a run time greater than 2.5 hours (150 minutes).</span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a>movie_long <span class="op">=</span> movie.<span class="bu">filter</span>(c.runtime <span class="op">&gt;</span> <span class="fl">2.5</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>Then, draw a plot showing the number films that have a long runtime by their genre using a semi-join. Try to make the plot look nice. Note: Yes, you could do this in other ways in this simple case. Semi- and anti-joins are very useful as our analyses become more complex.</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a>    genre</span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a>    .join(movie_long, on<span class="op">=</span>[c.year, c.title], how<span class="op">=</span><span class="st">"semi"</span>)</span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a>    .group_by(c.genre)</span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"reorder(genre, count)"</span>, <span class="st">"count"</span>))</span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_col()</span>
+<span id="cb16-182"><a href="#cb16-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> coord_flip()</span>
+<span id="cb16-183"><a href="#cb16-183" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a>We've mentioned that some titles are repeated in the data and therefore we always need to group by title and year. Find all of the titles that are repeated. Print all of the rows of the result and order by the counts. </span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a>    movie</span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a>    .group_by(c.title)</span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {

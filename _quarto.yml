@@ -105,6 +105,9 @@ website:
 
 format:
   html:
+    code-fold: true
+    code-summary: "View code"
+    code-tools: true
     theme:
       - cosmo
       - custom.scss

@@ -1512,6 +1512,7 @@ DEFAULT_CRS = "EPSG:4326"
 
 def _gpd_to_pl(gdf, geometry_col="geometry"):
     import geopandas as gpd
+    import warnings
 
     if not isinstance(gdf, gpd.GeoDataFrame):
         raise TypeError("gdf must be a GeoDataFrame")
@@ -1524,10 +1525,9 @@ def _gpd_to_pl(gdf, geometry_col="geometry"):
         gdf = gdf.to_crs(DEFAULT_CRS)
 
     pdf = gdf.copy()
-    try:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
         pdf[geometry_col] = gdf.geometry.to_wkb()
-    except UserWarning:
-        pass
     pl_df = pl.from_pandas(pdf).with_columns(pl.col(geometry_col).cast(pl.Binary))
 
     other_cols = [c for c in pl_df.columns if c != geometry_col]
@@ -1663,6 +1663,8 @@ class DSGeo:
         polygon_edgecolor="black",
         polygon_linewidth=0.4,
         polygon_facecolor="lightgray",
+        vmin=None,
+        vmax=None,
         show=True,
         ax=None,
     ):
@@ -1695,6 +1697,10 @@ class DSGeo:
             plot_kwargs["legend"] = legend
             if cmap is not None:
                 plot_kwargs["cmap"] = cmap
+            if vmin is not None:
+                plot_kwargs["vmin"] = vmin
+            if vmax is not None:
+                plot_kwargs["vmax"] = vmax
 
         if is_polygon:
             if "column" not in plot_kwargs:

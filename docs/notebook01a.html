@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook01a</h1>
+<div class="quarto-title-block"><div><h1 class="title">Notebook01a</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -449,10 +449,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. We won’t actually be using the data this time, but I’ve included it here just to demonstrate the normal process.</p>
 <p>Run each of these cells in order by clicking on the triangular play button to the left when hoving on the cell. Wait for each to finish before continuing.</p>
-<div id="1ac1b747" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="b61a097f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="45cae851" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="a315337f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -462,38 +467,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="455bd72a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="767e4d29" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
-<p>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding <strong>Answer</strong>: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let’s try this out! In the block below, use Python to compute the sum of two plus two.</p>
-<div id="257739e3" class="cell" data-execution_count="5">
+<ol type="1">
+<li>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding <strong>Answer</strong>: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let’s try this out! In the block below, use Python to compute the sum of two plus two.</li>
+</ol>
+<div id="68034a17" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>4</code></pre>
 </div>
 </div>
 <p>What is the sum?</p>
 <p><strong>Answer</strong>: Four, of course!</p>
-<p>As in the notes, create a variable called <code>my_fav_number</code> equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.</p>
-<div id="839cdc4c" class="cell" data-execution_count="6">
+<ol start="2" type="1">
+<li>As in the notes, create a variable called <code>my_fav_number</code> equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.</li>
+</ol>
+<div id="f3032c86" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the solutions often show possible answers rather than</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the only answer; also, there may be comments such as this</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that start with the # symbol and provide additional </span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># feedback on the answer</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>my_fav_number <span class="op">=</span> <span class="dv">8</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p>Now, use the function <code>np.log</code>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</p>
-<div id="9197c4c0" class="cell" data-execution_count="7">
+<ol start="3" type="1">
+<li>Now, use the function <code>np.log</code>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</li>
+</ol>
+<div id="a6676f66" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>np.float64(2.302585092994046)</code></pre>
 </div>
 </div>
-<p>If you are less mathematically-oriented, you might be worried that we are starting with a lot of mathematics? Don’t be! This is only because it’s the easiest thing to do before we have learned any of the data-specific functions that will come up in the next chapter. If you are very mathematically-oriented, you may be worried about by why the logarithm of 10 is not 1. The reason for this is the Python, like most programming languages but unlike most mathematical texts, uses the term log to indicate the natural logarithm (i.e., base e).</p>
+<p>If you are less mathematically-oriented, you might be worried that we are starting with a lot of mathematics. Don’t be! This is only because it’s the easiest thing to do before we have learned any of the data-specific functions that will come up in the next chapter. If you are very mathematically-oriented, you may be worried about by why the logarithm of 10 is not 1. The reason for this is the Python, like most programming languages but unlike most mathematical texts, uses the term log to indicate the natural logarithm (i.e., base e).</p>
 </section>
 <section id="colab-setup" class="level3">
 <h3 class="anchored" data-anchor-id="colab-setup">Colab Setup</h3>
@@ -513,6 +537,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you reopen the Notebook from your Google Drive, it will use your default language settings, which may be difficult to use if it is not in English. You can change this by selecting Help (always the last item in the menu) and “Show in English” (always the last item in the pull-down menu).</p>
 <p>Finally, it seems that Google has been giving free Colab Pro accounts to students and educators. If you get a pop-up about this, it is worth going through the steps. While Colab is free, you’ll get more powerful options for running code with the Pro version, which could be useful (but not necessary) in the later chapters.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -586,6 +612,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -915,7 +992,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook01a</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>This is our first Python notebook! The idea is just to have something to show (hopefully) how easy it is to get up and running in Python using Colab. Anyone can open this file and see the code. In order to run it, you'll need to be signed into a Google account.</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. We won't actually be using the data this time, but I've included it here just to demonstrate the normal process.</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Run each of these cells in order by clicking on the triangular play button to the left when hoving on the cell. Wait for each to finish before continuing. </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [remove]</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Questions</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding **Answer**: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let's try this out! In the block below, use Python to compute the sum of two plus two.</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>What is the sum?</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>**Answer**: Four, of course!</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>As in the notes, create a variable called <span class="in">`my_fav_number`</span> equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="co"># the solutions often show possible answers rather than</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="co"># the only answer; also, there may be comments such as this</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co"># that start with the # symbol and provide additional </span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="co"># feedback on the answer</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>my_fav_number <span class="op">=</span> <span class="dv">8</span>  </span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Now, use the function <span class="in">`np.log`</span>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">10</span>)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>If you are less mathematically-oriented, you might be worried that we are starting with a lot of mathematics. Don't be! This is only because it's the easiest thing to do before we have learned any of the data-specific functions that will come up in the next chapter. If you are very mathematically-oriented, you may be worried about by why the logarithm of 10 is not 1. The reason for this is the Python, like most programming languages but unlike most mathematical texts, uses the term log to indicate the natural logarithm (i.e., base e).</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Colab Setup</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>We have seen in the examples above that we can run Python code in Colab with no Colab-specific setup required. There are a few things that will be helpful to change in the default settings going forward. If you set these once from your Google account, they should persist without having the reset them each time. To start, click on Tools and Settings to open the settings box. Then:</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Under Editor change "Indentation width in spaces" to 4.</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Under Editor, unclick "Automatically close brackets..."</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Under Editor, under "Code Diagnostics" select "None"</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Under AI Assistance, click the "Hide generative AI features" and unclick everything else (very important!)</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>There are also two very important keyboard shortcuts to know:</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Run selected cell in place**: Cmd + Enter (macOS), Ctrl + Enter (Windows) </span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Run cell and move to next cell**: Shift + Enter (macOS and Windows)</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>A few other things are helpful to know about Colab. Under File, you can click on "Save a Copy in Drive". This will save your work in a special Colab folder within your Google Drive. Otherwise, you will loss all of your work when closing the window.</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>If you reopen the Notebook from your Google Drive, it will use your default language settings, which may be difficult to use if it is not in English. You can change this by selecting Help (always the last item in the menu) and "Show in English" (always the last item in the pull-down menu).</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>Finally, it seems that Google has been giving free Colab Pro accounts to students and educators. If you get a pop-up about this, it is worth going through the steps. While Colab is free, you'll get more powerful options for running code with the Pro version, which could be useful (but not necessary) in the later chapters.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

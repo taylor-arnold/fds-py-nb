@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook02c</h1>
+<div class="quarto-title-block"><div><h1 class="title">Notebook02c</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -450,10 +450,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="bd19b9c2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="7b888bbc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="5f18519a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="70e9f8ac" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -463,20 +468,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="36fd2a53" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="aa426734" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>).<span class="bu">filter</span>(<span class="op">~</span>c.rating_imdb.is_null())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will practice data manipulation using a dataset of films from the Criterion Collection. The <code>film</code> dataset contains information about each movie including its title, director, year of release, runtime, and IMDB rating.</p>
 <p>Start by sorting the films by their IMDB rating, with the lowest-rated films at the top.</p>
-<div id="e7adf495" class="cell" data-execution_count="5">
+<div id="c42075de" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
@@ -756,11 +768,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, sort the films by runtime with the longest films at the top.</p>
-<div id="c32bb519" class="cell" data-execution_count="6">
+<div id="d759e875" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.runtime_raw, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div><style>
 .dataframe > thead > tr,
@@ -1040,11 +1055,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select only the films that are less than 60 minutes long (i.e., short films).</p>
-<div id="a3b73ee1" class="cell" data-execution_count="7">
+<div id="072ff887" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.runtime_raw <span class="op">&lt;</span> <span class="dv">60</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div><style>
 .dataframe > thead > tr,
@@ -1324,11 +1342,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by Charles Chaplin.</p>
-<div id="c32ba840" class="cell" data-execution_count="8">
+<div id="389860a5" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director <span class="op">==</span> <span class="st">"Charles Chaplin"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
 .dataframe > thead > tr,
@@ -1548,11 +1569,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by either Charles Chaplin or Jean-Luc Godard.</p>
-<div id="9e18d13d" class="cell" data-execution_count="9">
+<div id="7f33bbf9" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director.is_in([<span class="st">"Charles Chaplin"</span>, <span class="st">"Jean-Luc Godard"</span>]))</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
 .dataframe > thead > tr,
@@ -1832,7 +1856,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the highest-rated film from each year. Sort the final result by year so it is easier to read.</p>
-<div id="dc3dcb55" class="cell" data-execution_count="10">
+<div id="c9757353" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -1840,6 +1866,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.year)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
 .dataframe > thead > tr,
@@ -2119,7 +2146,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director, compute the average IMDB rating of their films and the number of films they have in the collection.</p>
-<div id="950bf318" class="cell" data-execution_count="11">
+<div id="3de633f0" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
@@ -2128,6 +2157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div><style>
 .dataframe > thead > tr,
@@ -2152,59 +2182,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Vera Chytilová|Jaromil Jires|J…</td>
-<td>6.5</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Albert Brooks"</td>
-<td>7.025</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>"Yoshimitsu Banno|Ishirô Honda"</td>
-<td>6.1</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Henry King"</td>
+<td>"Michael Curtiz"</td>
 <td>7.7</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"Elio Petri"</td>
-<td>8.0</td>
-<td>1</td>
+<td>3</td>
 </tr>
 <tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Arturo Ripstein"</td>
-<td>7.2</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Alexander Korda"</td>
-<td>7.06</td>
+<td>"Luchino Visconti"</td>
+<td>7.58</td>
 <td>5</td>
 </tr>
 <tr class="odd">
-<td>"Bruce Robinson"</td>
-<td>7.15</td>
-<td>2</td>
+<td>"Stanley Kubrick"</td>
+<td>8.04</td>
+<td>5</td>
 </tr>
 <tr class="even">
-<td>"Dorothy Arzner|Roy Del Ruth"</td>
-<td>6.8</td>
+<td>"Agnieszka Holland"</td>
+<td>7.5</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"Takashi Nomura"</td>
-<td>7.4</td>
+<td>"Douglas Sirk"</td>
+<td>7.3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Stephen Roberts"</td>
+<td>7.1</td>
 <td>1</td>
+</tr>
+<tr class="even">
+<td>"Takashi Murakami"</td>
+<td>4.7</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"Tim Burton"</td>
+<td>7.1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"Bernhard Wicki"</td>
+<td>8.0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"Andrei Tarkovsky"</td>
+<td>7.95</td>
+<td>4</td>
 </tr>
 </tbody>
 </table>
@@ -2212,13 +2242,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We often want to group data by decade rather than individual years. To compute the decade from a year, we can use the expression <code>c.year // 10 * 10</code>. The <code>//</code> operator performs integer division (dividing and dropping the remainder), so for example <code>1987 // 10</code> gives <code>198</code>, and multiplying by 10 gives <code>1980</code>. Create a new column containing the decade each film was released in.</p>
-<div id="5623ccaf" class="cell" data-execution_count="12">
+<div id="89f5d4de" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span>  (c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div><style>
 .dataframe > thead > tr,
@@ -2511,7 +2544,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, count how many films in the collection were released in each decade.</p>
-<div id="895d1d4b" class="cell" data-execution_count="13">
+<div id="5656273f" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
@@ -2522,6 +2557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()   </span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div><style>
 .dataframe > thead > tr,
@@ -2544,48 +2580,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>1980</td>
-<td>171</td>
+<td>1930</td>
+<td>119</td>
 </tr>
 <tr class="even">
 <td>1940</td>
 <td>122</td>
 </tr>
 <tr class="odd">
-<td>2020</td>
-<td>47</td>
-</tr>
-<tr class="even">
-<td>1930</td>
-<td>119</td>
-</tr>
-<tr class="odd">
 <td>1950</td>
 <td>162</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>1920</td>
-<td>19</td>
-</tr>
-<tr class="even">
-<td>1970</td>
-<td>232</td>
-</tr>
-<tr class="odd">
-<td>2000</td>
-<td>86</td>
 </tr>
 <tr class="even">
 <td>1960</td>
 <td>303</td>
 </tr>
 <tr class="odd">
+<td>1970</td>
+<td>232</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>2000</td>
+<td>86</td>
+</tr>
+<tr class="even">
+<td>1980</td>
+<td>171</td>
+</tr>
+<tr class="odd">
 <td>1990</td>
 <td>154</td>
+</tr>
+<tr class="even">
+<td>1920</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>47</td>
 </tr>
 </tbody>
 </table>
@@ -2593,7 +2629,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the directors with more than 5 films in the collection, showing their average IMDB rating. Sort the results so the highest-rated directors appear at the top.</p>
-<div id="a38b2f43" class="cell" data-execution_count="14">
+<div id="1e51bada" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
@@ -2604,6 +2642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb_mean, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div><style>
 .dataframe > thead > tr,
@@ -2688,7 +2727,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director with more than 5 films in the collection, show their highest-rated film. Hint: If you sort by rating before grouping, the first title in each group will be that director’s highest-rated film.</p>
-<div id="edde9d89" class="cell" data-execution_count="15">
+<div id="7ba20241" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -2699,6 +2740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div><style>
 .dataframe > thead > tr,
@@ -2723,24 +2765,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Michael Powell|Emeric Pressbur…</td>
-<td>"The Red Shoes"</td>
-<td>7</td>
+<td>"Martin Scorsese"</td>
+<td>"The Last Waltz"</td>
+<td>8</td>
 </tr>
 <tr class="even">
-<td>"Jean-Luc Godard"</td>
-<td>"Vivre sa vie"</td>
-<td>11</td>
-</tr>
-<tr class="odd">
-<td>"David Lean"</td>
-<td>"Brief Encounter"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Yasujirô Ozu"</td>
-<td>"Late Spring"</td>
-<td>20</td>
+<td>"Ingmar Bergman"</td>
+<td>"Scenes from a Marriage"</td>
+<td>39</td>
 </tr>
 <tr class="odd">
 <td>"Louis Malle"</td>
@@ -2748,34 +2780,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>13</td>
 </tr>
 <tr class="even">
+<td>"Carl Theodor Dreyer"</td>
+<td>"Ordet"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Keisuke Kinoshita"</td>
+<td>"Twenty-Four Eyes"</td>
+<td>7</td>
+</tr>
+<tr class="even">
 <td>…</td>
 <td>…</td>
 <td>…</td>
+</tr>
+<tr class="odd">
+<td>"Jean Renoir"</td>
+<td>"The Rules of the Game"</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"David Lean"</td>
+<td>"Brief Encounter"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Chantal Akerman"</td>
+<td>"Jeanne Dielman, 23, quai du Co…</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Abbas Kiarostami"</td>
+<td>"Close-Up"</td>
+<td>26</td>
 </tr>
 <tr class="odd">
 <td>"David Lynch"</td>
 <td>"Mulholland Drive"</td>
 <td>6</td>
-</tr>
-<tr class="even">
-<td>"Jim Jarmusch"</td>
-<td>"Down by Law"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Charles Chaplin"</td>
-<td>"City Lights"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"Michelangelo Antonioni"</td>
-<td>"La Notte"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Samuel Fuller"</td>
-<td>"Pickup on South Street"</td>
-<td>7</td>
 </tr>
 </tbody>
 </table>
@@ -2783,7 +2825,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>By default, only the first few rows of a result are displayed. To see more rows, we can pipe the result through the <code>print_rows</code> function. Modify your previous answer to display all of the results.</p>
-<div id="a6c0539a" class="cell" data-execution_count="16">
+<div id="c2cb1a1e" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>View code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
@@ -2795,6 +2839,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div><style>
 .dataframe > thead > tr,
@@ -2819,23 +2864,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Jim Jarmusch"</td>
-<td>"Down by Law"</td>
-<td>6</td>
+<td>"Akira Kurosawa"</td>
+<td>"Seven Samurai"</td>
+<td>24</td>
 </tr>
 <tr class="even">
-<td>"Agnès Varda"</td>
-<td>"The Beaches of Agnès"</td>
-<td>17</td>
+<td>"Kenji Mizoguchi"</td>
+<td>"Sansho the Bailiff"</td>
+<td>9</td>
 </tr>
 <tr class="odd">
-<td>"Wong Kar-Wai"</td>
-<td>"In the Mood for Love"</td>
-<td>7</td>
+<td>"Aki Kaurismäki"</td>
+<td>"The Bohemian Life"</td>
+<td>9</td>
 </tr>
 <tr class="even">
-<td>"Marlon Riggs"</td>
-<td>"Ethnic Notions"</td>
+<td>"Masaki Kobayashi"</td>
+<td>"Harakiri"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Yasujirô Ozu"</td>
+<td>"Late Spring"</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>"Carl Theodor Dreyer"</td>
+<td>"Ordet"</td>
 <td>6</td>
 </tr>
 <tr class="odd">
@@ -2844,8 +2899,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>8</td>
 </tr>
 <tr class="even">
+<td>"David Lean"</td>
+<td>"Brief Encounter"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Michael Powell|Emeric Pressbur…</td>
+<td>"The Red Shoes"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Wes Anderson"</td>
+<td>"The Grand Budapest Hotel"</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>"Wong Kar-Wai"</td>
+<td>"In the Mood for Love"</td>
+<td>7</td>
+</tr>
+<tr class="even">
 <td>"Charles Chaplin"</td>
 <td>"City Lights"</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>"Richard Linklater"</td>
+<td>"Before Sunrise"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"François Truffaut"</td>
+<td>"The 400 Blows"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"John Cassavetes"</td>
+<td>"A Woman Under the Influence"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Chantal Akerman"</td>
+<td>"Jeanne Dielman, 23, quai du Co…</td>
 <td>8</td>
 </tr>
 <tr class="odd">
@@ -2854,24 +2949,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>39</td>
 </tr>
 <tr class="even">
-<td>"Richard Linklater"</td>
-<td>"Before Sunrise"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"David Lynch"</td>
-<td>"Mulholland Drive"</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>"Masaki Kobayashi"</td>
-<td>"Harakiri"</td>
+<td>"Alfred Hitchcock"</td>
+<td>"Rebecca"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"Wim Wenders"</td>
-<td>"Paris, Texas"</td>
-<td>12</td>
+<td>"Julien Duvivier"</td>
+<td>"Panique"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Abbas Kiarostami"</td>
+<td>"Close-Up"</td>
+<td>26</td>
+</tr>
+<tr class="odd">
+<td>"Rainer Werner Fassbinder"</td>
+<td>"Ali: Fear Eats the Soul"</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"Terry Gilliam"</td>
+<td>"Brazil"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Martin Scorsese"</td>
+<td>"The Last Waltz"</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Federico Fellini"</td>
+<td>"La Strada"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Mikio Naruse"</td>
+<td>"When a Woman Ascends the Stair…</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Louis Malle"</td>
+<td>"Au Revoir les Enfants"</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>"Agnès Varda"</td>
+<td>"The Beaches of Agnès"</td>
+<td>17</td>
+</tr>
+<tr class="even">
+<td>"Michelangelo Antonioni"</td>
+<td>"La Notte"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"David Cronenberg"</td>
+<td>"A History of Violence"</td>
+<td>7</td>
 </tr>
 <tr class="even">
 <td>"Kenji Misumi"</td>
@@ -2879,24 +3014,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>10</td>
 </tr>
 <tr class="odd">
-<td>"Roberto Rossellini"</td>
-<td>"Rome, Open City"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"Vittorio De Sica"</td>
-<td>"Bicycle Thieves"</td>
+<td>"Michael Haneke"</td>
+<td>"The Seventh Continent"</td>
 <td>6</td>
 </tr>
-<tr class="odd">
-<td>"Abbas Kiarostami"</td>
-<td>"Close-Up"</td>
-<td>26</td>
-</tr>
 <tr class="even">
-<td>"Michael Powell|Emeric Pressbur…</td>
-<td>"The Red Shoes"</td>
-<td>7</td>
+<td>"Nagisa Ôshima"</td>
+<td>"Death by Hanging"</td>
+<td>8</td>
 </tr>
 <tr class="odd">
 <td>"Robert Bresson"</td>
@@ -2904,8 +3029,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6</td>
 </tr>
 <tr class="even">
+<td>"Roberto Rossellini"</td>
+<td>"Rome, Open City"</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>"Jacques Demy"</td>
+<td>"The Umbrellas of Cherbourg"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Koreyoshi Kurahara"</td>
+<td>"Intimidation"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Wim Wenders"</td>
+<td>"Paris, Texas"</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>"Vittorio De Sica"</td>
+<td>"Bicycle Thieves"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
 <td>"Samuel Fuller"</td>
 <td>"Pickup on South Street"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Seijun Suzuki"</td>
+<td>"Youth of the Beast"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
@@ -2914,84 +3069,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>11</td>
 </tr>
 <tr class="even">
+<td>"Keisuke Kinoshita"</td>
+<td>"Twenty-Four Eyes"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
 <td>"Jean-Luc Godard"</td>
 <td>"Vivre sa vie"</td>
 <td>11</td>
-</tr>
-<tr class="odd">
-<td>"Terry Gilliam"</td>
-<td>"Brazil"</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>"Akira Kurosawa"</td>
-<td>"Seven Samurai"</td>
-<td>24</td>
-</tr>
-<tr class="odd">
-<td>"Wes Anderson"</td>
-<td>"The Grand Budapest Hotel"</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>"Michael Haneke"</td>
-<td>"The Seventh Continent"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Seijun Suzuki"</td>
-<td>"Youth of the Beast"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Mikio Naruse"</td>
-<td>"When a Woman Ascends the Stair…</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Kenji Mizoguchi"</td>
-<td>"Sansho the Bailiff"</td>
-<td>9</td>
-</tr>
-<tr class="even">
-<td>"Carl Theodor Dreyer"</td>
-<td>"Ordet"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Rainer Werner Fassbinder"</td>
-<td>"Ali: Fear Eats the Soul"</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>"Julien Duvivier"</td>
-<td>"Panique"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Chantal Akerman"</td>
-<td>"Jeanne Dielman, 23, quai du Co…</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"John Cassavetes"</td>
-<td>"A Woman Under the Influence"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Alfred Hitchcock"</td>
-<td>"Rebecca"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"David Cronenberg"</td>
-<td>"A History of Violence"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Aki Kaurismäki"</td>
-<td>"The Bohemian Life"</td>
-<td>9</td>
 </tr>
 <tr class="even">
 <td>"Pier Paolo Pasolini"</td>
@@ -2999,64 +3084,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>12</td>
 </tr>
 <tr class="odd">
-<td>"David Lean"</td>
-<td>"Brief Encounter"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Michelangelo Antonioni"</td>
-<td>"La Notte"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Martin Scorsese"</td>
-<td>"The Last Waltz"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"Keisuke Kinoshita"</td>
-<td>"Twenty-Four Eyes"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Koreyoshi Kurahara"</td>
-<td>"Intimidation"</td>
+<td>"Marlon Riggs"</td>
+<td>"Ethnic Notions"</td>
 <td>6</td>
 </tr>
 <tr class="even">
-<td>"Yasujirô Ozu"</td>
-<td>"Late Spring"</td>
-<td>20</td>
-</tr>
-<tr class="odd">
-<td>"Louis Malle"</td>
-<td>"Au Revoir les Enfants"</td>
-<td>13</td>
-</tr>
-<tr class="even">
-<td>"Jacques Demy"</td>
-<td>"The Umbrellas of Cherbourg"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Nagisa Ôshima"</td>
-<td>"Death by Hanging"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"François Truffaut"</td>
-<td>"The 400 Blows"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
 <td>"Jean Renoir"</td>
 <td>"The Rules of the Game"</td>
 <td>10</td>
 </tr>
+<tr class="odd">
+<td>"David Lynch"</td>
+<td>"Mulholland Drive"</td>
+<td>6</td>
+</tr>
 <tr class="even">
-<td>"Federico Fellini"</td>
-<td>"La Strada"</td>
-<td>7</td>
+<td>"Jim Jarmusch"</td>
+<td>"Down by Law"</td>
+<td>6</td>
 </tr>
 </tbody>
 </table>
@@ -3064,6 +3109,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 
+
+<!-- -->
 
 </section>
 
@@ -3137,6 +3184,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -3466,7 +3564,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook02c</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Run all of the following before starting the notebook.</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [remove]</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>).<span class="bu">filter</span>(<span class="op">~</span>c.rating_imdb.is_null())</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Questions</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>In this notebook, we will practice data manipulation using a dataset of films from the Criterion Collection. The <span class="in">`film`</span> dataset contains information about each movie including its title, director, year of release, runtime, and IMDB rating.</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>Start by sorting the films by their IMDB rating, with the lowest-rated films at the top.</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb)</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>Now, sort the films by runtime with the longest films at the top.</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>    .sort(c.runtime_raw, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>Select only the films that are less than 60 minutes long (i.e., short films).</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.runtime_raw <span class="op">&lt;</span> <span class="dv">60</span>)</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>Select all films directed by Charles Chaplin.</span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director <span class="op">==</span> <span class="st">"Charles Chaplin"</span>)</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>Select all films directed by either Charles Chaplin or Jean-Luc Godard.</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director.is_in([<span class="st">"Charles Chaplin"</span>, <span class="st">"Jean-Luc Godard"</span>]))</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>Find the highest-rated film from each year. Sort the final result by year so it is easier to read.</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>    .group_by(c.year)</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>    .sort(c.year)</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a>For each director, compute the average IMDB rating of their films and the number of films they have in the collection.</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>        rating_imdb_mean <span class="op">=</span> c.rating_imdb.mean(),</span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>We often want to group data by decade rather than individual years. To compute the decade from a year, we can use the expression <span class="in">`c.year // 10 * 10`</span>. The <span class="in">`//`</span> operator performs integer division (dividing and dropping the remainder), so for example <span class="in">`1987 // 10`</span> gives <span class="in">`198`</span>, and multiplying by 10 gives <span class="in">`1980`</span>. Create a new column containing the decade each film was released in.</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span>  (c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a>Now, count how many films in the collection were released in each decade.</span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span>  (c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a>    .group_by(c.decade)</span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()   </span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>Find the directors with more than 5 films in the collection, showing their average IMDB rating. Sort the results so the highest-rated directors appear at the top.</span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a>        rating_imdb_mean <span class="op">=</span> c.rating_imdb.mean(),</span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb_mean, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a>For each director with more than 5 films in the collection, show their highest-rated film. Hint: If you sort by rating before grouping, the first title in each group will be that director's highest-rated film.</span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> c.title.first(),</span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a>By default, only the first few rows of a result are displayed. To see more rows, we can pipe the result through the <span class="in">`print_rows`</span> function. Modify your previous answer to display all of the results.</span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a>    film</span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
+<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> c.title.first(),</span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
