@@ -2,6 +2,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
