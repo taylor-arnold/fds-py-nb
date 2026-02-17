@@ -2,6 +2,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
@@ -13,3 +19,195 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+### Reading the Data
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+scotus = pl.read_csv(ub + "data/scotus_case.csv")
+scotus = scotus.rename({"citation": "doc_id"})
+scotus
+```
+
+
+```{python}
+#| tags: [noclear]
+citation = pl.read_csv(ub + "data/scotus_citation.csv")
+citation = citation.rename({"citing_case": "doc_id", "cited_case": "doc_id2"})
+citation
+```
+
+**Research Questions**: How are Supreme Court cases related to one another through citations? Can we use network analysis to identify the most influential cases on a particular legal topic, and do cases naturally cluster into distinct sub-communities?
+
+### Questions
+
+1. We are going to start by working with a single legal issue area. Filter the `scotus` dataset to include only cases where the `issue` column equals `20140` ( sex discrimination in employment (cf. sex discrimination) acy). Save the result as `scotus_sml`.
+
+```{python}
+scotus_sml = scotus.filter(c.issue == 20140)
+```
+
+2. Now we need to build the set of citations that connect cases *within* this issue area. We want to keep only those rows from the `citation` dataset where **both** the citing case and the cited case appear in our filtered set `scotus_sml`. To do this, use two sequential semi joins. The first semi join keeps only rows of `citation` whose `doc_id` appears in `scotus_sml`. The second semi join further filters to keep only rows whose `doc_id2` also appears in `scotus_sml` (you will need to use `left_on` and `right_on` here since the column names differ). Save the result as `citation_sml`.
+
+```{python}
+citation_sml = (
+    citation
+    .join(scotus_sml, on=c.doc_id, how="semi")
+    .join(scotus_sml, left_on=c.doc_id2, right_on=c.doc_id, how="semi")
+)
+citation_sml
+```
+
+3. Pass `citation_sml` to `DSNetwork.process` with `directed=False` to create an undirected graph. This returns three objects: `node`, `edge`, and `G`. The `node` table contains one row per case along with x/y coordinates for plotting and several centrality metrics (such as `eigen`, `between`, `close`, and `cluster`). The `edge` table contains the segments needed to draw lines between connected nodes. Sort the `node` table by the `eigen` column so that the most central nodes are drawn on top.
+
+```{python}
+node, edge, G = DSNetwork.process(citation_sml, directed=False)
+node = node.sort(c.eigen)
+node
+```
+
+4. Create a network plot of the citation graph. Use `geom_segment` to draw the edges (with `alpha=0.1` so overlapping edges don't obscure the picture) and `geom_point` for the nodes. Color the nodes by their `eigen` (eigenvector centrality) value. Use `theme_void()` to remove axes and gridlines. Eigenvector centrality measures how connected a node is to *other well-connected nodes*, so cases with high eigenvector centrality are cited by many other important cases.
+
+```{python}
+(
+    node
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="eigen"))
+    + theme_void()
+)
+```
+
+5. Recreate the same network plot, but now color the nodes by `between` (betweenness centrality). Betweenness centrality measures how often a node lies on the shortest path between other pairs of nodes. A case with high betweenness serves as a critical bridge connecting different parts of the citation network. Compare this plot to the previous one. Are the same nodes highlighted, or do different cases stand out?
+
+```{python}
+(
+    node
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="between"))
+    + theme_void()
+)
+```
+
+6. Recreate the network plot once more, this time coloring by `close` (closeness centrality). Closeness centrality measures how near a node is, on average, to all other nodes in the network. A case with high closeness can "reach" the rest of the network in fewer steps. How does this compare to the two previous centrality measures? Do the same cases tend to rank highly across all three, or do some cases stand out on one metric but not the others?
+
+```{python}
+(
+    node
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="close"))
+    + theme_void()
+)
+```
+
+7. Now create the network plot colored by `cluster`. The cluster column assigns each node to a community detected by a graph clustering algorithm. This groups cases that are more densely connected to each other than to the rest of the network. Do the clusters correspond to visually distinct groups in the plot? Think about what it might mean for Supreme Court cases on the same legal issue to fall into different clusters. They may represent distinct sub-topics or different eras of legal reasoning.
+
+```{python}
+(
+    node
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="cluster"))
+    + theme_void()
+)
+```
+
+8. For each cluster, find the case with the highest eigenvector centrality. To do this, group the `node` table by `cluster`, then sort within each group by `eigen` in descending order, and take the first row from each group. Join the result with `scotus` (matching `id` to `doc_id`) so you can see the case names. These are the most influential cases within each cluster. Look up one or two to see what legal questions they addressed.
+
+```{python}
+(
+    node
+    .sort(c.eigen, descending=True)
+    .group_by(c.cluster)
+    .first()
+    .join(scotus, left_on=c.id, right_on=c.doc_id)
+    .sort(c.eigen, descending=True)
+)
+```
+
+9. Let's see whether the network structure aligns with the historical timeline of the cases. Join `node` with the `scotus` dataset (matching `id` to `doc_id`) and then create the same network plot, but this time color the nodes by `term` (the year the case was decided). Do the clusters you saw earlier correspond to different time periods, or do they cut across eras?
+
+```{python}
+(
+    node
+    .join(scotus, left_on=c.id, right_on=c.doc_id)
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="term"))
+    + theme_void()
+)
+```
+
+10. Pick 3–5 related issues from the list found at [Supreme Court Database](http://scdb.wustl.edu/documentation.php?var=issue). Filter `scotus` to include cases from all of these issue areas using `c.issue.is_in(...)`. Then, build the filtered citation table `citation_sml` using the same two semi joins you used in Question 2. Finally, create the graph with `DSNetwork.process` as before and sort the nodes by `eigen`.
+
+```{python}
+# I selected 20010, 20020, 20030, all related to voting
+scotus_sml = scotus.filter(c.issue.is_in([20010, 20020, 20030]))
+
+citation_sml = (
+    citation
+    .join(scotus_sml, on=c.doc_id, how="semi")
+    .join(scotus_sml, left_on=c.doc_id2, right_on=c.doc_id, how="semi")
+)
+
+node, edge, G = DSNetwork.process(citation_sml, directed=False)
+node = node.sort(c.eigen)
+node
+```
+
+11. Plot the resulting graph, coloring by `issue` so you can see whether the different issue areas you selected form distinct communities or are tightly interwoven. Join `node` with `scotus` first so that the `issue` column is available.
+
+```{python}
+(
+    node
+    .join(scotus, left_on=c.id, right_on=c.doc_id)
+    .pipe(ggplot, aes("x", "y"))
+    + geom_segment(
+        aes(x="x", y="y", xend="xend", yend="yend"),
+        data=edge,
+        alpha=0.1
+    )
+    + geom_point(aes(color="issue"))
+    + theme_void()
+)
+```
+
+12. For each issue area, find the two cases with the highest eigenvector centrality. Sort the `node` table by `eigen` in descending order, then join with `scotus` to get the `issue` column. Group by `issue` and use `.head(2)` to take the top two rows from each group. These are the landmark cases within each issue area. These are the ones most heavily cited by other important cases in the network.
+
+```{python}
+(
+    node
+    .sort(c.eigen, descending=True)
+    .join(scotus, left_on=c.id, right_on=c.doc_id)
+    .group_by(c.issue)
+    .head(2)
+    .sort(c.issue, c.eigen, descending=[False, True])
+)
+```

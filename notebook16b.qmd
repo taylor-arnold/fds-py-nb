@@ -71,7 +71,7 @@ ocean
 
 ### Analysis
 
-Let's start with a little bit of data augmentation. In the code below, do a spatial join of the city data with the country data to associate each city with a country. **After** you verify that the code does what you want, overwrite the city dataset with the output. Make sure that you join `city` into `country_geo` to preserve the city geometry.
+1. Let's start with a little bit of data augmentation. In the code below, do a spatial join of the city data with the country data to associate each city with a country. **After** you verify that the code does what you want, overwrite the city dataset with the output. Make sure that you join `city` into `country_geo` to preserve the city geometry.
 
 ```{python}
 city = (
@@ -81,7 +81,7 @@ city = (
 city
 ```
 
-Now, do a spatial join of city with the ocean data with `DSGeo.sjoin_nearest`. Use the World Equidistant Cylindrical projection (4087) and add the option `distance_col="dist"` to create a column with the distances added to the output. When you are happy with the output, save the result as a DataFrame called `city_dist`. Note: This may take a minute or two to finish.
+2. Now, do a spatial join of city with the ocean data with `DSGeo.sjoin_nearest`. Use the World Equidistant Cylindrical projection (4087) and add the option `distance_col="dist"` to create a column with the distances added to the output. When you are happy with the output, save the result as a DataFrame called `city_dist`. Note: This may take a minute or two to finish.
 
 ```{python}
 city_dist = (
@@ -91,7 +91,7 @@ city_dist = (
 city_dist
 ```
 
-Now, we want to understand what cities are close to the ocean. The distance column you just created is in meters. Let's create a new column in the dataset called `is_coastal` defined as whether a city is within 25000 meters of the ocean. Convert the column into an integer (look at Chapter 21 to see any example of casting), sort in increasing order by distance to the ocean, and save the data by overwriting `city_dist`.
+3. Now, we want to understand what cities are close to the ocean. The distance column you just created is in meters. Let's create a new column in the dataset called `is_coastal` defined as whether a city is within 25000 meters of the ocean. Convert the column into an integer (look at Chapter 21 to see any example of casting), sort in increasing order by distance to the ocean, and save the data by overwriting `city_dist`.
 
 ```{python}
 city_dist = (
@@ -103,7 +103,7 @@ city_dist = (
 )
 ```
 
-Let's try now to understand the distribution of people in cities on the ocean verse not on the ocean. Grouping by region, compute the percentage of cities that are coastal and the precentage of people that are in coastal cities (these are not the same). Sort by the percentage of people. Take several moments to understand the results. Are there differences across the world?
+4. Let's try now to understand the distribution of people in cities on the ocean verse not on the ocean. Grouping by region, compute the percentage of cities that are coastal and the precentage of people that are in coastal cities (these are not the same). Sort by the percentage of people. Take several moments to understand the results. Are there differences across the world?
 
 ```{python}
 (
@@ -117,7 +117,7 @@ Let's try now to understand the distribution of people in cities on the ocean ve
 )
 ```
 
-Now, recompute the same thing you did above, but now by individual country. Note what countries have a zero percentage and which have a very high percentage.
+5. Now, recompute the same thing you did above, but now by individual country. Note what countries have a zero percentage and which have a very high percentage.
 
 
 ```{python}
@@ -132,7 +132,7 @@ Now, recompute the same thing you did above, but now by individual country. Note
 )
 ```
 
-You should see that there are some large differences across the world. Let's try to draw a choropleth map of this. Create a choropleth map with the `percentage_people` metric you created above (recreate it) using an interactive plot. Note that this may take two or more steps to get the map looking correct.
+6. You should see that there are some large differences across the world. Let's try to draw a choropleth map of this. Create a choropleth map with the `percentage_people` metric you created above (recreate it) using an interactive plot. Note that this may take two or more steps to get the map looking correct.
 
 ```{python}
 country_metrics = (
@@ -151,7 +151,7 @@ country_metrics = (
 )
 ```
 
-Okay, that's interesting, but some countries are land-locked and others are islands. So, it's not surprising that Chad has no cities on the ocean and Malta has a lot. What is more interesting is how biased cities are to being on the ocean verse being placed an random.
+7. Okay, that's interesting, but some countries are land-locked and others are islands. So, it's not surprising that Chad has no cities on the ocean and Malta has a lot. What is more interesting is how biased cities are to being on the ocean verse being placed an random.
 
 Below, I have used the buffer function to increase the size of the ocean by 25km in all directions.
 
@@ -164,13 +164,13 @@ ocean_buffered = (
 )
 ```
 
-Use an interactive exploration of the newly created dataset to see what this looks like and how it corresponds to the buffer within each country.
+8. Use an interactive exploration of the newly created dataset to see what this looks like and how it corresponds to the buffer within each country.
 
 ```{python}
 DSGeo.explore(ocean_buffered)
 ```
 
-Now, use the function `DSGeo.difference` and apply it to the country geometry data and the buffered ocean data. Pass this to the exploration function to understand what the output looks like.
+9. Now, use the function `DSGeo.difference` and apply it to the country geometry data and the buffered ocean data. Pass this to the exploration function to understand what the output looks like.
 
 ```{python}
 (
@@ -180,8 +180,31 @@ Now, use the function `DSGeo.difference` and apply it to the country geometry da
 )
 ```
 
-Now it's up to you! You have all of the building blocks. Come up with a way to measure what countries have the greatest and lowest bias towards beind on the water, based on area of the country that is within 25km of the ocean. Try to visualize the output in an interesting way. I suggest filter out countries with no coastline and possibly filter out countries that have almost all of their territory within an ocean.
+10. Now it's up to you! You have all of the building blocks. Come up with a way to measure what countries have the greatest and lowest bias towards beind on the water, based on area of the country that is within 25km of the ocean. Try to visualize the output in an interesting way. I suggest filter out countries with no coastline and possibly filter out countries that have almost all of their territory within an ocean.
+
 
 ```{python}
+coastal_area = (
+    country_geo
+    .pipe(DSGeo.add_area, crs=4087, out_col="total_area")
+    .pipe(DSGeo.difference, ocean_buffered)
+    .pipe(DSGeo.add_area, crs=4087, out_col="inland_area")
+    .with_columns(
+        pct_area_coastal = (c.total_area - c.inland_area) / c.total_area * 100
+    )
+    .select(c.iso, c.name, c.region, c.pct_area_coastal, c.total_area)
+)
 
+(
+    coastal_area
+    .join(country_metrics, on=c.iso)
+    .filter(c.pct_area_coastal > 1)
+    .filter(c.pct_area_coastal < 95)
+    .with_columns(
+        coastal_bias = c.percentage_people - c.pct_area_coastal
+    )
+    .sort(c.coastal_bias, descending=True)
+    .select(c.name, c.region, c.pct_area_coastal, c.percentage_people, c.coastal_bias)
+    .pipe(print_rows)
+)
 ```
