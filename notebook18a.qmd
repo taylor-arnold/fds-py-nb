@@ -8,6 +8,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! pip install igraph
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
