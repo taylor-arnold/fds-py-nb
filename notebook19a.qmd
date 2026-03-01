@@ -2,6 +2,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
@@ -9,7 +15,182 @@ from funs import *
 from plotnine import *
 from polars import col as c
 theme_set(theme_minimal())
+pl.Config.set_fmt_str_lengths(1000)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+### Small Example
+
+Much of the code itself is already included in this notebook. We are going to go through it slowly and intentionally to understand how to parse text annotations in Python. To start, load the small English spaCy model:
+
+```{python}
+#| tags: [noclear]
+import spacy
+nlp = spacy.load("en_core_web_sm")
+```
+
+Next, create a corpus object with a single text. I've filled in one example, but you should use the string that you had for homework.
+
+```{python}
+#| tags: [noclear]
+docs = pl.DataFrame({
+    "doc_id": "Example",
+    "text": "It was the best of times, it was the worst of times"
+})
+```
+
+Now parse the text with the NLP model.
+
+```{python}
+#| tags: [noclear]
+anno = DSText.process(docs, nlp)
+print_rows(anno)
+```
+
+Compare this to what you did for the homework. Are there any differences?
+
+### Grabbing Some Data
+
+Next, we are going to grab some text data from Wikipedia. I've written a script that called the Wikipedia API to get the text from a page. Here is the function that takes a page name and returns the text.
+
+```{python}
+#| tags: [noclear]
+import re
+import requests
+from lxml import html
+
+def wiki_get_text(page):
+    resp = requests.get(
+        "https://en.wikipedia.org/w/api.php",
+        params={
+            "action": "parse",
+            "page": page,
+            "prop": "text",
+            "format": "json",
+        },
+        headers={"User-Agent": "MyBot/1.0 (myemail@example.com)"},
+    )
+    raw_html = resp.json()["parse"]["text"]["*"]
+    tree = html.fromstring(raw_html)
+    text = " ".join(p.text_content().strip() for p in tree.xpath("//p"))
+    text = re.sub(r"\[\d+\]", "", text)
+
+    return text
+```
+
+We can use this inside of a call to `pl.DataFrame` to build a textual corpus object. Here is an example for the data science page. Start with this one and then come back with your own example.
+
+```{python}
+#| tags: [noclear]
+df = pl.DataFrame({
+    "doc_id": "Data science",
+    "text": wiki_get_text("Data_science")
+})
+df
+```
+
+Once you have the data, you can process it with the NLP annotation:
+
+```{python}
+#| tags: [noclear]
+anno = DSText.process(df, nlp)
+anno
+```
+
+1. Now, for a little work on your end. Using the code that was in the book, find the top 10 most common nouns on the page.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .group_by(c.lemma)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .head(10)
+)
+```
+
+2. And then find the top ten common adjectives.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "ADJ")
+    .group_by(c.lemma)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .head(10)
+)
+```
+
+Go back and choose another page and see how the outputs change. Then, wait for use to come together for the next step.
+
+### Sheets
+
+Next we are going to create a class dataset. Once that is finished, we will use the code below to read it in.
+
+```{python}
+#| tags: [noclear]
+SHEET_ID = "1yyeOB8AcNvoDhSoMbjEEkaKKw6REXLV-mH4oJpg0qB8"
+GID = "0"
+
+url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={GID}"
+
+class_df = pl.read_csv(url)
+class_df
+```
+
+Then, we can cycle through the rows of the dataset, putting together the Wikipedia data from each row, and then create a corpus object.
+
+```{python}
+#| tags: [noclear]
+
+wiki_df = []
+for row in class_df.iter_rows(named=True):
+    wiki_df.append(pl.DataFrame({
+        "doc_id": row['name'],
+        "text": wiki_get_text(row['page'])
+    }))
+
+wiki_df = pl.concat(wiki_df)
+wiki_df
+```
+
+As before, we will next create an annotation object.
+
+```{python}
+#| tags: [noclear]
+anno = DSText.process(wiki_df, nlp)
+anno
+```
+
+3. Adapting the code show in the text, find the 8 nouns that are the most common on each page and print out the results to have a summary of the themes of each page. What patterns do you see? Are there any challenges? What else might you want to do with this data?
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .group_by([c.doc_id, c.lemma])
+    .agg(count = pl.len())
+    .sort([c.doc_id, c.count], descending=[False, True])
+    .group_by(c.doc_id)
+    .head(8)
+    .group_by(c.doc_id)
+    .agg(top_adj = c.lemma.sort().str.join("; "))
+    .pipe(print_rows)
+)
+```
+
+
+
+
+
+
 

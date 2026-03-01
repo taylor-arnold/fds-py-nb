@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -444,24 +447,1216 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="277b110e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="a4368808" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div id="db7e91a3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pl.Config.set_fmt_str_lengths(<span class="dv">1000</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="small-example" class="level3">
+<h3 class="anchored" data-anchor-id="small-example">Small Example</h3>
+<p>Much of the code itself is already included in this notebook. We are going to go through it slowly and intentionally to understand how to parse text annotations in Python. To start, load the small English spaCy model:</p>
+<div id="83e69d92" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"en_core_web_sm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Next, create a corpus object with a single text. I’ve filled in one example, but you should use the string that you had for homework.</p>
+<div id="29b8e03c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"doc_id"</span>: <span class="st">"Example"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: <span class="st">"It was the best of times, it was the worst of times"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now parse the text with the NLP model.</p>
+<div id="22dcd41b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(docs, nlp)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>print_rows(anno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (13, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">sid</th>
+<th data-quarto-table-cell-role="th">tid</th>
+<th data-quarto-table-cell-role="th">token</th>
+<th data-quarto-table-cell-role="th">token_with_ws</th>
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">upos</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">is_alpha</th>
+<th data-quarto-table-cell-role="th">is_stop</th>
+<th data-quarto-table-cell-role="th">is_punct</th>
+<th data-quarto-table-cell-role="th">dep</th>
+<th data-quarto-table-cell-role="th">head_idx</th>
+<th data-quarto-table-cell-role="th">ent_type</th>
+<th data-quarto-table-cell-role="th">ent_iob</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>bool</th>
+<th>bool</th>
+<th>bool</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>1</td>
+<td>"It"</td>
+<td>"It "</td>
+<td>"it"</td>
+<td>"PRON"</td>
+<td>"PRP"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"nsubj"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>2</td>
+<td>"was"</td>
+<td>"was "</td>
+<td>"be"</td>
+<td>"AUX"</td>
+<td>"VBD"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"ccomp"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>3</td>
+<td>"the"</td>
+<td>"the "</td>
+<td>"the"</td>
+<td>"DET"</td>
+<td>"DT"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"det"</td>
+<td>4</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>4</td>
+<td>"best"</td>
+<td>"best "</td>
+<td>"good"</td>
+<td>"ADJ"</td>
+<td>"JJS"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"attr"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>5</td>
+<td>"of"</td>
+<td>"of "</td>
+<td>"of"</td>
+<td>"ADP"</td>
+<td>"IN"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"prep"</td>
+<td>4</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>6</td>
+<td>"times"</td>
+<td>"times"</td>
+<td>"time"</td>
+<td>"NOUN"</td>
+<td>"NNS"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"pobj"</td>
+<td>5</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>7</td>
+<td>","</td>
+<td>", "</td>
+<td>","</td>
+<td>"PUNCT"</td>
+<td>","</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>"punct"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>8</td>
+<td>"it"</td>
+<td>"it "</td>
+<td>"it"</td>
+<td>"PRON"</td>
+<td>"PRP"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"nsubj"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>9</td>
+<td>"was"</td>
+<td>"was "</td>
+<td>"be"</td>
+<td>"AUX"</td>
+<td>"VBD"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"ROOT"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>10</td>
+<td>"the"</td>
+<td>"the "</td>
+<td>"the"</td>
+<td>"DET"</td>
+<td>"DT"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"det"</td>
+<td>11</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>11</td>
+<td>"worst"</td>
+<td>"worst "</td>
+<td>"bad"</td>
+<td>"ADJ"</td>
+<td>"JJS"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"attr"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Example"</td>
+<td>1</td>
+<td>12</td>
+<td>"of"</td>
+<td>"of "</td>
+<td>"of"</td>
+<td>"ADP"</td>
+<td>"IN"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"prep"</td>
+<td>11</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Example"</td>
+<td>1</td>
+<td>13</td>
+<td>"times"</td>
+<td>"times"</td>
+<td>"time"</td>
+<td>"NOUN"</td>
+<td>"NNS"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"pobj"</td>
+<td>12</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Compare this to what you did for the homework. Are there any differences?</p>
+</section>
+<section id="grabbing-some-data" class="level3">
+<h3 class="anchored" data-anchor-id="grabbing-some-data">Grabbing Some Data</h3>
+<p>Next, we are going to grab some text data from Wikipedia. I’ve written a script that called the Wikipedia API to get the text from a page. Here is the function that takes a page name and returns the text.</p>
+<div id="30c704fe" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wiki_get_text(page):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> requests.get(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"https://en.wikipedia.org/w/api.php"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        params<span class="op">=</span>{</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"action"</span>: <span class="st">"parse"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"page"</span>: page,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"prop"</span>: <span class="st">"text"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"format"</span>: <span class="st">"json"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: <span class="st">"MyBot/1.0 (myemail@example.com)"</span>},</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    raw_html <span class="op">=</span> resp.json()[<span class="st">"parse"</span>][<span class="st">"text"</span>][<span class="st">"*"</span>]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> html.fromstring(raw_html)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="st">" "</span>.join(p.text_content().strip() <span class="cf">for</span> p <span class="kw">in</span> tree.xpath(<span class="st">"//p"</span>))</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="ch">\[</span><span class="dv">\d</span><span class="op">+</span><span class="ch">\]</span><span class="vs">"</span>, <span class="st">""</span>, text)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can use this inside of a call to <code>pl.DataFrame</code> to build a textual corpus object. Here is an example for the data science page. Start with this one and then come back with your own example.</p>
+<div id="094ab398" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"doc_id"</span>: <span class="st">"Data science"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: wiki_get_text(<span class="st">"Data_science"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Data science"</td>
+<td>" Data science is an interdisciplinary academic field that uses statistics, scientific computing, scientific methods, processing, scientific visualization, algorithms, and systems to extract or extrapolate knowledge from potentially noisy, structured, or unstructured data. Data science also integrates domain knowledge from the underlying application domain (e.g., natural sciences, information technology, and medicine). Data science is multifaceted and can be described as a science, a research paradigm, a research method, a discipline, a workflow, and a profession. Data science is "a concept to unify statistics, data analysis, informatics, and their related methods" to "understand and analyze actual phenomena" with data. It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, information science, and domain knowledge. However, data science is different from computer science and information science. Turing Award winner Jim Gr…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Once you have the data, you can process it with the NLP annotation:</p>
+<div id="1d723f41" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(df, nlp)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_563, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">sid</th>
+<th data-quarto-table-cell-role="th">tid</th>
+<th data-quarto-table-cell-role="th">token</th>
+<th data-quarto-table-cell-role="th">token_with_ws</th>
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">upos</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">is_alpha</th>
+<th data-quarto-table-cell-role="th">is_stop</th>
+<th data-quarto-table-cell-role="th">is_punct</th>
+<th data-quarto-table-cell-role="th">dep</th>
+<th data-quarto-table-cell-role="th">head_idx</th>
+<th data-quarto-table-cell-role="th">ent_type</th>
+<th data-quarto-table-cell-role="th">ent_iob</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>bool</th>
+<th>bool</th>
+<th>bool</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Data science"</td>
+<td>1</td>
+<td>1</td>
+<td>" "</td>
+<td>" "</td>
+<td>" "</td>
+<td>"SPACE"</td>
+<td>"_SP"</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>"dep"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Data science"</td>
+<td>1</td>
+<td>2</td>
+<td>"Data"</td>
+<td>"Data "</td>
+<td>"Data"</td>
+<td>"PROPN"</td>
+<td>"NNP"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"compound"</td>
+<td>3</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Data science"</td>
+<td>1</td>
+<td>3</td>
+<td>"science"</td>
+<td>"science "</td>
+<td>"science"</td>
+<td>"NOUN"</td>
+<td>"NN"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"nsubj"</td>
+<td>4</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Data science"</td>
+<td>1</td>
+<td>4</td>
+<td>"is"</td>
+<td>"is "</td>
+<td>"be"</td>
+<td>"AUX"</td>
+<td>"VBZ"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"ROOT"</td>
+<td>4</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Data science"</td>
+<td>1</td>
+<td>5</td>
+<td>"an"</td>
+<td>"an "</td>
+<td>"an"</td>
+<td>"DET"</td>
+<td>"DT"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"det"</td>
+<td>8</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Data science"</td>
+<td>59</td>
+<td>20</td>
+<td>"important"</td>
+<td>"important "</td>
+<td>"important"</td>
+<td>"ADJ"</td>
+<td>"JJ"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"acomp"</td>
+<td>18</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Data science"</td>
+<td>59</td>
+<td>21</td>
+<td>"in"</td>
+<td>"in "</td>
+<td>"in"</td>
+<td>"ADP"</td>
+<td>"IN"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"prep"</td>
+<td>20</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Data science"</td>
+<td>59</td>
+<td>22</td>
+<td>"modern"</td>
+<td>"modern "</td>
+<td>"modern"</td>
+<td>"ADJ"</td>
+<td>"JJ"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"amod"</td>
+<td>23</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Data science"</td>
+<td>59</td>
+<td>23</td>
+<td>"research"</td>
+<td>"research"</td>
+<td>"research"</td>
+<td>"NOUN"</td>
+<td>"NN"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"pobj"</td>
+<td>21</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Data science"</td>
+<td>59</td>
+<td>24</td>
+<td>"."</td>
+<td>"."</td>
+<td>"."</td>
+<td>"PUNCT"</td>
+<td>"."</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>"punct"</td>
+<td>3</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Now, for a little work on your end. Using the code that was in the book, find the top 10 most common nouns on the page.</li>
+</ol>
+<div id="75d7cc82" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.lemma)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"datum"</td>
+<td>51</td>
+</tr>
+<tr class="even">
+<td>"science"</td>
+<td>46</td>
+</tr>
+<tr class="odd">
+<td>"data"</td>
+<td>22</td>
+</tr>
+<tr class="even">
+<td>"statistic"</td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td>"field"</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"information"</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>"analysis"</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"method"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"computing"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"knowledge"</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>And then find the top ten common adjectives.</li>
+</ol>
+<div id="60e07d1e" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"ADJ"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.lemma)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"such"</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>"large"</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>"statistical"</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>"scientific"</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>"new"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"centric"</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>"many"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"computational"</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>"modern"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"other"</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Go back and choose another page and see how the outputs change. Then, wait for use to come together for the next step.</p>
+</section>
+<section id="sheets" class="level3">
+<h3 class="anchored" data-anchor-id="sheets">Sheets</h3>
+<p>Next we are going to create a class dataset. Once that is finished, we will use the code below to read it in.</p>
+<div id="d13f1b8b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SHEET_ID <span class="op">=</span> <span class="st">"1yyeOB8AcNvoDhSoMbjEEkaKKw6REXLV-mH4oJpg0qB8"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>GID <span class="op">=</span> <span class="st">"0"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://docs.google.com/spreadsheets/d/</span><span class="sc">{</span>SHEET_ID<span class="sc">}</span><span class="ss">/export?format=csv&amp;gid=</span><span class="sc">{</span>GID<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>class_df <span class="op">=</span> pl.read_csv(url)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>class_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">page</th>
+<th data-quarto-table-cell-role="th">party</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Alabama "</td>
+<td>"Tommy Tuberville "</td>
+<td>"Tommy_Tuberville"</td>
+<td>"Republican"</td>
+</tr>
+<tr class="even">
+<td>"Alabama "</td>
+<td>"Katie Britt "</td>
+<td>"Katie_Britt"</td>
+<td>"Republican"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Then, we can cycle through the rows of the dataset, putting together the Wikipedia data from each row, and then create a corpus object.</p>
+<div id="adb88b81" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> []</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> class_df.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    wiki_df.append(pl.DataFrame({</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"doc_id"</span>: row[<span class="st">'name'</span>],</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: wiki_get_text(row[<span class="st">'page'</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> pl.concat(wiki_df)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>wiki_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Tommy Tuberville "</td>
+<td>" Thomas Hawley Tuberville (/ˈtʌbərvɪl/; TUH-bərv-il; born September 18, 1954) is an American politician, and retired college football coach and sports broadcaster who is the senior United States senator from Alabama, a seat he has held since 2021. He is a member of the Republican Party. Before entering politics, Tuberville was the head football coach at Auburn University from 1999 to 2008. He was also the head football coach at the University of Mississippi from 1995 to 1998, Texas Tech University from 2010 to 2012, and the University of Cincinnati from 2013 to 2016. Tuberville won five national coach-of-the-year awards (AP, AFCA, Sporting News, Walter Camp, and Bear Bryant) after Auburn's 13–0 season in 2004, in which Auburn won the Southeastern Conference title and the Sugar Bowl, but was left out of the BCS National Championship Game. He earned his 100th career win in 2007. Tuberville is the only Auburn football coach to beat in-state rival Alabama six consecutive times. In 2015, he…</td>
+</tr>
+<tr class="even">
+<td>"Katie Britt "</td>
+<td>" Katie Elizabeth Boyd Britt (née&nbsp;Boyd; born February 2, 1982) is an American politician and attorney serving since 2023 as the junior United States senator from Alabama. A member of the Republican Party, Britt is the first woman to be elected to the U.S. Senate from Alabama and the youngest Republican woman to be elected to the Senate. She was president and CEO of the Business Council of Alabama from 2019 to 2021, and served as chief of staff for the previous incumbent, Richard Shelby, from 2016 to 2018. Britt was born Katie Elizabeth Boyd on February 2, 1982, to Julian and Debra Boyd in Enterprise, Alabama. During her youth she worked at her family's business. Her family lived near Fort Rucker in Dale County, Alabama. Her father owned a hardware store and later a boat dealership; her mother owned a dance studio. A graduate of Enterprise High School, Britt was a cheerleader and a valedictorian. After graduating in 2000 she studied political science at the University of Alabama. She was…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>As before, we will next create an annotation object.</p>
+<div id="18d14c97" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(wiki_df, nlp)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (9_776, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">sid</th>
+<th data-quarto-table-cell-role="th">tid</th>
+<th data-quarto-table-cell-role="th">token</th>
+<th data-quarto-table-cell-role="th">token_with_ws</th>
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">upos</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">is_alpha</th>
+<th data-quarto-table-cell-role="th">is_stop</th>
+<th data-quarto-table-cell-role="th">is_punct</th>
+<th data-quarto-table-cell-role="th">dep</th>
+<th data-quarto-table-cell-role="th">head_idx</th>
+<th data-quarto-table-cell-role="th">ent_type</th>
+<th data-quarto-table-cell-role="th">ent_iob</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>bool</th>
+<th>bool</th>
+<th>bool</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Tommy Tuberville "</td>
+<td>1</td>
+<td>1</td>
+<td>" "</td>
+<td>" "</td>
+<td>" "</td>
+<td>"SPACE"</td>
+<td>"_SP"</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>"dep"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Tommy Tuberville "</td>
+<td>1</td>
+<td>2</td>
+<td>"Thomas"</td>
+<td>"Thomas "</td>
+<td>"Thomas"</td>
+<td>"PROPN"</td>
+<td>"NNP"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"compound"</td>
+<td>4</td>
+<td>"PERSON"</td>
+<td>"B"</td>
+</tr>
+<tr class="odd">
+<td>"Tommy Tuberville "</td>
+<td>1</td>
+<td>3</td>
+<td>"Hawley"</td>
+<td>"Hawley "</td>
+<td>"Hawley"</td>
+<td>"PROPN"</td>
+<td>"NNP"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"compound"</td>
+<td>4</td>
+<td>"PERSON"</td>
+<td>"I"</td>
+</tr>
+<tr class="even">
+<td>"Tommy Tuberville "</td>
+<td>1</td>
+<td>4</td>
+<td>"Tuberville"</td>
+<td>"Tuberville "</td>
+<td>"Tuberville"</td>
+<td>"PROPN"</td>
+<td>"NNP"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"nsubj"</td>
+<td>14</td>
+<td>"PERSON"</td>
+<td>"I"</td>
+</tr>
+<tr class="odd">
+<td>"Tommy Tuberville "</td>
+<td>1</td>
+<td>5</td>
+<td>"("</td>
+<td>"("</td>
+<td>"("</td>
+<td>"PUNCT"</td>
+<td>"-LRB-"</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>"punct"</td>
+<td>4</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Katie Britt "</td>
+<td>122</td>
+<td>8</td>
+<td>"and"</td>
+<td>"and "</td>
+<td>"and"</td>
+<td>"CCONJ"</td>
+<td>"CC"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"cc"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="even">
+<td>"Katie Britt "</td>
+<td>122</td>
+<td>9</td>
+<td>"have"</td>
+<td>"have "</td>
+<td>"have"</td>
+<td>"VERB"</td>
+<td>"VBP"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"conj"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Katie Britt "</td>
+<td>122</td>
+<td>10</td>
+<td>"two"</td>
+<td>"two "</td>
+<td>"two"</td>
+<td>"NUM"</td>
+<td>"CD"</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>"nummod"</td>
+<td>11</td>
+<td>"CARDINAL"</td>
+<td>"B"</td>
+</tr>
+<tr class="even">
+<td>"Katie Britt "</td>
+<td>122</td>
+<td>11</td>
+<td>"children"</td>
+<td>"children"</td>
+<td>"child"</td>
+<td>"NOUN"</td>
+<td>"NNS"</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>"dobj"</td>
+<td>9</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+<tr class="odd">
+<td>"Katie Britt "</td>
+<td>122</td>
+<td>12</td>
+<td>"."</td>
+<td>"."</td>
+<td>"."</td>
+<td>"PUNCT"</td>
+<td>"."</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>"punct"</td>
+<td>2</td>
+<td>""</td>
+<td>"O"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Adapting the code show in the text, find the 8 nouns that are the most common on each page and print out the results to have a summary of the themes of each page. What patterns do you see? Are there any challenges? What else might you want to do with this data?</li>
+</ol>
+<div id="dffb8dc6" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .group_by([c.doc_id, c.lemma])</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    .sort([c.doc_id, c.count], descending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">8</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    .agg(top_adj <span class="op">=</span> c.lemma.sort().<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">doc_id</th>
+<th data-quarto-table-cell-role="th">top_adj</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Katie Britt "</td>
+<td>"bill; border; election; medium; office; president; senator; woman"</td>
+</tr>
+<tr class="even">
+<td>"Tommy Tuberville "</td>
+<td>"coach; football; head; record; season; senator; team; year"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -914,20 +2109,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook19a</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook19a</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>pl.Config.set_fmt_str_lengths(<span class="dv">1000</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [remove]</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### Small Example</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>Much of the code itself is already included in this notebook. We are going to go through it slowly and intentionally to understand how to parse text annotations in Python. To start, load the small English spaCy model:</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"en_core_web_sm"</span>)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>Next, create a corpus object with a single text. I've filled in one example, but you should use the string that you had for homework.</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"doc_id"</span>: <span class="st">"Example"</span>,</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: <span class="st">"It was the best of times, it was the worst of times"</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>Now parse the text with the NLP model.</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(docs, nlp)</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>print_rows(anno)</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>Compare this to what you did for the homework. Are there any differences?</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grabbing Some Data</span></span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>Next, we are going to grab some text data from Wikipedia. I've written a script that called the Wikipedia API to get the text from a page. Here is the function that takes a page name and returns the text.</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wiki_get_text(page):</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> requests.get(</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>        <span class="st">"https://en.wikipedia.org/w/api.php"</span>,</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>        params<span class="op">=</span>{</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>            <span class="st">"action"</span>: <span class="st">"parse"</span>,</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>            <span class="st">"page"</span>: page,</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>            <span class="st">"prop"</span>: <span class="st">"text"</span>,</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>            <span class="st">"format"</span>: <span class="st">"json"</span>,</span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>        headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: <span class="st">"MyBot/1.0 (myemail@example.com)"</span>},</span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>    raw_html <span class="op">=</span> resp.json()[<span class="st">"parse"</span>][<span class="st">"text"</span>][<span class="st">"*"</span>]</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> html.fromstring(raw_html)</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="st">" "</span>.join(p.text_content().strip() <span class="cf">for</span> p <span class="kw">in</span> tree.xpath(<span class="st">"//p"</span>))</span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="ch">\[</span><span class="dv">\d</span><span class="op">+</span><span class="ch">\]</span><span class="vs">"</span>, <span class="st">""</span>, text)</span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>We can use this inside of a call to <span class="in">`pl.DataFrame`</span> to build a textual corpus object. Here is an example for the data science page. Start with this one and then come back with your own example.</span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a>    <span class="st">"doc_id"</span>: <span class="st">"Data science"</span>,</span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: wiki_get_text(<span class="st">"Data_science"</span>)</span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>Once you have the data, you can process it with the NLP annotation:</span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(df, nlp)</span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>anno</span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Now, for a little work on your end. Using the code that was in the book, find the top 10 most common nouns on the page.</span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>    .group_by(c.lemma)</span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>And then find the top ten common adjectives.</span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"ADJ"</span>)</span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>    .group_by(c.lemma)</span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a>Go back and choose another page and see how the outputs change. Then, wait for use to come together for the next step.</span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sheets</span></span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a>Next we are going to create a class dataset. Once that is finished, we will use the code below to read it in.</span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>SHEET_ID <span class="op">=</span> <span class="st">"1yyeOB8AcNvoDhSoMbjEEkaKKw6REXLV-mH4oJpg0qB8"</span></span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a>GID <span class="op">=</span> <span class="st">"0"</span></span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://docs.google.com/spreadsheets/d/</span><span class="sc">{</span>SHEET_ID<span class="sc">}</span><span class="ss">/export?format=csv&amp;gid=</span><span class="sc">{</span>GID<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>class_df <span class="op">=</span> pl.read_csv(url)</span>
+<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a>class_df</span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a>Then, we can cycle through the rows of the dataset, putting together the Wikipedia data from each row, and then create a corpus object.</span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> []</span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> class_df.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>    wiki_df.append(pl.DataFrame({</span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>        <span class="st">"doc_id"</span>: row[<span class="st">'name'</span>],</span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: wiki_get_text(row[<span class="st">'page'</span>])</span>
+<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> pl.concat(wiki_df)</span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a>wiki_df</span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a>As before, we will next create an annotation object.</span>
+<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(wiki_df, nlp)</span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>anno</span>
+<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Adapting the code show in the text, find the 8 nouns that are the most common on each page and print out the results to have a summary of the themes of each page. What patterns do you see? Are there any challenges? What else might you want to do with this data?</span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>    anno</span>
+<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>    .group_by([c.doc_id, c.lemma])</span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>    .sort([c.doc_id, c.count], descending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">8</span>)</span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>    .agg(top_adj <span class="op">=</span> c.lemma.sort().<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
+<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
