@@ -306,24 +306,24 @@ class DSText:
         return pl.DataFrame(tokens_list)
 
     @staticmethod
-    def compute_tfidf(df, min_df=0.0, max_df=1.0):
+    def compute_tfidf(df, min_df=0.0, max_df=1.0, doc_name="doc_id"):
         """
         min_df / max_df are proportions in [0, 1], e.g.:
           max_df=0.5 keeps terms occurring in <= 50% of documents.
         """
 
-        n_docs = df.select(pl.col("doc_id").n_unique()).item()
+        n_docs = df.select(pl.col(doc_name).n_unique()).item()
 
         tfidf = (
             df
             .filter(pl.col("is_alpha"))
-            .group_by(["doc_id", "lemma"])
+            .group_by([doc_name, "lemma"])
             .agg(tf=pl.len())
             .with_columns(
-                tf_norm=pl.col("tf") / pl.col("tf").sum().over("doc_id"),
+                tf_norm=pl.col("tf") / pl.col("tf").sum().over(doc_name),
             )
             .with_columns(
-                df_docs=pl.col("doc_id").n_unique().over("lemma"),
+                df_docs=pl.col(doc_name).n_unique().over("lemma"),
             )
             .with_columns(
                 df_prop=pl.col("df_docs") / pl.lit(n_docs),

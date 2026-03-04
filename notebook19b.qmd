@@ -2,6 +2,12 @@
 
 ```{python}
 #| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
 import numpy as np
 import polars as pl
 
@@ -9,7 +15,271 @@ from funs import *
 from plotnine import *
 from polars import col as c
 theme_set(theme_minimal())
+pl.Config.set_fmt_str_lengths(1000)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+**Research Questions**: Today we explore several themes from your brainstorming:
+
+1. Can TF-IDF help us identify what makes each senator's page unique?
+2. Do the words used on Wikipedia pages differ between Republican and Democratic senators?
+3. What policy topics are most frequently associated with each party?
+4. Are female and male senators described differently on their Wikipedia pages?
+
+### Loading the Data
+
+We will be working with the Wikipedia pages of the 100 current United States Senators. Start by loading the spaCy model and reading in the data.
+
+```{python}
+#| tags: [noclear]
+import spacy
+nlp = spacy.load("en_core_web_sm")
+```
+
+```{python}
+#| tags: [noclear]
+docs = pl.read_csv(ub + "data/wiki_senator_class_docs.csv")
+docs
+```
+
+```{python}
+#| tags: [noclear]
+meta = pl.read_csv(ub + "data/wiki_senator_class.csv")
+meta
+```
+
+Next, we process the text data through the NLP pipeline. This may take a minute or two to finish.
+
+```{python}
+#| tags: [noclear]
+anno = DSText.process(docs, nlp)
+anno
+```
+
+Finally, it will be helpful to have the party information merged into the annotation object.
+
+```{python}
+#| tags: [noclear]
+anno = (
+    anno
+    .join(meta.select(c.doc_id, c.party), on=c.doc_id)
+)
+anno
+```
+
+### Part 1: What makes each senator's page unique
+
+1. Let's start by understanding the overall content of the dataset. Find the 15 most common nouns across all senator pages.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .group_by(c.lemma)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .head(15)
+)
+```
+
+Look at the output. Do any of these nouns surprise you? Which nouns seem generic to any biography, and which seem specific to senators?
+
+2. Now produce a tfidf dataset, with one document per senator. Set `min_df` to 0.03 (and do so throughout the rest of this notebook) Print out all of the results. How interesting are these?
+
+```{python}
+tfidf = DSText.compute_tfidf(anno, min_df=0.03, max_df=0.5)
+(
+    tfidf
+    .sort([c.doc_id, c.tfidf], descending=[False, True])
+    .group_by(c.doc_id)
+    .head(10)
+    .group_by(c.doc_id)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+)
+```
+
+3. Often all the words are not very telling on their own. Repeat the tfidf construction, but this time use only the nouns. You should see that the results are a (bit) more interesting.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .pipe(DSText.compute_tfidf, min_df=0.03, max_df=0.5)
+    .sort([c.doc_id, c.tfidf], descending=True)
+    .group_by(c.doc_id)
+    .head(10)
+    .group_by(c.doc_id)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+    .pipe(print_rows)
+)
+```
+
+### Part 2: Do the words used on Wikipedia pages differ between Republican and Democratic senators?
+
+4. Now let's see whether the most common nouns differ by party. To start, find the 10 most common nouns for each party. Print out the results and compare.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .group_by([c.party, c.lemma])
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+    .group_by(c.party)
+    .head(10)
+    .pipe(print_rows)
+)
+```
+
+5. To do this we can create a tfidf matrix again, but set the argument `doc_name` to "party". This in effect changes what we mean by a document in this case.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .pipe(DSText.compute_tfidf, min_df=0.03, max_df=0.5, doc_name="party")
+    .sort(c.tfidf, descending=True)
+    .group_by(c.party)
+    .head(10)
+    .group_by(c.party)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+)
+```
+
+### Part 3: What policy topics are most frequently associated with each party?
+
+Many of you were curious about which policy areas are most associated with each party. We can investigate this by searching for specific policy-related nouns in the text.
+
+```{python}
+#| tags: [noclear]
+policy_terms = [
+    "healthcare", "health", "education", "military", "defense",
+    "economy", "tax", "immigration", "abortion", "gun",
+    "climate", "environment", "energy", "trade", "budget",
+    "veteran", "infrastructure", "housing", "police", "crime",
+    "cannabis", "marijuana", "insurance", "welfare", "security"
+]
+```
+
+6. Filter the annotation data to just nouns whose lemma is in the policy terms list. Remove the independent party members. Count the number of times each party mentions each lemma. Plot the data with count on the x-axis, term on the y-axis and color indicating the party. Hint: add `scale_color_manual({"Democratic": "blue", "Republican": "red"})`.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .filter(c.lemma.is_in(policy_terms))
+    .filter(c.party != "Independent")
+    .group_by([c.party, c.lemma])
+    .agg(count = pl.len())
+    .pipe(ggplot, aes("count", "lemma"))
+    + geom_point(aes(color="party"))
+    + scale_color_manual({"Democratic": "blue", "Republican": "red"})
+)
+```
+
+7. The plot above is interesting, but a little difficult to read because of the sorting. And it's actually not easy to sort in that format! Try to pivot the table by party and show a text plot with the Democratic counts on the x-axis and Republican counts on the y-axis.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .filter(c.lemma.is_in(policy_terms))
+    .filter(c.party != "Independent")
+    .group_by([c.party, c.lemma])
+    .agg(count = pl.len())
+    .pivot(on = c.party, values=c.count, index=c.lemma)
+    .pipe(ggplot, aes("Democratic", "Republican"))
+    + geom_point()
+    + geom_text(aes(label="lemma"), nudge_y=3, size=8)
+    + geom_abline(linetype="dashed")
+)
+```
+
+### Part 4: Gendered Language on Wikipedia
+
+Several of you were interested in whether female and male senators are described differently on their Wikipedia pages. Let's investigate. 
+
+8. We don't have a gender marker in our dataset. We could add one manually, but there's a trick that works well for Wikipedia data. To start, filter the annotation data to the first instance of the lemma "she" or "he" in each document. Sort by the lemma and print the data. Take a close look at the results.
+
+```{python}
+(
+    anno
+    .filter(c.lemma.is_in(["she", "he"]))
+    .group_by(c.doc_id)
+    .head(1)
+    .select(c.doc_id, c.lemma)
+    .sort(c.lemma)
+    .pipe(print_rows)
+)
+```
+
+9. Using the `pl.when` function, create a dataset `gender_table` that maps each senator's doc_id value to the gender inferred by the above technique.
+
+```{python}
+gender_table = (
+    anno
+    .filter(c.lemma.is_in(["she", "he"]))
+    .group_by(c.doc_id)
+    .head(1)
+    .with_columns(
+        gender = pl.when(c.lemma == "she").then(pl.lit("Female")).otherwise(pl.lit("Male"))
+    )
+    .select(c.doc_id, c.gender)
+)
+gender_table
+```
+
+10. Using the table you made above, join into `anno` and compute the tfidf scores by gender of the highest scoring nouns. 
+
+```{python}
+(
+    anno
+    .join(gender_table, on=c.doc_id)
+    .filter(c.upos == "NOUN")
+    .pipe(DSText.compute_tfidf, min_df=0.03, max_df=0.5, doc_name="gender")
+    .sort(c.tfidf, descending=True)
+    .group_by(c.gender)
+    .head(10)
+    .group_by(c.gender)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+)
+```
+
+11. Modify the code above to look at the verbs. Note this should be more interesting.
+
+```{python}
+(
+    anno
+    .join(gender_table, on=c.doc_id)
+    .filter(c.upos == "VERB")
+    .pipe(DSText.compute_tfidf, min_df=0.03, max_df=0.5, doc_name="gender")
+    .sort(c.tfidf, descending=True)
+    .group_by(c.gender)
+    .head(10)
+    .group_by(c.gender)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+)
+```
+
+12. Finally, do the same with adjectives.
+
+```{python}
+(
+    anno
+    .join(gender_table, on=c.doc_id)
+    .filter(c.upos == "ADJ")
+    .pipe(DSText.compute_tfidf, min_df=0.03, max_df=0.5, doc_name="gender")
+    .sort(c.tfidf, descending=True)
+    .group_by(c.gender)
+    .head(10)
+    .group_by(c.gender)
+    .agg(top_lemmas = c.lemma.str.join("; "))
+)
+```
