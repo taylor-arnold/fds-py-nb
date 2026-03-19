@@ -450,13 +450,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="6059c66b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="9e987184" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6211c1b0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="08c7ea12" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="reading-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="reading-the-data">Reading the Data</h3>
-<div id="6086de45" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="b96bd659" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>covid <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/it_province_covid.csv"</span>).with_columns(</span>
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2aab2329" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="14c95a8a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> DSGeo.read_file(ub <span class="op">+</span> <span class="st">"data/it_province.geojson"</span>)</span>
@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="71013125" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="5ece8b66" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>it_city <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/it_cities.csv"</span>)</span>
@@ -775,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Create a line plot of the number of COVID-19 cases in the province of Verona. Label the plot with one label per month, using only the year and month as the label.</li>
 </ol>
-<div id="85a44c10" class="cell" data-execution_count="7">
+<div id="41a8f9a6" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -797,7 +797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Recreate the plot you made in the previous question, filtering the data to contain only the points before 1 June 2020. This is the first wave of the pandemic following local and global social distancing rules and shows the initial peak followed by slow but continual decrease in cases through the spring.</li>
 </ol>
-<div id="bdbef1fc" class="cell" data-execution_count="8">
+<div id="b7802e6e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -820,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>The daily cases are noisy. Truncate the date data at the weekly level, then group the data by week and compute the total number of cases over the week. Plot the data as you did in the first questions, using all of the data (not just the first six months).</li>
 </ol>
-<div id="0bb4371e" class="cell" data-execution_count="9">
+<div id="1133a3a3" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -845,7 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Next, let’s look at all of the provinces in the entire Veneto region. Repeat what you did in the previous question, but now include all provinces in Veneto. Create a line plot that shows the number of cases within each province, using color to differentiate the provinces.</li>
 </ol>
-<div id="5d979f12" class="cell" data-execution_count="10">
+<div id="ef9a5cca" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -869,7 +869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>A problem in the previous plot is that we are plotting the raw cases, but some provinces are larger than others, and what really matters is the rate of cases. To get the rate we need the population of each province. Rather than giving that directly to you (in this case it’s easy to find, but in many others we would need to compute it from another dataset), we are going to calculate the population by doing the following: doing a spatial join of <code>it_city</code> into <code>prov</code>, grouping the output by province, and that summing up the population for each province. When you are confident with the output, save the result as a dataset called <code>prov_pop</code>.</li>
 </ol>
-<div id="92225fde" class="cell" data-execution_count="11">
+<div id="0dd09be9" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prov_pop <span class="op">=</span> (</span>
@@ -953,7 +953,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Now, repeat what you did in question 4, but now before plotting, join the data to the <code>prov_pop</code> dataset and compute the number of cases per 100k people. Plot this rate instead of the raw cases. You should see that the rate evens out, with a single outlier (I’m not sure what’s going on with this one province, but it’s likely some combination of both a real spike and an issue with our population count, which only includes larger towns and cities).</li>
 </ol>
-<div id="219ee33e" class="cell" data-execution_count="12">
+<div id="ba590770" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -979,7 +979,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Let’s now look at the entire country at a particular moment in time. To make the plots easier to filter, replace the week truncation function you used above with the <code>c.date.dt.week()</code> function, which returns an integer of the week. For each province and week, compute the number of cases per 100k people. Then, filter the data to only include week number 12 and use <code>DSGeo.plot</code> with the <code>color_by</code> parameter set to the rate variable you created.</li>
 </ol>
-<div id="01d33206" class="cell" data-execution_count="13">
+<div id="d4eae5ea" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1005,7 +1005,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Repeat the previous question for week 13. Compare the two plots visually.</li>
 </ol>
-<div id="f6e0c8b3" class="cell" data-execution_count="14">
+<div id="6cef612c" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1031,7 +1031,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>In this last question, I have written the code for you. Your job is just to run it and evaluate what’s going on. This is code to create a moving visualization of data, something that I don’t generally find particularly useful in most cases, but has a lot of utility when working with spatio-temporal data (data that has both spatial and temporal dimensions) because there is no way to show both fully on the same static plot, even with the aid of color. If for some reason you have trouble getting this to run, please look at the solutions for an itneractive version.</li>
 </ol>
-<div id="7229b9e9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="e48dba68" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1301,36 +1301,36 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgcd89d38d20fc4366923fa186580b7d31">
+  <img id="_anim_imga1ade71acc4b4d18b20b150f878f8bda">
   <div class="anim-controls">
-    <input id="_anim_slidercd89d38d20fc4366923fa186580b7d31" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="animcd89d38d20fc4366923fa186580b7d31.set_frame(parseInt(this.value));">
+    <input id="_anim_slidera1ade71acc4b4d18b20b150f878f8bda" type="range" class="anim-slider" name="points" min="0" max="1" step="1" value="0" oninput="anima1ade71acc4b4d18b20b150f878f8bda.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animcd89d38d20fc4366923fa186580b7d31.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anima1ade71acc4b4d18b20b150f878f8bda.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animcd89d38d20fc4366923fa186580b7d31.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anima1ade71acc4b4d18b20b150f878f8bda.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animcd89d38d20fc4366923fa186580b7d31.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anima1ade71acc4b4d18b20b150f878f8bda.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animcd89d38d20fc4366923fa186580b7d31.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anima1ade71acc4b4d18b20b150f878f8bda.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animcd89d38d20fc4366923fa186580b7d31.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anima1ade71acc4b4d18b20b150f878f8bda.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animcd89d38d20fc4366923fa186580b7d31.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anima1ade71acc4b4d18b20b150f878f8bda.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animcd89d38d20fc4366923fa186580b7d31.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anima1ade71acc4b4d18b20b150f878f8bda.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animcd89d38d20fc4366923fa186580b7d31.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anima1ade71acc4b4d18b20b150f878f8bda.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animcd89d38d20fc4366923fa186580b7d31.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anima1ade71acc4b4d18b20b150f878f8bda.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectcd89d38d20fc4366923fa186580b7d31" class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_cd89d38d20fc4366923fa186580b7d31">
-      <label for="_anim_radio1_cd89d38d20fc4366923fa186580b7d31">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_cd89d38d20fc4366923fa186580b7d31" checked="">
-      <label for="_anim_radio2_cd89d38d20fc4366923fa186580b7d31">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_cd89d38d20fc4366923fa186580b7d31">
-      <label for="_anim_radio3_cd89d38d20fc4366923fa186580b7d31">Reflect</label>
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecta1ade71acc4b4d18b20b150f878f8bda" class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_a1ade71acc4b4d18b20b150f878f8bda">
+      <label for="_anim_radio1_a1ade71acc4b4d18b20b150f878f8bda">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_a1ade71acc4b4d18b20b150f878f8bda" checked="">
+      <label for="_anim_radio2_a1ade71acc4b4d18b20b150f878f8bda">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_a1ade71acc4b4d18b20b150f878f8bda">
+      <label for="_anim_radio3_a1ade71acc4b4d18b20b150f878f8bda">Reflect</label>
     </form>
   </div>
 </div>
@@ -1340,9 +1340,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgcd89d38d20fc4366923fa186580b7d31";
-    var slider_id = "_anim_slidercd89d38d20fc4366923fa186580b7d31";
-    var loop_select_id = "_anim_loop_selectcd89d38d20fc4366923fa186580b7d31";
+    var img_id = "_anim_imga1ade71acc4b4d18b20b150f878f8bda";
+    var slider_id = "_anim_slidera1ade71acc4b4d18b20b150f878f8bda";
+    var loop_select_id = "_anim_loop_selecta1ade71acc4b4d18b20b150f878f8bda";
     var frames = new Array(51);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8AAAAMACAYAAADrPg4vAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -77506,7 +77506,7 @@ MoL/B0sjsW3oKwY4AAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animcd89d38d20fc4366923fa186580b7d31 = new Animation(frames, img_id, slider_id, 50.0,
+        anima1ade71acc4b4d18b20b150f878f8bda = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()

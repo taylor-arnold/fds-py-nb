@@ -450,19 +450,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="6cd772cc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="86529b3d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="18b8d450" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="ba03c3d6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install igraph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="3b8f44d8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="3">
+<div id="5bc93fe9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="3">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -478,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="reading-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="reading-the-data">Reading the Data</h3>
-<div id="8389b283" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="97cbb765" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scotus <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/scotus_case.csv"</span>)</span>
@@ -646,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="578689d1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="c55b9341" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>citation <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/scotus_citation.csv"</span>)</span>
@@ -730,7 +730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We are going to start by working with a single legal issue area. Filter the <code>scotus</code> dataset to include only cases where the <code>issue</code> column equals <code>20140</code> ( sex discrimination in employment (cf.&nbsp;sex discrimination) acy). Save the result as <code>scotus_sml</code>.</li>
 </ol>
-<div id="45c8f0ee" class="cell" data-execution_count="7">
+<div id="0a6e0c2e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scotus_sml <span class="op">=</span> scotus.<span class="bu">filter</span>(c.issue <span class="op">==</span> <span class="dv">20140</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -739,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Now we need to build the set of citations that connect cases <em>within</em> this issue area. We want to keep only those rows from the <code>citation</code> dataset where <strong>both</strong> the citing case and the cited case appear in our filtered set <code>scotus_sml</code>. To do this, use two sequential semi joins. The first semi join keeps only rows of <code>citation</code> whose <code>doc_id</code> appears in <code>scotus_sml</code>. The second semi join further filters to keep only rows whose <code>doc_id2</code> also appears in <code>scotus_sml</code> (you will need to use <code>left_on</code> and <code>right_on</code> here since the column names differ). Save the result as <code>citation_sml</code>.</li>
 </ol>
-<div id="5cf57a16" class="cell" data-execution_count="8">
+<div id="c2b8e12d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>citation_sml <span class="op">=</span> (</span>
@@ -822,7 +822,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Pass <code>citation_sml</code> to <code>DSNetwork.process</code> with <code>directed=False</code> to create an undirected graph. This returns three objects: <code>node</code>, <code>edge</code>, and <code>G</code>. The <code>node</code> table contains one row per case along with x/y coordinates for plotting and several centrality metrics (such as <code>eigen</code>, <code>between</code>, <code>close</code>, and <code>cluster</code>). The <code>edge</code> table contains the segments needed to draw lines between connected nodes. Sort the <code>node</code> table by the <code>eigen</code> column so that the most central nodes are drawn on top.</li>
 </ol>
-<div id="f7af0709" class="cell" data-execution_count="9">
+<div id="3c6b7380" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>node, edge, G <span class="op">=</span> DSNetwork.process(citation_sml, directed<span class="op">=</span><span class="va">False</span>)</span>
@@ -868,8 +868,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>"479 U.S. 511"</td>
-<td>-6.003949</td>
-<td>2.899307</td>
+<td>5.226005</td>
+<td>-3.983979</td>
 <td>1</td>
 <td>46</td>
 <td>"2"</td>
@@ -880,8 +880,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"532 U.S. 843"</td>
-<td>7.085979</td>
-<td>-2.04664</td>
+<td>-7.331921</td>
+<td>1.801155</td>
 <td>1</td>
 <td>46</td>
 <td>"4"</td>
@@ -892,8 +892,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"539 U.S. 90"</td>
-<td>3.704985</td>
-<td>3.222058</td>
+<td>-2.82869</td>
+<td>-3.266129</td>
 <td>1</td>
 <td>46</td>
 <td>"3"</td>
@@ -904,8 +904,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"455 U.S. 385"</td>
-<td>4.390005</td>
-<td>1.587941</td>
+<td>-3.220506</td>
+<td>2.74451</td>
 <td>1</td>
 <td>46</td>
 <td>"3"</td>
@@ -916,8 +916,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"546 U.S. 500"</td>
-<td>4.950432</td>
-<td>0.434577</td>
+<td>-4.150488</td>
+<td>2.438887</td>
 <td>1</td>
 <td>46</td>
 <td>"3"</td>
@@ -940,8 +940,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"479 U.S. 272"</td>
-<td>-1.014499</td>
-<td>0.167774</td>
+<td>1.040657</td>
+<td>-0.00135</td>
 <td>1</td>
 <td>46</td>
 <td>"1"</td>
@@ -952,8 +952,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"556 U.S. 701"</td>
-<td>-1.594667</td>
-<td>0.618032</td>
+<td>1.613805</td>
+<td>-0.388452</td>
 <td>1</td>
 <td>46</td>
 <td>"1"</td>
@@ -964,8 +964,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"499 U.S. 187"</td>
-<td>-0.379037</td>
-<td>-0.02253</td>
+<td>0.324957</td>
+<td>-0.159484</td>
 <td>1</td>
 <td>46</td>
 <td>"1"</td>
@@ -976,8 +976,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"435 U.S. 702"</td>
-<td>0.764372</td>
-<td>0.409539</td>
+<td>-0.812328</td>
+<td>0.145473</td>
 <td>1</td>
 <td>46</td>
 <td>"1"</td>
@@ -988,8 +988,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"429 U.S. 125"</td>
-<td>-0.445928</td>
-<td>1.083084</td>
+<td>0.187728</td>
+<td>-1.090025</td>
 <td>1</td>
 <td>46</td>
 <td>"1"</td>
@@ -1006,7 +1006,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Create a network plot of the citation graph. Use <code>geom_segment</code> to draw the edges (with <code>alpha=0.1</code> so overlapping edges don’t obscure the picture) and <code>geom_point</code> for the nodes. Color the nodes by their <code>eigen</code> (eigenvector centrality) value. Use <code>theme_void()</code> to remove axes and gridlines. Eigenvector centrality measures how connected a node is to <em>other well-connected nodes</em>, so cases with high eigenvector centrality are cited by many other important cases.</li>
 </ol>
-<div id="4b4bdc34" class="cell" data-execution_count="10">
+<div id="57346dfc" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1032,7 +1032,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Recreate the same network plot, but now color the nodes by <code>between</code> (betweenness centrality). Betweenness centrality measures how often a node lies on the shortest path between other pairs of nodes. A case with high betweenness serves as a critical bridge connecting different parts of the citation network. Compare this plot to the previous one. Are the same nodes highlighted, or do different cases stand out?</li>
 </ol>
-<div id="03ec5b69" class="cell" data-execution_count="11">
+<div id="c088b0fe" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1058,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Recreate the network plot once more, this time coloring by <code>close</code> (closeness centrality). Closeness centrality measures how near a node is, on average, to all other nodes in the network. A case with high closeness can “reach” the rest of the network in fewer steps. How does this compare to the two previous centrality measures? Do the same cases tend to rank highly across all three, or do some cases stand out on one metric but not the others?</li>
 </ol>
-<div id="e8e62f5a" class="cell" data-execution_count="12">
+<div id="9e552c53" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1084,7 +1084,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Now create the network plot colored by <code>cluster</code>. The cluster column assigns each node to a community detected by a graph clustering algorithm. This groups cases that are more densely connected to each other than to the rest of the network. Do the clusters correspond to visually distinct groups in the plot? Think about what it might mean for Supreme Court cases on the same legal issue to fall into different clusters. They may represent distinct sub-topics or different eras of legal reasoning.</li>
 </ol>
-<div id="4fafbcbc" class="cell" data-execution_count="13">
+<div id="835a80c5" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1110,7 +1110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>For each cluster, find the case with the highest eigenvector centrality. To do this, group the <code>node</code> table by <code>cluster</code>, then sort within each group by <code>eigen</code> in descending order, and take the first row from each group. Join the result with <code>scotus</code> (matching <code>id</code> to <code>doc_id</code>) so you can see the case names. These are the most influential cases within each cluster. Look up one or two to see what legal questions they addressed.</li>
 </ol>
-<div id="376910f9" class="cell" data-execution_count="14">
+<div id="4397f27c" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1178,8 +1178,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>"1"</td>
 <td>"429 U.S. 125"</td>
-<td>-0.445928</td>
-<td>1.083084</td>
+<td>0.187728</td>
+<td>-1.090025</td>
 <td>1</td>
 <td>46</td>
 <td>13</td>
@@ -1198,8 +1198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>"0"</td>
 <td>"208 U.S. 412"</td>
-<td>-3.701173</td>
-<td>-1.541497</td>
+<td>4.024466</td>
+<td>0.995879</td>
 <td>1</td>
 <td>46</td>
 <td>11</td>
@@ -1218,8 +1218,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>"3"</td>
 <td>"490 U.S. 228"</td>
-<td>1.963444</td>
-<td>1.011158</td>
+<td>-1.855546</td>
+<td>-0.726011</td>
 <td>1</td>
 <td>46</td>
 <td>11</td>
@@ -1238,8 +1238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>"4"</td>
 <td>"477 U.S. 57"</td>
-<td>2.349757</td>
-<td>-0.695339</td>
+<td>-2.944374</td>
+<td>-0.540857</td>
 <td>1</td>
 <td>46</td>
 <td>9</td>
@@ -1258,8 +1258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>"2"</td>
 <td>"414 U.S. 632"</td>
-<td>-2.74556</td>
-<td>1.81817</td>
+<td>2.165693</td>
+<td>-2.437906</td>
 <td>1</td>
 <td>46</td>
 <td>3</td>
@@ -1283,7 +1283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Let’s see whether the network structure aligns with the historical timeline of the cases. Join <code>node</code> with the <code>scotus</code> dataset (matching <code>id</code> to <code>doc_id</code>) and then create the same network plot, but this time color the nodes by <code>term</code> (the year the case was decided). Do the clusters you saw earlier correspond to different time periods, or do they cut across eras?</li>
 </ol>
-<div id="95bd5410" class="cell" data-execution_count="15">
+<div id="6acba767" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1310,7 +1310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Pick 3–5 related issues from the list found at <a href="http://scdb.wustl.edu/documentation.php?var=issue">Supreme Court Database</a>. Filter <code>scotus</code> to include cases from all of these issue areas using <code>c.issue.is_in(...)</code>. Then, build the filtered citation table <code>citation_sml</code> using the same two semi joins you used in Question 2. Finally, create the graph with <code>DSNetwork.process</code> as before and sort the nodes by <code>eigen</code>.</li>
 </ol>
-<div id="9f1f85db" class="cell" data-execution_count="16">
+<div id="2289cbf5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I selected 20010, 20020, 20030, all related to voting</span></span>
@@ -1365,8 +1365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>"194 U.S. 147"</td>
-<td>2.720528</td>
-<td>-9.487976</td>
+<td>2.764664</td>
+<td>-9.43359</td>
 <td>1</td>
 <td>128</td>
 <td>"1"</td>
@@ -1377,8 +1377,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"405 U.S. 15"</td>
-<td>-9.29726</td>
-<td>-1.335169</td>
+<td>-8.896897</td>
+<td>-2.437084</td>
 <td>1</td>
 <td>128</td>
 <td>"5"</td>
@@ -1389,8 +1389,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"528 U.S. 250"</td>
-<td>-9.097512</td>
-<td>-2.274445</td>
+<td>-9.135703</td>
+<td>-1.526392</td>
 <td>1</td>
 <td>128</td>
 <td>"5"</td>
@@ -1401,8 +1401,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"396 U.S. 41"</td>
-<td>-6.850418</td>
-<td>-2.477728</td>
+<td>-7.285652</td>
+<td>1.926087</td>
 <td>1</td>
 <td>128</td>
 <td>"0"</td>
@@ -1413,8 +1413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"362 U.S. 602"</td>
-<td>-0.073506</td>
-<td>-7.102046</td>
+<td>0.119346</td>
+<td>-7.064614</td>
 <td>1</td>
 <td>128</td>
 <td>"3"</td>
@@ -1437,8 +1437,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"446 U.S. 156"</td>
-<td>2.154933</td>
-<td>0.461579</td>
+<td>2.161984</td>
+<td>0.221399</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1449,8 +1449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"512 U.S. 874"</td>
-<td>2.709805</td>
-<td>0.000237</td>
+<td>2.643468</td>
+<td>0.300666</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1461,8 +1461,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"393 U.S. 544"</td>
-<td>3.041186</td>
-<td>0.152171</td>
+<td>2.992133</td>
+<td>0.239455</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1473,8 +1473,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"517 U.S. 186"</td>
-<td>1.379717</td>
-<td>0.764644</td>
+<td>1.345458</td>
+<td>0.695851</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1485,8 +1485,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"383 U.S. 301"</td>
-<td>1.780864</td>
-<td>-0.419261</td>
+<td>1.833468</td>
+<td>-0.585629</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1503,7 +1503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Plot the resulting graph, coloring by <code>issue</code> so you can see whether the different issue areas you selected form distinct communities or are tightly interwoven. Join <code>node</code> with <code>scotus</code> first so that the <code>issue</code> column is available.</li>
 </ol>
-<div id="7ca47acb" class="cell" data-execution_count="17">
+<div id="a0e078eb" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1530,7 +1530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>For each issue area, find the two cases with the highest eigenvector centrality. Sort the <code>node</code> table by <code>eigen</code> in descending order, then join with <code>scotus</code> to get the <code>issue</code> column. Group by <code>issue</code> and use <code>.head(2)</code> to take the top two rows from each group. These are the landmark cases within each issue area. These are the ones most heavily cited by other important cases in the network.</li>
 </ol>
-<div id="06855674" class="cell" data-execution_count="18">
+<div id="897f8403" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1598,8 +1598,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>20010</td>
 <td>"110 U.S. 651"</td>
-<td>-2.009681</td>
-<td>-1.751735</td>
+<td>-1.940624</td>
+<td>-1.889773</td>
 <td>1</td>
 <td>128</td>
 <td>"0"</td>
@@ -1618,8 +1618,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>20010</td>
 <td>"92 U.S. 214"</td>
-<td>-0.367252</td>
-<td>-2.268717</td>
+<td>-0.255484</td>
+<td>-2.479663</td>
 <td>1</td>
 <td>128</td>
 <td>"0"</td>
@@ -1638,8 +1638,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>20020</td>
 <td>"383 U.S. 301"</td>
-<td>1.780864</td>
-<td>-0.419261</td>
+<td>1.833468</td>
+<td>-0.585629</td>
 <td>1</td>
 <td>128</td>
 <td>"2"</td>
@@ -1658,8 +1658,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>20020</td>
 <td>"384 U.S. 641"</td>
-<td>0.227772</td>
-<td>-0.901094</td>
+<td>0.253339</td>
+<td>-0.780897</td>
 <td>1</td>
 <td>128</td>
 <td>"0"</td>
@@ -1678,8 +1678,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>20030</td>
 <td>"393 U.S. 23"</td>
-<td>-1.772892</td>
-<td>1.877362</td>
+<td>-1.621642</td>
+<td>1.982192</td>
 <td>1</td>
 <td>128</td>
 <td>"4"</td>
@@ -1698,8 +1698,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>20030</td>
 <td>"335 U.S. 281"</td>
-<td>-2.917411</td>
-<td>-0.194033</td>
+<td>-2.947207</td>
+<td>-0.418428</td>
 <td>1</td>
 <td>128</td>
 <td>"0"</td>

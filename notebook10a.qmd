@@ -1,5 +1,15 @@
 ## Notebook10a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -12,4 +22,120 @@ theme_set(theme_minimal())
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+speed = pl.read_csv("data/inference_speed_sex_height.csv")
+```
+
+### Questions (Class)
+
+1. In class we will play several games with dice and marbles. Start with the first game in which use student has several dice of difference sides, rolls all of them, removes dice that are a 1, and then continues until all dice are finished. We'll record the number of rolls needed to finish and create a dataset of the rolls as below:
+
+```{python}
+#| tags: [noclear]
+dice_eliminate = pl.DataFrame({
+    "rolls": [1, 2, 3, 4, 5]
+})
+```
+
+2. Using the eliminated dice data, draw a plot showing the distribution. Try both a histogram and a bar plot and decided which looks better.
+
+```{python}
+(
+    dice_eliminate
+    .pipe(ggplot, aes("factor(rolls)"))
+    + geom_bar()
+)
+```
+
+3. Compute the mean, median, and standard deviation of the dice rolls. 
+
+```{python}
+(
+    dice_eliminate
+    .select(
+        mu=c.rolls.mean(),
+        med=c.rolls.median(),
+        s = c.rolls.std()
+    )
+)
+```
+
+4. Now, use the `DSStatsmodels.ttest1` wrapper to compute the confidence interval for the average number of rolls needed to eliminate all of the dice.
+
+```{python}
+(
+    dice_eliminate
+    .pipe(DSStatsmodels.ttest1, "rolls ~ 1")
+)
+```
+
+5. Introductory statistics texts often make means and proportions seem like completely different things. For many purposes they can be treated exactly the same. I've given each of you a bag with a certain number of marbles that are white and a certain number that are black (or maybe another color if I run out of black). We want to know the proportion of white marbles. If we treat a white marble as the number 1 and a non-white marble as the number 0, this is the same as learning the average number of the marbles. We'll again create a dataset by sampling and then pool across the class.
+
+```{python}
+#| tags: [noclear]
+marbles = pl.DataFrame({
+    "rolls": [1, 2, 3, 4, 5]
+})
+```
+
+6. Compute the confidence interval for the mean from our data. Once we are finished, we will check the results with the actual proportion.
+
+```{python}
+(
+    dice_eliminate
+    .pipe(DSStatsmodels.ttest1, "rolls ~ 1")
+)
+```
+
+### Questions (Data)
+
+Compute the mean, median, and standard deviation of the speed column from the `speed` dataset.
+
+```{python}
+(
+    speed
+    .select(
+        mu=c.speed.mean(),
+        med=c.speed.median(),
+        s = c.speed.std()
+    )
+)
+```
+
+Provide the confidence interval for the speed column from the `speed` dataset using the `DSStatsmodels.ttest1` wrapper.
+
+```{python}
+(
+    speed
+    .pipe(DSStatsmodels.ttest1, "speed ~ 1")
+)
+```
+
+Now, compute the confidence interval using the formula from the text and the t-star value of 1.96. Compare it (not in the code, just by sight) with the result from the previous question.
+
+```{python}
+(
+    speed
+    .select(
+        mu = c.speed.mean(),
+        s = c.speed.std(),
+        n = pl.len()
+    )
+    .with_columns(
+        ci_lower = c.mu - 1.96 * c.s / c.n,
+        ci_upper = c.mu + 1.96 * c.s / c.n        
+    )
+)
+```
+
+
+
 
