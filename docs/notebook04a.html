@@ -453,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="85e905a7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="f5a94462" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="d2f1e061" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="6602419a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="87d9fae8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="4e6d150f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/movies_50_years.csv"</span>)</span>
@@ -487,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will learn how to combine information from multiple datasets using joins. The movie data has been split into several tables: <code>movie</code> contains basic information about each film (runtime, rating, etc.), <code>genre</code> lists the genres associated with each film, <code>color</code> contains information about the colors in each movie’s poster, and <code>people</code> has information about the cast and crew. Because some movie titles are duplicated across different years, we will always join by both year and title to ensure we match records correctly.</p>
 <p>Create a new column in the <code>movie</code> dataset that computes the ratio of the number of ratings to the runtime. This gives a rough sense of audience engagement per minute of film.</p>
-<div id="e6f66b6c" class="cell" data-execution_count="5">
+<div id="6b857124" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -711,7 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the <code>movie</code> dataset, create a scatter plot with runtime on the x-axis and the IMDB rating on the y-axis.</p>
-<div id="5663bf1e" class="cell" data-execution_count="6">
+<div id="8a9c8721" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -732,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Create a boxplot showing the distribution of poster brightness for each MPA rating category.</p>
-<div id="a764e574" class="cell" data-execution_count="7">
+<div id="d673cb05" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -753,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now let’s start working with multiple tables. Join the <code>genre</code> table to the <code>movie</code> table. Remember to join on both year and title since some titles appear in multiple years.</p>
-<div id="21238b5f" class="cell" data-execution_count="8">
+<div id="8407f4ef" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -975,7 +975,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Using the joined data, compute the average poster brightness and average poster saturation for each genre. Then create a scatter plot of these averages with genre labels next to each point.</p>
-<div id="0d3b4b6b" class="cell" data-execution_count="9">
+<div id="9952351a" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1000,7 +1000,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>people</code> table contains information about cast and crew, including a predicted gender and a confidence score for that prediction. Filter the people data to only starring roles where the gender confidence is greater than 0.8. Then join this to the genre table. For each genre, compute the proportion of these roles that are female and the total count. Sort by the proportion of female roles and display all results.</p>
-<div id="d97464cd" class="cell" data-execution_count="10">
+<div id="054b4e73" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1151,7 +1151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Let’s find the most common dominant poster color for each genre. Start with the <code>color</code> table and filter to just the hue colors. For each movie, find the color with the highest percentage (this is the dominant hue). Keep only movies where the dominant hue makes up more than 5% of the poster. Join this to the genre table, then count how often each color appears as the dominant hue within each genre. Finally, find the single most common dominant color for each genre.</p>
-<div id="6819272a" class="cell" data-execution_count="11">
+<div id="c28917eb" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1194,6 +1194,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Western"</td>
+<td>"red"</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>"Romance"</td>
+<td>"red"</td>
+<td>436</td>
+</tr>
+<tr class="odd">
 <td>"Thriller"</td>
 <td>"red"</td>
 <td>294</td>
@@ -1204,34 +1214,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1018</td>
 </tr>
 <tr class="odd">
-<td>"Fantasy"</td>
+<td>"Musical"</td>
 <td>"red"</td>
-<td>148</td>
+<td>30</td>
 </tr>
 <tr class="even">
-<td>"Romance"</td>
+<td>"Horror"</td>
 <td>"red"</td>
-<td>436</td>
-</tr>
-<tr class="odd">
-<td>"Short"</td>
-<td>"red"</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Adventure"</td>
-<td>"blue"</td>
-<td>374</td>
-</tr>
-<tr class="odd">
-<td>"Drama"</td>
-<td>"red"</td>
-<td>971</td>
-</tr>
-<tr class="even">
-<td>"History"</td>
-<td>"red"</td>
-<td>39</td>
+<td>160</td>
 </tr>
 <tr class="odd">
 <td>"Biography"</td>
@@ -1239,29 +1229,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>84</td>
 </tr>
 <tr class="even">
+<td>"Fantasy"</td>
+<td>"red"</td>
+<td>148</td>
+</tr>
+<tr class="odd">
+<td>"Drama"</td>
+<td>"red"</td>
+<td>971</td>
+</tr>
+<tr class="even">
 <td>"War"</td>
 <td>"red"</td>
 <td>28</td>
 </tr>
 <tr class="odd">
-<td>"Animation"</td>
-<td>"blue"</td>
-<td>132</td>
-</tr>
-<tr class="even">
 <td>"Family"</td>
 <td>"red"</td>
 <td>159</td>
 </tr>
-<tr class="odd">
-<td>"Western"</td>
-<td>"red"</td>
-<td>30</td>
-</tr>
 <tr class="even">
-<td>"Sport"</td>
+<td>"Crime"</td>
 <td>"red"</td>
-<td>69</td>
+<td>432</td>
 </tr>
 <tr class="odd">
 <td>"Action"</td>
@@ -1269,24 +1259,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>535</td>
 </tr>
 <tr class="even">
-<td>"Mystery"</td>
-<td>"red"</td>
-<td>139</td>
+<td>"Sci-Fi"</td>
+<td>"blue"</td>
+<td>155</td>
 </tr>
 <tr class="odd">
-<td>"Crime"</td>
-<td>"red"</td>
-<td>432</td>
-</tr>
-<tr class="even">
-<td>"Musical"</td>
-<td>"red"</td>
-<td>30</td>
-</tr>
-<tr class="odd">
-<td>"Horror"</td>
-<td>"red"</td>
-<td>160</td>
+<td>"Animation"</td>
+<td>"blue"</td>
+<td>132</td>
 </tr>
 <tr class="even">
 <td>"Music"</td>
@@ -1294,9 +1274,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>70</td>
 </tr>
 <tr class="odd">
-<td>"Sci-Fi"</td>
+<td>"Short"</td>
+<td>"red"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"History"</td>
+<td>"red"</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td>"Adventure"</td>
 <td>"blue"</td>
-<td>155</td>
+<td>374</td>
+</tr>
+<tr class="even">
+<td>"Sport"</td>
+<td>"red"</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td>"Mystery"</td>
+<td>"red"</td>
+<td>139</td>
 </tr>
 </tbody>
 </table>
@@ -1304,14 +1304,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, let’s see an example of how to use an semi-join. First, create a table called <code>movie_long</code> that consists of all films that have a run time greater than 2.5 hours (150 minutes).</p>
-<div id="72b2558d" class="cell" data-execution_count="12">
+<div id="7c80d078" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>movie_long <span class="op">=</span> movie.<span class="bu">filter</span>(c.runtime <span class="op">&gt;</span> <span class="fl">2.5</span> <span class="op">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Then, draw a plot showing the number films that have a long runtime by their genre using a semi-join. Try to make the plot look nice. Note: Yes, you could do this in other ways in this simple case. Semi- and anti-joins are very useful as our analyses become more complex.</p>
-<div id="565de2a9" class="cell" data-execution_count="13">
+<div id="a39dd85e" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1333,7 +1333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We’ve mentioned that some titles are repeated in the data and therefore we always need to group by title and year. Find all of the titles that are repeated. Print all of the rows of the result and order by the counts.</p>
-<div id="4c90675a" class="cell" data-execution_count="14">
+<div id="e0c0f8bd" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1367,19 +1367,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Shaft"</td>
+<td>3</td>
+</tr>
+<tr class="even">
 <td>"The Adventures of Pinocchio"</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>"Robin Hood"</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>"Hercules"</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>"Godzilla"</td>
 <td>3</td>
 </tr>
 <tr class="odd">
@@ -1387,179 +1379,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>3</td>
 </tr>
 <tr class="even">
-<td>"Shaft"</td>
+<td>"Godzilla"</td>
 <td>3</td>
 </tr>
 <tr class="odd">
-<td>"The Island of Dr. Moreau"</td>
-<td>2</td>
+<td>"Robin Hood"</td>
+<td>3</td>
 </tr>
 <tr class="even">
-<td>"The Kid"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Strangers"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Omen"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Player"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Emma"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Getaway"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Project X"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Point Break"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Pete's Dragon"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"King Kong"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Hot Pursuit"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Stepford Wives"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Crossroads"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Sahara"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"No Escape"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Sparkle"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Mother Knows Best"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Last House on the Left"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Karate Kid"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Bad Boys"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Green Hornet"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Jungle Book"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Beauty and the Beast"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Red Dawn"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"RoboCop"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Scream"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Les Misérables"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Animal"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Serenity"</td>
-<td>2</td>
+<td>"Hercules"</td>
+<td>3</td>
 </tr>
 <tr class="odd">
 <td>"Clash of the Titans"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"A Nightmare on Elm Street"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Life"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Gone in 60 Seconds"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Island"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"A Christmas Carol"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Grease"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Crazies"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Teenage Mutant Ninja Turtles"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Arthur"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Carrie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Avengers"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Overboard"</td>
 <td>2</td>
 </tr>
 <tr class="even">
@@ -1567,19 +1399,331 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>2</td>
 </tr>
 <tr class="odd">
-<td>"Neighbors"</td>
+<td>"Les Misérables"</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td>"Mother"</td>
+<td>"The Green Hornet"</td>
 <td>2</td>
 </tr>
 <tr class="odd">
-<td>"Grease 2"</td>
+<td>"The Fog"</td>
 <td>2</td>
 </tr>
 <tr class="even">
+<td>"Vacation"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Grease"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Point Break"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Going in Style"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Life"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Aladdin"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Halloween II"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Freaky Friday"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Threesome"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"RoboCop"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Sparkle"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Teenage Mutant Ninja Turtles"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Scream"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Rookie"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Hairspray"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Hot Pursuit"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Ghostbusters"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Nobody's Fool"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Sahara"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Amityville Horror"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Night School"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
 <td>"A Star Is Born"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Crossroads"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Friday the 13th"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Jungle Book"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Stepford Wives"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"A Nightmare on Elm Street"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Avengers"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Grease 2"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Project X"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"No Escape"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Mummy"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Emma"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Mother"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Death Wish"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Circle"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Pet Sematary"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Charlotte's Web"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Mother Knows Best"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Pete's Dragon"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Guardian"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Three Musketeers"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Serenity"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Hellboy"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"My Little Pony: The Movie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Poltergeist"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Animal"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Getaway"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Carrie"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Omen"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Player"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Karate Kid"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Twilight"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Red Dawn"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Beauty and the Beast"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Last House on the Left"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Hills Have Eyes"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Billy Boy"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Gone in 60 Seconds"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Island of Dr. Moreau"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Fantastic Four"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Overboard"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Arthur"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Annie"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Footloose"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Heartbreak Kid"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Island"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"The Crazies"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Addams Family"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"A Christmas Carol"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Neighbors"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Child's Play"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Total Recall"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"When a Stranger Calls"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Strangers"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"King Kong"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Intruder"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"Bad Boys"</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"The Kid"</td>
 <td>2</td>
 </tr>
 <tr class="odd">
@@ -1588,150 +1732,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"Gladiator"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Addams Family"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Ghostbusters"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Child's Play"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Hellboy"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Heartbreak Kid"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Annie"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Twilight"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Poltergeist"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Friday the 13th"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Death Wish"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Intruder"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Freaky Friday"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Rookie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Fog"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Aladdin"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Charlotte's Web"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Total Recall"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Hairspray"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Going in Style"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Footloose"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Circle"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Night School"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Threesome"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Amityville Horror"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Billy Boy"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Pet Sematary"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"Vacation"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Nobody's Fool"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"My Little Pony: The Movie"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Halloween II"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Three Musketeers"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Guardian"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"When a Stranger Calls"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"Fantastic Four"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"The Mummy"</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>"The Hills Have Eyes"</td>
 <td>2</td>
 </tr>
 </tbody>

@@ -447,13 +447,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="75e36b38" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="40574861" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="14f98a85" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="7458ff64" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="small-example" class="level3">
 <h3 class="anchored" data-anchor-id="small-example">Small Example</h3>
 <p>Much of the code itself is already included in this notebook. We are going to go through it slowly and intentionally to understand how to parse text annotations in Python. To start, load the small English spaCy model:</p>
-<div id="d0d8a6ed" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="cac70e72" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Next, create a corpus object with a single text. I’ve filled in one example, but you should use the string that you had for homework.</p>
-<div id="24089f4c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="bfe42527" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> pl.DataFrame({</span>
@@ -489,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Now parse the text with the NLP model.</p>
-<div id="5a0d620e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="78533120" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(docs, nlp)</span>
@@ -773,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="grabbing-some-data" class="level3">
 <h3 class="anchored" data-anchor-id="grabbing-some-data">Grabbing Some Data</h3>
 <p>Next, we are going to grab some text data from Wikipedia. I’ve written a script that called the Wikipedia API to get the text from a page. Here is the function that takes a page name and returns the text.</p>
-<div id="76f86d0d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="8c78cb25" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
@@ -800,7 +800,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can use this inside of a call to <code>pl.DataFrame</code> to build a textual corpus object. Here is an example for the data science page. Start with this one and then come back with your own example.</p>
-<div id="5e44763c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="15f0d18c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame({</span>
@@ -840,7 +840,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Once you have the data, you can process it with the NLP annotation:</p>
-<div id="eb0d96a2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="9b90c127" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(df, nlp)</span>
@@ -1088,7 +1088,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Now, for a little work on your end. Using the code that was in the book, find the top 10 most common nouns on the page.</li>
 </ol>
-<div id="24fc2d52" class="cell" data-execution_count="10">
+<div id="2c8ea199" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1138,11 +1138,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>16</td>
 </tr>
 <tr class="odd">
-<td>"information"</td>
+<td>"field"</td>
 <td>10</td>
 </tr>
 <tr class="even">
-<td>"field"</td>
+<td>"information"</td>
 <td>10</td>
 </tr>
 <tr class="odd">
@@ -1150,15 +1150,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>9</td>
 </tr>
 <tr class="even">
-<td>"computer"</td>
+<td>"computing"</td>
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"method"</td>
+<td>"computer"</td>
 <td>6</td>
 </tr>
 <tr class="even">
-<td>"knowledge"</td>
+<td>"method"</td>
 <td>6</td>
 </tr>
 </tbody>
@@ -1169,7 +1169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>And then find the top ten common adjectives.</li>
 </ol>
-<div id="ecde8d8b" class="cell" data-execution_count="11">
+<div id="a16598d3" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1203,11 +1203,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"such"</td>
+<td>"large"</td>
 <td>5</td>
 </tr>
 <tr class="even">
-<td>"large"</td>
+<td>"such"</td>
 <td>5</td>
 </tr>
 <tr class="odd">
@@ -1215,15 +1215,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>4</td>
 </tr>
 <tr class="even">
-<td>"scientific"</td>
-<td>3</td>
-</tr>
-<tr class="odd">
 <td>"computational"</td>
 <td>3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>"interdisciplinary"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"other"</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>"new"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"scientific"</td>
 <td>3</td>
 </tr>
 <tr class="odd">
@@ -1232,14 +1240,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>"centric"</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>"other"</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>"new"</td>
 <td>3</td>
 </tr>
 </tbody>
@@ -1252,7 +1252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sheets" class="level3">
 <h3 class="anchored" data-anchor-id="sheets">Sheets</h3>
 <p>Next we are going to create a class dataset. Once that is finished, we will use the code below to read it in.</p>
-<div id="aead49ec" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="88e8d88f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SHEET_ID <span class="op">=</span> <span class="st">"1yyeOB8AcNvoDhSoMbjEEkaKKw6REXLV-mH4oJpg0qB8"</span></span>
@@ -1360,7 +1360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Then, we can cycle through the rows of the dataset, putting together the Wikipedia data from each row, and then create a corpus object.</p>
-<div id="33b82afb" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="111286a0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> []</span>
@@ -1444,7 +1444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>As before, we will next create an annotation object.</p>
-<div id="a3d2afb4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="721e2a2d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(wiki_df, nlp)</span>
@@ -1458,7 +1458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (505_208, 15)</small>
+<small>shape: (506_352, 15)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1692,7 +1692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Adapting the code show in the text, find the 8 nouns that are the most common on each page and print out the results to have a summary of the themes of each page. What patterns do you see? Are there any challenges? What else might you want to do with this data?</li>
 </ol>
-<div id="9532ffc2" class="cell" data-execution_count="15">
+<div id="10c4327d" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1730,84 +1730,204 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"John Cornyn"</td>
-<td>"%; bill; election; law; people; state; vote; year"</td>
+<td>"Mike Crapo"</td>
+<td>"%; bill; law; nomination; nominee; senator; term; vote"</td>
 </tr>
 <tr class="even">
-<td>"John Hickenlooper"</td>
-<td>"%; bill; campaign; city; governor; hickenlooper; mayor; state"</td>
+<td>"Josh Hawley"</td>
+<td>"attorney; campaign; election; investigation; law; senator; state; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Thom Tillis"</td>
-<td>"%; bill; election; law; people; senator; state; year"</td>
+<td>"Ted Budd"</td>
+<td>"%; bill; district; election; member; office; senator; vote"</td>
 </tr>
 <tr class="even">
-<td>"Dave McCormick"</td>
-<td>"administration; campaign; ceo; company; policy; position; president; year"</td>
+<td>"Jerry Moran"</td>
+<td>"%; bill; law; legislation; member; senator; service; time"</td>
 </tr>
 <tr class="odd">
-<td>"Lyman R. Casey"</td>
-<td>"business; candidate; casey; chairman; drinking; education; renomination; senator"</td>
+<td>"Mike Lee"</td>
+<td>"%; bill; election; government; senator; state; vote; waste"</td>
 </tr>
 <tr class="even">
-<td>"Deb Fischer"</td>
-<td>"%; campaign; county; election; land; law; senator; vote"</td>
+<td>"Richard Blumenthal"</td>
+<td>"attorney; law; lawsuit; member; senator; service; state; year"</td>
 </tr>
 <tr class="odd">
-<td>"Jacky Rosen"</td>
-<td>"%; letter; nomination; security; senator; source; time; vote"</td>
+<td>"Markwayne Mullin"</td>
+<td>"business; campaign; company; election; government; month; president; senator"</td>
 </tr>
 <tr class="even">
-<td>"Angela Alsobrooks"</td>
-<td>"attorney; bill; campaign; county; election; executive; program; state"</td>
+<td>"Brian Schatz"</td>
+<td>"%; governor; nomination; nominee; right; senator; state; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Chris Murphy"</td>
-<td>"bill; health; law; legislation; member; senator; shooting; state"</td>
+<td>"John Fettermen"</td>
+<td>"election; governor; lieutenant; mayor; senator; stroke; town; vote"</td>
+</tr>
+<tr class="even">
+<td>"Chris Van Hollen"</td>
+<td>"%; bill; district; election; member; part; tax; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Susan Collins"</td>
+<td>"%; administration; bill; law; legislation; senator; support; vote"</td>
+</tr>
+<tr class="even">
+<td>"Mazie Hirono"</td>
+<td>"%; district; election; governor; primary; senator; term; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Pete Ricketts"</td>
+<td>"%; bill; election; governor; legislature; session; state; tax"</td>
+</tr>
+<tr class="even">
+<td>"Shelley Moore Capito"</td>
+<td>"%; abortion; bill; funding; legislation; nominee; senator; state"</td>
+</tr>
+<tr class="odd">
+<td>"Elizabeth Warren"</td>
+<td>"%; administration; bankruptcy; campaign; candidate; election; family; law"</td>
+</tr>
+<tr class="even">
+<td>"Bernie Sanders"</td>
+<td>"%; bill; campaign; candidate; election; people; sander; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Dick Durban"</td>
+<td>"bill; letter; member; program; resolution; senator; state; year"</td>
+</tr>
+<tr class="even">
+<td>"Tina Smith"</td>
+<td>"administration; campaign; election; governor; letter; president; senator; state"</td>
+</tr>
+<tr class="odd">
+<td>"Chuck Schumer"</td>
+<td>"%; administration; bill; election; leader; legislation; senator; vote"</td>
 </tr>
 <tr class="even">
 <td>"Mark Kelly"</td>
 <td>"crew; day; gun; mission; space; station; time; wife"</td>
 </tr>
 <tr class="odd">
+<td>"Martin Heinrich"</td>
+<td>"%; district; election; legislation; member; senator; state; term"</td>
+</tr>
+<tr class="even">
+<td>"Dan Sullivan"</td>
+<td>"%; duty; election; law; nominee; office; race; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Jeanne Shaheen"</td>
+<td>"%; bill; campaign; governor; senator; state; tax; term"</td>
+</tr>
+<tr class="even">
+<td>"Thom Tillis"</td>
+<td>"%; bill; election; law; people; senator; state; year"</td>
+</tr>
+<tr class="odd">
+<td>"Maggie Hassan"</td>
+<td>"%; bill; campaign; governor; law; senator; state; year"</td>
+</tr>
+<tr class="even">
+<td>"Bill Hagerty"</td>
+<td>"ambassador; campaign; director; election; equity; firm; investment; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Deb Fischer"</td>
+<td>"%; campaign; election; land; law; senator; state; vote"</td>
+</tr>
+<tr class="even">
+<td>"Tim Scott"</td>
+<td>"%; bill; county; district; election; member; seat; senator"</td>
+</tr>
+<tr class="odd">
+<td>"Tammy Duckworth"</td>
+<td>"%; bill; duckworth; senator; service; veteran; vote; woman"</td>
+</tr>
+<tr class="even">
+<td>"Lyman R. Casey"</td>
+<td>"casey; chairman; parent; rancher; renomination; sibling; state; wife"</td>
+</tr>
+<tr class="odd">
+<td>"Bill Cassidy"</td>
+<td>"%; bill; cassidy; child; election; health; legislation; vote"</td>
+</tr>
+<tr class="even">
+<td>"Eric Schmitt"</td>
+<td>"attorney; bill; case; general; law; office; state; tax"</td>
+</tr>
+<tr class="odd">
+<td>"Ruben Gallego"</td>
+<td>"%; campaign; election; group; member; mother; state; vote"</td>
+</tr>
+<tr class="even">
+<td>"Chuck Grassley"</td>
+<td>"bill; election; health; legislation; senator; tax; vote; year"</td>
+</tr>
+<tr class="odd">
+<td>"Ted Cruz"</td>
+<td>"%; campaign; election; government; law; senator; state; vote"</td>
+</tr>
+<tr class="even">
+<td>"Bernie Moreno"</td>
+<td>"abortion; campaign; citizenship; dealership; election; interview; senator; support"</td>
+</tr>
+<tr class="odd">
+<td>"Tim Kaine"</td>
+<td>"%; bill; election; governor; letter; senator; state; year"</td>
+</tr>
+<tr class="even">
+<td>"Steve Daines"</td>
+<td>"%; bill; daine; election; president; seat; state; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Amy Klobuchar"</td>
+<td>"%; attorney; campaign; candidate; election; law; legislation; senator"</td>
+</tr>
+<tr class="even">
+<td>"Jim Justice"</td>
+<td>"bill; business; coal; election; governor; justice; law; state"</td>
+</tr>
+<tr class="odd">
+<td>"Mark Warner"</td>
+<td>"%; bill; governor; law; member; senator; state; year"</td>
+</tr>
+<tr class="even">
+<td>"Ben Ray Luján"</td>
+<td>"%; bill; district; election; legislation; nominee; reelection; vote"</td>
+</tr>
+<tr class="odd">
 <td>"Ron Wyden"</td>
 <td>"%; bill; government; law; legislation; letter; senator; tax"</td>
 </tr>
 <tr class="even">
-<td>"Susan Collins"</td>
-<td>"%; administration; bill; election; law; legislation; senator; vote"</td>
+<td>"James Lankford"</td>
+<td>"%; bill; election; marriage; senator; sex; state; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Sheldon Whitehouse"</td>
-<td>"bill; climate; club; legislation; member; money; office; whitehouse"</td>
+<td>"Angela Alsobrooks"</td>
+<td>"attorney; bill; campaign; county; election; executive; program; state"</td>
 </tr>
 <tr class="even">
-<td>"Ted Cruz"</td>
-<td>"%; campaign; election; government; law; senator; state; vote"</td>
+<td>"Roger Wicker"</td>
+<td>"%; bill; district; election; member; nominee; state; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Bernie Moreno"</td>
-<td>"abortion; campaign; citizenship; dealership; election; interview; senator; support"</td>
-</tr>
-<tr class="even">
-<td>"Jerry Moran"</td>
-<td>"%; bill; law; legislation; member; senator; vote; year"</td>
-</tr>
-<tr class="odd">
-<td>"Josh Hawley"</td>
-<td>"attorney; campaign; election; investigation; law; senator; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Ted Budd"</td>
-<td>"%; bill; district; election; member; office; senator; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Michael Bennet"</td>
-<td>"administration; election; law; letter; member; senator; term; year"</td>
+<td>"Jon Ossoff"</td>
+<td>"campaign; candidate; district; election; office; percent; senator; vote"</td>
 </tr>
 <tr class="even">
 <td>"John Boozman"</td>
 <td>"%; bill; drug; legislation; member; senator; term; vote"</td>
+</tr>
+<tr class="odd">
+<td>"John Curtis"</td>
+<td>"%; bill; business; election; land; legislation; member; vote"</td>
+</tr>
+<tr class="even">
+<td>"Michael Bennet"</td>
+<td>"%; administration; election; law; letter; member; senator; year"</td>
 </tr>
 <tr class="odd">
 <td>"Mike Rounds"</td>
@@ -1818,316 +1938,196 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"%; bill; climate; election; member; primary; time; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Roger Marshall"</td>
-<td>"%; aid; decision; district; election; primary; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Todd Young"</td>
-<td>"%; bill; election; legislation; member; rating; seat; senator"</td>
-</tr>
-<tr class="odd">
-<td>"Elizabeth Warren"</td>
-<td>"%; administration; bankruptcy; campaign; election; family; law; school"</td>
-</tr>
-<tr class="even">
-<td>"Chris Van Hollen"</td>
-<td>"%; bill; district; election; member; part; tax; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Gilbert A. Pierce"</td>
-<td>"bill; capital; law; member; newspaper; office; state; time"</td>
-</tr>
-<tr class="even">
-<td>"Martin Heinrich"</td>
-<td>"%; district; election; legislation; member; senator; state; term"</td>
-</tr>
-<tr class="odd">
-<td>"Andy Kim"</td>
-<td>"%; ballot; campaign; county; district; election; senator; vote"</td>
-</tr>
-<tr class="even">
-<td>"Cory Booker"</td>
-<td>"%; campaign; city; election; mayor; senator; vote; year"</td>
-</tr>
-<tr class="odd">
-<td>"Roger Wicker"</td>
-<td>"%; bill; district; election; member; nominee; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Lisa Murkowski"</td>
-<td>"%; campaign; election; father; seat; senator; time; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Chuck Grassley"</td>
-<td>"bill; election; health; legislation; senator; tax; vote; year"</td>
-</tr>
-<tr class="even">
-<td>"Patty Murray"</td>
-<td>"%; bill; election; letter; senator; state; term; year"</td>
-</tr>
-<tr class="odd">
-<td>"Ed Markey"</td>
-<td>"%; bill; election; letter; member; senator; vote; year"</td>
-</tr>
-<tr class="even">
-<td>"Chris Coons"</td>
-<td>"%; coon; country; election; letter; office; senator; year"</td>
-</tr>
-<tr class="odd">
-<td>"Lindsey Graham"</td>
-<td>"%; election; nominee; president; senator; state; vote; war"</td>
-</tr>
-<tr class="even">
 <td>"Raphael Warnock"</td>
 <td>"bill; campaign; church; election; pastor; right; state; warnock"</td>
-</tr>
-<tr class="odd">
-<td>"Katie Britt"</td>
-<td>"bill; border; election; medium; office; president; senator; woman"</td>
 </tr>
 <tr class="even">
 <td>"Tom Cotton"</td>
 <td>"%; administration; bill; election; law; letter; senator; year"</td>
 </tr>
 <tr class="odd">
-<td>"Peter Welch"</td>
-<td>"%; election; law; member; nominee; president; seat; vote"</td>
+<td>"Angus King"</td>
+<td>"%; bill; election; governor; legislation; senator; state; vote"</td>
 </tr>
 <tr class="even">
-<td>"Jim Risch"</td>
-<td>"bill; election; governor; gun; lieutenant; senator; state; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Maggie Hassan"</td>
-<td>"%; bill; campaign; governor; law; senator; state; year"</td>
-</tr>
-<tr class="even">
-<td>"Marsha Blackburn"</td>
-<td>"bill; blackburn; child; election; member; senator; state; woman"</td>
-</tr>
-<tr class="odd">
-<td>"Tammy Baldwin"</td>
-<td>"%; bill; care; health; letter; senator; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Mike Crapo"</td>
-<td>"bill; law; nomination; nominee; senator; state; term; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Rand Paul"</td>
-<td>"bill; campaign; election; father; senator; spending; state; year"</td>
-</tr>
-<tr class="even">
-<td>"Tim Scott"</td>
-<td>"%; bill; county; district; election; member; seat; senator"</td>
-</tr>
-<tr class="odd">
-<td>"Cindy Hyde-Smith"</td>
-<td>"%; bill; election; office; senator; state; time; vote"</td>
-</tr>
-<tr class="even">
-<td>"Brian Schatz"</td>
-<td>"%; governor; law; nomination; nominee; right; senator; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Bill Cassidy"</td>
-<td>"%; bill; cassidy; child; election; health; legislation; vote"</td>
-</tr>
-<tr class="even">
-<td>"Eric Schmitt"</td>
-<td>"attorney; case; election; general; law; office; state; tax"</td>
-</tr>
-<tr class="odd">
-<td>"Dick Durban"</td>
-<td>"bill; letter; member; program; resolution; senator; state; year"</td>
-</tr>
-<tr class="even">
-<td>"Ron Johnson"</td>
-<td>"%; campaign; election; government; investigation; issue; spending; support"</td>
-</tr>
-<tr class="odd">
-<td>"Jon Husted"</td>
-<td>"business; election; hour; office; state; term; voter; year"</td>
-</tr>
-<tr class="even">
-<td>"Bernie Sanders"</td>
-<td>"%; bill; campaign; candidate; election; people; sander; vote"</td>
-</tr>
-<tr class="odd">
 <td>"Alex Padilla"</td>
 <td>"%; ballot; election; legislation; president; senator; state; term"</td>
-</tr>
-<tr class="even">
-<td>"Shelley Moore Capito"</td>
-<td>"%; abortion; bill; funding; legislation; nominee; senator; state"</td>
-</tr>
-<tr class="odd">
-<td>"John Kennedy"</td>
-<td>"bill; company; law; money; people; state; treasurer; vote"</td>
-</tr>
-<tr class="even">
-<td>"John Curtis"</td>
-<td>"%; bill; business; election; land; legislation; member; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Richard Blumenthal"</td>
-<td>"attorney; law; lawsuit; member; senator; service; state; year"</td>
-</tr>
-<tr class="even">
-<td>"Joni Ernst"</td>
-<td>"bill; campaign; law; senator; state; support; vote; year"</td>
-</tr>
-<tr class="odd">
-<td>"Ben Ray Luján"</td>
-<td>"%; bill; district; election; legislation; nominee; reelection; vote"</td>
-</tr>
-<tr class="even">
-<td>"Jon Ossoff"</td>
-<td>"campaign; candidate; district; election; office; percent; senator; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Catherine Cortez Masto"</td>
-<td>"%; action; attorney; general; office; senator; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Lisa Blunt Rochester "</td>
-<td>"%; district; election; mask; member; nominee; secretary; woman"</td>
-</tr>
-<tr class="odd">
-<td>"Steve Daines"</td>
-<td>"%; bill; daine; election; president; seat; senator; vote"</td>
-</tr>
-<tr class="even">
-<td>"Jim Justice"</td>
-<td>"bill; business; coal; election; governor; justice; law; state"</td>
-</tr>
-<tr class="odd">
-<td>"Rick Scott"</td>
-<td>"%; company; election; governor; law; school; state; voting"</td>
-</tr>
-<tr class="even">
-<td>"Mark Warner"</td>
-<td>"%; bill; governor; law; member; senator; state; year"</td>
-</tr>
-<tr class="odd">
-<td>"Tammy Duckworth"</td>
-<td>"%; bill; duckworth; senator; service; veteran; vote; woman"</td>
-</tr>
-<tr class="even">
-<td>"Tim Kaine"</td>
-<td>"%; administration; election; governor; letter; senator; state; year"</td>
 </tr>
 <tr class="odd">
 <td>"Lucius Lyon"</td>
 <td>"1830; admission; city; land; member; part; state; village"</td>
 </tr>
 <tr class="even">
-<td>"Ruben Gallego"</td>
-<td>"%; campaign; election; group; member; mother; state; vote"</td>
+<td>"John Thune"</td>
+<td>"%; election; leader; race; senator; vote; whip; year"</td>
 </tr>
 <tr class="odd">
-<td>"James Lankford"</td>
-<td>"%; bill; election; marriage; senator; sex; state; vote"</td>
+<td>"Katie Britt"</td>
+<td>"bill; border; election; medium; office; president; senator; woman"</td>
 </tr>
 <tr class="even">
-<td>"Bill Hagerty"</td>
-<td>"ambassador; campaign; director; equity; firm; investment; primary; vote"</td>
+<td>"Jim Banks"</td>
+<td>"%; bank; duty; election; letter; member; senator; state"</td>
 </tr>
 <tr class="odd">
-<td>"Mike Lee"</td>
-<td>"%; bill; election; government; senator; state; vote; waste"</td>
+<td>"Catherine Cortez Masto"</td>
+<td>"%; action; attorney; nominee; office; senator; state; vote"</td>
 </tr>
 <tr class="even">
+<td>"Andy Kim"</td>
+<td>"%; ballot; campaign; county; district; election; line; primary"</td>
+</tr>
+<tr class="odd">
+<td>"Marsha Blackburn"</td>
+<td>"bill; blackburn; child; election; member; senator; state; woman"</td>
+</tr>
+<tr class="even">
+<td>"John Cornyn"</td>
+<td>"%; bill; election; law; people; state; vote; year"</td>
+</tr>
+<tr class="odd">
+<td>"Chris Murphy"</td>
+<td>"bill; health; law; legislation; member; senator; shooting; state"</td>
+</tr>
+<tr class="even">
+<td>"Ed Markey"</td>
+<td>"%; bill; election; letter; member; senator; vote; year"</td>
+</tr>
+<tr class="odd">
+<td>"Peter Welch"</td>
+<td>"%; candidate; election; law; nominee; president; seat; vote"</td>
+</tr>
+<tr class="even">
+<td>"Lisa Murkowski"</td>
+<td>"%; campaign; election; father; seat; senator; time; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Ashley Moody"</td>
+<td>"attorney; ballot; cannabis; court; election; general; law; measure"</td>
+</tr>
+<tr class="even">
+<td>"Tammy Baldwin"</td>
+<td>"%; bill; care; health; letter; senator; state; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Jon Husted"</td>
+<td>"business; election; hour; office; state; term; voter; year"</td>
+</tr>
+<tr class="even">
+<td>"Gilbert A. Pierce"</td>
+<td>"bill; capital; law; member; newspaper; office; state; time"</td>
+</tr>
+<tr class="odd">
+<td>"Cory Booker"</td>
+<td>"%; campaign; city; election; mayor; senator; vote; year"</td>
+</tr>
+<tr class="even">
+<td>"Patty Murray"</td>
+<td>"%; bill; election; letter; member; senator; term; year"</td>
+</tr>
+<tr class="odd">
+<td>"John Norvell"</td>
+<td>"city; daughter; newspaper; son; state; truth; wife; year"</td>
+</tr>
+<tr class="even">
+<td>"Dave McCormick"</td>
+<td>"-; administration; campaign; co; policy; position; president; year"</td>
+</tr>
+<tr class="odd">
+<td>"Rand Paul"</td>
+<td>"bill; campaign; election; father; senator; spending; state; year"</td>
+</tr>
+<tr class="even">
+<td>"Tim Sheehy"</td>
+<td>"cattle; company; firefighting; member; officer; plane; senator; wildfire"</td>
+</tr>
+<tr class="odd">
+<td>"Joni Ernst"</td>
+<td>"bill; campaign; law; senator; state; support; vote; year"</td>
+</tr>
+<tr class="even">
+<td>"Jacky Rosen"</td>
+<td>"%; court; letter; nominee; senator; source; time; vote"</td>
+</tr>
+<tr class="odd">
 <td>"Maria Cantwell"</td>
 <td>"%; campaign; debate; election; privacy; senator; state; vote"</td>
 </tr>
-<tr class="odd">
-<td>"Markwayne Mullin"</td>
-<td>"%; border; business; election; member; representative; senator; vote"</td>
-</tr>
 <tr class="even">
-<td>"Ashley Moody"</td>
-<td>"attorney; ballot; cannabis; court; election; law; lawsuit; measure"</td>
+<td>"John Hickenlooper"</td>
+<td>"%; bill; campaign; city; governor; hickenlooper; mayor; state"</td>
 </tr>
 <tr class="odd">
-<td>"Chuck Schumer"</td>
-<td>"%; administration; bill; election; leader; legislation; senator; vote"</td>
-</tr>
-<tr class="even">
-<td>"Cynthia Lummis"</td>
-<td>"campaign; candidate; election; legislation; nominee; reelection; state; tenure"</td>
-</tr>
-<tr class="odd">
-<td>"Pete Ricketts"</td>
-<td>"%; bill; election; governor; legislature; session; state; tax"</td>
-</tr>
-<tr class="even">
-<td>"Amy Klobuchar"</td>
-<td>"%; campaign; candidate; election; law; legislation; senator; vote"</td>
-</tr>
-<tr class="odd">
-<td>"Angus King"</td>
-<td>"%; bill; election; governor; legislation; senator; state; vote"</td>
-</tr>
-<tr class="even">
-<td>"Jeanne Shaheen"</td>
-<td>"%; bill; campaign; governor; senator; state; tax; term"</td>
-</tr>
-<tr class="odd">
-<td>"John Fettermen"</td>
-<td>"election; governor; lieutenant; mayor; senator; stroke; town; vote"</td>
-</tr>
-<tr class="even">
-<td>"Kirsten Gillibrand"</td>
-<td>"%; bill; campaign; election; member; senator; term; year"</td>
-</tr>
-<tr class="odd">
-<td>"Dan Sullivan"</td>
-<td>"%; duty; election; law; nominee; office; race; vote"</td>
-</tr>
-<tr class="even">
-<td>"Tommy Tuberville"</td>
-<td>"coach; football; head; record; season; senator; team; year"</td>
-</tr>
-<tr class="odd">
-<td>"Tina Smith"</td>
-<td>"administration; campaign; election; governor; letter; president; senator; state"</td>
+<td>"John Kennedy"</td>
+<td>"bill; company; law; money; people; state; treasurer; vote"</td>
 </tr>
 <tr class="even">
 <td>"Mitch McConnell"</td>
-<td>"%; day; election; leader; president; senator; vote; year"</td>
+<td>"%; bill; election; leader; president; senator; vote; year"</td>
 </tr>
 <tr class="odd">
-<td>"Jack Reed"</td>
-<td>"%; district; election; policy; position; senator; term; trade"</td>
+<td>"Sheldon Whitehouse"</td>
+<td>"bill; climate; club; member; money; office; state; whitehouse"</td>
 </tr>
 <tr class="even">
-<td>"Adam Schiff"</td>
-<td>"district; election; impeachment; manager; member; term; trial; vote"</td>
+<td>"Jim Risch"</td>
+<td>"bill; election; governor; gun; lieutenant; senator; state; vote"</td>
+</tr>
+<tr class="odd">
+<td>"Lindsey Graham"</td>
+<td>"%; election; nominee; president; senator; state; vote; war"</td>
+</tr>
+<tr class="even">
+<td>"Todd Young"</td>
+<td>"%; bill; election; legislation; member; rating; seat; senator"</td>
+</tr>
+<tr class="odd">
+<td>"Kirsten Gillibrand"</td>
+<td>"%; bill; campaign; election; family; member; senator; year"</td>
+</tr>
+<tr class="even">
+<td>"Jack Reed"</td>
+<td>"%; district; election; position; primary; senator; term; trade"</td>
+</tr>
+<tr class="odd">
+<td>"Lisa Blunt Rochester "</td>
+<td>"%; district; election; mask; member; nominee; secretary; woman"</td>
+</tr>
+<tr class="even">
+<td>"Roger Marshall"</td>
+<td>"%; aid; district; election; group; primary; state; vote"</td>
 </tr>
 <tr class="odd">
 <td>"Jeff Merkley"</td>
 <td>"administration; bill; law; legislation; letter; program; senator; year"</td>
 </tr>
 <tr class="even">
-<td>"John Norvell"</td>
-<td>"daughter; law; newspaper; son; state; truth; wife; year"</td>
+<td>"Chris Coons"</td>
+<td>"%; coon; country; election; letter; office; senator; year"</td>
 </tr>
 <tr class="odd">
-<td>"Mazie Hirono"</td>
-<td>"%; candidate; district; election; governor; senator; term; vote"</td>
+<td>"Ron Johnson"</td>
+<td>"%; campaign; election; government; investigation; people; spending; support"</td>
 </tr>
 <tr class="even">
-<td>"Jim Banks"</td>
-<td>"absence; bank; election; member; people; policy; senator; state"</td>
+<td>"Cindy Hyde-Smith"</td>
+<td>"%; bill; election; office; senator; state; time; vote"</td>
 </tr>
 <tr class="odd">
-<td>"Tim Sheehy"</td>
-<td>"cattle; company; duty; member; officer; plane; senator; wildfire"</td>
+<td>"Cynthia Lummis"</td>
+<td>"campaign; candidate; election; legislation; nominee; reelection; state; tenure"</td>
 </tr>
 <tr class="even">
-<td>"John Thune"</td>
-<td>"%; election; leader; race; senator; vote; whip; year"</td>
+<td>"Rick Scott"</td>
+<td>"%; company; election; governor; law; school; state; voting"</td>
+</tr>
+<tr class="odd">
+<td>"Tommy Tuberville"</td>
+<td>"coach; football; head; record; season; senator; team; year"</td>
+</tr>
+<tr class="even">
+<td>"Adam Schiff"</td>
+<td>"district; election; impeachment; manager; member; trial; vote; war"</td>
 </tr>
 </tbody>
 </table>

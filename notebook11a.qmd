@@ -1,5 +1,15 @@
 ## Notebook11a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,192 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+metro = pl.read_csv(ub + "data/acs_cbsa.csv")
+docs = pl.read_csv(ub + "data/wiki_senator_class_docs.csv")
+meta = pl.read_csv(ub + "data/wiki_senator_class.csv")
+anno = pl.read_csv(ub + "data/wiki_senator_class_anno.csv")
+```
+
+## Part I: Classify Household Income
+
+1. Start by building a model object that uses linear regression to predict the household median income using the 1 bedroom median rent. Save the model as an object `model`.
+
+```{python}
+model = (
+    metro
+    .pipe(
+        DSSklearn.linear_regression,
+        target=c.hh_income_median,
+        features=[c.rent_1br_median]
+    )
+)
+```
+
+2. Compute the score of the model object. This is easy, but take a moment to make sure you understand what this means.
+
+```{python}
+model.score()
+```
+
+3. Take the `metro` data and direclty comput the root mean squared error (RMSE) without using the `.score()` method. Verify that it matches what you had in the previous question.
+
+```{python}
+(
+    metro
+    .with_columns(
+        model.predict()
+    )
+    .group_by(c.index_)
+    .agg(
+        rmse = (c.target_ - c.prediction_).pow(2).mean().sqrt()
+    )
+)
+```
+
+4. Print out the coefficents from the model. Make sure you understand what these mean and how they relate to the notes from today.
+
+```{python}
+model.coef()
+```
+
+5. Redefine `model` to be a linear regression predicting household median income using three variables: 1BR median rent, the percentage of income used for rent, and the percentage of people who own their homes.
+
+```{python}
+model = (
+    metro
+    .pipe(
+        DSSklearn.linear_regression,
+        target=c.hh_income_median,
+        features=[c.rent_1br_median, c.rent_perc_income, c.percent_own]
+    )
+)
+```
+
+6. Compute the score of this model (you may use `.score()` again). Visually compare to the model with just one predictor.
+
+```{python}
+model.score()
+```
+
+7. Look at the coefficents of the new model. What do their signs tell us about the relationship between these three predictor variables and the household median income?
+
+```{python}
+model.coef()
+```
+
+8. Next, redefine `model`. We will still predict household median income using 1BR median rent, percentage spent on housing, and percentage of people owning their house. But, now use the `DSSklearn.elastic_net_cv` model. 
+
+```{python}
+model = (
+    metro
+    .pipe(
+        DSSklearn.elastic_net_cv,
+        target=c.hh_income_median,
+        features=[c.rent_1br_median, c.rent_perc_income, c.percent_own]
+    )
+)
+```
+
+9. Look at the coefficents of the elastic net model. You should see that they are much smaller in magnitude than the logistic regression model.
+
+```{python}
+model.coef()
+```
+
+10. Look at the score of the model. It's not very good (probably) because the cross-validation system is not optimized for models this small. We would need to modify some inputs to get better values.
+
+```{python}
+model.score()
+```
+
+## Part II: Classify Region
+
+11. Now, use logistic regression to predict the quadrant (`quad`) that a region is from using the density, percentage owned, and household median income. Save the model again as `model`.
+
+```{python}
+model = (
+    metro
+    .pipe(
+        DSSklearn.logistic_regression,
+        target=c.quad,
+        features=[c.density, c.percent_own, c.hh_income_median]
+    )
+)
+```
+
+12. Now look at the coefficents of the model. Try your best to make some sense of them.
+
+```{python}
+model.coef()
+```
+
+13. Compute the scores for this model. Make sure you understand what these numbers represent! Hint: It's easier to understand than in the previous examples.
+
+```{python}
+model.score()
+```
+
+14. Print out the confusion matrix. Make sure you also understand what it represents.
+
+```{python}
+model.confusion_matrix()
+```
+
+## Part III: Text Analysis
+
+15. Let's load in the annotation data from the sentator dataset we built previously. (This code and the remaining ones I have already filled in for you)
+
+```{python}
+#| tags: [noclear]
+anno = (
+    anno
+    .join(meta.select(c.doc_id, c.party), on=c.doc_id)
+)
+anno
+```
+
+16. We can fit a penalised logistic model using the term-frequency matrix by calling the function `DSSklearnText.logistic_regression_cv`. It works just like the logistic regression model above, but accepts an annotation object and does the creation of the TF matrix internally for us. We will do more with these in future notebooks.
+
+```{python}
+#| tags: [noclear]
+model =(
+    anno
+    .pipe(
+        DSSklearnText.logistic_regression_cv,
+        doc_id=c.doc_id,
+        term_id=c.lemma,
+        target=c.party,
+        solver="saga",
+        min_df=0.05,
+        l1_ratios=[1]
+    )
+)
+```
+
+17. Look at the confusion matrix:
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+18. Finally, look at the non-zero coefficents. Notice that the table has a very specific (where Republican values are all the negative of the Democratic ones) due to the way the data is balanced between the categories.
+
+```{python}
+#| tags: [noclear]
+(
+    model
+    .coef()
+    .with_columns(cs = c.Democratic.abs() + c.Republican.abs())
+    .filter(c.cs > 0)
+    .sort(c.Democratic)
+)
+```

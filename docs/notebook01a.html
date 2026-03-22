@@ -449,13 +449,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Every notebook will start with some setup code. Here, the first block downloads the class-specific helper functions, the second loads all of the Python modules we need, and the final one downloads the data that we are using in this notebook. We won’t actually be using the data this time, but I’ve included it here just to demonstrate the normal process.</p>
 <p>Run each of these cells in order by clicking on the triangular play button to the left when hoving on the cell. Wait for each to finish before continuing.</p>
-<div id="89e85aa0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="3babc241" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="763f49d6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="e8c788fe" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -469,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6a9eb7ca" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="d84759fd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>food <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/food.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -481,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Most notebooks will consist of blank blocks of code. There will be questions asking you to do certain things by writing code and then running it within each of the blocks. Sometimes, there will also be another question and corresponding <strong>Answer</strong>: tag after the code that asks you to provide a short textual response. You can type this directly after the tag. Let’s try this out! In the block below, use Python to compute the sum of two plus two.</li>
 </ol>
-<div id="bebb88c9" class="cell" data-execution_count="5">
+<div id="19829d03" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -495,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>As in the notes, create a variable called <code>my_fav_number</code> equal to your favorite number. Note: See the font that the variable is in? Those come from putting the variable in back quotes within the text. Those are used to indicate that something in the prose text is a Python variable, function, or module. You will see that in the solutions these get printed in a code-font as well.</li>
 </ol>
-<div id="304db4c5" class="cell" data-execution_count="6">
+<div id="570936d2" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the solutions often show possible answers rather than</span></span>
@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Now, use the function <code>np.log</code>, a function that comes from the numpy module to compute logarithms, to find the logarithm of 10.</li>
 </ol>
-<div id="209aa50b" class="cell" data-execution_count="7">
+<div id="69b7d2c7" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
