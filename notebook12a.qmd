@@ -33,8 +33,8 @@ ub = ""
 ```{python}
 #| tags: [noclear]
 metro = pl.read_csv(ub + "data/acs_cbsa.csv")
-wiki = pl.read_csv("data/wiki_uk_meta.csv.gz", ignore_errors=True)
-anno = pl.read_csv("data/wiki_uk_authors_anno.csv.gz", ignore_errors=True)
+wiki = pl.read_csv(ub + "data/wiki_uk_meta.csv.gz", ignore_errors=True)
+anno = pl.read_csv(ub + "data/wiki_uk_authors_anno.csv.gz", ignore_errors=True)
 ```
 
 ### Part I: Metro Regions Dimensionality Reduction
