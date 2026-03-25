@@ -1,5 +1,15 @@
 ## Notebook12a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -9,7 +19,172 @@ from funs import *
 from plotnine import *
 from polars import col as c
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+metro = pl.read_csv(ub + "data/acs_cbsa.csv")
+wiki = pl.read_csv("data/wiki_uk_meta.csv.gz", ignore_errors=True)
+anno = pl.read_csv("data/wiki_uk_authors_anno.csv.gz", ignore_errors=True)
+```
+
+### Part I: Metro Regions Dimensionality Reduction
+
+1. Apply PCA (principal component analysis) to the `metro` dataset using the following features: density, median age, median household income, percent own, 1BR median rent, and rent as a percentage of income. Use the `.predict(full=True)` method to get the full dataset back with the new components. Then, create a scatter plot of the first two principal components (`dr0` and `dr1`) using text labels with the `name` column so we can see which metro regions are similar to one another. You may want to make the labels smaller to help read them.
+
+```{python}
+(
+    metro
+    .pipe(
+        DSSklearn.pca,
+        features=[c.density, c.age_median, c.hh_income_median,
+                  c.percent_own, c.rent_1br_median, c.rent_perc_income]
+    )
+    .predict(full=True)
+    #.sample(n=50)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_text(aes(label = "name"), size=4)
+)
+```
+
+2a. Now, we will try two alternative dimensionality reduction techniques on the same set of features: UMAP and t-SNE. Start with UMAP. Create a scatter plot of the first two components. Compare the results visually to the PCA plot above. Notice how UMAP and t-SNE tend to create more distinct clusters while PCA preserves more of the global structure.
+
+```{python}
+(
+    metro
+    .pipe(
+        DSSklearn.umap,
+        features=[c.density, c.age_median, c.hh_income_median,
+                  c.percent_own, c.rent_1br_median, c.rent_perc_income]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point()
+)
+```
+
+2b. Now, try t-SNE.
+
+```{python}
+(
+    metro
+    .pipe(
+        DSSklearn.tsne,
+        features=[c.density, c.age_median, c.hh_income_median,
+                  c.percent_own, c.rent_1br_median, c.rent_perc_income]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point()
+)
+```
+
+### Part II: Metro Regions Clustering
+
+3. Now let's try clustering the metro regions. Use K-Means clustering on the same six features from Part I, setting the number of clusters to 20. Save the result with full predictions as `metro_pca`.
+
+```{python}
+metro_pca = (
+    metro
+    .pipe(
+        DSSklearn.kmeans,
+        features=[c.density, c.age_median, c.hh_income_median,
+                  c.percent_own, c.rent_1br_median, c.rent_perc_income],
+        n_clusters=20
+    )
+    .predict(full=True)
+)
+```
+
+4. For each cluster label, display the names of the top 10 most populous metro regions (sorted by population in descending order). Look through the groupings and see if the clusters seem to be capturing meaningful similarities between regions.
+
+```{python}
+(
+    metro_pca
+    .sort(c.pop, descending=True)
+    .group_by(c.label_)
+    .agg(
+        regions = c.name.head(10).str.join(",")
+    )
+    .sort(c.label_)
+)
+```
+
+5. Visualize the clustering results by applying PCA to the same six features on the `metro_pca` data. Create a scatter plot of the first two principal components, coloring the points by their cluster label. This lets us see how well the K-Means clusters correspond to the structure found by PCA.
+
+```{python}
+(
+    metro_pca
+    .pipe(
+        DSSklearn.pca,
+        features=[c.density, c.age_median, c.hh_income_median,
+                  c.percent_own, c.rent_1br_median, c.rent_perc_income]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="factor(label_)"))
+)
+```
+
+6. Compute the mean of each of the six features grouped by cluster label. This gives us a profile of each cluster and helps us interpret what makes regions in the same cluster similar.
+
+```{python}
+(
+    metro_pca
+    .select(
+        c.density, c.age_median, c.hh_income_median,
+        c.percent_own, c.rent_1br_median, c.rent_perc_income,
+        c.label_
+    )
+    .group_by(c.label_)
+    .mean()
+    .sort(c.label_)
+)
+```
+
+### Part III: Author Corpus
+
+7. Now let's apply dimensionality reduction to text data. Using the `anno` annotation dataset, filter to only nouns (`upos == "NOUN"`) and apply UMAP via the `DSSklearnText.umap` wrapper. Use `doc_id` as the document identifier and `lemma` as the term identifier. See if authors who write about similar topics end up near each other.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .pipe(
+        DSSklearnText.umap,
+        doc_id=c.doc_id,
+        term_id=c.lemma
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_text(aes(label="doc_id"))
+)
+```
+
+8. Repeat the UMAP analysis on the same filtered noun annotations, but this time use custom values for `n_neighbors` and `min_dist`. Play around with the values until you get something more interesting that the default.
+
+```{python}
+(
+    anno
+    .filter(c.upos == "NOUN")
+    .pipe(
+        DSSklearnText.umap,
+        doc_id=c.doc_id,
+        term_id=c.lemma,
+        n_neighbors=5,
+        min_dist=0.01
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_text(aes(label="doc_id"))
+)
+```

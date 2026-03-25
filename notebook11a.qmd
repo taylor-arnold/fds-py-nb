@@ -181,6 +181,7 @@ anno
 #| tags: [noclear]
 model =(
     anno
+    .filter(c.upos.is_in(["ADJ"]))
     .pipe(
         DSSklearnText.logistic_regression_cv,
         doc_id=c.doc_id,
@@ -198,6 +199,7 @@ model =(
 ```{python}
 #| tags: [noclear]
 model.confusion_matrix()
+
 ```
 
 18. Finally, look at the non-zero coefficents. Notice that the table has a very specific (where Republican values are all the negative of the Democratic ones) due to the way the data is balanced between the categories.
@@ -206,9 +208,10 @@ model.confusion_matrix()
 #| tags: [noclear]
 (
     model
-    .coef()
+    .coef(scaled=True)
     .with_columns(cs = c.Democratic.abs() + c.Republican.abs())
     .filter(c.cs > 0)
     .sort(c.Democratic)
 )
 ```
+

@@ -782,19 +782,19 @@ class SkWrapperClass:
             return pl.concat([self.df, result], how="horizontal")
         return result
 
-    def coef(self, raw=False):
+    def coef(self, scaled=False):
         if self.model_name not in ["linear_regression", "elastic_net", "elastic_net_cv", "logistic_regression", "logistic_regression_cv"]:
             raise ValueError(f"Model '{self.model_name}' does not have coefficients. Use linear_regression, elastic_net, elastic_net_cv, logistic_regression, or logistic_regression_cv.")
         fitted_model = self.model.named_steps["model"]
         scaler = self.model.named_steps["scaler"]
 
-        if raw:
+        if scaled:
+            coef = fitted_model.coef_
+            intercept = fitted_model.intercept_
+        else:
             scaled_coef = fitted_model.coef_
             coef = scaled_coef / scaler.scale_
             intercept = fitted_model.intercept_ - np.dot(coef, scaler.mean_)
-        else:
-            coef = fitted_model.coef_
-            intercept = fitted_model.intercept_
 
         if coef.ndim == 2:
             classes = fitted_model.classes_
@@ -973,7 +973,7 @@ def _extract_features(df, target_name, features, drop):
     return X, column_names
 
 
-def _fit_supervised(model_name, X, y, df, column_names, test_size, random_state, stratify_array, **kwargs):
+def _fit_supervised(model_name, X, y, df, column_names, test_size, random_state, stratify_array, scale=False, **kwargs):
     from sklearn.model_selection import train_test_split
 
     index = np.arange(X.shape[0])
@@ -1215,7 +1215,7 @@ def _build_dtm(
 
     sparse_matrix = csr_matrix((data, (rows, cols)), shape=(n_docs, n_terms))
     X = sparse_matrix.toarray()
-    X = X / np.linalg.norm(X, axis=1, keepdims=True)
+    #X = X / np.linalg.norm(X, axis=1, keepdims=True)
 
     return X, doc_ids, term_names
 
@@ -1486,7 +1486,7 @@ class DSSklearnText:
         doc_col = df.select(doc_id).columns[0]
         doc_df = pl.DataFrame({doc_col: doc_ids})
         column_names = [str(t) for t in term_names]
-        return _fit_dimred("umap", X, doc_df, column_names, **kwargs)
+        return _fit_dimred("umap", X, doc_df, column_names, scale=False, **kwargs)
 
     @staticmethod
     def kmeans(df, doc_id, term_id, count=None, max_vocab_size=None, min_df=0, max_df=1, **kwargs):
