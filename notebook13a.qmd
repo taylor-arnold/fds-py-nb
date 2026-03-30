@@ -36,7 +36,7 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-fmnist = pl.read_csv("data/fashionmnist_10000.csv")
+fmnist = pl.read_csv(ub + "data/fashionmnist_10000.csv")
 fmnist
 ```
 
