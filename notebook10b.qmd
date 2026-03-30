@@ -33,7 +33,7 @@ ub = ""
 #| tags: [noclear]
 import string
 lower_set = set(string.ascii_lowercase)
-keylogs = pl.read_csv("data/keylogs-1774817569168.csv")
+keylogs = pl.read_csv(ub + "data/keylogs-1774817569168.csv")
 keylogs
 ```
 
