@@ -35,6 +35,7 @@ ub = ""
 ```
 
 ```{python}
+#| tags: [noclear]
 !wget https://humanitiesdata.org/media/fashionmnist_10000.tar -P media/
 !tar -xf media/fashionmnist_10000.tar -C media/
 ```
