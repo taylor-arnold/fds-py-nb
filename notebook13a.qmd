@@ -1,5 +1,15 @@
 ## Notebook13a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -8,8 +18,164 @@ import polars as pl
 from funs import *
 from plotnine import *
 from polars import col as c
+
+import torch.nn as nn
+import torch.optim as optim
+
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+fmnist = pl.read_csv("data/fashionmnist_10000.csv")
+fmnist
+```
+
+### Part I: Supervised and Unsupervised Learning
+
+1. Let's start by getting a feel for the Fashion MNIST dataset. Use `DSImage.plot_image_grid` to display a random sample of 30 images in a grid with 10 columns.
+
+```{python}
+DSImage.plot_image_grid(fmnist.sample(30), ncol=10)
+```
+
+2. Filter the dataset to only the "sneaker" label, take a random sample of 30, and display the images in a grid. This gives us a sense of what a single category looks like.
+
+```{python}
+(
+    fmnist
+    .filter(c.label == "sneaker")
+    .sample(30)
+    .pipe(DSImage.plot_image_grid, ncol=10)
+)
+```
+
+3. Use `DSTorch.load_image` to prepare the image data for modeling. Set `scale=True` and `flatten=True`. This returns the full feature matrices (`X`, `X_train`, `X_test`), label vectors (`y`, `y_train`, `y_test`), and the class names (`cn`).
+
+```{python}
+X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_image(
+    fmnist, scale=True, flatten=True
+)
+```
+
+4. This code shows how to add the matrix data directly into a data frame object. Run it and make sure you understand how it works. We will use it in the next few examples.
+
+```{python}
+#| tags: [noclear]
+(
+    fmnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+)
+```
+
+5. Let's visualize how the different clothing categories relate to each other. Add the pixel features as a column, take 10 images from each label, run UMAP (an unsupervised dimensionality reduction method) using `DSSklearn.umap` with `features=[c.pixels]`, call `.predict(full=True)`, and plot the result using `geom_text` with the label as the text. Which categories cluster together?
+
+```{python}
+(
+    fmnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+    .group_by(c.label)
+    .head(10)
+    .pipe(
+        DSSklearn.umap,
+        features=[c.pixels]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_text(aes(label="label"))
+)
+```
+
+6. Now let's try a supervised approach. Add the pixel features as a column, then use `DSSklearn.logistic_regression_cv` with `target=c.label`, `stratify=c.label`, `features=[c.pixels]`, and `l1_ratios=[0]`. This fits a regularized logistic regression with cross-validation. Save the result as `model`.
+
+```{python}
+model = (
+    fmnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        stratify=c.label,
+        features=[c.pixels],
+        l1_ratios=[0]
+    )
+)
+```
+
+7. Check the accuracy of the logistic regression model using `.score()`.
+
+```{python}
+model.score()
+```
+
+8. Display the confusion matrix to see which categories the model tends to mix up.
+
+```{python}
+model.confusion_matrix()
+```
+
+### Part II: Deep Learning
+
+9. Now let's build a neural network. Define a `DenseNet` class that follows the same structure from the notes: a sequential network with a linear layer from 784 to 128 units, ReLU activation, a linear layer from 128 to 64, ReLU activation, and a final linear layer from 64 to 10 (one per class). Try to adapt the parameters to see if you can improve the results.
+
+```{python}
+class DenseNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(784, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 10)
+        )
+
+    def forward(self, x):
+        return self.net(x)
+```
+
+10. Create an instance of your `DenseNet` model and set up the Adam optimizer with a learning rate of 0.001, as in the notes. You can try adjusting the learning rate later to see how it affects training.
+
+```{python}
+model = DenseNet()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+```
+
+11. Train the model using `DSTorch.train` with the training data. Start with `num_epochs=20` and `batch_size=64` as in the notes. You can experiment with different values to try to improve performance.
+
+```{python}
+DSTorch.train(
+    model, optimizer, X_train, y_train, num_epochs=20, batch_size=64
+)
+```
+
+12. Score the model on both the training set and the test set using `DSTorch.score_image`. Compare the two — how much does accuracy drop on the test set? If there is a big gap, the model may be overfitting.
+
+```{python}
+DSTorch.score_image(model, X_train, y_train, cn)
+```
+
+```{python}
+DSTorch.score_image(model, X_test, y_test, cn)
+```
+
+13. Display the confusion matrix for the neural network on the test set. Compare it with the logistic regression confusion matrix from question 8 — does the neural network do better on certain categories?
+
+```{python}
+DSTorch.confusion_matrix(model, X_test, y_test, cn)
+```

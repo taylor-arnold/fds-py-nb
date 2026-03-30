@@ -1,5 +1,15 @@
 ## Notebook14a
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -8,8 +18,87 @@ import polars as pl
 from funs import *
 from plotnine import *
 from polars import col as c
+
+import torch.nn as nn
+import torch.optim as optim
+
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+fmnist = pl.read_csv("data/emnist_10000.csv")
+inet = pl.read_parquet("data/imagenette_1000.parquet")
+```
+
+```{python}
+X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_image(
+    fmnist, scale=True
+)
+X.shape
+```
+
+
+```{python}
+class SimpleCNN(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+
+        self.net = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+          
+            nn.Flatten(),
+            nn.Linear(32 * 7 * 7, 128),
+            nn.ReLU(),
+            nn.Linear(128, num_classes)
+        )
+
+    def forward(self, x):
+        return self.net(x)
+```
+
+
+```{python}
+model = SimpleCNN(num_classes=len(cn))
+optimizer = optim.Adam(model.parameters(), lr=1e-3)
+
+DSTorch.train(
+    model, optimizer, X_train, y_train, num_epochs=20, batch_size=64
+)
+```
+
+
+```{python}
+DSTorch.score_image(model, X_test, y_test, cn)
+```
+
+```{python}
+DSTorch.confusion_matrix(model, X_test, y_test, cn)
+```
+
+
+### Task II: Imagenette
+
+
+```{python}
+(
+    inet
+    .head(12)
+    .pipe(DSImage.plot_image_grid, ncol=4)
+)
+```

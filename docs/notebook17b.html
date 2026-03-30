@@ -450,13 +450,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="404e04ad" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="1f39716c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="f116cafa" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="f4605224" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="reading-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="reading-the-data">Reading the Data</h3>
-<div id="3383aeb0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="58e4a8ea" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rva <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/flightsrva_flights.csv.gz"</span>, null_values<span class="op">=</span>[<span class="st">"NA"</span>])</span>
@@ -764,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>The flight data has separate columns for the year, month, day, hour, and minute of each departure. Combine these into a single datetime column called <code>time</code> using <code>pl.datetime</code>. Then, filter the data to show only flights within a 24-hour window: from noon on March 11, 2019 to noon on March 12, 2019. Create a scatter plot of the departure delay (<code>dep_delay</code>) over time. Use <code>scale_x_date</code> to label the x-axis with one tick per hour, showing only the hour (use the format <code>"%H"</code>). What pattern do you notice about how delays change over the course of the day?</li>
 </ol>
-<div id="dc380359" class="cell" data-execution_count="5">
+<div id="a53ba2db" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -790,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Now let’s measure delays more systematically across the entire dataset. Start by creating the <code>time</code> column as before. Then, truncate the time to 3-hour blocks (using <code>c.time.dt.truncate("3h")</code>) and save the result in a new column called <code>time_hour</code>. Group the data by <code>time_hour</code> and compute two aggregations: <code>delay_prop</code>, which is the proportion of flights with a departure delay greater than 30 minutes (hint: <code>(c.dep_delay &gt; 30).mean()</code>), and <code>count</code>, which is the number of flights in each group (using <code>pl.len()</code>). Sort the result by <code>time_hour</code> and save it as <code>delay_per_3hour</code>.</li>
 </ol>
-<div id="5c800ea7" class="cell" data-execution_count="6">
+<div id="d2faae72" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>delay_per_3hour <span class="op">=</span> (</span>
@@ -896,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>We want to see if delays in one 3-hour window predict delays in the next. Using the <code>delay_per_3hour</code> dataset, create a new column called <code>delay_prop_prev</code> that contains the <em>previous</em> row’s value of <code>delay_prop</code>. You can do this using the <code>.shift(1)</code> method, which shifts all values down by one row (the first row becomes null). Then, select just the Pearson correlation between <code>delay_prop</code> and <code>delay_prop_prev</code> using <code>pl.corr()</code>. Is the correlation positive? What might this tell you about how delays cascade?</li>
 </ol>
-<div id="a2ffe934" class="cell" data-execution_count="7">
+<div id="fc6d2c9c" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -939,7 +939,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>The correlation you computed in the previous question includes shifts that cross midnight boundaries — for example, comparing the last window of one day to the first window of the next. This doesn’t make much sense because delays generally reset overnight. To fix this, first extract the date from <code>time_hour</code> into a new column called <code>day</code>. Then, use <code>.shift(1).over(c.day)</code> to shift <code>delay_prop</code> only <em>within</em> each day. Compute the same correlation as before. How does limiting the shift to within each day change the result? Is the correlation stronger or weaker?</li>
 </ol>
-<div id="95e71c1c" class="cell" data-execution_count="8">
+<div id="4076f288" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -983,7 +983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Three-hour windows are fairly coarse. Let’s try a finer resolution. Repeat what you did in Question 2, but now truncate the time to 1-hour blocks instead of 3-hour blocks. Save the result as <code>delay_per_hour</code>. The structure of the code should be identical to Question 2, with only the truncation interval changed.</li>
 </ol>
-<div id="4d5005d5" class="cell" data-execution_count="9">
+<div id="88504427" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>delay_per_hour <span class="op">=</span> (</span>
@@ -1089,7 +1089,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>With hourly data, raw values can be noisy. To smooth things out, use a rolling mean with a window size of 3 (and <code>min_samples=1</code> so that edge rows are not dropped) applied within each day using <code>.over(c.day)</code>. Save this smoothed column as <code>delay_roll</code>. Then, shift the smoothed column by one row within each day to get <code>delay_roll_prev</code>. Finally, compute the correlation between the <em>raw</em> <code>delay_prop</code> and the <em>smoothed previous</em> value <code>delay_roll_prev</code>. How does this compare to the correlation you found with the 3-hour windows? The idea here is that the rolling average of previous delays may be a better predictor of the next hour’s delays than just the single previous hour.</li>
 </ol>
-<div id="6ad2cd65" class="cell" data-execution_count="10">
+<div id="8549c863" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1136,7 +1136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Now let’s switch to the second research question. Suppose you are flying from Richmond to Atlanta (destination code <code>"ATL"</code>) and you miss your flight — how long until the next one? Start by creating the <code>time</code> column as before, then filter the data to only include flights with destination <code>"ATL"</code>. Sort the result by <code>time</code> and save it as <code>rva_atl</code>.</li>
 </ol>
-<div id="3cd549be" class="cell" data-execution_count="11">
+<div id="a64b57f8" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rva_atl <span class="op">=</span> (</span>
@@ -1443,7 +1443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>One approach to finding the next flight is to use <code>join_where</code>, which joins two tables based on an inequality condition. Take <code>rva_atl</code> and add a column <code>time_2hr</code> that adds 2 hours to <code>time</code> (using <code>pl.duration(hours=2)</code>). Then use <code>join_where</code> to join <code>rva_atl</code> to itself, with the condition that the right table’s <code>time</code> is strictly between the left table’s <code>time</code> and <code>time_2hr</code>. This finds, for each flight, all other ATL flights departing within the next 2 hours. Select just the <code>time</code> column and call <code>.unique()</code> to see which departure times have at least one subsequent flight within 2 hours.</li>
 </ol>
-<div id="9c6cca6a" class="cell" data-execution_count="12">
+<div id="49f82edb" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1479,37 +1479,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2019-07-20 06:40:00</td>
+<td>2019-08-07 12:50:00</td>
 </tr>
 <tr class="even">
-<td>2019-10-28 08:10:00</td>
+<td>2019-09-19 16:16:00</td>
 </tr>
 <tr class="odd">
-<td>2019-04-26 06:05:00</td>
+<td>2019-10-20 16:33:00</td>
 </tr>
 <tr class="even">
-<td>2019-01-01 12:55:00</td>
+<td>2019-05-19 07:40:00</td>
 </tr>
 <tr class="odd">
-<td>2019-06-27 17:40:00</td>
+<td>2019-04-24 13:05:00</td>
 </tr>
 <tr class="even">
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>2019-05-22 18:44:00</td>
+<td>2019-11-15 18:38:00</td>
 </tr>
 <tr class="even">
-<td>2019-12-04 06:46:00</td>
+<td>2019-01-06 17:05:00</td>
 </tr>
 <tr class="odd">
-<td>2019-01-11 06:05:00</td>
+<td>2019-01-10 12:08:00</td>
 </tr>
 <tr class="even">
-<td>2019-07-19 12:13:00</td>
+<td>2019-08-14 12:50:00</td>
 </tr>
 <tr class="odd">
-<td>2019-05-01 13:05:00</td>
+<td>2019-10-14 17:53:00</td>
 </tr>
 </tbody>
 </table>
@@ -1519,7 +1519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>The <code>join_where</code> approach works but is somewhat cumbersome for this task. A cleaner approach is <code>join_asof</code>, which is designed for joining on ordered data like timestamps. It matches each row in the left table to the <em>nearest</em> row in the right table based on a key column. Here, we join <code>rva_atl</code> to itself on the <code>time</code> column. We need to set several options: <code>strategy="forward"</code> tells the join to look for the nearest <em>future</em> match (rather than the default, which looks backward); <code>on=c.time</code> specifies the column to match on (it must be sorted, which it is since we sorted <code>rva_atl</code> earlier); <code>allow_exact_matches=False</code> prevents a flight from matching with itself (since the same time would be an exact match); and <code>coalesce=False</code> keeps both the left and right versions of the join key so that we can see both departure times. Run the code and inspect the result — for each flight to Atlanta, you should see the next scheduled flight’s information in the <code>_right</code> columns.</li>
 </ol>
-<div id="24887898" class="cell" data-execution_count="13">
+<div id="c5c6af17" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2074,7 +2074,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Using the <code>join_asof</code> result from the previous question, filter the data so that the matched flight is on the <em>same day</em> (i.e., <code>c.day == c.day_right</code>) — we don’t want to count waiting overnight as a valid option. Then, compute a new column <code>time_to_wait</code> as the difference between the next flight’s time and the current flight’s time (<code>c.time_right - c.time</code>). Create a histogram of <code>time_to_wait</code> using <code>geom_histogram</code> with <code>binwidth=0.01</code> and <code>fill="white"</code> and <code>color="black"</code>. What does the distribution of wait times look like? Are there common intervals between Atlanta flights from Richmond?</li>
 </ol>
-<div id="e39389b7" class="cell" data-execution_count="14">
+<div id="1d76f243" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>

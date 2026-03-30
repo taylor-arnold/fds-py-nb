@@ -1,4 +1,14 @@
-## Notebook13b
+## Notebook13a
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
 
 ```{python}
 #| tags: [noclear]
@@ -8,8 +18,112 @@ import polars as pl
 from funs import *
 from plotnine import *
 from polars import col as c
+
+import torch.nn as nn
+import torch.optim as optim
+
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+emnist = pl.read_csv("data/emnist_10000.csv")
+emnist
+```
+
+### Part I: Supervised and Unsupervised Learning
+
+1. Let's start by getting a feel for the Fashion MNIST dataset. Use `DSImage.plot_image_grid` to display a random sample of 30 images in a grid with 10 columns.
+
+```{python}
+DSImage.plot_image_grid(emnist.sample(30), ncol=10)
+```
+
+2. Filter the dataset to only the "a" label, take a random sample of 30, and display the images in a grid. This gives us a sense of what a single category looks like.
+
+```{python}
+(
+    emnist
+    .filter(c.label == "a")
+    .pipe(DSImage.plot_image_grid, ncol=10)
+)
+```
+
+3. Use `DSTorch.load_image` to prepare the image data for modeling. Set `scale=True` and `flatten=True`. This returns the full feature matrices (`X`, `X_train`, `X_test`), label vectors (`y`, `y_train`, `y_test`), and the class names (`cn`).
+
+```{python}
+X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_image(
+    emnist, scale=True, flatten=True
+)
+```
+
+4. This code shows how to add the matrix data directly into a data frame object. Run it and make sure you understand how it works. We will use it in the next few examples.
+
+```{python}
+#| tags: [noclear]
+(
+    emnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+)
+```
+
+5. Let's visualize how the different clothing categories relate to each other. Add the pixel features as a column, take 10 images from each label, run UMAP (an unsupervised dimensionality reduction method) using `DSSklearn.umap` with `features=[c.pixels]`, call `.predict(full=True)`, and plot the result using `geom_text` with the label as the text. Which categories cluster together?
+
+```{python}
+(
+    emnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+    .group_by(c.label)
+    .head(10)
+    .pipe(
+        DSSklearn.umap,
+        features=[c.pixels]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_text(aes(label="label"))
+)
+```
+
+6. Now let's try a supervised approach. Add the pixel features as a column, then use `DSSklearn.logistic_regression_cv` with `target=c.label`, `stratify=c.label`, `features=[c.pixels]`, and `l1_ratios=[0]`. This fits a regularized logistic regression with cross-validation. Save the result as `model`.
+
+```{python}
+model = (
+    emnist
+    .with_columns(
+        pixels = pl.Series("features", X.numpy().tolist())
+    )
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        stratify=c.label,
+        features=[c.pixels],
+        l1_ratios=[0]
+    )
+)
+```
+
+7. Check the accuracy of the logistic regression model using `.score()`.
+
+```{python}
+model.score()
+```
+
+8. Display the confusion matrix to see which categories the model tends to mix up.
+
+```{python}
+model.confusion_matrix()
+```

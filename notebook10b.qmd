@@ -1,5 +1,15 @@
 ## Notebook10b
 
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -13,3 +23,129 @@ theme_set(theme_minimal())
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+import string
+lower_set = set(string.ascii_lowercase)
+keylogs = pl.read_csv("data/keylogs-1774817569168.csv")
+keylogs
+```
+
+### Questions (Taylor)
+
+1. We will start with the keylogging data that I produced doing a similar task to yours. Start by looking at the first ten rows of the data that correspond to the down or up types. Try to figure out what I wrote at the start of the sequence.
+
+```{python}
+(
+    keylogs
+    .filter(c.type.is_in(["down", "up"]))
+    .head(10)
+)
+```
+
+2. We want to figure out how long each key was held down. To do this, we need to pair each "down" event with its corresponding "up" event for the same key. Use `.shift(-1)` to grab the next time value, and apply it within each key using `.over(c.key)`. (Recall: `.shift(-1)` moves values up by one row, and `.over()` applies an operation within groups defined by a column, similar to a group-by but without collapsing the rows.)
+
+```{python}
+(
+    keylogs
+    .filter(c.type.is_in(["down", "up"]))
+    .with_columns(
+        time_next = c.time.shift(-1).over(c.key)
+    )
+)
+```
+
+3. Now let's clean this up into a usable dataset. Starting from the previous code: keep only the "down" rows (since each now carries its paired "up" time in `time_next`), remove any rows where `time_next` is null (keys that were pressed but never released in the log), and compute the `duration` as the difference `time_next - time`. Save the result as `key_data`.
+
+```{python}
+key_data = (
+    keylogs
+    .filter(c.type.is_in(["down", "up"]))
+    .with_columns(
+        time_next = c.time.shift(-1).over(c.key)
+    )
+    .filter(c.type == "down")
+    .filter(~c.time_next.is_null())
+    .with_columns(
+        duration = c.time_next - c.time
+    )
+)
+key_data
+```
+
+4. Let's test whether two specific keys have different hold durations. Filter `key_data` to only the keys "Shift" and ".", then use the `DSStatsmodels.ttest2` wrapper to run a two-sample t-test comparing `duration` across the two keys. The formula should be `"duration ~ key"`.
+
+```{python}
+(
+    key_data
+    .filter(c.key.is_in(["Shift", "."]))
+    .pipe(DSStatsmodels.ttest2, "duration ~ key")
+)
+```
+
+5. Now let's visualize the hold durations across all lowercase letter keys. Filter `key_data` to keys in `lower_set`, then create a boxplot with the key on the x-axis (reordered by duration) and `duration` on the y-axis. Which keys tend to be held the longest?
+
+```{python}
+(
+    key_data
+    .filter(c.key.is_in(lower_set))
+    .pipe(ggplot, aes("reorder(key, duration)", "duration"))
+    + geom_boxplot()
+)
+```
+
+6. Use the `DSStatsmodels.anova` wrapper to run an ANOVA test on the lowercase letter keys, testing whether the mean hold duration differs across keys. Filter to `lower_set` as before, and use the formula `"duration ~ key"`.
+
+```{python}
+(
+    key_data
+    .filter(c.key.is_in(lower_set))
+    .pipe(DSStatsmodels.anova, "duration ~ key")
+)
+```
+
+7. Let's investigate whether pressing Backspace is associated with the previous key being a space (which might indicate deleting a whole word). Create two new columns: `is_backspace` (whether the current key is "Backspace") and `is_space` (whether the *previous* key was a space — hint: use `.shift(1)` to look back one row). Then group by both columns, count the rows in each group, and pivot the result into a contingency table.
+
+```{python}
+(
+    key_data
+    .with_columns(
+        is_backspace = c.key == "Backspace",
+        is_space = c.key.shift(1) == " "
+    )
+    .group_by(c.is_backspace, c.is_space)
+    .agg(n = pl.len())
+    .pivot(index=c.is_backspace, on=c.is_space, values=c.n)
+)
+```
+
+8. Now formally test the association from the contingency table above using a chi-squared test. Use the `DSStatsmodels.chi2` wrapper with the formula `"is_backspace ~ is_space"` on the `key_data` dataset (with the same two new columns computed inline).
+
+```{python}
+(
+    key_data
+    .with_columns(
+        is_backspace = c.key == "Backspace",
+        is_space = c.key.shift(1) == " "
+    )
+    .pipe(DSStatsmodels.chi2, "is_backspace ~ is_space")
+)
+```
+
+
+### Questions (Yours)
+
+9. Load in your keylogs data by uploading the CSV to Google colab and then reading it in:
+
+```{python}
+#| tags: [noclear]
+mkl = pl.read_csv("data/keylogs-1774817569168.csv")
+```
+
+10. Repeat the analyses that we did above with your own data. Make extra cells below to test out how the dataset looks for your inputs.

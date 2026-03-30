@@ -453,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="901410ed" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="2714f0ad" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="0c70779c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="b5fef4c8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -474,12 +474,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="2fc05dcf" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="4c3cbf0e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wiki <span class="op">=</span> pl.read_csv(<span class="st">"data/wiki_uk_meta.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(<span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wiki <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_meta.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -488,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Apply PCA (principal component analysis) to the <code>metro</code> dataset using the following features: density, median age, median household income, percent own, 1BR median rent, and rent as a percentage of income. Use the <code>.predict(full=True)</code> method to get the full dataset back with the new components. Then, create a scatter plot of the first two principal components (<code>dr0</code> and <code>dr1</code>) using text labels with the <code>name</code> column so we can see which metro regions are similar to one another. You may want to make the labels smaller to help read them.</li>
 </ol>
-<div id="219df3e0" class="cell" data-execution_count="5">
+<div id="7416e9fd" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2a. Now, we will try two alternative dimensionality reduction techniques on the same set of features: UMAP and t-SNE. Start with UMAP. Create a scatter plot of the first two components. Compare the results visually to the PCA plot above. Notice how UMAP and t-SNE tend to create more distinct clusters while PCA preserves more of the global structure.</p>
-<div id="ad51cfd9" class="cell" data-execution_count="6">
+<div id="510dbe1a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -537,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2b. Now, try t-SNE.</p>
-<div id="8b18b6e2" class="cell" data-execution_count="7">
+<div id="ee84d8b0" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -566,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Now let’s try clustering the metro regions. Use K-Means clustering on the same six features from Part I, setting the number of clusters to 20. Save the result with full predictions as <code>metro_pca</code>.</li>
 </ol>
-<div id="b838cb3c" class="cell" data-execution_count="8">
+<div id="24213b98" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metro_pca <span class="op">=</span> (</span>
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>For each cluster label, display the names of the top 10 most populous metro regions (sorted by population in descending order). Look through the groupings and see if the clusters seem to be capturing meaningful similarities between regions.</li>
 </ol>
-<div id="c71b8d38" class="cell" data-execution_count="9">
+<div id="781a932e" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -620,19 +620,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>"North Port,Deltona,Palm Bay,Po…</td>
+<td>"Hickory,Kingsport,Jackson,Deca…</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>"Fayetteville,Bloomington,Eau C…</td>
+<td>"Fayetteville,Oshkosh,Elizabeth…</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>"Oklahoma City,Tucson,Tulsa,Alb…</td>
+<td>"Deltona,Palm Bay,Portland,Port…</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>"Kingsport,Homosassa Springs,Po…</td>
+<td>"Las Vegas,Memphis,New Orleans,…</td>
 </tr>
 <tr class="odd">
 <td>4</td>
@@ -640,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>5</td>
-<td>"Youngstown,Peoria,Davenport,Oc…</td>
+<td>"Mobile,Brownsville,Shreveport,…</td>
 </tr>
 <tr class="odd">
 <td>6</td>
@@ -648,55 +648,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>7</td>
-<td>"Chicago,Dallas,Houston,Philade…</td>
+<td>"San Antonio,Kansas City,Columb…</td>
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>"Brownsville,Saginaw,Terre Haut…</td>
+<td>"El Paso,Fayetteville,Killeen,C…</td>
 </tr>
 <tr class="even">
 <td>9</td>
-<td>"Monroe,Jackson,Alexandria,Alba…</td>
+<td>"St. Louis,Charlotte,Pittsburgh…</td>
 </tr>
 <tr class="odd">
 <td>10</td>
-<td>"Riverside,Orlando,San Antonio,…</td>
+<td>"Phoenix,Riverside,Minneapolis,…</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>"Boise City,Des Moines,Ogden,Gr…</td>
+<td>"Albuquerque,Wichita,Jackson,La…</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>"Atlanta,Phoenix,Minneapolis,De…</td>
+<td>"Dallas,Houston,Miami,Atlanta,D…</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>"St. Louis,Pittsburgh,Cincinnat…</td>
+<td>"Fort Smith,Florence,Dothan,Lon…</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>"Hickory,Jefferson City,Sheboyg…</td>
+<td>"San Juan,Mayagüez,Minden"</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>"College Station,Bloomington,Eu…</td>
+<td>"College Station,Jacksonville,M…</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>"Fayetteville,Visalia,Killeen,C…</td>
+<td>"Chicago,Philadelphia,Boston,Ba…</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>"San Juan,Aguadilla,Ponce,Areci…</td>
+<td>"Green Bay,Cedar Rapids,Appleto…</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>"Fort Smith,Johnson City,Floren…</td>
+<td>"Aguadilla,Ponce,Arecibo,San Ge…</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>"Jacksonville,Logan,Manhattan,H…</td>
+<td>"Youngstown,Ocala,Utica,Charles…</td>
 </tr>
 </tbody>
 </table>
@@ -706,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Visualize the clustering results by applying PCA to the same six features on the <code>metro_pca</code> data. Create a scatter plot of the first two principal components, coloring the points by their cluster label. This lets us see how well the K-Means clusters correspond to the structure found by PCA.</li>
 </ol>
-<div id="562b0dbb" class="cell" data-execution_count="10">
+<div id="414c354d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -732,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Compute the mean of each of the six features grouped by cluster label. This gives us a profile of each cluster and helps us interpret what makes regions in the same cluster similar.</li>
 </ol>
-<div id="658acc2f" class="cell" data-execution_count="11">
+<div id="69bb55c4" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -780,57 +780,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>71.014739</td>
-<td>45.631579</td>
-<td>69535.394737</td>
-<td>76.539474</td>
-<td>904.394737</td>
-<td>31.557895</td>
+<td>31.3164</td>
+<td>44.304545</td>
+<td>54195.018182</td>
+<td>77.275455</td>
+<td>527.354545</td>
+<td>26.840909</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>18.055034</td>
-<td>40.088095</td>
-<td>59655.0</td>
-<td>67.75</td>
-<td>634.666667</td>
-<td>24.247619</td>
+<td>22.921736</td>
+<td>41.37875</td>
+<td>53687.6875</td>
+<td>68.03</td>
+<td>555.825</td>
+<td>24.6575</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>43.612947</td>
-<td>40.309756</td>
-<td>56606.5</td>
-<td>67.993902</td>
-<td>698.609756</td>
-<td>29.326829</td>
+<td>66.191348</td>
+<td>45.378947</td>
+<td>69787.0</td>
+<td>77.602632</td>
+<td>870.894737</td>
+<td>31.018421</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>29.634231</td>
-<td>44.728261</td>
-<td>52974.554348</td>
-<td>77.652174</td>
-<td>519.141304</td>
-<td>27.054348</td>
+<td>56.482587</td>
+<td>39.292857</td>
+<td>57391.952381</td>
+<td>61.452381</td>
+<td>813.02381</td>
+<td>33.195238</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>177.584714</td>
-<td>41.761538</td>
-<td>95117.0</td>
-<td>60.338462</td>
-<td>1528.0</td>
-<td>31.984615</td>
+<td>201.585315</td>
+<td>41.390909</td>
+<td>96897.272727</td>
+<td>60.009091</td>
+<td>1554.181818</td>
+<td>31.736364</td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>36.981794</td>
-<td>43.273913</td>
-<td>57572.217391</td>
-<td>73.506957</td>
-<td>641.330435</td>
-<td>28.727826</td>
+<td>30.829737</td>
+<td>42.37193</td>
+<td>43455.403509</td>
+<td>62.733333</td>
+<td>553.877193</td>
+<td>31.654386</td>
 </tr>
 <tr class="odd">
 <td>6</td>
@@ -843,120 +843,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>7</td>
-<td>449.239649</td>
-<td>42.844444</td>
-<td>77114.222222</td>
-<td>67.277778</td>
-<td>1063.944444</td>
-<td>30.627778</td>
+<td>63.94755</td>
+<td>40.503226</td>
+<td>67553.129032</td>
+<td>68.487097</td>
+<td>848.064516</td>
+<td>28.656452</td>
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>29.227645</td>
-<td>41.904918</td>
-<td>45789.344262</td>
-<td>71.827869</td>
-<td>500.491803</td>
-<td>30.422951</td>
+<td>28.295938</td>
+<td>37.304348</td>
+<td>56690.804348</td>
+<td>62.626087</td>
+<td>659.847826</td>
+<td>27.936957</td>
 </tr>
 <tr class="even">
 <td>9</td>
-<td>28.586302</td>
-<td>44.010204</td>
-<td>41655.244898</td>
-<td>63.697959</td>
-<td>518.591837</td>
-<td>30.908163</td>
+<td>156.31245</td>
+<td>42.530612</td>
+<td>63296.244898</td>
+<td>70.871429</td>
+<td>759.673469</td>
+<td>28.730612</td>
 </tr>
 <tr class="odd">
 <td>10</td>
-<td>80.844652</td>
-<td>40.248571</td>
-<td>61458.571429</td>
-<td>62.888571</td>
-<td>903.828571</td>
-<td>32.705714</td>
+<td>80.736199</td>
+<td>41.689744</td>
+<td>82636.897436</td>
+<td>68.805128</td>
+<td>1139.410256</td>
+<td>30.382051</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>44.444057</td>
-<td>42.170455</td>
-<td>71754.681818</td>
-<td>76.922727</td>
-<td>720.727273</td>
-<td>26.252273</td>
+<td>35.556948</td>
+<td>41.410256</td>
+<td>55340.683761</td>
+<td>71.711966</td>
+<td>624.564103</td>
+<td>28.449573</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>91.956661</td>
-<td>40.95</td>
-<td>81078.423077</td>
-<td>69.082692</td>
-<td>1076.615385</td>
-<td>29.461538</td>
+<td>311.450528</td>
+<td>42.594444</td>
+<td>71093.777778</td>
+<td>67.561111</td>
+<td>1004.333333</td>
+<td>30.883333</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>157.025913</td>
-<td>42.419608</td>
-<td>64051.176471</td>
-<td>70.692157</td>
-<td>766.019608</td>
-<td>28.586275</td>
+<td>30.588439</td>
+<td>42.692105</td>
+<td>43898.263158</td>
+<td>69.905263</td>
+<td>462.723684</td>
+<td>28.830263</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>29.226365</td>
-<td>42.887671</td>
-<td>61082.39726</td>
-<td>76.342466</td>
-<td>550.753425</td>
-<td>24.046575</td>
+<td>286.463269</td>
+<td>42.266667</td>
+<td>24136.0</td>
+<td>64.833333</td>
+<td>357.333333</td>
+<td>37.7</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>32.682837</td>
-<td>38.30625</td>
-<td>43850.75</td>
-<td>59.1875</td>
-<td>646.375</td>
-<td>37.5875</td>
+<td>35.214397</td>
+<td>33.709091</td>
+<td>49014.636364</td>
+<td>55.609091</td>
+<td>706.909091</td>
+<td>34.8</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>34.984226</td>
-<td>37.76</td>
-<td>55223.675</td>
-<td>60.3025</td>
-<td>682.075</td>
-<td>29.53</td>
+<td>540.572492</td>
+<td>42.9125</td>
+<td>87367.0</td>
+<td>67.425</td>
+<td>1194.875</td>
+<td>30.625</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>264.556687</td>
-<td>42.15</td>
-<td>18796.2</td>
-<td>71.08</td>
-<td>251.1</td>
-<td>30.61</td>
+<td>34.412826</td>
+<td>42.631522</td>
+<td>66034.934783</td>
+<td>76.932609</td>
+<td>613.119565</td>
+<td>24.65</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>31.541098</td>
-<td>41.87</td>
-<td>49667.633333</td>
-<td>68.721111</td>
-<td>520.511111</td>
-<td>26.5</td>
+<td>226.203212</td>
+<td>42.1625</td>
+<td>18343.875</td>
+<td>72.65</td>
+<td>237.875</td>
+<td>29.7</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>29.225657</td>
-<td>32.93</td>
-<td>56285.0</td>
-<td>58.05</td>
-<td>641.4</td>
-<td>28.7</td>
+<td>33.520355</td>
+<td>44.514063</td>
+<td>54983.25</td>
+<td>73.454688</td>
+<td>636.9375</td>
+<td>30.164062</td>
 </tr>
 </tbody>
 </table>
@@ -969,7 +969,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Now let’s apply dimensionality reduction to text data. Using the <code>anno</code> annotation dataset, filter to only nouns (<code>upos == "NOUN"</code>) and apply UMAP via the <code>DSSklearnText.umap</code> wrapper. Use <code>doc_id</code> as the document identifier and <code>lemma</code> as the term identifier. See if authors who write about similar topics end up near each other.</li>
 </ol>
-<div id="a26ee28b" class="cell" data-execution_count="12">
+<div id="fa503704" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -996,7 +996,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Repeat the UMAP analysis on the same filtered noun annotations, but this time use custom values for <code>n_neighbors</code> and <code>min_dist</code>. Play around with the values until you get something more interesting that the default.</li>
 </ol>
-<div id="dd3c3388" class="cell" data-execution_count="13">
+<div id="e90f3594" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1514,8 +1514,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
 <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>wiki <span class="op">=</span> pl.read_csv(<span class="st">"data/wiki_uk_meta.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(<span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>wiki <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_meta.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part I: Metro Regions Dimensionality Reduction</span></span>
