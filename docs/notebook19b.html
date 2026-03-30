@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>notebook19b – Foundations of Data Science: Notebooks</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8b99633e97494cb736d7188ebc41eb6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-77a666a5542a07a54dbe0a7f6e3b86cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -105,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -450,16 +453,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="d8085a20" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="9168ffd7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a794b4a2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="e4ddd428" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
@@ -468,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pl.Config.set_fmt_str_lengths(<span class="dv">1000</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><strong>Research Questions</strong>: Today we explore several themes from your brainstorming:</p>
@@ -481,18 +484,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="loading-the-data">Loading the Data</h3>
 <p>We will be working with the Wikipedia pages of the 100 current United States Senators. Start by loading the spaCy model and reading in the data.</p>
-<div id="4657739c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="cf66b0d0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"en_core_web_sm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"en_core_web_sm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9b246a38" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="9ae10954" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_senator_class_docs.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_senator_class_docs.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>docs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -503,15 +506,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
 <th data-quarto-table-cell-role="th">text</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -564,11 +567,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="c60b183c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="f4ef0813" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_senator_class.csv"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>meta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_senator_class.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>meta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div><style>
@@ -579,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 4)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">state</th>
@@ -588,10 +591,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">party</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -667,11 +670,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Next, we process the text data through the NLP pipeline. This may take a minute or two to finish.</p>
-<div id="e5b82e46" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="0b20ab58" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(docs, nlp)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> DSText.process(docs, nlp)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>anno</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div><style>
@@ -682,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (503_205, 15)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
@@ -702,21 +705,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">ent_iob</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>bool</th>
-<th>bool</th>
-<th>bool</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>bool</td>
+<td>bool</td>
+<td>bool</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -913,14 +916,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Finally, it will be helpful to have the party information merged into the annotation object.</p>
-<div id="54f639d4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="af6ccfcb" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> (</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .join(meta.select(c.doc_id, c.party), on<span class="op">=</span>c.doc_id)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>anno</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
@@ -931,7 +934,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (503_205, 16)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
@@ -952,22 +955,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">party</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>bool</th>
-<th>bool</th>
-<th>bool</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>bool</td>
+<td>bool</td>
+<td>bool</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -1180,17 +1183,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Let’s start by understanding the overall content of the dataset. Find the 15 most common nouns across all senator pages.</li>
 </ol>
-<div id="b7e30afc" class="cell" data-execution_count="9">
+<div id="555594d9" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.lemma)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">15</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
@@ -1201,15 +1204,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (15, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">lemma</th>
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>u32</th>
+<td>str</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
@@ -1266,10 +1269,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Now produce a tfidf dataset, with one document per senator. Set <code>min_df</code> to 0.03 (and do so throughout the rest of this notebook) Print out all of the results. How interesting are these?</li>
 </ol>
-<div id="e4d0508d" class="cell" data-execution_count="10">
+<div id="45b5e20e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tfidf <span class="op">=</span> DSText.compute_tfidf(anno, min_df<span class="op">=</span><span class="fl">0.03</span>, max_df<span class="op">=</span><span class="fl">0.5</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tfidf <span class="op">=</span> DSText.compute_tfidf(anno, min_df<span class="op">=</span><span class="fl">0.03</span>, max_df<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    tfidf</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .sort([c.doc_id, c.tfidf], descending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span>
@@ -1277,7 +1280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
@@ -1288,61 +1291,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Michael Bennet"</td>
-<td>"Bennet; Colorado; parser; output; Hickenlooper; Hampshire; Ken; qualify; Yale; enrollment"</td>
+<td>"Josh Hawley"</td>
+<td>"Hawley; Missouri; McCaskill; Greitens; Hong; Kong; Louis; Yale; preexist; China"</td>
 </tr>
 <tr class="even">
-<td>"Tommy Tuberville"</td>
-<td>"Tuberville; coach; Alabama; season; football; SEC; Tech; head; Cincinnati; team"</td>
+<td>"Lyman R. Casey"</td>
+<td>"Casey; Dakota; Foster; North; bury; fifty; hardware; chairman; Stone; drinking"</td>
 </tr>
 <tr class="odd">
-<td>"Angus King"</td>
-<td>"King; Maine; Collins; Brennan; caucus; Susan; project; energy; gubernatorial; Iran"</td>
+<td>"Katie Britt"</td>
+<td>"Britt; Alabama; Boyd; Cotton; Birmingham; Brooks; border; social; mexican; Katie"</td>
 </tr>
 <tr class="even">
-<td>"Brian Schatz"</td>
-<td>"Schatz; Hawaii; Tillerson; lieutenant; Gorsuch; nominate; Barr; Mnuchin; Hawley; fear"</td>
+<td>"Eric Schmitt"</td>
+<td>"Schmitt; Missouri; Louis; sue; Baker; Peters; quota; mask; revenue; traffic"</td>
 </tr>
 <tr class="odd">
-<td>"Mike Crapo"</td>
-<td>"Idaho; Hearing; Terry; Falls; Eagle; Scout; cancer; tempore; Innovation; Nuclear"</td>
+<td>"Bernie Moreno"</td>
+<td>"Moreno; Ohio; Cleveland; dealership; citizenship; car; Motors; Sherrod; renounce; JD"</td>
 </tr>
 <tr class="even">
 <td>…</td>
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"James Lankford"</td>
-<td>"Lankford; Oklahoma; Baptist; baptist; grandparent; Coburn; Falls; validity; minister; camp"</td>
+<td>"John Cornyn"</td>
+<td>"Cornyn; Texas; China; Paxton; tweet; cell; stem; Houston; Coleman; anyone"</td>
 </tr>
 <tr class="even">
-<td>"Rick Scott"</td>
-<td>"Scott; Florida; parser; output; Columbia; rail; hospital; Corporation; align; percent"</td>
+<td>"Ashley Moody"</td>
+<td>"Moody; Florida; ballot; cannabis; recreational; felon; DeSantis; lawsuit; Ron; disqualify"</td>
 </tr>
 <tr class="odd">
-<td>"Cindy Hyde-Smith"</td>
-<td>"Hyde; Smith; Mississippi; Cochran; Agriculture; Bryant; switch; plant; electoral; Confederate"</td>
+<td>"Roger Marshall"</td>
+<td>"Marshall; Kansas; Farm; Musk; Bureau; neighbor; Roberts; farm; mask; count"</td>
 </tr>
 <tr class="even">
-<td>"Dave McCormick"</td>
-<td>"McCormick; Pennsylvania; Pittsburgh; China; ceo; Treasury; Airborne; Bush; Associates; Connecticut"</td>
+<td>"John Curtis"</td>
+<td>"Curtis; Utah; environmental; King; Management; land; management; Land; ranking; percent"</td>
 </tr>
 <tr class="odd">
-<td>"Kirsten Gillibrand"</td>
-<td>"Gillibrand; Clinton; Mamdani; sexual; Davis; Philip; Morris; Franken; Hillary; mayor"</td>
+<td>"John Thune"</td>
+<td>"Thune; Dakota; Daschle; South; whip; south; Johnson; minority; chairman; Conference"</td>
 </tr>
 </tbody>
 </table>
@@ -1352,10 +1355,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Often all the words are not very telling on their own. Repeat the tfidf construction, but this time use only the nouns. You should see that the results are a (bit) more interesting.</li>
 </ol>
-<div id="694c08e3" class="cell" data-execution_count="11">
+<div id="ff9c17b1" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .pipe(DSText.compute_tfidf, min_df<span class="op">=</span><span class="fl">0.03</span>, max_df<span class="op">=</span><span class="fl">0.5</span>)</span>
@@ -1365,7 +1368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div><style>
@@ -1376,417 +1379,417 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>"Peter Welch"</td>
-<td>"impeachment; tempore; defender; injury; in; decade; age; uncertainty; dentist; organizer"</td>
-</tr>
-<tr class="even">
-<td>"Susan Collins"</td>
-<td>"neutrality; impeachment; trial; mandate; deficit; repeal; provision; filibuster; package; confirmation"</td>
-</tr>
-<tr class="odd">
-<td>"Mike Crapo"</td>
-<td>"cancer; consent; prostate; output; theme; parser; brother; image; light; delegation"</td>
-</tr>
-<tr class="even">
-<td>"Michael Bennet"</td>
-<td>"output; parser; enrollment; debate; outlet; shutdown; contractor; educator; shotgun; condition"</td>
-</tr>
 <tr class="odd">
 <td>"Shelley Moore Capito"</td>
 <td>"immigration; favor; rating; score; border; stem; cell; pathway; cut; embryo"</td>
 </tr>
 <tr class="even">
-<td>"Kirsten Gillibrand"</td>
-<td>"associate; mayor; earmark; pit; appointment; repeal; leave; grandmother; harassment; assault"</td>
-</tr>
-<tr class="odd">
-<td>"Todd Young"</td>
-<td>"rating; duty; immigration; score; think; count; tank; session; storming; class"</td>
-</tr>
-<tr class="even">
-<td>"James Lankford"</td>
-<td>"grandparent; baptist; minister; validity; camp; hate; homosexuality; doubt; border; swing"</td>
-</tr>
-<tr class="odd">
-<td>"Joni Ernst"</td>
-<td>"trade; troop; wage; weapon; isis; impact; divorce; comment; military; officer"</td>
-</tr>
-<tr class="even">
-<td>"Chuck Grassley"</td>
-<td>"whistleblower; dossier; payment; farmer; document; corn; award; tempore; ethanol; farm"</td>
-</tr>
-<tr class="odd">
-<td>"Angus King"</td>
-<td>"independent; project; energy; wind; monument; asylum; institution; call; carbon; practice"</td>
-</tr>
-<tr class="even">
-<td>"Eric Schmitt"</td>
-<td>"general; quota; release; mask; revenue; brief; suit; pandemic; fine; murder"</td>
-</tr>
-<tr class="odd">
-<td>"Cynthia Lummis"</td>
-<td>"treasurer; tenure; cryptocurrency; rating; manager; worth; whip; team; speech; house"</td>
-</tr>
-<tr class="even">
-<td>"Dick Durban"</td>
-<td>"tobacco; whip; detainee; prisoner; limitation; drug; smoking; steel; product; regime"</td>
-</tr>
-<tr class="odd">
-<td>"Jon Ossoff"</td>
-<td>"percent; turnout; runoff; link; documentary; animal; corruption; cannabis; production; mine"</td>
-</tr>
-<tr class="even">
-<td>"Cindy Hyde-Smith"</td>
-<td>"plant; veto; runoff; lobbyist; affiliation; cattle; daughter; legislature; favor; property"</td>
-</tr>
-<tr class="odd">
-<td>"Bill Hagerty"</td>
-<td>"ambassador; equity; investment; firm; franchise; port; loan; energy; commissioner; founder"</td>
-</tr>
-<tr class="even">
-<td>"Tammy Duckworth"</td>
-<td>"veteran; injury; leg; helicopter; disability; birth; hero; colonel; daughter; parser"</td>
-</tr>
-<tr class="odd">
-<td>"John Fettermen"</td>
-<td>"town; stroke; mayor; lieutenant; council; parser; output; heart; incident; progressive"</td>
-</tr>
-<tr class="even">
-<td>"Tommy Tuberville"</td>
-<td>"coach; season; football; head; game; team; hold; foundation; win; objection"</td>
-</tr>
-<tr class="odd">
-<td>"Josh Hawley"</td>
-<td>"general; email; condition; output; parser; riot; lawsuit; user; datum; police"</td>
-</tr>
-<tr class="even">
-<td>"Tina Smith"</td>
-<td>"chief; lieutenant; cannabis; pick; finding; e; train; patient; swing; insulin"</td>
-</tr>
-<tr class="odd">
-<td>"Angela Alsobrooks"</td>
-<td>"county; executive; police; parser; output; education; delegate; session; strike; property"</td>
-</tr>
-<tr class="even">
-<td>"Tom Cotton"</td>
-<td>"slavery; article; sanction; hold; sacrifice; interview; troop; journalist; virus; terrorist"</td>
-</tr>
-<tr class="odd">
-<td>"Jim Risch"</td>
-<td>"lieutenant; missile; score; sanction; capacity; grade; dissent; extreme; sketch; historian"</td>
-</tr>
-<tr class="even">
-<td>"Ed Markey"</td>
-<td>"cargo; disorder; firearm; animal; neutrality; competition; measure; ice; concession; envoy"</td>
-</tr>
-<tr class="odd">
-<td>"Jacky Rosen"</td>
-<td>"antisemitism; source; shutdown; insulin; condition; subcommittee; development; jurisdiction; husband; patient"</td>
-</tr>
-<tr class="even">
-<td>"Jon Husted"</td>
-<td>"hour; address; fee; old; sport; center; character; participant; filing; registration"</td>
-</tr>
-<tr class="odd">
-<td>"Jack Reed"</td>
-<td>"trade; landslide; duty; framework; network; officer; oil; cabinet; coalition; diplomat"</td>
-</tr>
-<tr class="even">
-<td>"Pete Ricketts"</td>
-<td>"legislature; session; relief; veto; punishment; property; petition; merger; cannabis; workforce"</td>
-</tr>
-<tr class="odd">
-<td>"Steve Daines"</td>
-<td>"resource; energy; statehood; forest; wind; power; coal; turbine; mining; wall"</td>
-</tr>
-<tr class="even">
-<td>"Roger Wicker"</td>
-<td>"lifetime; flag; whip; good; evil; runoff; carbon; vacancy; aid; passenger"</td>
-</tr>
-<tr class="odd">
-<td>"Chris Coons"</td>
-<td>"counsel; executive; county; college; rating; datum; article; outlet; ethic; poll"</td>
-</tr>
-<tr class="even">
-<td>"Deb Fischer"</td>
-<td>"ranch; land; county; cattle; ad; tv; plurality; image; suit; née"</td>
-</tr>
-<tr class="odd">
-<td>"Lindsey Graham"</td>
-<td>"detainee; impeachment; immigration; warrant; lawyer; phone; reason; defense; counsel; judge"</td>
-</tr>
-<tr class="even">
-<td>"Mitch McConnell"</td>
-<td>"filibuster; judge; confirmation; scientist; measure; appropriation; wall; b; scholar; rating"</td>
-</tr>
-<tr class="odd">
-<td>"Chuck Schumer"</td>
-<td>"bank; drug; wing; speech; stability; mortgage; industry; consumer; flood; floor"</td>
-</tr>
-<tr class="even">
-<td>"Lyman R. Casey"</td>
-<td>"hardware; chairman; rancher; drinking; sibling; admission; straw; commissioner; education; parent"</td>
-</tr>
-<tr class="odd">
-<td>"Maria Cantwell"</td>
-<td>"privacy; debate; internet; drilling; loan; lead; advertisement; planning; acid; file"</td>
-</tr>
-<tr class="even">
-<td>"Dave McCormick"</td>
-<td>"ceo; world; transition; trade; officer; upset; rally; export; responsibility; hedge"</td>
-</tr>
-<tr class="odd">
-<td>"John Boozman"</td>
-<td>"veteran; drug; disability; gender; volunteer; brother; orientation; delegation; exit; identity"</td>
-</tr>
-<tr class="even">
-<td>"Mazie Hirono"</td>
-<td>"lieutenant; rib; cancer; contraception; watchlist; corporation; equity; list; shutdown; disappointment"</td>
-</tr>
-<tr class="odd">
-<td>"Sheldon Whitehouse"</td>
-<td>"club; money; ethic; membership; stock; oil; insider; vaccination; carbon; donor"</td>
-</tr>
-<tr class="even">
-<td>"Rick Scott"</td>
-<td>"parser; output; rail; hospital; percent; doctor; stock; align; holding; patient"</td>
-</tr>
-<tr class="odd">
-<td>"Andy Kim"</td>
-<td>"county; ballot; corruption; ad; bribery; endorsement; percentage; victory; machine; advisor"</td>
-</tr>
-<tr class="even">
-<td>"Martin Heinrich"</td>
-<td>"consulting; lobbying; county; residence; environment; chamber; wind; film; language; trip"</td>
-</tr>
-<tr class="odd">
-<td>"Ron Johnson"</td>
-<td>"vaccine; conspiracy; theory; movement; claim; involvement; treatment; impeachment; victory; aid"</td>
-</tr>
-<tr class="even">
-<td>"Ruben Gallego"</td>
-<td>"emergency; agent; tribe; filibuster; deportation; lobbyist; money; situation; combat; room"</td>
-</tr>
-<tr class="odd">
-<td>"John Thune"</td>
-<td>"whip; minority; chairman; hardware; turnout; speculation; permit; heating; deputy; farmer"</td>
-</tr>
-<tr class="even">
-<td>"Rand Paul"</td>
-<td>"speech; limit; vaccine; lawsuit; fundraising; phone; violation; certification; conservative; individual"</td>
-</tr>
-<tr class="odd">
-<td>"John Norvell"</td>
-<td>"newspaper; truth; daughter; falsehood; postmaster; neighboring; brother; editor; manner; city"</td>
-</tr>
-<tr class="even">
-<td>"Tim Sheehy"</td>
-<td>"wildfire; plane; cattle; ranch; memoir; instructor; bullet; house; unit; forest"</td>
-</tr>
-<tr class="odd">
-<td>"Cory Booker"</td>
-<td>"commencement; city; mayor; council; column; documentary; speech; rate; address; minute"</td>
-</tr>
-<tr class="even">
-<td>"Jim Justice"</td>
-<td>"coal; justice; mine; mining; coach; basketball; team; taxis; rally; believer"</td>
-</tr>
-<tr class="odd">
-<td>"Markwayne Mullin"</td>
-<td>"runoff; salary; citizen; forgiveness; helicopter; pardon; guy; range; art; embassy"</td>
-</tr>
-<tr class="even">
-<td>"Patty Murray"</td>
-<td>"tempore; designation; river; area; drinking; third; workplace; disorder; recovery; acid"</td>
-</tr>
-<tr class="odd">
-<td>"Marsha Blackburn"</td>
-<td>"broadband; provider; confirmation; privacy; tissue; whip; measure; suburb; map; visit"</td>
-</tr>
-<tr class="even">
-<td>"Jim Banks"</td>
-<td>"bank; absence; duty; union; transgender; worker; leave; memo; military; labor"</td>
-</tr>
-<tr class="odd">
-<td>"Richard Blumenthal"</td>
-<td>"prostitution; suit; lawsuit; general; settlement; site; consumer; ad; pollution; air"</td>
-</tr>
-<tr class="even">
-<td>"Tammy Baldwin"</td>
-<td>"loophole; version; copy; price; insulin; payer; insurer; inequality; bottom; violence"</td>
-</tr>
-<tr class="odd">
-<td>"John Barrasso"</td>
-<td>"application; residency; physician; grandparent; energy; thing; whip; gas; delegation; practice"</td>
-</tr>
-<tr class="even">
-<td>"Ashley Moody"</td>
-<td>"ballot; cannabis; felon; general; measure; lawsuit; summary; litigation; initiative; signature"</td>
-</tr>
-<tr class="odd">
-<td>"Ted Budd"</td>
-<td>"master; convention; farm; excuse; endorsement; coup; chicken; watchdog; king; absentee"</td>
-</tr>
-<tr class="even">
-<td>"Dan Sullivan"</td>
-<td>"project; missile; executive; duty; veto; contribution; economic; ceo; laude; rating"</td>
-</tr>
-<tr class="odd">
-<td>"Chris Van Hollen"</td>
-<td>"handgun; license; education; share; loophole; redistricting; pay; lockdown; financing; precinct"</td>
-</tr>
-<tr class="even">
-<td>"Ted Cruz"</td>
-<td>"speech; delegate; appeal; lie; win; solicitor; argument; general; output; parser"</td>
-</tr>
-<tr class="odd">
-<td>"John Curtis"</td>
-<td>"land; management; percent; hall; score; loan; ranking; companion; borrower; wilderness"</td>
-</tr>
-<tr class="even">
-<td>"Catherine Cortez Masto"</td>
-<td>"general; agent; charge; location; enforcement; chamber; none; loan; ice; successor"</td>
-</tr>
-<tr class="odd">
-<td>"Tim Kaine"</td>
-<td>"city; ticket; democracy; increase; coal; education; running; mate; debate; fund"</td>
-</tr>
-<tr class="even">
-<td>"Bill Cassidy"</td>
-<td>"vaccination; autism; physician; coverage; disease; earmark; cost; good; provision; vaccine"</td>
-</tr>
-<tr class="odd">
-<td>"Gilbert A. Pierce"</td>
-<td>"capital; newspaper; sketch; literature; play; colonel; statehood; editor; half; inspector"</td>
-</tr>
-<tr class="even">
-<td>"Raphael Warnock"</td>
-<td>"church; foot; police; importance; movement; car; professional; runoff; peace; tweet"</td>
-</tr>
-<tr class="odd">
-<td>"Tim Scott"</td>
-<td>"county; council; source; football; insurance; display; body; precinct; comment; stamp"</td>
-</tr>
-<tr class="even">
-<td>"Mike Lee"</td>
-<td>"waste; post; conspiracy; slate; justice; troop; elector; other; consensus; half"</td>
-</tr>
-<tr class="odd">
-<td>"Ron Wyden"</td>
-<td>"internet; return; public; taxis; airline; passenger; hold; information; tradition; copyright"</td>
-</tr>
-<tr class="even">
-<td>"Maggie Hassan"</td>
-<td>"intern; husband; rematch; swearing; chamber; consultant; delegation; firm; fee; cannabis"</td>
-</tr>
-<tr class="odd">
-<td>"Lisa Murkowski"</td>
-<td>"absentee; appointment; round; trial; ballot; impeachment; write; left; property; choice"</td>
-</tr>
-<tr class="even">
-<td>"Bernie Moreno"</td>
-<td>"dealership; citizenship; car; interview; trustee; account; dozen; tweet; exception; run"</td>
-</tr>
-<tr class="odd">
-<td>"Bernie Sanders"</td>
-<td>"sander; mayor; independent; worker; democracy; debate; labor; coverage; class; union"</td>
-</tr>
-<tr class="even">
-<td>"Jeff Merkley"</td>
-<td>"mortgage; product; transition; drug; closure; cosponsor; housing; asylum; envoy; cost"</td>
+<td>"Thom Tillis"</td>
+<td>"animal; declaration; town; human; half; regulation; copyright; condition; speaker; substance"</td>
 </tr>
 <tr class="odd">
 <td>"Katie Britt"</td>
 <td>"border; cartel; port; story; speech; pill; commonsense; kid; immigration; classroom"</td>
 </tr>
 <tr class="even">
-<td>"John Cornyn"</td>
-<td>"stem; cell; tweet; troop; animal; box; precedent; statue; sanction; maneuver"</td>
+<td>"John Boozman"</td>
+<td>"veteran; drug; disability; gender; volunteer; brother; orientation; delegation; exit; identity"</td>
 </tr>
 <tr class="odd">
-<td>"Amy Klobuchar"</td>
-<td>"defendant; sentence; jury; charge; county; poll; tenure; award; rating; approval"</td>
+<td>"Tim Sheehy"</td>
+<td>"wildfire; plane; cattle; ranch; memoir; instructor; bullet; house; forest; unit"</td>
 </tr>
 <tr class="even">
-<td>"John Hickenlooper"</td>
-<td>"mayor; city; cannabis; initiative; boy; drug; fuel; legalization; homelessness; methane"</td>
+<td>"Bill Hagerty"</td>
+<td>"ambassador; equity; investment; firm; franchise; port; energy; loan; commissioner; founder"</td>
 </tr>
 <tr class="odd">
-<td>"Mark Kelly"</td>
-<td>"mission; space; station; launch; pilot; assassination; commander; prayer; song; flight"</td>
+<td>"John Fettermen"</td>
+<td>"town; stroke; mayor; lieutenant; council; output; parser; heart; incident; progressive"</td>
 </tr>
 <tr class="even">
-<td>"Mike Rounds"</td>
-<td>"round; beef; investment; plant; investor; loan; mate; irregularity; technology; money"</td>
+<td>"Marsha Blackburn"</td>
+<td>"broadband; provider; confirmation; privacy; tissue; whip; measure; suburb; map; tweet"</td>
 </tr>
 <tr class="odd">
-<td>"Elizabeth Warren"</td>
-<td>"bankruptcy; professor; book; dna; test; ancestry; bank; class; fight; consumer"</td>
+<td>"Raphael Warnock"</td>
+<td>"church; foot; police; importance; movement; car; professional; peace; runoff; tweet"</td>
 </tr>
 <tr class="even">
-<td>"Jeanne Shaheen"</td>
-<td>"percent; healthcare; hospitalization; list; pledge; spill; re; subpoena; taxis; in"</td>
-</tr>
-<tr class="odd">
 <td>"Alex Padilla"</td>
 <td>"ballot; box; detention; press; immigrant; secretary; briefing; conference; contract; mayor"</td>
-</tr>
-<tr class="even">
-<td>"Ben Ray Luján"</td>
-<td>"tribe; stroke; source; utility; chairman; water; percent; agent; biomass; inequality"</td>
-</tr>
-<tr class="odd">
-<td>"Mark Warner"</td>
-<td>"dna; rating; performance; entitlement; coal; predecessor; technology; miner; telecommunication; transfer"</td>
-</tr>
-<tr class="even">
-<td>"Roger Marshall"</td>
-<td>"aid; neighbor; farm; mask; count; certification; objection; commerce; coronavirus; exception"</td>
 </tr>
 <tr class="odd">
 <td>"Jerry Moran"</td>
 <td>"flexibility; lifetime; hour; rating; score; institute; athlete; zone; trustee; earmark"</td>
 </tr>
 <tr class="even">
-<td>"Lisa Blunt Rochester "</td>
-<td>"mask; secretary; basketball; deputy; husband; educator; slave; lung; relation; protestant"</td>
+<td>"Roger Marshall"</td>
+<td>"aid; neighbor; farm; mask; count; certification; objection; commerce; coronavirus; exception"</td>
 </tr>
 <tr class="odd">
-<td>"Adam Schiff"</td>
-<td>"impeachment; manager; trial; evidence; collusion; helicopter; lobby; murder; speaker; census"</td>
+<td>"Jim Risch"</td>
+<td>"lieutenant; missile; score; sanction; capacity; grade; artist; sketch; historian; extreme"</td>
+</tr>
+<tr class="even">
+<td>"John Cornyn"</td>
+<td>"stem; cell; tweet; troop; animal; box; precedent; statue; sanction; maneuver"</td>
+</tr>
+<tr class="odd">
+<td>"John Thune"</td>
+<td>"whip; minority; chairman; hardware; turnout; speculation; permit; heating; deputy; farmer"</td>
+</tr>
+<tr class="even">
+<td>"Gilbert A. Pierce"</td>
+<td>"capital; newspaper; sketch; literature; play; colonel; statehood; editor; half; inspector"</td>
+</tr>
+<tr class="odd">
+<td>"Susan Collins"</td>
+<td>"neutrality; impeachment; trial; mandate; deficit; repeal; provision; filibuster; package; confirmation"</td>
+</tr>
+<tr class="even">
+<td>"Lisa Murkowski"</td>
+<td>"absentee; appointment; round; trial; ballot; impeachment; write; left; property; choice"</td>
+</tr>
+<tr class="odd">
+<td>"Mike Rounds"</td>
+<td>"round; beef; investment; plant; investor; loan; mate; irregularity; technology; money"</td>
+</tr>
+<tr class="even">
+<td>"Brian Schatz"</td>
+<td>"lieutenant; fear; kid; liberty; crisis; justice; brother; hope; diplomat; magazine"</td>
+</tr>
+<tr class="odd">
+<td>"Tammy Duckworth"</td>
+<td>"veteran; injury; leg; helicopter; disability; birth; colonel; hero; daughter; parser"</td>
+</tr>
+<tr class="even">
+<td>"Jeff Merkley"</td>
+<td>"mortgage; product; transition; drug; closure; cosponsor; housing; asylum; envoy; development"</td>
+</tr>
+<tr class="odd">
+<td>"Dick Durban"</td>
+<td>"tobacco; whip; detainee; limitation; prisoner; drug; smoking; steel; product; regime"</td>
+</tr>
+<tr class="even">
+<td>"Eric Schmitt"</td>
+<td>"general; quota; release; mask; revenue; brief; suit; pandemic; fine; murder"</td>
+</tr>
+<tr class="odd">
+<td>"Ted Budd"</td>
+<td>"master; convention; farm; excuse; endorsement; coup; watchdog; chicken; king; neighboring"</td>
+</tr>
+<tr class="even">
+<td>"Dan Sullivan"</td>
+<td>"project; missile; executive; duty; veto; contribution; economic; ceo; laude; rating"</td>
+</tr>
+<tr class="odd">
+<td>"Jim Justice"</td>
+<td>"coal; justice; mine; mining; coach; basketball; taxis; team; rally; luxury"</td>
+</tr>
+<tr class="even">
+<td>"Andy Kim"</td>
+<td>"county; ballot; corruption; ad; bribery; endorsement; percentage; victory; machine; advisor"</td>
+</tr>
+<tr class="odd">
+<td>"Michael Bennet"</td>
+<td>"parser; output; enrollment; debate; outlet; shutdown; contractor; educator; shotgun; rate"</td>
 </tr>
 <tr class="even">
 <td>"Chris Murphy"</td>
 <td>"populism; union; crisis; propaganda; kid; town; being; violence; act; insurance"</td>
 </tr>
 <tr class="odd">
-<td>"Thom Tillis"</td>
-<td>"animal; declaration; town; human; half; regulation; copyright; condition; speaker; substance"</td>
+<td>"Tim Kaine"</td>
+<td>"city; ticket; democracy; increase; coal; education; running; mate; debate; fund"</td>
 </tr>
 <tr class="even">
-<td>"John Kennedy"</td>
-<td>"treasurer; bond; money; flood; debt; process; legislature; tobacco; education; justice"</td>
+<td>"Mike Crapo"</td>
+<td>"cancer; consent; prostate; parser; output; theme; brother; image; light; delegation"</td>
+</tr>
+<tr class="odd">
+<td>"Cynthia Lummis"</td>
+<td>"treasurer; tenure; cryptocurrency; rating; manager; worth; whip; team; speech; house"</td>
+</tr>
+<tr class="even">
+<td>"Mitch McConnell"</td>
+<td>"filibuster; judge; confirmation; scientist; measure; appropriation; wall; b; scholar; rating"</td>
+</tr>
+<tr class="odd">
+<td>"Ron Johnson"</td>
+<td>"vaccine; conspiracy; theory; movement; claim; involvement; treatment; impeachment; victory; aid"</td>
+</tr>
+<tr class="even">
+<td>"Rand Paul"</td>
+<td>"speech; limit; vaccine; lawsuit; fundraising; phone; violation; certification; conservative; individual"</td>
+</tr>
+<tr class="odd">
+<td>"Elizabeth Warren"</td>
+<td>"bankruptcy; professor; book; dna; test; ancestry; bank; class; fight; consumer"</td>
+</tr>
+<tr class="even">
+<td>"Martin Heinrich"</td>
+<td>"consulting; lobbying; county; residence; environment; chamber; wind; film; language; trip"</td>
+</tr>
+<tr class="odd">
+<td>"John Curtis"</td>
+<td>"land; management; percent; hall; score; loan; borrower; certainty; companion; wilderness"</td>
+</tr>
+<tr class="even">
+<td>"John Norvell"</td>
+<td>"newspaper; truth; daughter; postmaster; falsehood; neighboring; brother; editor; manner; city"</td>
+</tr>
+<tr class="odd">
+<td>"Mark Warner"</td>
+<td>"dna; rating; performance; entitlement; coal; predecessor; technology; telecommunication; miner; transfer"</td>
+</tr>
+<tr class="even">
+<td>"Jacky Rosen"</td>
+<td>"antisemitism; source; shutdown; insulin; condition; subcommittee; development; jurisdiction; husband; patient"</td>
+</tr>
+<tr class="odd">
+<td>"Pete Ricketts"</td>
+<td>"legislature; session; relief; veto; punishment; property; petition; merger; cannabis; workforce"</td>
+</tr>
+<tr class="even">
+<td>"Adam Schiff"</td>
+<td>"impeachment; manager; trial; evidence; collusion; lobby; helicopter; murder; speaker; census"</td>
+</tr>
+<tr class="odd">
+<td>"Markwayne Mullin"</td>
+<td>"runoff; salary; citizen; forgiveness; helicopter; guy; pardon; range; art; embassy"</td>
+</tr>
+<tr class="even">
+<td>"Catherine Cortez Masto"</td>
+<td>"general; agent; charge; location; enforcement; chamber; none; loan; ice; successor"</td>
+</tr>
+<tr class="odd">
+<td>"Rick Scott"</td>
+<td>"output; parser; rail; hospital; percent; doctor; stock; align; holding; patient"</td>
+</tr>
+<tr class="even">
+<td>"Dave McCormick"</td>
+<td>"ceo; world; transition; trade; officer; upset; rally; export; responsibility; hedge"</td>
+</tr>
+<tr class="odd">
+<td>"Jack Reed"</td>
+<td>"trade; landslide; duty; framework; network; officer; oil; coalition; cabinet; diplomat"</td>
+</tr>
+<tr class="even">
+<td>"Bernie Moreno"</td>
+<td>"dealership; citizenship; car; interview; trustee; account; dozen; tweet; exception; run"</td>
+</tr>
+<tr class="odd">
+<td>"Bill Cassidy"</td>
+<td>"vaccination; autism; physician; coverage; disease; earmark; cost; good; provision; vaccine"</td>
+</tr>
+<tr class="even">
+<td>"Chris Van Hollen"</td>
+<td>"handgun; license; education; share; redistricting; loophole; pay; lockdown; financing; precinct"</td>
+</tr>
+<tr class="odd">
+<td>"Ed Markey"</td>
+<td>"cargo; disorder; firearm; animal; neutrality; competition; measure; ice; concession; envoy"</td>
+</tr>
+<tr class="even">
+<td>"Steve Daines"</td>
+<td>"resource; energy; forest; statehood; wind; power; coal; turbine; mining; wall"</td>
+</tr>
+<tr class="odd">
+<td>"John Barrasso"</td>
+<td>"application; residency; physician; grandparent; energy; thing; whip; gas; practice; delegation"</td>
+</tr>
+<tr class="even">
+<td>"Angus King"</td>
+<td>"independent; project; energy; wind; asylum; monument; institution; call; carbon; practice"</td>
+</tr>
+<tr class="odd">
+<td>"Jon Husted"</td>
+<td>"hour; address; fee; old; sport; center; character; participant; filing; registration"</td>
+</tr>
+<tr class="even">
+<td>"John Hickenlooper"</td>
+<td>"mayor; city; cannabis; initiative; boy; drug; legalization; fuel; methane; homelessness"</td>
+</tr>
+<tr class="odd">
+<td>"Chuck Schumer"</td>
+<td>"bank; drug; wing; speech; stability; mortgage; industry; consumer; flood; floor"</td>
+</tr>
+<tr class="even">
+<td>"Ted Cruz"</td>
+<td>"speech; delegate; appeal; lie; win; solicitor; argument; general; parser; output"</td>
+</tr>
+<tr class="odd">
+<td>"Ruben Gallego"</td>
+<td>"emergency; agent; tribe; filibuster; deportation; lobbyist; money; situation; combat; room"</td>
+</tr>
+<tr class="even">
+<td>"Ron Wyden"</td>
+<td>"internet; return; public; taxis; airline; passenger; hold; information; tradition; copyright"</td>
+</tr>
+<tr class="odd">
+<td>"Todd Young"</td>
+<td>"rating; duty; immigration; score; think; count; tank; session; storming; class"</td>
+</tr>
+<tr class="even">
+<td>"Tom Cotton"</td>
+<td>"slavery; article; sanction; hold; sacrifice; interview; troop; journalist; virus; terrorist"</td>
+</tr>
+<tr class="odd">
+<td>"Ashley Moody"</td>
+<td>"ballot; cannabis; felon; general; measure; lawsuit; summary; litigation; initiative; signature"</td>
+</tr>
+<tr class="even">
+<td>"Tim Scott"</td>
+<td>"county; council; source; football; insurance; display; body; precinct; comment; stamp"</td>
+</tr>
+<tr class="odd">
+<td>"Jeanne Shaheen"</td>
+<td>"percent; healthcare; hospitalization; list; pledge; spill; subpoena; re; taxis; return"</td>
+</tr>
+<tr class="even">
+<td>"Peter Welch"</td>
+<td>"impeachment; tempore; defender; injury; in; decade; age; dentist; uncertainty; homemaker"</td>
+</tr>
+<tr class="odd">
+<td>"Lindsey Graham"</td>
+<td>"detainee; impeachment; immigration; warrant; lawyer; phone; reason; defense; counsel; judge"</td>
+</tr>
+<tr class="even">
+<td>"Sheldon Whitehouse"</td>
+<td>"club; money; ethic; membership; stock; oil; vaccination; insider; donor; carbon"</td>
 </tr>
 <tr class="odd">
 <td>"Lucius Lyon"</td>
-<td>"land; statehood; admission; academy; downtown; knowledge; machine; witness; portion; city"</td>
+<td>"land; statehood; admission; downtown; academy; knowledge; machine; witness; portion; city"</td>
 </tr>
 <tr class="even">
-<td>"Brian Schatz"</td>
-<td>"lieutenant; fear; kid; liberty; justice; crisis; brother; hope; diplomat; magazine"</td>
+<td>"Deb Fischer"</td>
+<td>"ranch; land; county; cattle; ad; tv; plurality; image; suit; née"</td>
+</tr>
+<tr class="odd">
+<td>"Jon Ossoff"</td>
+<td>"percent; turnout; runoff; link; documentary; animal; corruption; cannabis; production; mine"</td>
+</tr>
+<tr class="even">
+<td>"Tina Smith"</td>
+<td>"chief; lieutenant; cannabis; pick; finding; e; train; patient; swing; insulin"</td>
+</tr>
+<tr class="odd">
+<td>"Roger Wicker"</td>
+<td>"lifetime; flag; whip; good; evil; runoff; carbon; vacancy; aid; passenger"</td>
+</tr>
+<tr class="even">
+<td>"Josh Hawley"</td>
+<td>"general; email; condition; output; parser; riot; lawsuit; user; datum; police"</td>
+</tr>
+<tr class="odd">
+<td>"Joni Ernst"</td>
+<td>"trade; troop; wage; weapon; isis; impact; divorce; comment; military; officer"</td>
+</tr>
+<tr class="even">
+<td>"Chris Coons"</td>
+<td>"counsel; executive; county; college; rating; datum; article; outlet; ethic; poll"</td>
+</tr>
+<tr class="odd">
+<td>"James Lankford"</td>
+<td>"grandparent; baptist; minister; validity; camp; hate; homosexuality; doubt; border; swing"</td>
+</tr>
+<tr class="even">
+<td>"Angela Alsobrooks"</td>
+<td>"county; executive; police; parser; output; education; delegate; session; strike; property"</td>
+</tr>
+<tr class="odd">
+<td>"John Kennedy"</td>
+<td>"treasurer; bond; money; flood; debt; process; legislature; tobacco; education; justice"</td>
+</tr>
+<tr class="even">
+<td>"Ben Ray Luján"</td>
+<td>"tribe; stroke; source; utility; chairman; water; agent; percent; inequality; biomass"</td>
+</tr>
+<tr class="odd">
+<td>"Bernie Sanders"</td>
+<td>"sander; mayor; independent; worker; democracy; debate; labor; coverage; class; union"</td>
+</tr>
+<tr class="even">
+<td>"Kirsten Gillibrand"</td>
+<td>"associate; mayor; earmark; pit; appointment; repeal; leave; grandmother; harassment; assault"</td>
+</tr>
+<tr class="odd">
+<td>"Cory Booker"</td>
+<td>"commencement; city; mayor; council; column; documentary; speech; rate; address; minute"</td>
+</tr>
+<tr class="even">
+<td>"Mike Lee"</td>
+<td>"waste; post; conspiracy; slate; justice; troop; elector; other; consensus; half"</td>
+</tr>
+<tr class="odd">
+<td>"Maggie Hassan"</td>
+<td>"intern; husband; rematch; swearing; chamber; consultant; delegation; firm; cannabis; fee"</td>
+</tr>
+<tr class="even">
+<td>"Mazie Hirono"</td>
+<td>"lieutenant; rib; cancer; contraception; watchlist; corporation; equity; list; shutdown; disappointment"</td>
+</tr>
+<tr class="odd">
+<td>"Richard Blumenthal"</td>
+<td>"prostitution; suit; lawsuit; general; settlement; site; consumer; ad; pollution; air"</td>
+</tr>
+<tr class="even">
+<td>"Lisa Blunt Rochester "</td>
+<td>"mask; secretary; basketball; deputy; husband; slave; lung; educator; relation; protestant"</td>
+</tr>
+<tr class="odd">
+<td>"Chuck Grassley"</td>
+<td>"whistleblower; dossier; payment; farmer; document; corn; award; ethanol; tempore; farm"</td>
+</tr>
+<tr class="even">
+<td>"Jim Banks"</td>
+<td>"bank; absence; duty; union; transgender; worker; leave; memo; military; labor"</td>
+</tr>
+<tr class="odd">
+<td>"Cindy Hyde-Smith"</td>
+<td>"plant; veto; runoff; lobbyist; affiliation; cattle; daughter; legislature; favor; property"</td>
+</tr>
+<tr class="even">
+<td>"Tommy Tuberville"</td>
+<td>"coach; season; football; head; game; team; hold; foundation; win; objection"</td>
+</tr>
+<tr class="odd">
+<td>"Lyman R. Casey"</td>
+<td>"hardware; chairman; drinking; rancher; sibling; admission; straw; commissioner; education; parent"</td>
+</tr>
+<tr class="even">
+<td>"Patty Murray"</td>
+<td>"tempore; designation; river; area; drinking; third; workplace; disorder; recovery; acid"</td>
+</tr>
+<tr class="odd">
+<td>"Tammy Baldwin"</td>
+<td>"loophole; version; copy; price; insulin; payer; insurer; inequality; bottom; violence"</td>
+</tr>
+<tr class="even">
+<td>"Maria Cantwell"</td>
+<td>"privacy; debate; internet; drilling; loan; lead; advertisement; planning; file; acid"</td>
+</tr>
+<tr class="odd">
+<td>"Mark Kelly"</td>
+<td>"mission; space; station; launch; pilot; assassination; commander; prayer; song; flight"</td>
+</tr>
+<tr class="even">
+<td>"Amy Klobuchar"</td>
+<td>"defendant; sentence; jury; charge; county; poll; tenure; award; rating; approval"</td>
 </tr>
 </tbody>
 </table>
@@ -1799,10 +1802,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Now let’s see whether the most common nouns differ by party. To start, find the 10 most common nouns for each party. Print out the results and compare.</li>
 </ol>
-<div id="b9a31a2b" class="cell" data-execution_count="12">
+<div id="fe53901c" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    .group_by([c.party, c.lemma])</span>
@@ -1811,7 +1814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    .group_by(c.party)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div><style>
@@ -1822,7 +1825,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (30, 3)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">party</th>
@@ -1830,61 +1833,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>u32</th>
+<td>str</td>
+<td>str</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Democratic"</td>
-<td>"senator"</td>
-<td>678</td>
+<td>"Independent"</td>
+<td>"sander"</td>
+<td>85</td>
 </tr>
 <tr class="even">
-<td>"Democratic"</td>
-<td>"%"</td>
-<td>503</td>
-</tr>
-<tr class="odd">
-<td>"Democratic"</td>
-<td>"election"</td>
-<td>488</td>
-</tr>
-<tr class="even">
-<td>"Democratic"</td>
-<td>"state"</td>
-<td>441</td>
-</tr>
-<tr class="odd">
-<td>"Democratic"</td>
-<td>"bill"</td>
-<td>405</td>
-</tr>
-<tr class="even">
-<td>"Democratic"</td>
-<td>"vote"</td>
-<td>373</td>
-</tr>
-<tr class="odd">
-<td>"Democratic"</td>
-<td>"member"</td>
-<td>356</td>
-</tr>
-<tr class="even">
-<td>"Democratic"</td>
+<td>"Independent"</td>
 <td>"campaign"</td>
-<td>354</td>
+<td>84</td>
 </tr>
 <tr class="odd">
-<td>"Democratic"</td>
-<td>"year"</td>
-<td>333</td>
+<td>"Independent"</td>
+<td>"bill"</td>
+<td>60</td>
 </tr>
 <tr class="even">
-<td>"Democratic"</td>
-<td>"law"</td>
-<td>317</td>
+<td>"Independent"</td>
+<td>"%"</td>
+<td>59</td>
+</tr>
+<tr class="odd">
+<td>"Independent"</td>
+<td>"election"</td>
+<td>55</td>
+</tr>
+<tr class="even">
+<td>"Independent"</td>
+<td>"vote"</td>
+<td>51</td>
+</tr>
+<tr class="odd">
+<td>"Independent"</td>
+<td>"senator"</td>
+<td>47</td>
+</tr>
+<tr class="even">
+<td>"Independent"</td>
+<td>"candidate"</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td>"Independent"</td>
+<td>"party"</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td>"Independent"</td>
+<td>"legislation"</td>
+<td>32</td>
 </tr>
 <tr class="odd">
 <td>"Republican"</td>
@@ -1937,54 +1940,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>298</td>
 </tr>
 <tr class="odd">
-<td>"Independent"</td>
-<td>"sander"</td>
-<td>85</td>
-</tr>
-<tr class="even">
-<td>"Independent"</td>
-<td>"campaign"</td>
-<td>84</td>
-</tr>
-<tr class="odd">
-<td>"Independent"</td>
-<td>"bill"</td>
-<td>60</td>
-</tr>
-<tr class="even">
-<td>"Independent"</td>
-<td>"%"</td>
-<td>59</td>
-</tr>
-<tr class="odd">
-<td>"Independent"</td>
-<td>"election"</td>
-<td>55</td>
-</tr>
-<tr class="even">
-<td>"Independent"</td>
-<td>"vote"</td>
-<td>51</td>
-</tr>
-<tr class="odd">
-<td>"Independent"</td>
+<td>"Democratic"</td>
 <td>"senator"</td>
-<td>47</td>
+<td>678</td>
 </tr>
 <tr class="even">
-<td>"Independent"</td>
-<td>"candidate"</td>
-<td>39</td>
+<td>"Democratic"</td>
+<td>"%"</td>
+<td>503</td>
 </tr>
 <tr class="odd">
-<td>"Independent"</td>
-<td>"party"</td>
-<td>33</td>
+<td>"Democratic"</td>
+<td>"election"</td>
+<td>488</td>
 </tr>
 <tr class="even">
-<td>"Independent"</td>
+<td>"Democratic"</td>
+<td>"state"</td>
+<td>441</td>
+</tr>
+<tr class="odd">
+<td>"Democratic"</td>
+<td>"bill"</td>
+<td>405</td>
+</tr>
+<tr class="even">
+<td>"Democratic"</td>
+<td>"vote"</td>
+<td>373</td>
+</tr>
+<tr class="odd">
+<td>"Democratic"</td>
+<td>"member"</td>
+<td>356</td>
+</tr>
+<tr class="even">
+<td>"Democratic"</td>
+<td>"campaign"</td>
+<td>354</td>
+</tr>
+<tr class="odd">
+<td>"Democratic"</td>
 <td>"year"</td>
-<td>32</td>
+<td>333</td>
+</tr>
+<tr class="even">
+<td>"Democratic"</td>
+<td>"law"</td>
+<td>317</td>
 </tr>
 </tbody>
 </table>
@@ -1994,10 +1997,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>To do this we can create a tfidf matrix again, but set the argument <code>doc_name</code> to “party”. This in effect changes what we mean by a document in this case.</li>
 </ol>
-<div id="7c08d58c" class="cell" data-execution_count="13">
+<div id="3f97256a" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    .pipe(DSText.compute_tfidf, min_df<span class="op">=</span><span class="fl">0.03</span>, max_df<span class="op">=</span><span class="fl">0.5</span>, doc_name<span class="op">=</span><span class="st">"party"</span>)</span>
@@ -2006,7 +2009,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .group_by(c.party)</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div><style>
@@ -2017,29 +2020,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (3, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">party</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Democratic"</td>
+<td>"coon; warnock; hickenlooper; mortgage; duckworth; progressive; pair; pastor; crew; lender"</td>
+</tr>
+<tr class="even">
 <td>"Republican"</td>
 <td>"daine; cassidy; blackburn; ceiling; incest; felon; straw; absence; cornyn; constitutionality"</td>
 </tr>
-<tr class="even">
-<td>"Democratic"</td>
-<td>"coon; warnock; hickenlooper; mortgage; duckworth; progressive; pair; pastor; crew; whitehouse"</td>
-</tr>
 <tr class="odd">
 <td>"Independent"</td>
-<td>"cooperative; waterfront; oligarchy; newsprint; stent; spirituality; orphan; grassroot; grid; observance"</td>
+<td>"cooperative; waterfront; oligarchy; ward; newsprint; album; grid; observance; spirituality; orphan"</td>
 </tr>
 </tbody>
 </table>
@@ -2050,25 +2053,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="part-3-what-policy-topics-are-most-frequently-associated-with-each-party" class="level3">
 <h3 class="anchored" data-anchor-id="part-3-what-policy-topics-are-most-frequently-associated-with-each-party">Part 3: What policy topics are most frequently associated with each party?</h3>
 <p>Many of you were curious about which policy areas are most associated with each party. We can investigate this by searching for specific policy-related nouns in the text.</p>
-<div id="da409ba1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="0d00e4ee" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>policy_terms <span class="op">=</span> [</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>policy_terms <span class="op">=</span> [</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"healthcare"</span>, <span class="st">"health"</span>, <span class="st">"education"</span>, <span class="st">"military"</span>, <span class="st">"defense"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"economy"</span>, <span class="st">"tax"</span>, <span class="st">"immigration"</span>, <span class="st">"abortion"</span>, <span class="st">"gun"</span>,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"climate"</span>, <span class="st">"environment"</span>, <span class="st">"energy"</span>, <span class="st">"trade"</span>, <span class="st">"budget"</span>,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"veteran"</span>, <span class="st">"infrastructure"</span>, <span class="st">"housing"</span>, <span class="st">"police"</span>, <span class="st">"crime"</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cannabis"</span>, <span class="st">"marijuana"</span>, <span class="st">"insurance"</span>, <span class="st">"welfare"</span>, <span class="st">"security"</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ol start="6" type="1">
 <li>Filter the annotation data to just nouns whose lemma is in the policy terms list. Remove the independent party members. Count the number of times each party mentions each lemma. Plot the data with count on the x-axis, term on the y-axis and color indicating the party. Hint: add <code>scale_color_manual({"Democratic": "blue", "Republican": "red"})</code>.</li>
 </ol>
-<div id="fe631cd7" class="cell" data-execution_count="15">
+<div id="4f32648b" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lemma.is_in(policy_terms))</span>
@@ -2078,7 +2081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"count"</span>, <span class="st">"lemma"</span>))</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"party"</span>))</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_color_manual({<span class="st">"Democratic"</span>: <span class="st">"blue"</span>, <span class="st">"Republican"</span>: <span class="st">"red"</span>})</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -2091,10 +2094,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>The plot above is interesting, but a little difficult to read because of the sorting. And it’s actually not easy to sort in that format! Try to pivot the table by party and show a text plot with the Democratic counts on the x-axis and Republican counts on the y-axis.</li>
 </ol>
-<div id="77afb4d4" class="cell" data-execution_count="16">
+<div id="80e837b4" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lemma.is_in(policy_terms))</span>
@@ -2106,7 +2109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"lemma"</span>), nudge_y<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_abline(linetype<span class="op">=</span><span class="st">"dashed"</span>)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -2123,10 +2126,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>We don’t have a gender marker in our dataset. We could add one manually, but there’s a trick that works well for Wikipedia data. To start, filter the annotation data to the first instance of the lemma “she” or “he” in each document. Sort by the lemma and print the data. Take a close look at the results.</li>
 </ol>
-<div id="de099e79" class="cell" data-execution_count="17">
+<div id="962b4b09" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lemma.is_in([<span class="st">"she"</span>, <span class="st">"he"</span>]))</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
@@ -2134,7 +2137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    .select(c.doc_id, c.lemma)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    .sort(c.lemma)</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div><style>
@@ -2145,44 +2148,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
 <th data-quarto-table-cell-role="th">lemma</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Thom Tillis"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Chuck Grassley"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Michael Bennet"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"John Boozman"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Ruben Gallego"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Pete Ricketts"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Jim Banks"</td>
+<td>"Tim Kaine"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
@@ -2190,151 +2169,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"he"</td>
 </tr>
 <tr class="odd">
-<td>"Josh Hawley"</td>
+<td>"Gilbert A. Pierce"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"Bill Cassidy"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"John Fettermen"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Roger Marshall"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"John Hickenlooper"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Bernie Sanders"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
 <td>"Jim Justice"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Dave McCormick"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Lucius Lyon"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Tim Sheehy"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Mike Rounds"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Chuck Schumer"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Cory Booker"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"James Lankford"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Ted Budd"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Dan Sullivan"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Martin Heinrich"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Bernie Moreno"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
 <td>"Markwayne Mullin"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Tim Scott"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Brian Schatz"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Jon Ossoff"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Rand Paul"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Steve Daines"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Roger Wicker"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Ben Ray Luján"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Raphael Warnock"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Richard Blumenthal"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Peter Welch"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Chris Van Hollen"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Eric Schmitt"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Mark Kelly"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Lyman R. Casey"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Todd Young"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Bill Hagerty"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Mike Lee"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Mike Crapo"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
@@ -2346,55 +2189,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"Jack Reed"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Jim Risch"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Alex Padilla"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"John Norvell"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"John Curtis"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Tommy Tuberville"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"John Kennedy"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Chris Coons"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
 <td>"Mitch McConnell"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
-<td>"Ed Markey"</td>
+<td>"Mike Crapo"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"John Thune"</td>
+<td>"Jerry Moran"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
-<td>"Sheldon Whitehouse"</td>
+<td>"John Curtis"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"Jeff Merkley"</td>
+<td>"Ron Wyden"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Angus King"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Ed Markey"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"John Thune"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Chuck Schumer"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"John Fettermen"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Jack Reed"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Rand Paul"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Bill Hagerty"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Adam Schiff"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Thom Tillis"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Tom Cotton"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Mark Kelly"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
@@ -2402,47 +2261,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"he"</td>
 </tr>
 <tr class="even">
+<td>"John Kennedy"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
 <td>"Dick Durban"</td>
 <td>"he"</td>
 </tr>
-<tr class="odd">
-<td>"Lindsey Graham"</td>
-<td>"he"</td>
-</tr>
 <tr class="even">
-<td>"Adam Schiff"</td>
+<td>"Tommy Tuberville"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
-<td>"Gilbert A. Pierce"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Tom Cotton"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"John Cornyn"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
-<td>"Angus King"</td>
-<td>"he"</td>
-</tr>
-<tr class="odd">
-<td>"Rick Scott"</td>
-<td>"he"</td>
-</tr>
-<tr class="even">
 <td>"Chris Murphy"</td>
 <td>"he"</td>
 </tr>
+<tr class="even">
+<td>"James Lankford"</td>
+<td>"he"</td>
+</tr>
 <tr class="odd">
-<td>"Ron Wyden"</td>
+<td>"Tim Sheehy"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"John Barrasso"</td>
+<td>"Steve Daines"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
@@ -2450,63 +2293,175 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"Tim Kaine"</td>
+<td>"Peter Welch"</td>
 <td>"he"</td>
 </tr>
 <tr class="odd">
-<td>"Jerry Moran"</td>
+<td>"Eric Schmitt"</td>
 <td>"he"</td>
 </tr>
 <tr class="even">
-<td>"Lisa Blunt Rochester "</td>
-<td>"she"</td>
+<td>"Lucius Lyon"</td>
+<td>"he"</td>
 </tr>
 <tr class="odd">
+<td>"Alex Padilla"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"John Hickenlooper"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Pete Ricketts"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Tim Scott"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Ruben Gallego"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"John Barrasso"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Richard Blumenthal"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Sheldon Whitehouse"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Jim Risch"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Jim Banks"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Mike Rounds"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Roger Wicker"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Roger Marshall"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Brian Schatz"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Michael Bennet"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Rick Scott"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Bill Cassidy"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Cory Booker"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Lyman R. Casey"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"John Boozman"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Lindsey Graham"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Jon Ossoff"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Chuck Grassley"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Mike Lee"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Dan Sullivan"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Martin Heinrich"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Ben Ray Luján"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Todd Young"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Chris Van Hollen"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Raphael Warnock"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"John Norvell"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Ted Budd"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Chris Coons"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Bernie Sanders"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Jeff Merkley"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Bernie Moreno"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"John Cornyn"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
+<td>"Dave McCormick"</td>
+<td>"he"</td>
+</tr>
+<tr class="odd">
+<td>"Josh Hawley"</td>
+<td>"he"</td>
+</tr>
+<tr class="even">
 <td>"Tammy Duckworth"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Angela Alsobrooks"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Joni Ernst"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Elizabeth Warren"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Katie Britt"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Deb Fischer"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Amy Klobuchar"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Jeanne Shaheen"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Ashley Moody"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Tammy Baldwin"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Mazie Hirono"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Maria Cantwell"</td>
 <td>"she"</td>
 </tr>
 <tr class="odd">
@@ -2514,15 +2469,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"she"</td>
 </tr>
 <tr class="even">
-<td>"Marsha Blackburn"</td>
+<td>"Lisa Blunt Rochester "</td>
 <td>"she"</td>
 </tr>
 <tr class="odd">
-<td>"Lisa Murkowski"</td>
+<td>"Tammy Baldwin"</td>
 <td>"she"</td>
 </tr>
 <tr class="even">
-<td>"Maggie Hassan"</td>
+<td>"Angela Alsobrooks"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Elizabeth Warren"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Ashley Moody"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Kirsten Gillibrand"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Deb Fischer"</td>
 <td>"she"</td>
 </tr>
 <tr class="odd">
@@ -2530,31 +2501,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>"she"</td>
 </tr>
 <tr class="even">
-<td>"Jacky Rosen"</td>
+<td>"Katie Britt"</td>
 <td>"she"</td>
 </tr>
 <tr class="odd">
-<td>"Catherine Cortez Masto"</td>
+<td>"Amy Klobuchar"</td>
 <td>"she"</td>
 </tr>
 <tr class="even">
-<td>"Tina Smith"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
-<td>"Cindy Hyde-Smith"</td>
-<td>"she"</td>
-</tr>
-<tr class="even">
-<td>"Kirsten Gillibrand"</td>
-<td>"she"</td>
-</tr>
-<tr class="odd">
 <td>"Patty Murray"</td>
 <td>"she"</td>
 </tr>
+<tr class="odd">
+<td>"Lisa Murkowski"</td>
+<td>"she"</td>
+</tr>
 <tr class="even">
+<td>"Mazie Hirono"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
 <td>"Shelley Moore Capito"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Cindy Hyde-Smith"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Tina Smith"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Maggie Hassan"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Jacky Rosen"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Catherine Cortez Masto"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Joni Ernst"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Marsha Blackburn"</td>
+<td>"she"</td>
+</tr>
+<tr class="odd">
+<td>"Jeanne Shaheen"</td>
+<td>"she"</td>
+</tr>
+<tr class="even">
+<td>"Maria Cantwell"</td>
 <td>"she"</td>
 </tr>
 </tbody>
@@ -2565,10 +2568,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Using the <code>pl.when</code> function, create a dataset <code>gender_table</code> that maps each senator’s doc_id value to the gender inferred by the above technique.</li>
 </ol>
-<div id="e562a491" class="cell" data-execution_count="18">
+<div id="4a3ccbd9" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gender_table <span class="op">=</span> (</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gender_table <span class="op">=</span> (</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.lemma.is_in([<span class="st">"she"</span>, <span class="st">"he"</span>]))</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.doc_id)</span>
@@ -2578,7 +2581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    .select(c.doc_id, c.gender)</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>gender_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>gender_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div><style>
@@ -2589,60 +2592,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (100, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">doc_id</th>
 <th data-quarto-table-cell-role="th">gender</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Shelley Moore Capito"</td>
+<td>"Female"</td>
+</tr>
+<tr class="even">
+<td>"Jon Husted"</td>
+<td>"Male"</td>
+</tr>
+<tr class="odd">
+<td>"Patty Murray"</td>
+<td>"Female"</td>
+</tr>
+<tr class="even">
+<td>"Markwayne Mullin"</td>
+<td>"Male"</td>
+</tr>
+<tr class="odd">
+<td>"Todd Young"</td>
+<td>"Male"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Cindy Hyde-Smith"</td>
+<td>"Female"</td>
+</tr>
+<tr class="even">
+<td>"Tim Scott"</td>
+<td>"Male"</td>
+</tr>
+<tr class="odd">
+<td>"Adam Schiff"</td>
+<td>"Male"</td>
+</tr>
+<tr class="even">
+<td>"Jacky Rosen"</td>
+<td>"Female"</td>
+</tr>
+<tr class="odd">
 <td>"Mark Kelly"</td>
-<td>"Male"</td>
-</tr>
-<tr class="even">
-<td>"Chuck Schumer"</td>
-<td>"Male"</td>
-</tr>
-<tr class="odd">
-<td>"Mike Lee"</td>
-<td>"Male"</td>
-</tr>
-<tr class="even">
-<td>"Dave McCormick"</td>
-<td>"Male"</td>
-</tr>
-<tr class="odd">
-<td>"Angus King"</td>
-<td>"Male"</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Thom Tillis"</td>
-<td>"Male"</td>
-</tr>
-<tr class="even">
-<td>"Ron Wyden"</td>
-<td>"Male"</td>
-</tr>
-<tr class="odd">
-<td>"Jon Ossoff"</td>
-<td>"Male"</td>
-</tr>
-<tr class="even">
-<td>"Jim Banks"</td>
-<td>"Male"</td>
-</tr>
-<tr class="odd">
-<td>"Steve Daines"</td>
 <td>"Male"</td>
 </tr>
 </tbody>
@@ -2653,10 +2656,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Using the table you made above, join into <code>anno</code> and compute the tfidf scores by gender of the highest scoring nouns.</li>
 </ol>
-<div id="bdb187e0" class="cell" data-execution_count="19">
+<div id="f373a958" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .join(gender_table, on<span class="op">=</span>c.doc_id)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
@@ -2666,7 +2669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.gender)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div><style>
@@ -2677,25 +2680,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (2, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">gender</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>"Male"</td>
-<td>"daine; coon; cassidy; wing; coach; hold; warnock; host; foot; flood"</td>
+<td>"daine; coon; cassidy; wing; coach; warnock; hold; hickenlooper; host; season"</td>
 </tr>
 <tr class="even">
 <td>"Female"</td>
-<td>"blackburn; duckworth; acid; grandmother; aisle; sorority; steering; perfluorooctane; venue; cocaine"</td>
+<td>"blackburn; duckworth; acid; aisle; grandmother; sorority; nullification; perfluorooctane; amputee; variant"</td>
 </tr>
 </tbody>
 </table>
@@ -2705,10 +2708,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Modify the code above to look at the verbs. Note this should be more interesting.</li>
 </ol>
-<div id="2ce38d67" class="cell" data-execution_count="20">
+<div id="043b1baa" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .join(gender_table, on<span class="op">=</span>c.doc_id)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"VERB"</span>)</span>
@@ -2718,7 +2721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.gender)</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div><style>
@@ -2729,25 +2732,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (2, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">gender</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Male"</td>
-<td>"pose; caucus; trade; refinance; empower; loan; examine; balance; champion; modify"</td>
+<td>"Female"</td>
+<td>"decorate; propel; adjourn; intimidate; veil; amass; stabilize; purport; unblock; privatize"</td>
 </tr>
 <tr class="even">
-<td>"Female"</td>
-<td>"decorate; propel; amass; unblock; adjourn; staff; launder; overtake; privatize; stabilize"</td>
+<td>"Male"</td>
+<td>"pose; caucus; trade; refinance; empower; champion; balance; modify; loan; examine"</td>
 </tr>
 </tbody>
 </table>
@@ -2757,10 +2760,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>Finally, do the same with adjectives.</li>
 </ol>
-<div id="afdbb4a2" class="cell" data-execution_count="21">
+<div id="15dc1d96" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .join(gender_table, on<span class="op">=</span>c.doc_id)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"ADJ"</span>)</span>
@@ -2770,7 +2773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    .group_by(c.gender)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div><style>
@@ -2781,25 +2784,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (2, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">gender</th>
 <th data-quarto-table-cell-role="th">top_lemmas</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
+<td>str</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>"Male"</td>
-<td>"partisan; worth; unclaimed; israel; secret; severe; naval; daily; classified; civilian"</td>
+<td>"partisan; worth; unclaimed; israel; secret; naval; severe; daily; classified; overall"</td>
 </tr>
 <tr class="even">
 <td>"Female"</td>
-<td>"sulfonic; k; discrimination; unintended; enhanced; standing; municipal; eminent; aforementioned; drastic"</td>
+<td>"k; sulfonic; unruly; municipal; eminent; discrimination; unintended; reported; enhanced; aforementioned"</td>
 </tr>
 </tbody>
 </table>
@@ -2864,13 +2867,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -3263,7 +3267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook19b</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook19b</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
@@ -3548,7 +3552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-325"><a href="#cb21-325" aria-hidden="true" tabindex="-1"></a>    .agg(top_lemmas <span class="op">=</span> c.lemma.<span class="bu">str</span>.join(<span class="st">"; "</span>))</span>
 <span id="cb21-326"><a href="#cb21-326" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb21-327"><a href="#cb21-327" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});

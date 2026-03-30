@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>notebook12a – Foundations of Data Science: Notebooks</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8b99633e97494cb736d7188ebc41eb6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-77a666a5542a07a54dbe0a7f6e3b86cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -105,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -453,16 +456,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="2714f0ad" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="92845755" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b5fef4c8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="cac75195" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
@@ -471,15 +474,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pl.Config(tbl_rows<span class="op">=</span><span class="dv">25</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="4c3cbf0e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="a9958e60" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wiki <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_meta.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/wiki_uk_authors_anno.csv.gz"</span>, ignore_errors<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -488,10 +491,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Apply PCA (principal component analysis) to the <code>metro</code> dataset using the following features: density, median age, median household income, percent own, 1BR median rent, and rent as a percentage of income. Use the <code>.predict(full=True)</code> method to get the full dataset back with the new components. Then, create a scatter plot of the first two principal components (<code>dr0</code> and <code>dr1</code>) using text labels with the <code>name</code> column so we can see which metro regions are similar to one another. You may want to make the labels smaller to help read them.</li>
 </ol>
-<div id="7416e9fd" class="cell" data-execution_count="5">
+<div id="aafdc927" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.pca,</span>
@@ -502,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#.sample(n=50)</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label <span class="op">=</span> <span class="st">"name"</span>), size<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -513,10 +516,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2a. Now, we will try two alternative dimensionality reduction techniques on the same set of features: UMAP and t-SNE. Start with UMAP. Create a scatter plot of the first two components. Compare the results visually to the PCA plot above. Notice how UMAP and t-SNE tend to create more distinct clusters while PCA preserves more of the global structure.</p>
-<div id="510dbe1a" class="cell" data-execution_count="6">
+<div id="08388e37" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
@@ -526,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -537,10 +540,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2b. Now, try t-SNE.</p>
-<div id="ee84d8b0" class="cell" data-execution_count="7">
+<div id="500f1f9f" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.tsne,</span>
@@ -550,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -566,10 +569,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Now let’s try clustering the metro regions. Use K-Means clustering on the same six features from Part I, setting the number of clusters to 20. Save the result with full predictions as <code>metro_pca</code>.</li>
 </ol>
-<div id="24213b98" class="cell" data-execution_count="8">
+<div id="5df953b9" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metro_pca <span class="op">=</span> (</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metro_pca <span class="op">=</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    metro</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.kmeans,</span>
@@ -578,16 +581,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        n_clusters<span class="op">=</span><span class="dv">20</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ol start="4" type="1">
 <li>For each cluster label, display the names of the top 10 most populous metro regions (sorted by population in descending order). Look through the groupings and see if the clusters seem to be capturing meaningful similarities between regions.</li>
 </ol>
-<div id="781a932e" class="cell" data-execution_count="9">
+<div id="20cc4155" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    metro_pca</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.pop, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.label_)</span>
@@ -595,7 +598,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        regions <span class="op">=</span> c.name.head(<span class="dv">10</span>).<span class="bu">str</span>.join(<span class="st">","</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    .sort(c.label_)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
@@ -606,97 +609,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (20, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">label_</th>
 <th data-quarto-table-cell-role="th">regions</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>str</th>
+<td>i64</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>"Hickory,Kingsport,Jackson,Deca…</td>
+<td>"San Antonio,Columbus,Indianapo…</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>"Fayetteville,Oshkosh,Elizabeth…</td>
+<td>"Huntington,Fort Smith,Lake Hav…</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>"Deltona,Palm Bay,Portland,Port…</td>
+<td>"Green Bay,Cedar Rapids,Appleto…</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>"Las Vegas,Memphis,New Orleans,…</td>
+<td>"Provo,Fayetteville,Killeen,Cla…</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>"Washington,Seattle,San Diego,S…</td>
+<td>"Atlanta,Seattle,San Diego,Denv…</td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>"Mobile,Brownsville,Shreveport,…</td>
+<td>"Washington,Boston,San Francisc…</td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>"New York,Los Angeles,San Franc…</td>
+<td>"North Port,Deltona,Palm Bay,Po…</td>
 </tr>
 <tr class="even">
 <td>7</td>
-<td>"San Antonio,Kansas City,Columb…</td>
+<td>"Albany,Rocky Mount,Lumberton,D…</td>
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>"El Paso,Fayetteville,Killeen,C…</td>
+<td>"Las Vegas,Memphis,New Orleans,…</td>
 </tr>
 <tr class="even">
 <td>9</td>
-<td>"St. Louis,Charlotte,Pittsburgh…</td>
+<td>"Mobile,Monroe,Saginaw,Terre Ha…</td>
 </tr>
 <tr class="odd">
 <td>10</td>
-<td>"Phoenix,Riverside,Minneapolis,…</td>
+<td>"Youngstown,Hickory,Kingsport,C…</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>"Albuquerque,Wichita,Jackson,La…</td>
+<td>"Riverside,Oxnard,Santa Rosa,Sa…</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>"Dallas,Houston,Miami,Atlanta,D…</td>
+<td>"Phoenix,Minneapolis,Charlotte,…</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>"Fort Smith,Florence,Dothan,Lon…</td>
+<td>"St. Louis,Pittsburgh,Cincinnat…</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>"San Juan,Mayagüez,Minden"</td>
+<td>"New York,Los Angeles"</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>"College Station,Jacksonville,M…</td>
+<td>"Fayetteville,Oshkosh,Eau Clair…</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>"Chicago,Philadelphia,Boston,Ba…</td>
+<td>"San Juan,Aguadilla,Ponce,Areci…</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>"Green Bay,Cedar Rapids,Appleto…</td>
+<td>"McAllen,El Paso,Springfield,Br…</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>"Aguadilla,Ponce,Arecibo,San Ge…</td>
+<td>"Chicago,Dallas,Houston,Philade…</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>"Youngstown,Ocala,Utica,Charles…</td>
+<td>"College Station,Stillwater,Hun…</td>
 </tr>
 </tbody>
 </table>
@@ -706,10 +709,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Visualize the clustering results by applying PCA to the same six features on the <code>metro_pca</code> data. Create a scatter plot of the first two principal components, coloring the points by their cluster label. This lets us see how well the K-Means clusters correspond to the structure found by PCA.</li>
 </ol>
-<div id="414c354d" class="cell" data-execution_count="10">
+<div id="5e2599b2" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    metro_pca</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.pca,</span>
@@ -719,7 +722,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"factor(label_)"</span>))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -732,10 +735,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Compute the mean of each of the six features grouped by cluster label. This gives us a profile of each cluster and helps us interpret what makes regions in the same cluster similar.</li>
 </ol>
-<div id="69bb55c4" class="cell" data-execution_count="11">
+<div id="47031a7d" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    metro_pca</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .select(</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        c.density, c.age_median, c.hh_income_median,</span>
@@ -745,7 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .group_by(c.label_)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .mean()</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    .sort(c.label_)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div><style>
@@ -756,7 +759,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (20, 7)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">label_</th>
@@ -768,195 +771,195 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">rent_perc_income</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>i64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>31.3164</td>
-<td>44.304545</td>
-<td>54195.018182</td>
-<td>77.275455</td>
-<td>527.354545</td>
-<td>26.840909</td>
+<td>68.681106</td>
+<td>40.873611</td>
+<td>61548.097222</td>
+<td>68.311111</td>
+<td>790.458333</td>
+<td>29.251389</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>22.921736</td>
-<td>41.37875</td>
-<td>53687.6875</td>
-<td>68.03</td>
-<td>555.825</td>
-<td>24.6575</td>
+<td>33.597806</td>
+<td>42.149074</td>
+<td>50889.537037</td>
+<td>71.240741</td>
+<td>536.62037</td>
+<td>27.771296</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>66.191348</td>
-<td>45.378947</td>
-<td>69787.0</td>
-<td>77.602632</td>
-<td>870.894737</td>
-<td>31.018421</td>
+<td>31.607531</td>
+<td>42.774713</td>
+<td>64454.264368</td>
+<td>77.44023</td>
+<td>591.678161</td>
+<td>24.533333</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>56.482587</td>
-<td>39.292857</td>
-<td>57391.952381</td>
-<td>61.452381</td>
-<td>813.02381</td>
-<td>33.195238</td>
+<td>34.350975</td>
+<td>35.867742</td>
+<td>61031.548387</td>
+<td>60.645161</td>
+<td>705.16129</td>
+<td>27.803226</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>201.585315</td>
-<td>41.390909</td>
-<td>96897.272727</td>
-<td>60.009091</td>
-<td>1554.181818</td>
-<td>31.736364</td>
+<td>213.169649</td>
+<td>40.6875</td>
+<td>83531.4375</td>
+<td>64.4125</td>
+<td>1239.6875</td>
+<td>31.0625</td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>30.829737</td>
-<td>42.37193</td>
-<td>43455.403509</td>
-<td>62.733333</td>
-<td>553.877193</td>
-<td>31.654386</td>
+<td>532.772383</td>
+<td>42.685714</td>
+<td>106669.857143</td>
+<td>63.871429</td>
+<td>1573.142857</td>
+<td>30.028571</td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>934.982173</td>
-<td>42.133333</td>
-<td>95548.0</td>
-<td>55.0</td>
-<td>1612.666667</td>
-<td>30.966667</td>
+<td>69.893175</td>
+<td>45.515385</td>
+<td>69967.076923</td>
+<td>76.484615</td>
+<td>897.512821</td>
+<td>31.512821</td>
 </tr>
 <tr class="even">
 <td>7</td>
-<td>63.94755</td>
-<td>40.503226</td>
-<td>67553.129032</td>
-<td>68.487097</td>
-<td>848.064516</td>
-<td>28.656452</td>
+<td>26.966341</td>
+<td>44.12619</td>
+<td>40247.047619</td>
+<td>62.971429</td>
+<td>486.142857</td>
+<td>30.380952</td>
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>28.295938</td>
-<td>37.304348</td>
-<td>56690.804348</td>
-<td>62.626087</td>
-<td>659.847826</td>
-<td>27.936957</td>
+<td>54.544469</td>
+<td>39.435556</td>
+<td>57269.222222</td>
+<td>61.493333</td>
+<td>806.133333</td>
+<td>32.702222</td>
 </tr>
 <tr class="even">
 <td>9</td>
-<td>156.31245</td>
-<td>42.530612</td>
-<td>63296.244898</td>
-<td>70.871429</td>
-<td>759.673469</td>
-<td>28.730612</td>
+<td>28.932244</td>
+<td>42.145098</td>
+<td>47582.921569</td>
+<td>70.67451</td>
+<td>563.666667</td>
+<td>32.027451</td>
 </tr>
 <tr class="odd">
 <td>10</td>
-<td>80.736199</td>
-<td>41.689744</td>
-<td>82636.897436</td>
-<td>68.805128</td>
-<td>1139.410256</td>
-<td>30.382051</td>
+<td>28.745838</td>
+<td>44.661345</td>
+<td>53064.722689</td>
+<td>76.710084</td>
+<td>543.176471</td>
+<td>27.651261</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>35.556948</td>
-<td>41.410256</td>
-<td>55340.683761</td>
-<td>71.711966</td>
-<td>624.564103</td>
-<td>28.449573</td>
+<td>65.194107</td>
+<td>41.845455</td>
+<td>85360.545455</td>
+<td>61.972727</td>
+<td>1326.272727</td>
+<td>33.381818</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>311.450528</td>
-<td>42.594444</td>
-<td>71093.777778</td>
-<td>67.561111</td>
-<td>1004.333333</td>
-<td>30.883333</td>
+<td>82.808854</td>
+<td>41.504167</td>
+<td>80320.479167</td>
+<td>70.825</td>
+<td>1013.0625</td>
+<td>28.4875</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>30.588439</td>
-<td>42.692105</td>
-<td>43898.263158</td>
-<td>69.905263</td>
-<td>462.723684</td>
-<td>28.830263</td>
+<td>80.310787</td>
+<td>42.895876</td>
+<td>62093.938144</td>
+<td>73.516495</td>
+<td>692.051546</td>
+<td>28.298969</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>286.463269</td>
-<td>42.266667</td>
-<td>24136.0</td>
-<td>64.833333</td>
-<td>357.333333</td>
-<td>37.7</td>
+<td>1045.976874</td>
+<td>42.25</td>
+<td>84048.5</td>
+<td>53.3</td>
+<td>1449.0</td>
+<td>32.3</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>35.214397</td>
-<td>33.709091</td>
-<td>49014.636364</td>
-<td>55.609091</td>
-<td>706.909091</td>
-<td>34.8</td>
+<td>20.265604</td>
+<td>41.310938</td>
+<td>56248.484375</td>
+<td>69.009375</td>
+<td>586.03125</td>
+<td>24.13125</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>540.572492</td>
-<td>42.9125</td>
-<td>87367.0</td>
-<td>67.425</td>
-<td>1194.875</td>
-<td>30.625</td>
+<td>264.556687</td>
+<td>42.15</td>
+<td>18796.2</td>
+<td>71.08</td>
+<td>251.1</td>
+<td>30.61</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>34.412826</td>
-<td>42.631522</td>
-<td>66034.934783</td>
-<td>76.932609</td>
-<td>613.119565</td>
-<td>24.65</td>
+<td>33.046193</td>
+<td>39.847368</td>
+<td>47733.368421</td>
+<td>65.249123</td>
+<td>541.0</td>
+<td>28.189474</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>226.203212</td>
-<td>42.1625</td>
-<td>18343.875</td>
-<td>72.65</td>
-<td>237.875</td>
-<td>29.7</td>
+<td>393.586989</td>
+<td>42.70625</td>
+<td>70946.8125</td>
+<td>68.10625</td>
+<td>956.6875</td>
+<td>30.275</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>33.520355</td>
-<td>44.514063</td>
-<td>54983.25</td>
-<td>73.454688</td>
-<td>636.9375</td>
-<td>30.164062</td>
+<td>30.67048</td>
+<td>36.241667</td>
+<td>44475.916667</td>
+<td>57.583333</td>
+<td>673.166667</td>
+<td>37.991667</td>
 </tr>
 </tbody>
 </table>
@@ -969,10 +972,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Now let’s apply dimensionality reduction to text data. Using the <code>anno</code> annotation dataset, filter to only nouns (<code>upos == "NOUN"</code>) and apply UMAP via the <code>DSSklearnText.umap</code> wrapper. Use <code>doc_id</code> as the document identifier and <code>lemma</code> as the term identifier. See if authors who write about similar topics end up near each other.</li>
 </ol>
-<div id="fa503704" class="cell" data-execution_count="12">
+<div id="98926e17" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
@@ -983,7 +986,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"doc_id"</span>))</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -996,10 +999,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Repeat the UMAP analysis on the same filtered noun annotations, but this time use custom values for <code>n_neighbors</code> and <code>min_dist</code>. Play around with the values until you get something more interesting that the default.</li>
 </ol>
-<div id="e90f3594" class="cell" data-execution_count="13">
+<div id="719e0e1a" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    anno</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.upos <span class="op">==</span> <span class="st">"NOUN"</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
@@ -1012,7 +1015,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"doc_id"</span>))</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -1080,13 +1083,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1479,7 +1483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook12a</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook12a</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1669,7 +1673,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(aes(label<span class="op">=</span><span class="st">"doc_id"</span>))</span>
 <span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});

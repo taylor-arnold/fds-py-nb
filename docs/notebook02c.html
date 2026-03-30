@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>notebook02c – Foundations of Data Science: Notebooks</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8b99633e97494cb736d7188ebc41eb6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-77a666a5542a07a54dbe0a7f6e3b86cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -450,16 +453,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="87f898b6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="c6e198d3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5a0de8fd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="be7019b0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
@@ -467,13 +470,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="24bf6b43" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="083415c3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>).<span class="bu">filter</span>(<span class="op">~</span>c.rating_imdb.is_null())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>).<span class="bu">filter</span>(<span class="op">~</span>c.rating_imdb.is_null())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -481,13 +484,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will practice data manipulation using a dataset of films from the Criterion Collection. The <code>film</code> dataset contains information about each movie including its title, director, year of release, runtime, and IMDB rating.</p>
 <p>Start by sorting the films by their IMDB rating, with the lowest-rated films at the top.</p>
-<div id="72767e6b" class="cell" data-execution_count="5">
+<div id="4e4e7b1b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -498,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (1_470, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -521,24 +524,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -768,13 +771,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, sort the films by runtime with the longest films at the top.</p>
-<div id="595d7b9b" class="cell" data-execution_count="6">
+<div id="6cc75830" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.runtime_raw, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div><style>
@@ -785,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (1_470, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -808,24 +811,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -1055,13 +1058,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select only the films that are less than 60 minutes long (i.e., short films).</p>
-<div id="84632c40" class="cell" data-execution_count="7">
+<div id="30166b08" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.runtime_raw <span class="op">&lt;</span> <span class="dv">60</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div><style>
@@ -1072,7 +1075,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (26, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -1095,24 +1098,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -1342,13 +1345,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by Charles Chaplin.</p>
-<div id="65628259" class="cell" data-execution_count="8">
+<div id="594fe47d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director <span class="op">==</span> <span class="st">"Charles Chaplin"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
@@ -1359,7 +1362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (8, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -1382,24 +1385,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -1569,13 +1572,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by either Charles Chaplin or Jean-Luc Godard.</p>
-<div id="b5dee399" class="cell" data-execution_count="9">
+<div id="de825b66" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.director.is_in([<span class="st">"Charles Chaplin"</span>, <span class="st">"Jean-Luc Godard"</span>]))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
@@ -1586,7 +1589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (19, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -1609,24 +1612,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -1856,16 +1859,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the highest-rated film from each year. Sort the final result by year so it is easier to read.</p>
-<div id="d3cff767" class="cell" data-execution_count="10">
+<div id="ed33b8e0" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.year)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .sort(c.year)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
@@ -1876,7 +1879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (102, 18)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">year</th>
@@ -1899,24 +1902,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">box_office_raw</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -2146,17 +2149,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director, compute the average IMDB rating of their films and the number of films they have in the collection.</p>
-<div id="bb74ff28" class="cell" data-execution_count="11">
+<div id="fdda874d" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        rating_imdb_mean <span class="op">=</span> c.rating_imdb.mean(),</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div><style>
@@ -2167,7 +2170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (650, 3)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">director</th>
@@ -2175,36 +2178,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>f64</th>
-<th>u32</th>
+<td>str</td>
+<td>f64</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Alfred Hitchcock"</td>
-<td>7.528571</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Kenneth MacPherson"</td>
-<td>6.1</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"Marcel Pagnol"</td>
-<td>7.5</td>
+<td>"Barbet Schroeder"</td>
+<td>6.9</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td>"James Whale"</td>
-<td>7.4</td>
+<td>"Derek Jarman"</td>
+<td>5.9</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"Frank Borzage"</td>
-<td>7.15</td>
-<td>2</td>
+<td>"Leon Gast"</td>
+<td>7.9</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"Usmar Ismail"</td>
+<td>7.1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"Herk Harvey"</td>
+<td>7.0</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <td>…</td>
@@ -2212,28 +2215,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"Andrew Haigh"</td>
-<td>7.433333</td>
+<td>"Norman Mailer"</td>
+<td>4.1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Michael Curtiz"</td>
+<td>7.7</td>
 <td>3</td>
 </tr>
+<tr class="odd">
+<td>"Kenji Mizoguchi"</td>
+<td>7.777778</td>
+<td>9</td>
+</tr>
 <tr class="even">
-<td>"Paolo Sorrentino"</td>
-<td>7.7</td>
+<td>"Jonathan Glazer"</td>
+<td>6.3</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"Stig Björkman"</td>
-<td>7.4</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Jerzy Skolimowski"</td>
-<td>6.7</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"Jafar Panahi"</td>
-<td>7.3</td>
+<td>"Barbara Loden"</td>
+<td>7.1</td>
 <td>1</td>
 </tr>
 </tbody>
@@ -2242,15 +2245,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We often want to group data by decade rather than individual years. To compute the decade from a year, we can use the expression <code>c.year // 10 * 10</code>. The <code>//</code> operator performs integer division (dividing and dropping the remainder), so for example <code>1987 // 10</code> gives <code>198</code>, and multiplying by 10 gives <code>1980</code>. Create a new column containing the decade each film was released in.</p>
-<div id="4b7ffe87" class="cell" data-execution_count="12">
+<div id="097e5c28" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span>  (c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div><style>
@@ -2261,7 +2264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (1_470, 19)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">imdb_id</th>
@@ -2285,25 +2288,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">decade</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
-<th>i64</th>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
 </tr>
 </thead>
 <tbody>
@@ -2544,10 +2547,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, count how many films in the collection were released in each decade.</p>
-<div id="b6899d2c" class="cell" data-execution_count="13">
+<div id="a47d7a19" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        decade <span class="op">=</span>  (c.year <span class="op">//</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">10</span>)</span>
@@ -2556,7 +2559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()   </span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div><style>
@@ -2567,29 +2570,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (11, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">decade</th>
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>u32</th>
+<td>i64</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1960</td>
-<td>303</td>
-</tr>
-<tr class="even">
-<td>1980</td>
-<td>171</td>
-</tr>
-<tr class="odd">
-<td>1970</td>
-<td>232</td>
+<td>1930</td>
+<td>119</td>
 </tr>
 <tr class="even">
 <td>1990</td>
@@ -2600,28 +2595,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>19</td>
 </tr>
 <tr class="even">
+<td>1940</td>
+<td>122</td>
+</tr>
+<tr class="odd">
+<td>2000</td>
+<td>86</td>
+</tr>
+<tr class="even">
 <td>…</td>
 <td>…</td>
+</tr>
+<tr class="odd">
+<td>1950</td>
+<td>162</td>
+</tr>
+<tr class="even">
+<td>1970</td>
+<td>232</td>
 </tr>
 <tr class="odd">
 <td>2020</td>
 <td>47</td>
 </tr>
 <tr class="even">
-<td>2010</td>
-<td>55</td>
+<td>1960</td>
+<td>303</td>
 </tr>
 <tr class="odd">
-<td>1940</td>
-<td>122</td>
-</tr>
-<tr class="even">
-<td>1950</td>
-<td>162</td>
-</tr>
-<tr class="odd">
-<td>2000</td>
-<td>86</td>
+<td>1980</td>
+<td>171</td>
 </tr>
 </tbody>
 </table>
@@ -2629,10 +2632,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the directors with more than 5 films in the collection, showing their average IMDB rating. Sort the results so the highest-rated directors appear at the top.</p>
-<div id="1d277129" class="cell" data-execution_count="14">
+<div id="2791b17f" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
@@ -2641,7 +2644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb_mean, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div><style>
@@ -2652,7 +2655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (48, 3)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">director</th>
@@ -2660,9 +2663,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>f64</th>
-<th>u32</th>
+<td>str</td>
+<td>f64</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
@@ -2727,10 +2730,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director with more than 5 films in the collection, show their highest-rated film. Hint: If you sort by rating before grouping, the first title in each group will be that director’s highest-rated film.</p>
-<div id="548e38f6" class="cell" data-execution_count="15">
+<div id="6a6a8248" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
@@ -2739,7 +2742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> pl.<span class="bu">len</span>()</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div><style>
@@ -2750,7 +2753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (48, 3)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">director</th>
@@ -2758,66 +2761,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>u32</th>
+<td>str</td>
+<td>str</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"David Lynch"</td>
-<td>"Mulholland Drive"</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>"Seijun Suzuki"</td>
-<td>"Youth of the Beast"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Keisuke Kinoshita"</td>
-<td>"Twenty-Four Eyes"</td>
+<td>"Masaki Kobayashi"</td>
+<td>"Harakiri"</td>
 <td>7</td>
 </tr>
 <tr class="even">
-<td>"Jean-Luc Godard"</td>
-<td>"Vivre sa vie"</td>
-<td>11</td>
+<td>"Akira Kurosawa"</td>
+<td>"Seven Samurai"</td>
+<td>24</td>
 </tr>
 <tr class="odd">
-<td>"Roberto Rossellini"</td>
-<td>"Rome, Open City"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"David Lean"</td>
-<td>"Brief Encounter"</td>
+<td>"Samuel Fuller"</td>
+<td>"Pickup on South Street"</td>
 <td>7</td>
 </tr>
 <tr class="even">
-<td>"Nagisa Ôshima"</td>
-<td>"Death by Hanging"</td>
+<td>"Martin Scorsese"</td>
+<td>"The Last Waltz"</td>
 <td>8</td>
 </tr>
 <tr class="odd">
-<td>"Carl Theodor Dreyer"</td>
-<td>"Ordet"</td>
+<td>"Jim Jarmusch"</td>
+<td>"Down by Law"</td>
 <td>6</td>
 </tr>
 <tr class="even">
-<td>"Pier Paolo Pasolini"</td>
-<td>"Accattone"</td>
-<td>12</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr class="odd">
-<td>"Satyajit Ray"</td>
-<td>"The World of Apu"</td>
-<td>11</td>
+<td>"Michelangelo Antonioni"</td>
+<td>"La Notte"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Michael Powell|Emeric Pressbur…</td>
+<td>"The Red Shoes"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Vittorio De Sica"</td>
+<td>"Bicycle Thieves"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Kenji Mizoguchi"</td>
+<td>"Sansho the Bailiff"</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Ingmar Bergman"</td>
+<td>"Scenes from a Marriage"</td>
+<td>39</td>
 </tr>
 </tbody>
 </table>
@@ -2825,10 +2828,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>By default, only the first few rows of a result are displayed. To see more rows, we can pipe the result through the <code>print_rows</code> function. Modify your previous answer to display all of the results.</p>
-<div id="1eb0dbb4" class="cell" data-execution_count="16">
+<div id="431c7f74" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    film</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .sort(c.rating_imdb, descending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    .group_by(c.director)</span>
@@ -2838,7 +2841,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.count <span class="op">&gt;</span> <span class="dv">5</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div><style>
@@ -2849,7 +2852,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (48, 3)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">director</th>
@@ -2857,12 +2860,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">count</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>str</th>
-<th>u32</th>
+<td>str</td>
+<td>str</td>
+<td>u32</td>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>"Ingmar Bergman"</td>
+<td>"Scenes from a Marriage"</td>
+<td>39</td>
+</tr>
+<tr class="even">
+<td>"David Lean"</td>
+<td>"Brief Encounter"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Satyajit Ray"</td>
+<td>"The World of Apu"</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>"Martin Scorsese"</td>
+<td>"The Last Waltz"</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>"François Truffaut"</td>
+<td>"The 400 Blows"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Jean-Luc Godard"</td>
+<td>"Vivre sa vie"</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>"Kenji Misumi"</td>
+<td>"Lone Wolf and Cub: Baby Cart a…</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"Michelangelo Antonioni"</td>
+<td>"La Notte"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Vittorio De Sica"</td>
+<td>"Bicycle Thieves"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Nagisa Ôshima"</td>
+<td>"Death by Hanging"</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>"Julien Duvivier"</td>
+<td>"Panique"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Robert Bresson"</td>
+<td>"A Man Escaped"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"David Lynch"</td>
+<td>"Mulholland Drive"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Roberto Rossellini"</td>
+<td>"Rome, Open City"</td>
+<td>8</td>
+</tr>
 <tr class="odd">
 <td>"Keisuke Kinoshita"</td>
 <td>"Twenty-Four Eyes"</td>
@@ -2874,9 +2947,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"Aki Kaurismäki"</td>
-<td>"The Bohemian Life"</td>
-<td>9</td>
+<td>"Samuel Fuller"</td>
+<td>"Pickup on South Street"</td>
+<td>7</td>
 </tr>
 <tr class="even">
 <td>"Kenji Mizoguchi"</td>
@@ -2884,29 +2957,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>9</td>
 </tr>
 <tr class="odd">
-<td>"John Cassavetes"</td>
-<td>"A Woman Under the Influence"</td>
-<td>7</td>
+<td>"Abbas Kiarostami"</td>
+<td>"Close-Up"</td>
+<td>26</td>
 </tr>
 <tr class="even">
-<td>"David Lynch"</td>
-<td>"Mulholland Drive"</td>
+<td>"Koreyoshi Kurahara"</td>
+<td>"Intimidation"</td>
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"Louis Malle"</td>
-<td>"Au Revoir les Enfants"</td>
-<td>13</td>
+<td>"Aki Kaurismäki"</td>
+<td>"The Bohemian Life"</td>
+<td>9</td>
 </tr>
 <tr class="even">
-<td>"Alfred Hitchcock"</td>
-<td>"Rebecca"</td>
+<td>"Federico Fellini"</td>
+<td>"La Strada"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"David Cronenberg"</td>
-<td>"A History of Violence"</td>
-<td>7</td>
+<td>"Chantal Akerman"</td>
+<td>"Jeanne Dielman, 23, quai du Co…</td>
+<td>8</td>
 </tr>
 <tr class="even">
 <td>"Masaki Kobayashi"</td>
@@ -2914,9 +2987,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"Mikio Naruse"</td>
-<td>"When a Woman Ascends the Stair…</td>
-<td>6</td>
+<td>"Akira Kurosawa"</td>
+<td>"Seven Samurai"</td>
+<td>24</td>
 </tr>
 <tr class="even">
 <td>"Michael Haneke"</td>
@@ -2924,88 +2997,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"Yasujirô Ozu"</td>
-<td>"Late Spring"</td>
-<td>20</td>
-</tr>
-<tr class="even">
-<td>"Julien Duvivier"</td>
-<td>"Panique"</td>
+<td>"Mikio Naruse"</td>
+<td>"When a Woman Ascends the Stair…</td>
 <td>6</td>
 </tr>
-<tr class="odd">
-<td>"Nagisa Ôshima"</td>
-<td>"Death by Hanging"</td>
-<td>8</td>
-</tr>
 <tr class="even">
-<td>"Marlon Riggs"</td>
-<td>"Ethnic Notions"</td>
-<td>6</td>
+<td>"Agnès Varda"</td>
+<td>"The Beaches of Agnès"</td>
+<td>17</td>
 </tr>
 <tr class="odd">
-<td>"Jean Renoir"</td>
-<td>"The Rules of the Game"</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>"Jim Jarmusch"</td>
-<td>"Down by Law"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Michael Powell|Emeric Pressbur…</td>
-<td>"The Red Shoes"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Robert Bresson"</td>
-<td>"A Man Escaped"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Michelangelo Antonioni"</td>
-<td>"La Notte"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Wes Anderson"</td>
-<td>"The Grand Budapest Hotel"</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>"Akira Kurosawa"</td>
-<td>"Seven Samurai"</td>
-<td>24</td>
-</tr>
-<tr class="even">
-<td>"Kenji Misumi"</td>
-<td>"Lone Wolf and Cub: Baby Cart a…</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>"Abbas Kiarostami"</td>
-<td>"Close-Up"</td>
-<td>26</td>
-</tr>
-<tr class="even">
-<td>"Rainer Werner Fassbinder"</td>
-<td>"Ali: Fear Eats the Soul"</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>"Charles Chaplin"</td>
-<td>"City Lights"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"Chantal Akerman"</td>
-<td>"Jeanne Dielman, 23, quai du Co…</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>"Wong Kar-Wai"</td>
-<td>"In the Mood for Love"</td>
+<td>"Alfred Hitchcock"</td>
+<td>"Rebecca"</td>
 <td>7</td>
 </tr>
 <tr class="even">
@@ -3014,44 +3017,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"Jean-Luc Godard"</td>
-<td>"Vivre sa vie"</td>
-<td>11</td>
+<td>"Yasujirô Ozu"</td>
+<td>"Late Spring"</td>
+<td>20</td>
 </tr>
 <tr class="even">
-<td>"Ingmar Bergman"</td>
-<td>"Scenes from a Marriage"</td>
-<td>39</td>
-</tr>
-<tr class="odd">
-<td>"Samuel Fuller"</td>
-<td>"Pickup on South Street"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Agnès Varda"</td>
-<td>"The Beaches of Agnès"</td>
-<td>17</td>
-</tr>
-<tr class="odd">
-<td>"Roberto Rossellini"</td>
-<td>"Rome, Open City"</td>
+<td>"Charles Chaplin"</td>
+<td>"City Lights"</td>
 <td>8</td>
 </tr>
-<tr class="even">
-<td>"Richard Linklater"</td>
-<td>"Before Sunrise"</td>
-<td>6</td>
-</tr>
 <tr class="odd">
+<td>"Jean Renoir"</td>
+<td>"The Rules of the Game"</td>
+<td>10</td>
+</tr>
+<tr class="even">
 <td>"Wim Wenders"</td>
 <td>"Paris, Texas"</td>
 <td>12</td>
 </tr>
+<tr class="odd">
+<td>"John Cassavetes"</td>
+<td>"A Woman Under the Influence"</td>
+<td>7</td>
+</tr>
 <tr class="even">
-<td>"Satyajit Ray"</td>
-<td>"The World of Apu"</td>
-<td>11</td>
+<td>"Pier Paolo Pasolini"</td>
+<td>"Accattone"</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>"Ernst Lubitsch"</td>
+<td>"To Be or Not to Be"</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Marlon Riggs"</td>
+<td>"Ethnic Notions"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Wes Anderson"</td>
+<td>"The Grand Budapest Hotel"</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"David Cronenberg"</td>
+<td>"A History of Violence"</td>
+<td>7</td>
 </tr>
 <tr class="odd">
 <td>"Seijun Suzuki"</td>
@@ -3059,49 +3072,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>7</td>
 </tr>
 <tr class="even">
-<td>"Vittorio De Sica"</td>
-<td>"Bicycle Thieves"</td>
+<td>"Rainer Werner Fassbinder"</td>
+<td>"Ali: Fear Eats the Soul"</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>"Richard Linklater"</td>
+<td>"Before Sunrise"</td>
 <td>6</td>
 </tr>
-<tr class="odd">
-<td>"Martin Scorsese"</td>
-<td>"The Last Waltz"</td>
-<td>8</td>
-</tr>
 <tr class="even">
-<td>"Federico Fellini"</td>
-<td>"La Strada"</td>
-<td>7</td>
+<td>"Louis Malle"</td>
+<td>"Au Revoir les Enfants"</td>
+<td>13</td>
 </tr>
 <tr class="odd">
-<td>"Pier Paolo Pasolini"</td>
-<td>"Accattone"</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>"François Truffaut"</td>
-<td>"The 400 Blows"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"David Lean"</td>
-<td>"Brief Encounter"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Koreyoshi Kurahara"</td>
-<td>"Intimidation"</td>
+<td>"Jim Jarmusch"</td>
+<td>"Down by Law"</td>
 <td>6</td>
 </tr>
+<tr class="even">
+<td>"Wong Kar-Wai"</td>
+<td>"In the Mood for Love"</td>
+<td>7</td>
+</tr>
 <tr class="odd">
+<td>"Michael Powell|Emeric Pressbur…</td>
+<td>"The Red Shoes"</td>
+<td>7</td>
+</tr>
+<tr class="even">
 <td>"Jacques Demy"</td>
 <td>"The Umbrellas of Cherbourg"</td>
 <td>6</td>
-</tr>
-<tr class="even">
-<td>"Ernst Lubitsch"</td>
-<td>"To Be or Not to Be"</td>
-<td>8</td>
 </tr>
 </tbody>
 </table>
@@ -3166,13 +3169,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -3565,7 +3569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook02c</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook02c</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -3746,7 +3750,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
 <span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

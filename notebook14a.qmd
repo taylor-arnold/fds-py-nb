@@ -35,20 +35,36 @@ ub = ""
 ```
 
 ```{python}
+#| eval: false
 #| tags: [noclear]
-fmnist = pl.read_csv("data/emnist_10000.csv")
-inet = pl.read_parquet("data/imagenette_1000.parquet")
+!wget -nc https://humanitiesdata.org/media/fashionmnist_10000.tar -P media/
+!tar -xf media/fashionmnist_10000.tar -C media/
+!wget -nc https://humanitiesdata.org/media/emnist_10000.tar -P media/
+!tar -xf media/emnist_10000.tar -C media/
 ```
 
 ```{python}
+#| tags: [noclear]
+fmnist = pl.read_csv(ub + "data/fashionmnist_10000.csv")
+emnist = pl.read_csv("data/emnist_10000.csv")
+```
+
+### Part I: Fashion MNIST
+
+1. Use the code below to create the training and testing data. Notice this time that the shape of the data has changed. Make sure you understand what this means.
+
+```{python}
+#| tags: [noclear]
 X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_image(
     fmnist, scale=True
 )
 X.shape
 ```
 
+2. Next, use the following code to build a CNN model. Go through the parameters to understand the shape of the model. 
 
 ```{python}
+#| tags: [noclear]
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes=10):
         super().__init__()
@@ -56,10 +72,12 @@ class SimpleCNN(nn.Module):
         self.net = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=3, padding=1),
             nn.ReLU(),
+            nn.Dropout(0.5),
             nn.MaxPool2d(2),
 
             nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.ReLU(),
+            nn.Dropout(0.5),
             nn.MaxPool2d(2),
           
             nn.Flatten(),
@@ -72,33 +90,140 @@ class SimpleCNN(nn.Module):
         return self.net(x)
 ```
 
+3. As before, we will use the Adam optimizer. After a little trial and error for the above parameters, I found a slightly higher learning rate (0.003) compared to last time was ideal.
 
 ```{python}
-model = SimpleCNN(num_classes=len(cn))
-optimizer = optim.Adam(model.parameters(), lr=1e-3)
+#| tags: [noclear]
+model = SimpleCNN()
+optimizer = optim.Adam(model.parameters(), lr=0.003)
+```
 
+4. Train the model. Notice that that the training loss will be worse because of the dropout, but it should help avoid overfitting. 
+
+```{python}
+#| tags: [noclear]
 DSTorch.train(
     model, optimizer, X_train, y_train, num_epochs=20, batch_size=64
 )
 ```
 
+5. Look at the scores and confusion matrix of the training and testing sets. You will probably notice that the model does a bit better than the dense network, but the biggest improvement here is the dropout stopping the model from overfitting the training data.
 
 ```{python}
+#| tags: [noclear]
+DSTorch.score_image(model, X_train, y_train, cn)
+```
+
+```{python}
+#| tags: [noclear]
 DSTorch.score_image(model, X_test, y_test, cn)
 ```
 
 ```{python}
+#| tags: [noclear]
 DSTorch.confusion_matrix(model, X_test, y_test, cn)
 ```
 
-
-### Task II: Imagenette
-
+6. Finally, let's look at the negative examples. How easily can *you* tell them apart?
 
 ```{python}
+#| tags: [noclear]
 (
-    inet
-    .head(12)
-    .pipe(DSImage.plot_image_grid, ncol=4)
+    fmnist
+    .with_columns(
+        DSTorch.predict(model, X, y, cn)
+    )
+    .filter(c.target_ != c.prediction_)
+    .with_columns(
+        info = pl.concat_str(c.target_, c.prediction_, separator="=>")
+    )
+    .pipe(DSImage.plot_image_grid, label_name="info")
+)
+```
+
+### Part II: EMNIST
+
+7. Now look at the EMNIST dataset. We mostly following the same instructions, but notice where things change a bit.
+
+```{python}
+#| tags: [noclear]
+X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_image(
+    emnist, scale=True
+)
+X.shape
+```
+
+8. Next, use the following code to build a CNN model. Go through the parameters to understand the shape of the model. 
+
+```{python}
+#| tags: [noclear]
+class SimpleCNN(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+
+        self.net = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.MaxPool2d(2),
+
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.MaxPool2d(2),
+          
+            nn.Flatten(),
+            nn.Linear(32 * 7 * 7, 128),
+            nn.ReLU(),
+            nn.Linear(128, num_classes)
+        )
+
+    def forward(self, x):
+        return self.net(x)
+```
+
+9. As before, we will use the Adam optimizer. After a little trial and error for the above parameters, I found a slightly higher learning rate (0.003) compared to last time was ideal.
+
+```{python}
+#| tags: [noclear]
+model = SimpleCNN(num_classes=len(cn))
+optimizer = optim.Adam(model.parameters(), lr=0.003)
+```
+
+10. Train the model. Notice that that the training loss will be worse because of the dropout, but it should help avoid overfitting. 
+
+```{python}
+#| tags: [noclear]
+DSTorch.train(
+    model, optimizer, X_train, y_train, num_epochs=20, batch_size=64
+)
+```
+
+11. Look at the scores of the training and testing sets. You will probably notice that the model does a bit better than the dense network, but the biggest improvement here is the dropout stopping the model from overfitting the training data.
+
+```{python}
+#| tags: [noclear]
+DSTorch.score_image(model, X_train, y_train, cn)
+```
+
+```{python}
+#| tags: [noclear]
+DSTorch.score_image(model, X_test, y_test, cn)
+```
+
+12. Finally, let's look at the negative examples. How easily can *you* tell them apart?
+
+```{python}
+#| tags: [noclear]
+(
+    emnist
+    .with_columns(
+        DSTorch.predict(model, X, y, cn)
+    )
+    .filter(c.target_ != c.prediction_)
+    .with_columns(
+        info = pl.concat_str(c.target_, c.prediction_, separator="=>")
+    )
+    .pipe(DSImage.plot_image_grid, label_name="info")
 )
 ```
