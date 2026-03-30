@@ -35,6 +35,11 @@ ub = ""
 ```
 
 ```{python}
+!wget https://humanitiesdata.org/media/fashionmnist_10000.tar -P media/
+!tar -xf media/fashionmnist_10000.tar -C media/
+```
+
+```{python}
 #| tags: [noclear]
 fmnist = pl.read_csv(ub + "data/fashionmnist_10000.csv")
 fmnist
