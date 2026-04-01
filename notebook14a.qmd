@@ -46,7 +46,7 @@ ub = ""
 ```{python}
 #| tags: [noclear]
 fmnist = pl.read_csv(ub + "data/fashionmnist_10000.csv")
-emnist = pl.read_csv("data/emnist_10000.csv")
+emnist = pl.read_csv(ub + "data/emnist_10000.csv")
 ```
 
 ### Part I: Fashion MNIST
