@@ -143,7 +143,7 @@ DSTorch.confusion_matrix(model, X_test, y_test, cn)
 
 ### Part II: EMNIST
 
-7. Now look at the EMNIST dataset. We mostly following the same instructions, but notice where things change a bit.
+7. Now look at the EMNIST dataset. We follow the same instructions as above, though the results themselves will be a bit different.
 
 ```{python}
 #| tags: [noclear]
@@ -182,7 +182,7 @@ class SimpleCNN(nn.Module):
         return self.net(x)
 ```
 
-9. As before, we will use the Adam optimizer. After a little trial and error for the above parameters, I found a slightly higher learning rate (0.003) compared to last time was ideal.
+9. As before, we will use the Adam optimizer.
 
 ```{python}
 #| tags: [noclear]
@@ -211,7 +211,7 @@ DSTorch.score_image(model, X_train, y_train, cn)
 DSTorch.score_image(model, X_test, y_test, cn)
 ```
 
-12. Finally, let's look at the negative examples. How easily can *you* tell them apart?
+12. Let's look at the negative examples. How easily can *you* tell them apart?
 
 ```{python}
 #| tags: [noclear]
@@ -221,9 +221,72 @@ DSTorch.score_image(model, X_test, y_test, cn)
         DSTorch.predict(model, X, y, cn)
     )
     .filter(c.target_ != c.prediction_)
+    .sample(50)
     .with_columns(
         info = pl.concat_str(c.target_, c.prediction_, separator="=>")
     )
-    .pipe(DSImage.plot_image_grid, label_name="info")
+    .pipe(DSImage.plot_image_grid, label_name="info", ncol=5)
+)
+```
+
+### Part III: EMNIST Metrics
+
+Now for some coding on your own. We'll create a version of the emnist dataset with the predictions and then build some metrics for the data.
+
+```{python}
+emnist_pred = (
+    emnist
+    .with_columns(
+        DSTorch.predict(model, X, y, cn)
+    )
+)
+```
+
+
+13.  The confusion matrix for this example is a bit too large to print (at least with the default settings in our code). Instead, in the block below, compute how often two pairs of labels are confused, as sort in descending order. You should see the most commonly confused pairs are quite reasonable.
+
+```{python}
+(
+    emnist_pred
+    .filter(c.target_ != c.prediction_)
+    .group_by(c.target_, c.prediction_)
+    .agg(count = pl.len())
+    .sort(c.count, descending=True)
+)
+```
+
+14. Now, create a dataset `df_recall` that has the recall of each class. Remember, this is, for each class, the proportion of items that were correctly predicted.
+
+```{python}
+df_recall = (
+    emnist_pred
+    .group_by(c.target_)
+    .agg(recall = (c.target_ == c.prediction_).mean())
+)
+df_recall
+```
+
+15. Now, create a dataset `df_recall` that has the recall of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.
+
+```{python}
+df_precision = (
+    emnist_pred
+    .group_by(c.prediction_)
+    .agg(precision = (c.target_ == c.prediction_).mean())
+)
+df_precision
+```
+
+16. Join the precision and recall tables, compute the F1 scores, sort by the F1 scores, and print out all of the rows.
+
+```{python}
+(
+    df_recall
+    .join(df_precision, left_on="target_", right_on="prediction_")
+    .with_columns(
+        f1 = 2 * (c.precision * c.recall) / (c.precision + c.recall)
+    )
+    .sort(c.f1)
+    .pipe(print_rows)
 )
 ```
