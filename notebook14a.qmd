@@ -234,6 +234,7 @@ DSTorch.score_image(model, X_test, y_test, cn)
 Now for some coding on your own. We'll create a version of the emnist dataset with the predictions and then build some metrics for the data.
 
 ```{python}
+#| tags: [noclear]
 emnist_pred = (
     emnist
     .with_columns(
@@ -266,7 +267,7 @@ df_recall = (
 df_recall
 ```
 
-15. Now, create a dataset `df_recall` that has the recall of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.
+15. Now, create a dataset `df_precision` that has the precision of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.
 
 ```{python}
 df_precision = (
