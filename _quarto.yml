@@ -108,6 +108,7 @@ format:
     code-fold: true
     code-summary: "View code"
     code-tools: true
+    include-after-body: fix-code-toggle.html
     theme:
       - cosmo
       - custom.scss

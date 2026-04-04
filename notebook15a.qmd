@@ -1,5 +1,16 @@
 ## Notebook15a
 
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -8,8 +19,360 @@ import polars as pl
 from funs import *
 from plotnine import *
 from polars import col as c
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
+amazon = pl.read_parquet(ub + "data/amazon_pca.parquet")
+inet = pl.read_parquet("data/imagenette_1000.parquet")
+woof = pl.read_parquet("data/imagewoof_1000.parquet")
+```
+
+### AG News
+
+1.  We will start by plotting the UMAP embedding of the E5 embedding vectors from the AG News dataset. How much structure is captured already by the embedding vectors?
+
+```{python}
+#| tags: [noclear]
+(
+    agnews
+    .pipe(
+        DSSklearn.umap,
+        features=[c.e5]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```
+
+2. Now let's fit a shallow logistic regression model on the data.
+
+```{python}
+#| tags: [noclear]
+model = (
+    agnews
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        features=[c.e5],
+        stratify=c.label,
+        l1_ratios=[0],
+        solver="saga"
+    )
+)
+```
+
+3. And look at its score and confusion matrix. Notice that it does as well, but not noticably better, than our previous model. It's likely the miscategorized examples are really edge cases between the two categories.
+
+```{python}
+#| tags: [noclear]
+model.score()
+```
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+
+### Amazon Product Reviews
+
+4. Let's move on to another dataset, this time product categories from Amazon reviews. We'll mostly follow the same steps again, starting with a plot:
+
+```{python}
+#| tags: [noclear]
+(
+    amazon
+    .pipe(
+        DSSklearn.umap,
+        features=[c.e5]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```
+
+5. Next, build a model.
+
+```{python}
+#| tags: [noclear]
+model = (
+    amazon
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        features=[c.e5],
+        stratify=c.label,
+        l1_ratios=[0],
+        solver="saga"
+    )
+)
+```
+
+6. And then see how well it performs. This is clearly a harder task from the classification rates. Was that also clear from the plot above?
+
+```{python}
+#| tags: [noclear]
+model.score()
+```
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+### Imagenette
+
+7. Let's move on to an image dataset. Here we have a subset of the Imagenet challenge, consisting of only 10 fairly distinct categories. Let's build a similar plot as with the text data using the `vit` embeddings. How does this compare to the embedding of the text. Why do you think this is?
+
+```{python}
+#| tags: [noclear]
+(
+    inet
+    .pipe(
+        DSSklearn.umap,
+        features=[c.vit]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```
+
+9. Now, fit a model on the image data to predict the category.
+
+```{python}
+#| tags: [noclear]
+model = (
+    inet
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        features=[c.vit],
+        stratify=c.label,
+        l1_ratios=[0],
+        solver="saga"
+    )
+)
+```
+
+10. Check the score and confusion matrix. Does this surprise you at all?
+
+```{python}
+#| tags: [noclear]
+model.score()
+```
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+11. Alright, so we can do classification very well with the training data. What about *without* training data? Run the following the get the embedding of the phrase "a photo of a French horn".
+
+```{python}
+#| tags: [noclear]
+siglip = SigLIPEmbedder()
+
+embed = (
+    pl.DataFrame({"text": ["a photo of a French horn"]})
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text,
+            return_dtype=pl.List(pl.Float32)
+        )
+    )
+)
+```
+
+12. And visualize how related the embeddings are to the labels. How well do you think the unsupervised model will do at prediction with no training data?
+
+```{python}
+#| tags: [noclear]
+(
+    inet
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)   
+    )
+    .pipe(ggplot, aes("sim_score", "label"))
+    + geom_point()
+)
+```
+
+13. Now, we will embed the name of each label and store all of the embeddings.
+
+```{python}
+#| tags: [noclear]
+embed = (
+    inet
+    .select(text = c.label.unique())
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text, return_dtype=pl.List(pl.Float32)
+        )
+    )    
+)
+```
+
+14. And then compute all of the pairs of scores, recording how often the top score corresponds to the correct label.
+
+```{python}
+#| tags: [noclear]
+(
+    inet
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)   
+    )
+    .sort(c.sim_score, descending=True)
+    .group_by(c.filepath)
+    .head(1)
+    .select(class_rate = (c.label == c.text).mean())
+)
+```
+
+### Image Woof
+
+15. We will finish by doing the same thing with a dataset that is considered more difficult. It's another subset of Imagenet, called called Image Woof, with 10 select labels from the set. However, this time we have ten dog breeds, which all look much more similar that the Imagenette categories. So, in theory, this will be harder. Let's see a plot.
+
+```{python}
+#| tags: [noclear]
+(
+    woof
+    .pipe(
+        DSSklearn.umap,
+        features=[c.vit]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```
+
+16. Well, let's make a model, which should be fairly good again given the plot.
+
+```{python}
+#| tags: [noclear]
+model = (
+    woof
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        features=[c.vit],
+        stratify=c.label,
+        l1_ratios=[0],
+        solver="saga"
+    )
+)
+```
+
+17. And verify that it does work well:
+
+```{python}
+#| tags: [noclear]
+model.score()
+```
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+18. Now, as before, let's try a zero-shot model. We'll start with a visualization of the phrase "a golden retriever". 
+
+```{python}
+#| tags: [noclear]
+siglip = SigLIPEmbedder()
+
+embed = (
+    pl.DataFrame({"text": ["a golden retriever"]})
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text,
+            return_dtype=pl.List(pl.Float32)
+        )
+    )
+)
+```
+
+19. Looking at the visualization, how does this this compare to the example from before?
+
+```{python}
+#| tags: [noclear]
+(
+    woof
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)   
+    )
+    .pipe(ggplot, aes("sim_score", "label"))
+    + geom_point()
+)
+```
+
+20. As before, let's try to get an embedding of each text and build a full zero-shot model
+
+```{python}
+#| tags: [noclear]
+embed = (
+    woof
+    .select(text = c.label.unique())
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text, return_dtype=pl.List(pl.Float32)
+        )
+    )    
+)
+```
+
+21. Now, evaluate how well the model works:
+
+```{python}
+#| tags: [noclear]
+(
+    woof
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)   
+    )
+    .sort(c.sim_score, descending=True)
+    .group_by(c.filepath)
+    .head(1)
+    .select(class_rate = (c.label == c.text).mean())
+)
+```
+
+22. You should see that the model does well, but isn't perfect. This final visualization shows that the SigLIP space is not a perfect model of the categories of dog breeds. The reason is that it isn't trained to categorize that way; it encodes a lot of other information that degrades the performance for simple category look-ups.
+
+```{python}
+#| tags: [noclear]
+(
+    woof
+    .pipe(
+        DSSklearn.umap,
+        features=[c.siglip]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```

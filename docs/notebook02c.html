@@ -453,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="9d96ae39" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="54343c68" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e5fa9fba" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="955f2451" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="f924ac8d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="1e322a46" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/criterion.csv"</span>).<span class="bu">filter</span>(<span class="op">~</span>c.rating_imdb.is_null())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will practice data manipulation using a dataset of films from the Criterion Collection. The <code>film</code> dataset contains information about each movie including its title, director, year of release, runtime, and IMDB rating.</p>
 <p>Start by sorting the films by their IMDB rating, with the lowest-rated films at the top.</p>
-<div id="5db098b0" class="cell" data-execution_count="5">
+<div id="27117d83" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -771,7 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, sort the films by runtime with the longest films at the top.</p>
-<div id="0c90af43" class="cell" data-execution_count="6">
+<div id="662d3264" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1058,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select only the films that are less than 60 minutes long (i.e., short films).</p>
-<div id="0ea99cf7" class="cell" data-execution_count="7">
+<div id="6c7ba2cb" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1345,7 +1345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by Charles Chaplin.</p>
-<div id="cc3d0c7f" class="cell" data-execution_count="8">
+<div id="8d1b471e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1572,7 +1572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Select all films directed by either Charles Chaplin or Jean-Luc Godard.</p>
-<div id="9ff0551c" class="cell" data-execution_count="9">
+<div id="d21983bf" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1859,7 +1859,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the highest-rated film from each year. Sort the final result by year so it is easier to read.</p>
-<div id="9a616379" class="cell" data-execution_count="10">
+<div id="f81a8a00" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2149,7 +2149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director, compute the average IMDB rating of their films and the number of films they have in the collection.</p>
-<div id="9e4142e9" class="cell" data-execution_count="11">
+<div id="5d0c6f05" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2185,28 +2185,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Georg Wilhelm Pabst"</td>
-<td>7.425</td>
-<td>4</td>
+<td>"Robert Clouse"</td>
+<td>7.6</td>
+<td>1</td>
 </tr>
 <tr class="even">
-<td>"George Cukor|Ernst Lubitsch"</td>
-<td>7.0</td>
+<td>"Henry Jaglom"</td>
+<td>4.9</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"Jean Vigo"</td>
+<td>"Richard Lester"</td>
+<td>7.166667</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"Mike Nichols"</td>
 <td>7.45</td>
 <td>2</td>
 </tr>
-<tr class="even">
-<td>"Edvin Adolphson|Sigurd Wallén"</td>
-<td>6.0</td>
-<td>1</td>
-</tr>
 <tr class="odd">
-<td>"Gregory La Cava"</td>
-<td>7.9</td>
+<td>"Alejandro Amenábar"</td>
+<td>7.6</td>
 <td>1</td>
 </tr>
 <tr class="even">
@@ -2215,28 +2215,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"Sean Baker|Shih-Ching Tsou"</td>
-<td>7.1</td>
+<td>"Hector Babenco"</td>
+<td>7.6</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>"Marlon Riggs"</td>
+<td>7.25</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Sergei Parajanov"</td>
+<td>7.6</td>
 <td>1</td>
 </tr>
 <tr class="even">
-<td>"Laurie Anderson"</td>
+<td>"Jean-Pierre Gorin"</td>
 <td>7.0</td>
-<td>1</td>
+<td>3</td>
 </tr>
 <tr class="odd">
-<td>"Joachim Trier"</td>
-<td>7.7</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"Felix van Groeningen|Charlotte…</td>
-<td>7.7</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"Jafar Panahi"</td>
-<td>7.3</td>
+<td>"Chi-Hwa Chen"</td>
+<td>5.6</td>
 <td>1</td>
 </tr>
 </tbody>
@@ -2245,7 +2245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We often want to group data by decade rather than individual years. To compute the decade from a year, we can use the expression <code>c.year // 10 * 10</code>. The <code>//</code> operator performs integer division (dividing and dropping the remainder), so for example <code>1987 // 10</code> gives <code>198</code>, and multiplying by 10 gives <code>1980</code>. Create a new column containing the decade each film was released in.</p>
-<div id="d5c362bb" class="cell" data-execution_count="12">
+<div id="94893b9a" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2547,7 +2547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, count how many films in the collection were released in each decade.</p>
-<div id="f1b66db5" class="cell" data-execution_count="13">
+<div id="ffa93b97" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2583,48 +2583,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>1970</td>
-<td>232</td>
+<td>1920</td>
+<td>19</td>
 </tr>
 <tr class="even">
 <td>2000</td>
 <td>86</td>
 </tr>
 <tr class="odd">
-<td>1940</td>
-<td>122</td>
+<td>2010</td>
+<td>55</td>
 </tr>
 <tr class="even">
-<td>1930</td>
-<td>119</td>
-</tr>
-<tr class="odd">
 <td>1950</td>
 <td>162</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
 </tr>
 <tr class="odd">
 <td>1960</td>
 <td>303</td>
 </tr>
 <tr class="even">
-<td>1980</td>
-<td>171</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr class="odd">
 <td>1990</td>
 <td>154</td>
 </tr>
 <tr class="even">
-<td>2010</td>
-<td>55</td>
+<td>1930</td>
+<td>119</td>
 </tr>
 <tr class="odd">
+<td>1940</td>
+<td>122</td>
+</tr>
+<tr class="even">
 <td>2020</td>
 <td>47</td>
+</tr>
+<tr class="odd">
+<td>1970</td>
+<td>232</td>
 </tr>
 </tbody>
 </table>
@@ -2632,7 +2632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Find the directors with more than 5 films in the collection, showing their average IMDB rating. Sort the results so the highest-rated directors appear at the top.</p>
-<div id="0ce9b609" class="cell" data-execution_count="14">
+<div id="642b39e7" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2730,7 +2730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each director with more than 5 films in the collection, show their highest-rated film. Hint: If you sort by rating before grouping, the first title in each group will be that director’s highest-rated film.</p>
-<div id="0964a106" class="cell" data-execution_count="15">
+<div id="7ce9de7d" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2768,24 +2768,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Jean Renoir"</td>
-<td>"The Rules of the Game"</td>
-<td>10</td>
+<td>"Yasujirô Ozu"</td>
+<td>"Late Spring"</td>
+<td>20</td>
 </tr>
 <tr class="even">
-<td>"David Cronenberg"</td>
-<td>"A History of Violence"</td>
+<td>"Akira Kurosawa"</td>
+<td>"Seven Samurai"</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>"Michael Haneke"</td>
+<td>"The Seventh Continent"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Seijun Suzuki"</td>
+<td>"Youth of the Beast"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"Michael Powell|Emeric Pressbur…</td>
-<td>"The Red Shoes"</td>
-<td>7</td>
+<td>"Carl Theodor Dreyer"</td>
+<td>"Ordet"</td>
+<td>6</td>
 </tr>
 <tr class="even">
-<td>"Wong Kar-Wai"</td>
-<td>"In the Mood for Love"</td>
-<td>7</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr class="odd">
 <td>"John Cassavetes"</td>
@@ -2793,34 +2803,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>7</td>
 </tr>
 <tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Wim Wenders"</td>
-<td>"Paris, Texas"</td>
+<td>"Pier Paolo Pasolini"</td>
+<td>"Accattone"</td>
 <td>12</td>
 </tr>
-<tr class="even">
-<td>"Vittorio De Sica"</td>
-<td>"Bicycle Thieves"</td>
-<td>6</td>
-</tr>
 <tr class="odd">
-<td>"Roberto Rossellini"</td>
-<td>"Rome, Open City"</td>
-<td>8</td>
+<td>"Kenji Mizoguchi"</td>
+<td>"Sansho the Bailiff"</td>
+<td>9</td>
 </tr>
 <tr class="even">
-<td>"Samuel Fuller"</td>
-<td>"Pickup on South Street"</td>
+<td>"David Lean"</td>
+<td>"Brief Encounter"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"David Lynch"</td>
-<td>"Mulholland Drive"</td>
-<td>6</td>
+<td>"David Cronenberg"</td>
+<td>"A History of Violence"</td>
+<td>7</td>
 </tr>
 </tbody>
 </table>
@@ -2828,7 +2828,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>By default, only the first few rows of a result are displayed. To see more rows, we can pipe the result through the <code>print_rows</code> function. Modify your previous answer to display all of the results.</p>
-<div id="c2309c24" class="cell" data-execution_count="16">
+<div id="32d84872" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2867,54 +2867,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Julien Duvivier"</td>
-<td>"Panique"</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>"Carl Theodor Dreyer"</td>
-<td>"Ordet"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"François Truffaut"</td>
-<td>"The 400 Blows"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Chantal Akerman"</td>
-<td>"Jeanne Dielman, 23, quai du Co…</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>"Ernst Lubitsch"</td>
-<td>"To Be or Not to Be"</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>"Seijun Suzuki"</td>
-<td>"Youth of the Beast"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
 <td>"Michael Powell|Emeric Pressbur…</td>
 <td>"The Red Shoes"</td>
 <td>7</td>
 </tr>
 <tr class="even">
-<td>"Pier Paolo Pasolini"</td>
-<td>"Accattone"</td>
-<td>12</td>
+<td>"Jean-Luc Godard"</td>
+<td>"Vivre sa vie"</td>
+<td>11</td>
 </tr>
 <tr class="odd">
-<td>"Yasujirô Ozu"</td>
-<td>"Late Spring"</td>
-<td>20</td>
+<td>"Kenji Misumi"</td>
+<td>"Lone Wolf and Cub: Baby Cart a…</td>
+<td>10</td>
 </tr>
 <tr class="even">
-<td>"Charles Chaplin"</td>
-<td>"City Lights"</td>
-<td>8</td>
+<td>"Kenji Mizoguchi"</td>
+<td>"Sansho the Bailiff"</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Terry Gilliam"</td>
+<td>"Brazil"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Koreyoshi Kurahara"</td>
+<td>"Intimidation"</td>
+<td>6</td>
 </tr>
 <tr class="odd">
 <td>"Wong Kar-Wai"</td>
@@ -2922,14 +2902,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>7</td>
 </tr>
 <tr class="even">
-<td>"Rainer Werner Fassbinder"</td>
-<td>"Ali: Fear Eats the Soul"</td>
-<td>10</td>
+<td>"David Lynch"</td>
+<td>"Mulholland Drive"</td>
+<td>6</td>
 </tr>
 <tr class="odd">
-<td>"Jean-Luc Godard"</td>
-<td>"Vivre sa vie"</td>
-<td>11</td>
+<td>"Charles Chaplin"</td>
+<td>"City Lights"</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Ernst Lubitsch"</td>
+<td>"To Be or Not to Be"</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>"Pier Paolo Pasolini"</td>
+<td>"Accattone"</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>"Federico Fellini"</td>
+<td>"La Strada"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Martin Scorsese"</td>
+<td>"The Last Waltz"</td>
+<td>8</td>
 </tr>
 <tr class="even">
 <td>"Alfred Hitchcock"</td>
@@ -2942,109 +2942,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>9</td>
 </tr>
 <tr class="even">
+<td>"Michael Haneke"</td>
+<td>"The Seventh Continent"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"John Cassavetes"</td>
+<td>"A Woman Under the Influence"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Julien Duvivier"</td>
+<td>"Panique"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Roberto Rossellini"</td>
+<td>"Rome, Open City"</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Rainer Werner Fassbinder"</td>
+<td>"Ali: Fear Eats the Soul"</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>"Yasujirô Ozu"</td>
+<td>"Late Spring"</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>"Jean Renoir"</td>
+<td>"The Rules of the Game"</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>"Vittorio De Sica"</td>
+<td>"Bicycle Thieves"</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>"Satyajit Ray"</td>
+<td>"The World of Apu"</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>"Wes Anderson"</td>
+<td>"The Grand Budapest Hotel"</td>
+<td>10</td>
+</tr>
+<tr class="even">
 <td>"Jim Jarmusch"</td>
 <td>"Down by Law"</td>
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"Kenji Mizoguchi"</td>
-<td>"Sansho the Bailiff"</td>
-<td>9</td>
-</tr>
-<tr class="even">
-<td>"Robert Bresson"</td>
-<td>"A Man Escaped"</td>
+<td>"Carl Theodor Dreyer"</td>
+<td>"Ordet"</td>
 <td>6</td>
 </tr>
-<tr class="odd">
-<td>"Keisuke Kinoshita"</td>
-<td>"Twenty-Four Eyes"</td>
-<td>7</td>
-</tr>
 <tr class="even">
-<td>"Marlon Riggs"</td>
-<td>"Ethnic Notions"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Michelangelo Antonioni"</td>
-<td>"La Notte"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Vittorio De Sica"</td>
-<td>"Bicycle Thieves"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>"Samuel Fuller"</td>
-<td>"Pickup on South Street"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Nagisa Ôshima"</td>
-<td>"Death by Hanging"</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>"Satyajit Ray"</td>
-<td>"The World of Apu"</td>
-<td>11</td>
-</tr>
-<tr class="even">
-<td>"Terry Gilliam"</td>
-<td>"Brazil"</td>
-<td>6</td>
-</tr>
-<tr class="odd">
 <td>"David Cronenberg"</td>
 <td>"A History of Violence"</td>
 <td>7</td>
-</tr>
-<tr class="even">
-<td>"Martin Scorsese"</td>
-<td>"The Last Waltz"</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>"David Lean"</td>
-<td>"Brief Encounter"</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>"Masaki Kobayashi"</td>
-<td>"Harakiri"</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>"Kenji Misumi"</td>
-<td>"Lone Wolf and Cub: Baby Cart a…</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>"Roberto Rossellini"</td>
-<td>"Rome, Open City"</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>"Louis Malle"</td>
-<td>"Au Revoir les Enfants"</td>
-<td>13</td>
-</tr>
-<tr class="even">
-<td>"Ingmar Bergman"</td>
-<td>"Scenes from a Marriage"</td>
-<td>39</td>
-</tr>
-<tr class="odd">
-<td>"Mikio Naruse"</td>
-<td>"When a Woman Ascends the Stair…</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>"Jacques Demy"</td>
-<td>"The Umbrellas of Cherbourg"</td>
-<td>6</td>
 </tr>
 <tr class="odd">
 <td>"Akira Kurosawa"</td>
@@ -3052,29 +3012,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>24</td>
 </tr>
 <tr class="even">
-<td>"Federico Fellini"</td>
-<td>"La Strada"</td>
+<td>"Keisuke Kinoshita"</td>
+<td>"Twenty-Four Eyes"</td>
 <td>7</td>
 </tr>
 <tr class="odd">
-<td>"Michael Haneke"</td>
-<td>"The Seventh Continent"</td>
-<td>6</td>
+<td>"Louis Malle"</td>
+<td>"Au Revoir les Enfants"</td>
+<td>13</td>
 </tr>
 <tr class="even">
-<td>"Koreyoshi Kurahara"</td>
-<td>"Intimidation"</td>
+<td>"Michelangelo Antonioni"</td>
+<td>"La Notte"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Ingmar Bergman"</td>
+<td>"Scenes from a Marriage"</td>
+<td>39</td>
+</tr>
+<tr class="even">
+<td>"Robert Bresson"</td>
+<td>"A Man Escaped"</td>
 <td>6</td>
 </tr>
 <tr class="odd">
-<td>"David Lynch"</td>
-<td>"Mulholland Drive"</td>
+<td>"Chantal Akerman"</td>
+<td>"Jeanne Dielman, 23, quai du Co…</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>"Marlon Riggs"</td>
+<td>"Ethnic Notions"</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>"Mikio Naruse"</td>
+<td>"When a Woman Ascends the Stair…</td>
 <td>6</td>
 </tr>
 <tr class="even">
-<td>"Wim Wenders"</td>
-<td>"Paris, Texas"</td>
-<td>12</td>
+<td>"François Truffaut"</td>
+<td>"The 400 Blows"</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>"Seijun Suzuki"</td>
+<td>"Youth of the Beast"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Samuel Fuller"</td>
+<td>"Pickup on South Street"</td>
+<td>7</td>
 </tr>
 <tr class="odd">
 <td>"Agnès Varda"</td>
@@ -3082,29 +3072,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>17</td>
 </tr>
 <tr class="even">
-<td>"Wes Anderson"</td>
-<td>"The Grand Budapest Hotel"</td>
-<td>10</td>
-</tr>
-<tr class="odd">
 <td>"Richard Linklater"</td>
 <td>"Before Sunrise"</td>
 <td>6</td>
 </tr>
-<tr class="even">
-<td>"John Cassavetes"</td>
-<td>"A Woman Under the Influence"</td>
+<tr class="odd">
+<td>"David Lean"</td>
+<td>"Brief Encounter"</td>
 <td>7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>"Abbas Kiarostami"</td>
 <td>"Close-Up"</td>
 <td>26</td>
 </tr>
+<tr class="odd">
+<td>"Nagisa Ôshima"</td>
+<td>"Death by Hanging"</td>
+<td>8</td>
+</tr>
 <tr class="even">
-<td>"Jean Renoir"</td>
-<td>"The Rules of the Game"</td>
-<td>10</td>
+<td>"Wim Wenders"</td>
+<td>"Paris, Texas"</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>"Masaki Kobayashi"</td>
+<td>"Harakiri"</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>"Jacques Demy"</td>
+<td>"The Umbrellas of Cherbourg"</td>
+<td>6</td>
 </tr>
 </tbody>
 </table>
@@ -3118,6 +3118,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode");
+      for (let i = 0; i < detailsSrc.length; i++) {
+        const details = detailsSrc[i].closest('details');
+        if (details) {
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+      }
+      return false;
+    };
+  }
+  // Replace buttons to strip the broken listeners Quarto attached, then re-add fixed ones
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    const fresh = hideAllCode.cloneNode(true);
+    hideAllCode.parentNode.replaceChild(fresh, hideAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    const fresh = showAllCode.cloneNode(true);
+    showAllCode.parentNode.replaceChild(fresh, showAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(true));
+  }
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

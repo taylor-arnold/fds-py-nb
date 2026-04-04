@@ -19,6 +19,7 @@ from funs import *
 from plotnine import *
 from polars import col as c
 theme_set(theme_minimal())
+pl.Config(tbl_rows=20)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
@@ -31,10 +32,214 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-import string
-lower_set = set(string.ascii_lowercase)
-keylogs = pl.read_csv("data/keylogs-1774817569168.csv")
-keylogs
+g1_orig = pl.read_csv(ub + "data/game01.csv")
+g1_meta = pl.read_csv(ub + "data/game01-meta.csv")
+g2_orig = pl.read_csv(ub + "data/game02.csv")
+g2_meta = pl.read_csv(ub + "data/game02-meta.csv")
+g3 = pl.read_csv(ub + "data/game03.csv")
+g3_meta = pl.read_csv(ub + "data/game03-meta.csv")
 ```
 
-### Questions 
+### Game 1: 90 percent ranges 
+
+1. We start by doing some data cleaning. In this case, we need to convert the metric answers into inches so that all of our data is on the same scale. We save the dataset as `g1` and then are ready to do some analysis.
+
+```{python}
+#| tags: [noclear]
+g1 = (
+    g1_orig
+    .with_columns(
+        low = pl.when(c.unit == "cm").then(c.low * 0.3937).otherwise(c.low),
+        high = pl.when(c.unit == "cm").then(c.high * 0.3937).otherwise(c.high)        
+    )
+)
+g1
+```
+
+2. Join `g1` to the `g1_meta` data using the key `c.question`. Create a new column called `correct` that is True when the answer is in the bounds and False otherwise. Group by student and compute the average value of the correct variable (this is the proportion of correct responses). Sort the output by score.
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high),
+    )
+    .group_by(c.student)
+    .agg(score = c.correct.mean())
+    .sort(c.score)
+)
+```
+
+3. Repeat what you did above, but this time group by `question_desc` to see how difficult each question was.
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high),
+    )
+    .group_by(c.question_desc)
+    .agg(score = c.correct.mean())
+    .sort(c.score)
+    .pipe(print_rows)
+)
+```
+
+4. Next, modify the code you've been building to include a metric `too_low` that is True when the guess was too low and False otherwise. Filter out the incorrect responses, and for each student see the proportion of times they guessed to low. Sort again by the proportion. Find yourself on the list.
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high),
+        too_low = (c.answer < c.low)
+    )
+    .filter(~c.correct)
+    .group_by(c.student)
+    .agg(too_low = c.too_low.mean())
+    .sort(c.too_low)
+)
+```
+
+5. Repeat what you did above, but do it by question. Do any of the responses suprise you?
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high),
+        too_low = (c.answer > c.high)
+    )
+    .filter(~c.correct)
+    .group_by(c.question_desc)
+    .agg(too_low = c.too_low.mean())
+    .sort(c.too_low)
+    .pipe(print_rows)
+)
+```
+
+6. We want to run an ANOVA test to see if there is a statistically significant relationship between whether the answer was correct and the student. To do this we need to add a with_column statement that converts the data type of the correct indicator from a Boolean value to a numeric one. You will need `correct = c.correct.cast(pl.Int64)`. Then, run the ANOVA and interpret the results.
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high)
+    )
+    .with_columns(
+        correct = c.correct.cast(pl.Int64)
+    )
+    .pipe(DSStatsmodels.anova, "correct ~ student")
+)
+```
+
+7. Repeat the previous question, but run ANOVA with the `question_desc` variable 
+
+```{python}
+(
+    g1
+    .join(g1_meta, on=c.question)
+    .with_columns(
+        correct = (c.answer >= c.low) & (c.answer <= c.high)
+    )
+    .with_columns(
+        correct = c.correct.cast(pl.Int64)
+    )
+    .pipe(DSStatsmodels.anova, "correct ~ question_desc")
+)
+```
+
+### Game 2: Remembering words
+
+8. We need to do some cleaning of the next dataset as well to remove answers where someone responded twice with the same guess. 
+
+```{python}
+#| tags: [noclear]
+g2 = (
+    g2_orig
+    .group_by(c.student, c.guess)
+    .first()
+    .sort(c.student, c.guess)
+)
+g2
+```
+
+9. Now, join `g2` to `g2_meta`. Note that these use different key names. Group by student, and compute a variable called `num_remembered` equal to the number of words the student remembered. Save the output as a dataset called `g2_student` and then print it out. We will need this later.
+
+```{python}
+g2_student = (
+    g2
+    .join(g2_meta, left_on=c.guess, right_on=c.word)
+    .group_by(c.student)
+    .agg(
+        num_remembered = pl.len()
+    )
+    .sort(c.num_remembered)
+)
+g2_student
+``` 
+
+10. Join `g2` and `g2_meta` again. This time, group by `guess` and compute the number of guesses for each word divided by 15 (the number of students who responded). Sort by the score.
+
+```{python}
+(
+    g2
+    .join(g2_meta, left_on=c.guess, right_on=c.word)
+    .group_by(c.guess)
+    .agg(score = pl.len() / 15)
+    .sort(c.score)
+)
+``` 
+
+11. Repeat the previous task, but now group by guess and part of speech. Run a two-sample T-test to see if there is a statistically significant different between the scores of adjectives and the scores of nouns.
+
+```{python}
+(
+    g2
+    .join(g2_meta, left_on=c.guess, right_on=c.word)
+    .group_by(c.guess, c.part_of_speech)
+    .agg(score = pl.len() / 15)
+    .pipe(DSStatsmodels.ttest2, "score ~ part_of_speech")
+)
+``` 
+
+### Game 3: Video Memory
+
+12. Create a dataset called `g3_student` that has one row for each student in the `g3` dataset and a column called `score` that gives the proportion of responses equal to "yes". 
+
+```{python}
+g3_student = (
+    g3
+    .group_by(c.student)
+    .agg(score = (c.correct == "yes").mean())
+    .sort(c.score)
+)
+g3_student
+```
+
+13. Join `g2_student` to `g3_student`. Plot the "num_remembered" on the x-axis and the "score" on the y-axis. Add a linear regression line.
+
+```{python}
+(
+    g2_student
+    .join(g3_student, on=c.student)
+    .pipe(ggplot, aes("num_remembered", "score"))
+    + geom_point()
+    + geom_smooth(method="lm", se=False)
+)
+```
+
+14. Finally, compute the regression you have above using `DSStatsmodels.ols`. Do you see a statistically significant affect between the two variables?
+
+```{python}
+(
+    g2_student
+    .join(g3_student, on=c.student)
+    .pipe(DSStatsmodels.ols, "score ~ num_remembered")
+)
+```

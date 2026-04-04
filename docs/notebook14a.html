@@ -456,13 +456,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="415c1373" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="ba0abf51" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="044d2a48" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="941635fe" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -481,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="8eacb665" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="3958a2a5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>humanitiesdata.org<span class="op">/</span>media<span class="op">/</span>fashionmnist_10000.tar <span class="op">-</span>P media<span class="op">/</span></span>
@@ -490,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>tar <span class="op">-</span>xf media<span class="op">/</span>emnist_10000.tar <span class="op">-</span>C media<span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2cdfd819" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="330e2829" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fmnist <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/fashionmnist_10000.csv"</span>)</span>
@@ -503,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Use the code below to create the training and testing data. Notice this time that the shape of the data has changed. Make sure you understand what this means.</li>
 </ol>
-<div id="0baae080" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="32bc946c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X, X_train, X_test, y, y_train, y_test, cn <span class="op">=</span> DSTorch.load_image(</span>
@@ -518,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Next, use the following code to build a CNN model. Go through the parameters to understand the shape of the model.</li>
 </ol>
-<div id="0518bf80" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="0bb3aeb1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleCNN(nn.Module):</span>
@@ -549,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>As before, we will use the Adam optimizer. After a little trial and error for the above parameters, I found a slightly higher learning rate (0.003) compared to last time was ideal.</li>
 </ol>
-<div id="73f6beb6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="aa9fa18c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleCNN()</span>
@@ -559,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Train the model. Notice that that the training loss will be worse because of the dropout, but it should help avoid overfitting.</li>
 </ol>
-<div id="bd18d6d8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="5a1be96d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>DSTorch.train(</span>
@@ -567,50 +567,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1/20, Loss: 0.7982
-Epoch 2/20, Loss: 0.5080
-Epoch 3/20, Loss: 0.4552
-Epoch 4/20, Loss: 0.4137
-Epoch 5/20, Loss: 0.3856
-Epoch 6/20, Loss: 0.3631
-Epoch 7/20, Loss: 0.3435
-Epoch 8/20, Loss: 0.3310
-Epoch 9/20, Loss: 0.3277
-Epoch 10/20, Loss: 0.3087
-Epoch 11/20, Loss: 0.3024
-Epoch 12/20, Loss: 0.2775
-Epoch 13/20, Loss: 0.2738
-Epoch 14/20, Loss: 0.2679
-Epoch 15/20, Loss: 0.2562
-Epoch 16/20, Loss: 0.2474
-Epoch 17/20, Loss: 0.2359
-Epoch 18/20, Loss: 0.2337
-Epoch 19/20, Loss: 0.2312
-Epoch 20/20, Loss: 0.2296</code></pre>
+<pre><code>Epoch 1/20, Loss: 0.7564
+Epoch 2/20, Loss: 0.5105
+Epoch 3/20, Loss: 0.4390
+Epoch 4/20, Loss: 0.4031
+Epoch 5/20, Loss: 0.3812
+Epoch 6/20, Loss: 0.3593
+Epoch 7/20, Loss: 0.3317
+Epoch 8/20, Loss: 0.3209
+Epoch 9/20, Loss: 0.3118
+Epoch 10/20, Loss: 0.2863
+Epoch 11/20, Loss: 0.2844
+Epoch 12/20, Loss: 0.2687
+Epoch 13/20, Loss: 0.2625
+Epoch 14/20, Loss: 0.2584
+Epoch 15/20, Loss: 0.2391
+Epoch 16/20, Loss: 0.2416
+Epoch 17/20, Loss: 0.2297
+Epoch 18/20, Loss: 0.2199
+Epoch 19/20, Loss: 0.2220
+Epoch 20/20, Loss: 0.2055</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
 <li>Look at the scores and confusion matrix of the training and testing sets. You will probably notice that the model does a bit better than the dense network, but the biggest improvement here is the dropout stopping the model from overfitting the training data.</li>
 </ol>
-<div id="42d35be8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
+<div id="3c47e4c3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_train, y_train, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>0.9444000124931335</code></pre>
+<pre><code>0.9538666605949402</code></pre>
 </div>
 </div>
-<div id="bf3dd4c1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
+<div id="94cc55a5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>0.8944000005722046</code></pre>
+<pre><code>0.8888000249862671</code></pre>
 </div>
 </div>
-<div id="d0e7756a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="66919da8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>DSTorch.confusion_matrix(model, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -626,7 +626,7 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <ol start="6" type="1">
 <li>Finally, let’s look at the negative examples. How easily can <em>you</em> tell them apart?</li>
 </ol>
-<div id="512d8f6f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="b299996b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -655,7 +655,7 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <ol start="7" type="1">
 <li>Now look at the EMNIST dataset. We follow the same instructions as above, though the results themselves will be a bit different.</li>
 </ol>
-<div id="8bcddac9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="bf193351" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X, X_train, X_test, y, y_train, y_test, cn <span class="op">=</span> DSTorch.load_image(</span>
@@ -670,7 +670,7 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <ol start="8" type="1">
 <li>Next, use the following code to build a CNN model. Go through the parameters to understand the shape of the model.</li>
 </ol>
-<div id="abee7814" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="6b3cee88" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleCNN(nn.Module):</span>
@@ -701,7 +701,7 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <ol start="9" type="1">
 <li>As before, we will use the Adam optimizer.</li>
 </ol>
-<div id="86374783" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
+<div id="78511c43" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleCNN(num_classes<span class="op">=</span><span class="bu">len</span>(cn))</span>
@@ -711,7 +711,7 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <ol start="10" type="1">
 <li>Train the model. Notice that that the training loss will be worse because of the dropout, but it should help avoid overfitting.</li>
 </ol>
-<div id="cdff5e49" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
+<div id="821088e2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>DSTorch.train(</span>
@@ -719,53 +719,53 @@ Epoch 20/20, Loss: 0.2296</code></pre>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1/20, Loss: 2.1099
-Epoch 2/20, Loss: 0.9929
-Epoch 3/20, Loss: 0.7823
-Epoch 4/20, Loss: 0.6599
-Epoch 5/20, Loss: 0.5891
-Epoch 6/20, Loss: 0.5357
-Epoch 7/20, Loss: 0.5088
-Epoch 8/20, Loss: 0.4636
-Epoch 9/20, Loss: 0.4327
-Epoch 10/20, Loss: 0.4252
-Epoch 11/20, Loss: 0.4097
-Epoch 12/20, Loss: 0.3868
-Epoch 13/20, Loss: 0.3732
-Epoch 14/20, Loss: 0.3651
-Epoch 15/20, Loss: 0.3520
-Epoch 16/20, Loss: 0.3348
-Epoch 17/20, Loss: 0.3298
-Epoch 18/20, Loss: 0.3256
-Epoch 19/20, Loss: 0.3119
-Epoch 20/20, Loss: 0.3044</code></pre>
+<pre><code>Epoch 1/20, Loss: 2.1086
+Epoch 2/20, Loss: 1.0212
+Epoch 3/20, Loss: 0.8040
+Epoch 4/20, Loss: 0.6949
+Epoch 5/20, Loss: 0.6252
+Epoch 6/20, Loss: 0.5541
+Epoch 7/20, Loss: 0.5230
+Epoch 8/20, Loss: 0.4940
+Epoch 9/20, Loss: 0.4616
+Epoch 10/20, Loss: 0.4403
+Epoch 11/20, Loss: 0.4274
+Epoch 12/20, Loss: 0.4066
+Epoch 13/20, Loss: 0.3902
+Epoch 14/20, Loss: 0.3725
+Epoch 15/20, Loss: 0.3809
+Epoch 16/20, Loss: 0.3482
+Epoch 17/20, Loss: 0.3518
+Epoch 18/20, Loss: 0.3374
+Epoch 19/20, Loss: 0.3275
+Epoch 20/20, Loss: 0.3255</code></pre>
 </div>
 </div>
 <ol start="11" type="1">
 <li>Look at the scores of the training and testing sets. You will probably notice that the model does a bit better than the dense network, but the biggest improvement here is the dropout stopping the model from overfitting the training data.</li>
 </ol>
-<div id="ff9139f6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
+<div id="bd0b9a82" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_train, y_train, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>0.9333333373069763</code></pre>
+<pre><code>0.9258666634559631</code></pre>
 </div>
 </div>
-<div id="64c35fe1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="b5bed647" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>0.8064000010490417</code></pre>
+<pre><code>0.8108000159263611</code></pre>
 </div>
 </div>
 <ol start="12" type="1">
 <li>Let’s look at the negative examples. How easily can <em>you</em> tell them apart?</li>
 </ol>
-<div id="05a9a923" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="c703f368" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -793,7 +793,7 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 <section id="part-iii-emnist-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="part-iii-emnist-metrics">Part III: EMNIST Metrics</h3>
 <p>Now for some coding on your own. We’ll create a version of the emnist dataset with the predictions and then build some metrics for the data.</p>
-<div id="adcce24e" class="cell" data-execution_count="21">
+<div id="8670167f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>emnist_pred <span class="op">=</span> (</span>
@@ -807,7 +807,7 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 <ol start="13" type="1">
 <li>The confusion matrix for this example is a bit too large to print (at least with the default settings in our code). Instead, in the block below, compute how often two pairs of labels are confused, as sort in descending order. You should see the most commonly confused pairs are quite reasonable.</li>
 </ol>
-<div id="ebcb4b41" class="cell" data-execution_count="22">
+<div id="b8c5e227" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -826,7 +826,7 @@ Epoch 20/20, Loss: 0.3044</code></pre>
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (243, 3)</small>
+<small>shape: (252, 3)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
@@ -842,133 +842,133 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"F"</td>
-<td>"f"</td>
-<td>89</td>
-</tr>
-<tr class="even">
-<td>"L"</td>
-<td>"1"</td>
-<td>81</td>
-</tr>
-<tr class="odd">
 <td>"0"</td>
 <td>"O"</td>
-<td>76</td>
+<td>98</td>
 </tr>
 <tr class="even">
-<td>"I"</td>
-<td>"1"</td>
-<td>57</td>
+<td>"F"</td>
+<td>"f"</td>
+<td>84</td>
 </tr>
 <tr class="odd">
 <td>"q"</td>
 <td>"9"</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td>"1"</td>
+<td>"L"</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td>"L"</td>
+<td>"1"</td>
 <td>40</td>
 </tr>
 <tr class="even">
-<td>"O"</td>
-<td>"0"</td>
-<td>29</td>
-</tr>
-<tr class="odd">
-<td>"g"</td>
-<td>"9"</td>
-<td>29</td>
-</tr>
-<tr class="even">
-<td>"6"</td>
-<td>"b"</td>
-<td>26</td>
+<td>"1"</td>
+<td>"I"</td>
+<td>37</td>
 </tr>
 <tr class="odd">
 <td>"L"</td>
 <td>"I"</td>
-<td>24</td>
+<td>34</td>
 </tr>
 <tr class="even">
 <td>"g"</td>
+<td>"9"</td>
+<td>29</td>
+</tr>
+<tr class="odd">
 <td>"q"</td>
+<td>"g"</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>"I"</td>
+<td>"1"</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>"O"</td>
+<td>"0"</td>
 <td>23</td>
 </tr>
-<tr class="odd">
-<td>"f"</td>
-<td>"F"</td>
-<td>19</td>
-</tr>
 <tr class="even">
-<td>"9"</td>
-<td>"q"</td>
-<td>18</td>
-</tr>
-<tr class="odd">
-<td>"0"</td>
-<td>"D"</td>
+<td>"I"</td>
+<td>"L"</td>
 <td>17</td>
 </tr>
+<tr class="odd">
+<td>"Y"</td>
+<td>"4"</td>
+<td>15</td>
+</tr>
 <tr class="even">
 <td>…</td>
 <td>…</td>
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"M"</td>
-<td>"h"</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"B"</td>
-<td>"b"</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"q"</td>
+<td>"n"</td>
 <td>"a"</td>
 <td>1</td>
 </tr>
 <tr class="even">
-<td>"C"</td>
-<td>"U"</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"4"</td>
-<td>"H"</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"b"</td>
-<td>"B"</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"5"</td>
 <td>"3"</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"4"</td>
-<td>"U"</td>
+<td>"S"</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>"Z"</td>
-<td>"D"</td>
+<td>"d"</td>
+<td>"J"</td>
 <td>1</td>
 </tr>
 <tr class="even">
-<td>"5"</td>
-<td>"E"</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>"K"</td>
-<td>"R"</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>"K"</td>
+<td>"H"</td>
 <td>"h"</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"D"</td>
+<td>"N"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"J"</td>
+<td>"7"</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"n"</td>
+<td>"K"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"Z"</td>
+<td>"7"</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"t"</td>
+<td>"e"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"I"</td>
+<td>"4"</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"h"</td>
+<td>"d"</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"X"</td>
+<td>"r"</td>
 <td>1</td>
 </tr>
 </tbody>
@@ -979,7 +979,7 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 <ol start="14" type="1">
 <li>Now, create a dataset <code>df_recall</code> that has the recall of each class. Remember, this is, for each class, the proportion of items that were correctly predicted.</li>
 </ol>
-<div id="1513f631" class="cell" data-execution_count="23">
+<div id="09836cc8" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_recall <span class="op">=</span> (</span>
@@ -1011,108 +1011,108 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"1"</td>
-<td>0.86385</td>
+<td>"P"</td>
+<td>0.995305</td>
 </tr>
 <tr class="even">
-<td>"L"</td>
-<td>0.471698</td>
+<td>"M"</td>
+<td>0.957746</td>
 </tr>
 <tr class="odd">
-<td>"G"</td>
-<td>0.934272</td>
+<td>"e"</td>
+<td>0.948113</td>
 </tr>
 <tr class="even">
-<td>"7"</td>
-<td>0.985915</td>
+<td>"2"</td>
+<td>0.934272</td>
+</tr>
+<tr class="odd">
+<td>"H"</td>
+<td>0.99061</td>
+</tr>
+<tr class="even">
+<td>"r"</td>
+<td>0.976526</td>
+</tr>
+<tr class="odd">
+<td>"X"</td>
+<td>0.938967</td>
+</tr>
+<tr class="even">
+<td>"C"</td>
+<td>0.957746</td>
+</tr>
+<tr class="odd">
+<td>"a"</td>
+<td>0.943396</td>
+</tr>
+<tr class="even">
+<td>"V"</td>
+<td>0.943662</td>
 </tr>
 <tr class="odd">
 <td>"Y"</td>
-<td>0.906103</td>
+<td>0.84507</td>
 </tr>
 <tr class="even">
-<td>"3"</td>
-<td>0.990566</td>
+<td>"J"</td>
+<td>0.966981</td>
 </tr>
 <tr class="odd">
-<td>"A"</td>
-<td>0.971831</td>
-</tr>
-<tr class="even">
 <td>"f"</td>
-<td>0.85446</td>
-</tr>
-<tr class="odd">
-<td>"F"</td>
-<td>0.539906</td>
-</tr>
-<tr class="even">
-<td>"6"</td>
-<td>0.84434</td>
-</tr>
-<tr class="odd">
-<td>"C"</td>
-<td>0.976526</td>
-</tr>
-<tr class="even">
-<td>"5"</td>
-<td>0.948357</td>
-</tr>
-<tr class="odd">
-<td>"U"</td>
-<td>0.948357</td>
+<td>0.892019</td>
 </tr>
 <tr class="even">
 <td>…</td>
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"2"</td>
-<td>0.948357</td>
-</tr>
-<tr class="even">
-<td>"Q"</td>
-<td>0.901408</td>
-</tr>
-<tr class="odd">
-<td>"T"</td>
-<td>0.967136</td>
-</tr>
-<tr class="even">
-<td>"d"</td>
-<td>0.967136</td>
-</tr>
-<tr class="odd">
-<td>"0"</td>
-<td>0.542453</td>
-</tr>
-<tr class="even">
-<td>"9"</td>
-<td>0.867925</td>
-</tr>
-<tr class="odd">
-<td>"8"</td>
+<td>"Z"</td>
 <td>0.915493</td>
 </tr>
 <tr class="even">
-<td>"a"</td>
-<td>0.872642</td>
+<td>"t"</td>
+<td>0.943396</td>
 </tr>
 <tr class="odd">
-<td>"D"</td>
-<td>0.967136</td>
+<td>"5"</td>
+<td>0.957746</td>
 </tr>
 <tr class="even">
-<td>"O"</td>
-<td>0.835681</td>
+<td>"T"</td>
+<td>0.962441</td>
 </tr>
 <tr class="odd">
-<td>"n"</td>
+<td>"U"</td>
 <td>0.971831</td>
 </tr>
 <tr class="even">
-<td>"h"</td>
-<td>0.981221</td>
+<td>"D"</td>
+<td>0.929577</td>
+</tr>
+<tr class="odd">
+<td>"I"</td>
+<td>0.784038</td>
+</tr>
+<tr class="even">
+<td>"N"</td>
+<td>0.962264</td>
+</tr>
+<tr class="odd">
+<td>"d"</td>
+<td>0.99061</td>
+</tr>
+<tr class="even">
+<td>"K"</td>
+<td>0.906103</td>
+</tr>
+<tr class="odd">
+<td>"S"</td>
+<td>0.957746</td>
+</tr>
+<tr class="even">
+<td>"6"</td>
+<td>0.943396</td>
 </tr>
 </tbody>
 </table>
@@ -1120,9 +1120,9 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </div>
 </div>
 <ol start="15" type="1">
-<li>Now, create a dataset <code>df_recall</code> that has the recall of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.</li>
+<li>Now, create a dataset <code>df_precision</code> that has the precision of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.</li>
 </ol>
-<div id="9a3382d8" class="cell" data-execution_count="24">
+<div id="07c836bf" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_precision <span class="op">=</span> (</span>
@@ -1154,108 +1154,108 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"L"</td>
-<td>0.806452</td>
+<td>"a"</td>
+<td>0.892857</td>
 </tr>
 <tr class="even">
-<td>"W"</td>
-<td>0.981132</td>
+<td>"K"</td>
+<td>0.955446</td>
 </tr>
 <tr class="odd">
-<td>"2"</td>
-<td>0.939535</td>
+<td>"N"</td>
+<td>0.953271</td>
+</tr>
+<tr class="even">
+<td>"6"</td>
+<td>0.934579</td>
+</tr>
+<tr class="odd">
+<td>"1"</td>
+<td>0.636364</td>
 </tr>
 <tr class="even">
 <td>"h"</td>
-<td>0.941441</td>
+<td>0.970874</td>
 </tr>
 <tr class="odd">
-<td>"q"</td>
-<td>0.69863</td>
+<td>"f"</td>
+<td>0.666667</td>
 </tr>
 <tr class="even">
-<td>"B"</td>
-<td>0.918919</td>
-</tr>
-<tr class="odd">
-<td>"e"</td>
-<td>0.98995</td>
-</tr>
-<tr class="even">
-<td>"R"</td>
-<td>0.966981</td>
-</tr>
-<tr class="odd">
-<td>"Z"</td>
-<td>0.948113</td>
-</tr>
-<tr class="even">
-<td>"0"</td>
-<td>0.782313</td>
-</tr>
-<tr class="odd">
-<td>"C"</td>
-<td>0.941176</td>
-</tr>
-<tr class="even">
-<td>"d"</td>
-<td>0.980952</td>
-</tr>
-<tr class="odd">
-<td>"6"</td>
-<td>0.957219</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"8"</td>
-<td>0.960591</td>
-</tr>
-<tr class="even">
-<td>"g"</td>
-<td>0.860465</td>
-</tr>
-<tr class="odd">
-<td>"b"</td>
-<td>0.853659</td>
-</tr>
-<tr class="even">
-<td>"9"</td>
-<td>0.721569</td>
-</tr>
-<tr class="odd">
-<td>"E"</td>
-<td>0.976744</td>
-</tr>
-<tr class="even">
-<td>"1"</td>
-<td>0.560976</td>
+<td>"H"</td>
+<td>0.941964</td>
 </tr>
 <tr class="odd">
 <td>"T"</td>
-<td>0.949309</td>
+<td>0.985577</td>
 </tr>
 <tr class="even">
-<td>"I"</td>
-<td>0.752632</td>
+<td>"0"</td>
+<td>0.78626</td>
 </tr>
 <tr class="odd">
-<td>"X"</td>
-<td>0.971963</td>
+<td>"2"</td>
+<td>0.896396</td>
 </tr>
 <tr class="even">
-<td>"t"</td>
-<td>0.923423</td>
-</tr>
-<tr class="odd">
 <td>"O"</td>
-<td>0.664179</td>
+<td>0.629139</td>
+</tr>
+<tr class="odd">
+<td>"R"</td>
+<td>0.919283</td>
 </tr>
 <tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"n"</td>
+<td>0.966184</td>
+</tr>
+<tr class="even">
+<td>"8"</td>
+<td>0.963542</td>
+</tr>
+<tr class="odd">
+<td>"I"</td>
+<td>0.684426</td>
+</tr>
+<tr class="even">
+<td>"5"</td>
+<td>0.962264</td>
+</tr>
+<tr class="odd">
 <td>"4"</td>
-<td>0.966667</td>
+<td>0.900433</td>
+</tr>
+<tr class="even">
+<td>"V"</td>
+<td>0.952607</td>
+</tr>
+<tr class="odd">
+<td>"P"</td>
+<td>0.938053</td>
+</tr>
+<tr class="even">
+<td>"d"</td>
+<td>0.96347</td>
+</tr>
+<tr class="odd">
+<td>"B"</td>
+<td>0.973958</td>
+</tr>
+<tr class="even">
+<td>"G"</td>
+<td>0.976415</td>
+</tr>
+<tr class="odd">
+<td>"3"</td>
+<td>0.958716</td>
+</tr>
+<tr class="even">
+<td>"q"</td>
+<td>0.912621</td>
 </tr>
 </tbody>
 </table>
@@ -1265,7 +1265,7 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 <ol start="16" type="1">
 <li>Join the precision and recall tables, compute the F1 scores, sort by the F1 scores, and print out all of the rows.</li>
 </ol>
-<div id="53893c19" class="cell" data-execution_count="25">
+<div id="12e5f099" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1304,286 +1304,286 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"L"</td>
-<td>0.471698</td>
-<td>0.806452</td>
-<td>0.595238</td>
-</tr>
-<tr class="even">
-<td>"0"</td>
-<td>0.542453</td>
-<td>0.782313</td>
-<td>0.640669</td>
-</tr>
-<tr class="odd">
-<td>"F"</td>
-<td>0.539906</td>
-<td>0.851852</td>
-<td>0.66092</td>
-</tr>
-<tr class="even">
 <td>"1"</td>
-<td>0.86385</td>
-<td>0.560976</td>
-<td>0.680222</td>
-</tr>
-<tr class="odd">
-<td>"I"</td>
-<td>0.671362</td>
-<td>0.752632</td>
-<td>0.709677</td>
+<td>0.558685</td>
+<td>0.636364</td>
+<td>0.595</td>
 </tr>
 <tr class="even">
 <td>"q"</td>
-<td>0.721698</td>
-<td>0.69863</td>
-<td>0.709977</td>
+<td>0.443396</td>
+<td>0.912621</td>
+<td>0.596825</td>
 </tr>
 <tr class="odd">
-<td>"f"</td>
-<td>0.85446</td>
-<td>0.65233</td>
-<td>0.739837</td>
+<td>"0"</td>
+<td>0.485849</td>
+<td>0.78626</td>
+<td>0.600583</td>
 </tr>
 <tr class="even">
+<td>"L"</td>
+<td>0.622642</td>
+<td>0.631579</td>
+<td>0.627078</td>
+</tr>
+<tr class="odd">
+<td>"F"</td>
+<td>0.58216</td>
+<td>0.898551</td>
+<td>0.706553</td>
+</tr>
+<tr class="even">
+<td>"I"</td>
+<td>0.784038</td>
+<td>0.684426</td>
+<td>0.730853</td>
+</tr>
+<tr class="odd">
 <td>"O"</td>
-<td>0.835681</td>
-<td>0.664179</td>
-<td>0.740125</td>
+<td>0.892019</td>
+<td>0.629139</td>
+<td>0.737864</td>
+</tr>
+<tr class="even">
+<td>"f"</td>
+<td>0.892019</td>
+<td>0.666667</td>
+<td>0.763052</td>
 </tr>
 <tr class="odd">
 <td>"g"</td>
-<td>0.694836</td>
-<td>0.860465</td>
-<td>0.768831</td>
+<td>0.802817</td>
+<td>0.733906</td>
+<td>0.766816</td>
 </tr>
 <tr class="even">
 <td>"9"</td>
-<td>0.867925</td>
-<td>0.721569</td>
-<td>0.788009</td>
-</tr>
-<tr class="odd">
-<td>"6"</td>
-<td>0.84434</td>
-<td>0.957219</td>
-<td>0.897243</td>
-</tr>
-<tr class="even">
-<td>"a"</td>
-<td>0.872642</td>
-<td>0.958549</td>
-<td>0.91358</td>
-</tr>
-<tr class="odd">
-<td>"b"</td>
-<td>0.985915</td>
-<td>0.853659</td>
-<td>0.915033</td>
-</tr>
-<tr class="even">
-<td>"D"</td>
-<td>0.967136</td>
-<td>0.880342</td>
-<td>0.9217</td>
+<td>0.938679</td>
+<td>0.654605</td>
+<td>0.771318</td>
 </tr>
 <tr class="odd">
 <td>"Y"</td>
-<td>0.906103</td>
-<td>0.950739</td>
-<td>0.927885</td>
+<td>0.84507</td>
+<td>0.989011</td>
+<td>0.911392</td>
 </tr>
 <tr class="even">
-<td>"8"</td>
-<td>0.915493</td>
-<td>0.960591</td>
-<td>0.9375</td>
-</tr>
-<tr class="odd">
-<td>"B"</td>
-<td>0.957746</td>
-<td>0.918919</td>
-<td>0.937931</td>
-</tr>
-<tr class="even">
-<td>"n"</td>
-<td>0.971831</td>
-<td>0.907895</td>
-<td>0.938776</td>
-</tr>
-<tr class="odd">
-<td>"Q"</td>
-<td>0.901408</td>
-<td>0.979592</td>
-<td>0.938875</td>
-</tr>
-<tr class="even">
-<td>"S"</td>
-<td>0.924883</td>
-<td>0.956311</td>
-<td>0.940334</td>
-</tr>
-<tr class="odd">
-<td>"2"</td>
-<td>0.948357</td>
-<td>0.939535</td>
-<td>0.943925</td>
-</tr>
-<tr class="even">
-<td>"t"</td>
-<td>0.966981</td>
-<td>0.923423</td>
-<td>0.9447</td>
-</tr>
-<tr class="odd">
 <td>"Z"</td>
-<td>0.943662</td>
-<td>0.948113</td>
-<td>0.945882</td>
-</tr>
-<tr class="even">
-<td>"r"</td>
 <td>0.915493</td>
-<td>0.984848</td>
-<td>0.948905</td>
+<td>0.911215</td>
+<td>0.913349</td>
 </tr>
 <tr class="odd">
-<td>"5"</td>
-<td>0.948357</td>
-<td>0.95283</td>
-<td>0.950588</td>
+<td>"8"</td>
+<td>0.868545</td>
+<td>0.963542</td>
+<td>0.91358</td>
 </tr>
 <tr class="even">
-<td>"V"</td>
-<td>0.985915</td>
-<td>0.921053</td>
-<td>0.952381</td>
+<td>"2"</td>
+<td>0.934272</td>
+<td>0.896396</td>
+<td>0.914943</td>
 </tr>
 <tr class="odd">
-<td>"N"</td>
-<td>0.981132</td>
-<td>0.932735</td>
-<td>0.956322</td>
+<td>"a"</td>
+<td>0.943396</td>
+<td>0.892857</td>
+<td>0.917431</td>
+</tr>
+<tr class="even">
+<td>"B"</td>
+<td>0.877934</td>
+<td>0.973958</td>
+<td>0.923457</td>
+</tr>
+<tr class="odd">
+<td>"K"</td>
+<td>0.906103</td>
+<td>0.955446</td>
+<td>0.93012</td>
+</tr>
+<tr class="even">
+<td>"D"</td>
+<td>0.929577</td>
+<td>0.938389</td>
+<td>0.933962</td>
+</tr>
+<tr class="odd">
+<td>"4"</td>
+<td>0.976526</td>
+<td>0.900433</td>
+<td>0.936937</td>
 </tr>
 <tr class="even">
 <td>"J"</td>
-<td>0.95283</td>
-<td>0.961905</td>
-<td>0.957346</td>
+<td>0.966981</td>
+<td>0.911111</td>
+<td>0.938215</td>
 </tr>
 <tr class="odd">
-<td>"T"</td>
-<td>0.967136</td>
-<td>0.949309</td>
-<td>0.95814</td>
-</tr>
-<tr class="even">
-<td>"C"</td>
-<td>0.976526</td>
-<td>0.941176</td>
-<td>0.958525</td>
-</tr>
-<tr class="odd">
-<td>"e"</td>
-<td>0.929245</td>
-<td>0.98995</td>
-<td>0.958637</td>
-</tr>
-<tr class="even">
-<td>"4"</td>
-<td>0.953052</td>
-<td>0.966667</td>
-<td>0.959811</td>
-</tr>
-<tr class="odd">
-<td>"h"</td>
-<td>0.981221</td>
-<td>0.941441</td>
-<td>0.96092</td>
-</tr>
-<tr class="even">
-<td>"U"</td>
-<td>0.948357</td>
-<td>0.975845</td>
-<td>0.961905</td>
-</tr>
-<tr class="odd">
-<td>"G"</td>
-<td>0.934272</td>
-<td>0.995</td>
-<td>0.96368</td>
+<td>"6"</td>
+<td>0.943396</td>
+<td>0.934579</td>
+<td>0.938967</td>
 </tr>
 <tr class="even">
 <td>"R"</td>
 <td>0.962441</td>
+<td>0.919283</td>
+<td>0.940367</td>
+</tr>
+<tr class="odd">
+<td>"Q"</td>
+<td>0.943662</td>
+<td>0.939252</td>
+<td>0.941452</td>
+</tr>
+<tr class="even">
+<td>"V"</td>
+<td>0.943662</td>
+<td>0.952607</td>
+<td>0.948113</td>
+</tr>
+<tr class="odd">
+<td>"S"</td>
+<td>0.957746</td>
+<td>0.944444</td>
+<td>0.951049</td>
+</tr>
+<tr class="even">
+<td>"U"</td>
+<td>0.971831</td>
+<td>0.932432</td>
+<td>0.951724</td>
+</tr>
+<tr class="odd">
+<td>"n"</td>
+<td>0.938967</td>
+<td>0.966184</td>
+<td>0.952381</td>
+</tr>
+<tr class="even">
+<td>"b"</td>
+<td>0.929577</td>
+<td>0.980198</td>
+<td>0.954217</td>
+</tr>
+<tr class="odd">
+<td>"h"</td>
+<td>0.938967</td>
+<td>0.970874</td>
+<td>0.954654</td>
+</tr>
+<tr class="even">
+<td>"X"</td>
+<td>0.938967</td>
+<td>0.970874</td>
+<td>0.954654</td>
+</tr>
+<tr class="odd">
+<td>"e"</td>
+<td>0.948113</td>
+<td>0.961722</td>
+<td>0.954869</td>
+</tr>
+<tr class="even">
+<td>"t"</td>
+<td>0.943396</td>
+<td>0.970874</td>
+<td>0.956938</td>
+</tr>
+<tr class="odd">
+<td>"C"</td>
+<td>0.957746</td>
+<td>0.957746</td>
+<td>0.957746</td>
+</tr>
+<tr class="even">
+<td>"N"</td>
+<td>0.962264</td>
+<td>0.953271</td>
+<td>0.957746</td>
+</tr>
+<tr class="odd">
+<td>"5"</td>
+<td>0.957746</td>
+<td>0.962264</td>
+<td>0.96</td>
+</tr>
+<tr class="even">
+<td>"7"</td>
+<td>1.0</td>
+<td>0.930131</td>
+<td>0.963801</td>
+</tr>
+<tr class="odd">
+<td>"A"</td>
+<td>0.962441</td>
 <td>0.966981</td>
 <td>0.964706</td>
 </tr>
-<tr class="odd">
-<td>"K"</td>
-<td>0.976526</td>
-<td>0.958525</td>
-<td>0.967442</td>
-</tr>
 <tr class="even">
 <td>"H"</td>
-<td>0.962441</td>
-<td>0.97619</td>
-<td>0.969267</td>
+<td>0.99061</td>
+<td>0.941964</td>
+<td>0.965675</td>
 </tr>
 <tr class="odd">
 <td>"P"</td>
 <td>0.995305</td>
-<td>0.946429</td>
-<td>0.970252</td>
+<td>0.938053</td>
+<td>0.965831</td>
 </tr>
 <tr class="even">
-<td>"d"</td>
-<td>0.967136</td>
-<td>0.980952</td>
-<td>0.973995</td>
+<td>"r"</td>
+<td>0.976526</td>
+<td>0.958525</td>
+<td>0.967442</td>
 </tr>
 <tr class="odd">
 <td>"M"</td>
-<td>0.976526</td>
-<td>0.971963</td>
-<td>0.974239</td>
+<td>0.957746</td>
+<td>0.985507</td>
+<td>0.971429</td>
 </tr>
 <tr class="even">
-<td>"X"</td>
-<td>0.976526</td>
-<td>0.971963</td>
-<td>0.974239</td>
+<td>"3"</td>
+<td>0.985849</td>
+<td>0.958716</td>
+<td>0.972093</td>
 </tr>
 <tr class="odd">
-<td>"A"</td>
+<td>"T"</td>
+<td>0.962441</td>
+<td>0.985577</td>
+<td>0.973872</td>
+</tr>
+<tr class="even">
+<td>"G"</td>
 <td>0.971831</td>
-<td>0.985714</td>
-<td>0.978723</td>
+<td>0.976415</td>
+<td>0.974118</td>
+</tr>
+<tr class="odd">
+<td>"d"</td>
+<td>0.99061</td>
+<td>0.96347</td>
+<td>0.976852</td>
 </tr>
 <tr class="even">
 <td>"W"</td>
 <td>0.976526</td>
-<td>0.981132</td>
-<td>0.978824</td>
+<td>0.990476</td>
+<td>0.983452</td>
 </tr>
 <tr class="odd">
-<td>"3"</td>
-<td>0.990566</td>
-<td>0.967742</td>
-<td>0.979021</td>
-</tr>
-<tr class="even">
 <td>"E"</td>
 <td>0.985915</td>
-<td>0.976744</td>
-<td>0.981308</td>
-</tr>
-<tr class="odd">
-<td>"7"</td>
-<td>0.985915</td>
-<td>0.981308</td>
-<td>0.983607</td>
+<td>0.990566</td>
+<td>0.988235</td>
 </tr>
 </tbody>
 </table>
@@ -1597,6 +1597,39 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode");
+      for (let i = 0; i < detailsSrc.length; i++) {
+        const details = detailsSrc[i].closest('details');
+        if (details) {
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+      }
+      return false;
+    };
+  }
+  // Replace buttons to strip the broken listeners Quarto attached, then re-add fixed ones
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    const fresh = hideAllCode.cloneNode(true);
+    hideAllCode.parentNode.replaceChild(fresh, hideAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    const fresh = showAllCode.cloneNode(true);
+    showAllCode.parentNode.replaceChild(fresh, showAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(true));
+  }
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2284,62 +2317,63 @@ Epoch 20/20, Loss: 0.3044</code></pre>
 <span id="cb33-274"><a href="#cb33-274" aria-hidden="true" tabindex="-1"></a>Now for some coding on your own. We'll create a version of the emnist dataset with the predictions and then build some metrics for the data.</span>
 <span id="cb33-275"><a href="#cb33-275" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-278"><a href="#cb33-278" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-279"><a href="#cb33-279" aria-hidden="true" tabindex="-1"></a>emnist_pred <span class="op">=</span> (</span>
-<span id="cb33-280"><a href="#cb33-280" aria-hidden="true" tabindex="-1"></a>    emnist</span>
-<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a>        DSTorch.predict(model, X, y, cn)</span>
-<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-279"><a href="#cb33-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb33-280"><a href="#cb33-280" aria-hidden="true" tabindex="-1"></a>emnist_pred <span class="op">=</span> (</span>
+<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a>    emnist</span>
+<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a>        DSTorch.predict(model, X, y, cn)</span>
+<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-287"><a href="#cb33-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a><span class="ss">13.  </span>The confusion matrix for this example is a bit too large to print (at least with the default settings in our code). Instead, in the block below, compute how often two pairs of labels are confused, as sort in descending order. You should see the most commonly confused pairs are quite reasonable.</span>
-<span id="cb33-289"><a href="#cb33-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-292"><a href="#cb33-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-293"><a href="#cb33-293" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
-<span id="cb33-295"><a href="#cb33-295" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.target_ <span class="op">!=</span> c.prediction_)</span>
-<span id="cb33-296"><a href="#cb33-296" aria-hidden="true" tabindex="-1"></a>    .group_by(c.target_, c.prediction_)</span>
-<span id="cb33-297"><a href="#cb33-297" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
-<span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-302"><a href="#cb33-302" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>Now, create a dataset <span class="in">`df_recall`</span> that has the recall of each class. Remember, this is, for each class, the proportion of items that were correctly predicted.</span>
-<span id="cb33-303"><a href="#cb33-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-306"><a href="#cb33-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-307"><a href="#cb33-307" aria-hidden="true" tabindex="-1"></a>df_recall <span class="op">=</span> (</span>
-<span id="cb33-308"><a href="#cb33-308" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
-<span id="cb33-309"><a href="#cb33-309" aria-hidden="true" tabindex="-1"></a>    .group_by(c.target_)</span>
-<span id="cb33-310"><a href="#cb33-310" aria-hidden="true" tabindex="-1"></a>    .agg(recall <span class="op">=</span> (c.target_ <span class="op">==</span> c.prediction_).mean())</span>
-<span id="cb33-311"><a href="#cb33-311" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-312"><a href="#cb33-312" aria-hidden="true" tabindex="-1"></a>df_recall</span>
-<span id="cb33-313"><a href="#cb33-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-314"><a href="#cb33-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-315"><a href="#cb33-315" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>Now, create a dataset <span class="in">`df_recall`</span> that has the recall of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.</span>
-<span id="cb33-316"><a href="#cb33-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-319"><a href="#cb33-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-320"><a href="#cb33-320" aria-hidden="true" tabindex="-1"></a>df_precision <span class="op">=</span> (</span>
-<span id="cb33-321"><a href="#cb33-321" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
-<span id="cb33-322"><a href="#cb33-322" aria-hidden="true" tabindex="-1"></a>    .group_by(c.prediction_)</span>
-<span id="cb33-323"><a href="#cb33-323" aria-hidden="true" tabindex="-1"></a>    .agg(precision <span class="op">=</span> (c.target_ <span class="op">==</span> c.prediction_).mean())</span>
-<span id="cb33-324"><a href="#cb33-324" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-325"><a href="#cb33-325" aria-hidden="true" tabindex="-1"></a>df_precision</span>
-<span id="cb33-326"><a href="#cb33-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-327"><a href="#cb33-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-328"><a href="#cb33-328" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Join the precision and recall tables, compute the F1 scores, sort by the F1 scores, and print out all of the rows.</span>
-<span id="cb33-329"><a href="#cb33-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-332"><a href="#cb33-332" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-333"><a href="#cb33-333" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-334"><a href="#cb33-334" aria-hidden="true" tabindex="-1"></a>    df_recall</span>
-<span id="cb33-335"><a href="#cb33-335" aria-hidden="true" tabindex="-1"></a>    .join(df_precision, left_on<span class="op">=</span><span class="st">"target_"</span>, right_on<span class="op">=</span><span class="st">"prediction_"</span>)</span>
-<span id="cb33-336"><a href="#cb33-336" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb33-337"><a href="#cb33-337" aria-hidden="true" tabindex="-1"></a>        f1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (c.precision <span class="op">*</span> c.recall) <span class="op">/</span> (c.precision <span class="op">+</span> c.recall)</span>
-<span id="cb33-338"><a href="#cb33-338" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb33-339"><a href="#cb33-339" aria-hidden="true" tabindex="-1"></a>    .sort(c.f1)</span>
-<span id="cb33-340"><a href="#cb33-340" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
-<span id="cb33-341"><a href="#cb33-341" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-342"><a href="#cb33-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-289"><a href="#cb33-289" aria-hidden="true" tabindex="-1"></a><span class="ss">13.  </span>The confusion matrix for this example is a bit too large to print (at least with the default settings in our code). Instead, in the block below, compute how often two pairs of labels are confused, as sort in descending order. You should see the most commonly confused pairs are quite reasonable.</span>
+<span id="cb33-290"><a href="#cb33-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-293"><a href="#cb33-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb33-295"><a href="#cb33-295" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
+<span id="cb33-296"><a href="#cb33-296" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.target_ <span class="op">!=</span> c.prediction_)</span>
+<span id="cb33-297"><a href="#cb33-297" aria-hidden="true" tabindex="-1"></a>    .group_by(c.target_, c.prediction_)</span>
+<span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a>    .agg(count <span class="op">=</span> pl.<span class="bu">len</span>())</span>
+<span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a>    .sort(c.count, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-302"><a href="#cb33-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-303"><a href="#cb33-303" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>Now, create a dataset <span class="in">`df_recall`</span> that has the recall of each class. Remember, this is, for each class, the proportion of items that were correctly predicted.</span>
+<span id="cb33-304"><a href="#cb33-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-307"><a href="#cb33-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb33-308"><a href="#cb33-308" aria-hidden="true" tabindex="-1"></a>df_recall <span class="op">=</span> (</span>
+<span id="cb33-309"><a href="#cb33-309" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
+<span id="cb33-310"><a href="#cb33-310" aria-hidden="true" tabindex="-1"></a>    .group_by(c.target_)</span>
+<span id="cb33-311"><a href="#cb33-311" aria-hidden="true" tabindex="-1"></a>    .agg(recall <span class="op">=</span> (c.target_ <span class="op">==</span> c.prediction_).mean())</span>
+<span id="cb33-312"><a href="#cb33-312" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-313"><a href="#cb33-313" aria-hidden="true" tabindex="-1"></a>df_recall</span>
+<span id="cb33-314"><a href="#cb33-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-315"><a href="#cb33-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-316"><a href="#cb33-316" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>Now, create a dataset <span class="in">`df_precision`</span> that has the precision of each class. Remember, this is, for each class, the proportion of items that were predicted to be that class that were correct. You should notice that this is very similar to the code from the previous question.</span>
+<span id="cb33-317"><a href="#cb33-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-320"><a href="#cb33-320" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb33-321"><a href="#cb33-321" aria-hidden="true" tabindex="-1"></a>df_precision <span class="op">=</span> (</span>
+<span id="cb33-322"><a href="#cb33-322" aria-hidden="true" tabindex="-1"></a>    emnist_pred</span>
+<span id="cb33-323"><a href="#cb33-323" aria-hidden="true" tabindex="-1"></a>    .group_by(c.prediction_)</span>
+<span id="cb33-324"><a href="#cb33-324" aria-hidden="true" tabindex="-1"></a>    .agg(precision <span class="op">=</span> (c.target_ <span class="op">==</span> c.prediction_).mean())</span>
+<span id="cb33-325"><a href="#cb33-325" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-326"><a href="#cb33-326" aria-hidden="true" tabindex="-1"></a>df_precision</span>
+<span id="cb33-327"><a href="#cb33-327" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-328"><a href="#cb33-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-329"><a href="#cb33-329" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Join the precision and recall tables, compute the F1 scores, sort by the F1 scores, and print out all of the rows.</span>
+<span id="cb33-330"><a href="#cb33-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-333"><a href="#cb33-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb33-334"><a href="#cb33-334" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb33-335"><a href="#cb33-335" aria-hidden="true" tabindex="-1"></a>    df_recall</span>
+<span id="cb33-336"><a href="#cb33-336" aria-hidden="true" tabindex="-1"></a>    .join(df_precision, left_on<span class="op">=</span><span class="st">"target_"</span>, right_on<span class="op">=</span><span class="st">"prediction_"</span>)</span>
+<span id="cb33-337"><a href="#cb33-337" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb33-338"><a href="#cb33-338" aria-hidden="true" tabindex="-1"></a>        f1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (c.precision <span class="op">*</span> c.recall) <span class="op">/</span> (c.precision <span class="op">+</span> c.recall)</span>
+<span id="cb33-339"><a href="#cb33-339" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-340"><a href="#cb33-340" aria-hidden="true" tabindex="-1"></a>    .sort(c.f1)</span>
+<span id="cb33-341"><a href="#cb33-341" aria-hidden="true" tabindex="-1"></a>    .pipe(print_rows)</span>
+<span id="cb33-342"><a href="#cb33-342" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-343"><a href="#cb33-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

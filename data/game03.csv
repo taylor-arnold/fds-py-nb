@@ -1,0 +1,181 @@
+student,question,answer,correct
+crazy_blue_monkey,1,diapers,yes
+crazy_blue_monkey,2,"soap, toothpaste",yes
+crazy_blue_monkey,3,paper shredder,yes
+crazy_blue_monkey,4,mule,yes
+crazy_blue_monkey,5,shed,yes
+crazy_blue_monkey,6,pink,yes
+crazy_blue_monkey,7,blue,yes
+crazy_blue_monkey,8,olives,yes
+crazy_blue_monkey,9,milk mustache,yes
+crazy_blue_monkey,10,"coffins, formula",yes
+crazy_blue_monkey,11,100,no
+crazy_blue_monkey,12,apple sauce,yes
+robotic_blue_dog,1,diapers,yes
+robotic_blue_dog,2,"toothpaste, soap",yes
+robotic_blue_dog,3,paper shredder,yes
+robotic_blue_dog,4,mule,yes
+robotic_blue_dog,5,shed,yes
+robotic_blue_dog,6,"red, black",no
+robotic_blue_dog,7,blue,yes
+robotic_blue_dog,8,olives,yes
+robotic_blue_dog,9,milk mustache,yes
+robotic_blue_dog,10,"baby formula, coffins",yes
+robotic_blue_dog,11,128,no
+robotic_blue_dog,12,apple sauce,yes
+old_pink_crocodile,1,diapers,yes
+old_pink_crocodile,2,/,no
+old_pink_crocodile,3,paper shredder,yes
+old_pink_crocodile,4,mule,yes
+old_pink_crocodile,5,shed,yes
+old_pink_crocodile,6,blue,no
+old_pink_crocodile,7,blue,yes
+old_pink_crocodile,8,olives,yes
+old_pink_crocodile,9,milk,yes
+old_pink_crocodile,10,"baby formula, coffin",yes
+old_pink_crocodile,11,125,no
+old_pink_crocodile,12,apple sauce,yes
+beautiful_brown_bear,1,diapers,yes
+beautiful_brown_bear,2,toothpaste,no
+beautiful_brown_bear,3,paper shredder,yes
+beautiful_brown_bear,4,giraffe,no
+beautiful_brown_bear,5,shed,yes
+beautiful_brown_bear,6,red and black,no
+beautiful_brown_bear,7,blue,yes
+beautiful_brown_bear,8,olives,yes
+beautiful_brown_bear,9,sunscreen,no
+beautiful_brown_bear,10,diapers and coffins,no
+beautiful_brown_bear,11,100,no
+beautiful_brown_bear,12,,no
+little_green_turtle,1,diapers,yes
+little_green_turtle,2,"soap, toothpaste",yes
+little_green_turtle,3,papershredder,yes
+little_green_turtle,4,mule,yes
+little_green_turtle,5,shed,yes
+little_green_turtle,6,blue,no
+little_green_turtle,7,pink,no
+little_green_turtle,8,olives,yes
+little_green_turtle,9,milk mustache,yes
+little_green_turtle,10,"baby formula, coffins",yes
+little_green_turtle,11,100,no
+little_green_turtle,12,applesausce,yes
+fuzzy_blue_rhino,1,Diapers,yes
+fuzzy_blue_rhino,2,Toothpaste & Soap,yes
+fuzzy_blue_rhino,3,Paper Shredder,yes
+fuzzy_blue_rhino,4,Mule/Donkey,yes
+fuzzy_blue_rhino,5,Shed,yes
+fuzzy_blue_rhino,6,Red,yes
+fuzzy_blue_rhino,7,Blue,yes
+fuzzy_blue_rhino,8,Olives,yes
+fuzzy_blue_rhino,9,Milk,yes
+fuzzy_blue_rhino,10,Formula & Coffins,yes
+fuzzy_blue_rhino,11,240,no
+fuzzy_blue_rhino,12,Applesauce,yes
+black_shiny_frog,1,diapers,yes
+black_shiny_frog,2,thoothpaste,no
+black_shiny_frog,3,paper shed,yes
+black_shiny_frog,4,cow,no
+black_shiny_frog,5,paper shed,yes
+black_shiny_frog,6,"red,black",yes
+black_shiny_frog,7,blue,yes
+black_shiny_frog,8,olives,yes
+black_shiny_frog,9,milk,yes
+black_shiny_frog,10,coffin,no
+black_shiny_frog,11,48,no
+black_shiny_frog,12,12,no
+esoteric_emerald_eel,1,diapers,yes
+esoteric_emerald_eel,2,toothpaste and soap,yes
+esoteric_emerald_eel,3,paper shredder,yes
+esoteric_emerald_eel,4,pig,yes
+esoteric_emerald_eel,5,shed,yes
+esoteric_emerald_eel,6,pink,no
+esoteric_emerald_eel,7,blue,yes
+esoteric_emerald_eel,8,olives,yes
+esoteric_emerald_eel,9,milk,yes
+esoteric_emerald_eel,10,baby formula and coffins,yes
+esoteric_emerald_eel,11,216,yes
+esoteric_emerald_eel,12,applesauce,yes
+little_blue_penguin,1,toothpaste,no
+little_blue_penguin,2,"lights, toothpaste",half
+little_blue_penguin,3,paper shredder,yes
+little_blue_penguin,4,dog,no
+little_blue_penguin,5,shed,yes
+little_blue_penguin,6,"dark blue, purple",yes
+little_blue_penguin,7,light blue,yes
+little_blue_penguin,8,olives,yes
+little_blue_penguin,9,donut powder,no
+little_blue_penguin,10,"coffin, dipers",half
+little_blue_penguin,11,96,no
+little_blue_penguin,12,applesauce,yes
+kind_pink_butterfly,1,diapers,yes
+kind_pink_butterfly,2,"toothpaste, soap",yes
+kind_pink_butterfly,3,paper shredder,yes
+kind_pink_butterfly,4,mule,yes
+kind_pink_butterfly,5,shed,yes
+kind_pink_butterfly,6,grey w checkered,no
+kind_pink_butterfly,7,blue ,yes
+kind_pink_butterfly,8,olives,yes
+kind_pink_butterfly,9,milk,yes
+kind_pink_butterfly,10,diapers to coffins ,half
+kind_pink_butterfly,11,55,no
+kind_pink_butterfly,12,applesauce,yes
+theo,1,,no
+theo,2,,no
+theo,3,shredder,yes
+theo,4,mule,yes
+theo,5,shed,yes
+theo,6,pink,yes
+theo,7,blue,yes
+theo,8,olives,yes
+theo,9,milk mustache,yes
+theo,10,"coffin, baby powder",half
+theo,11,100,no
+theo,12,apple sauce,yes
+epic_green_cat,1,diaper,yes
+epic_green_cat,2,toothpaste,half
+epic_green_cat,3,wine,no
+epic_green_cat,4,mule,yes
+epic_green_cat,5,shed,yes
+epic_green_cat,6,gray,no
+epic_green_cat,7,blue,yes
+epic_green_cat,8,olives,yes
+epic_green_cat,9,milk mustache,yes 
+epic_green_cat,10,coffins and baby formula,yes
+epic_green_cat,11,23,no
+epic_green_cat,12,applesauce,yes
+Scary_dark-shark,1,Diaper,yes
+Scary_dark-shark,2,,no
+Scary_dark-shark,3,paper shredder,yes
+Scary_dark-shark,4,,no
+Scary_dark-shark,5,shed,yes
+Scary_dark-shark,6,dark and purple,no
+Scary_dark-shark,7,blue,yes
+Scary_dark-shark,8,olive,yes
+Scary_dark-shark,9,wipe cream,no
+Scary_dark-shark,10,coffin & diaper,no
+Scary_dark-shark,11,24,no
+Scary_dark-shark,12,opposite aisle,no
+small_gray_pika,1,diapers,yes
+small_gray_pika,2,"toothpaste, shaving cream",half
+small_gray_pika,3,paper shredder,yes
+small_gray_pika,4,mule,yes
+small_gray_pika,5,shed,yes
+small_gray_pika,6,black and red checkered diamonds,no
+small_gray_pika,7,blue,yes
+small_gray_pika,8,olives,yes
+small_gray_pika,9,milk,yes
+small_gray_pika,10,baby formula and coffins,yes
+small_gray_pika,11,50,no
+small_gray_pika,12,wine,no
+pink_puffy_penguin,1,diapers,yes
+pink_puffy_penguin,2,"soap, toothpaste",yes
+pink_puffy_penguin,3,shedd,yes
+pink_puffy_penguin,4,mule,no
+pink_puffy_penguin,5,shed,yes
+pink_puffy_penguin,6,pink,no
+pink_puffy_penguin,7,blue,yes
+pink_puffy_penguin,8,olives,yes
+pink_puffy_penguin,9,milk mustache,yes
+pink_puffy_penguin,10,"coffins, formula",no
+pink_puffy_penguin,11,100?,no
+pink_puffy_penguin,12,apple sauce,yes

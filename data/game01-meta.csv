@@ -1,0 +1,15 @@
+question,question_desc,units,answer
+1,Richmond population,people,226610.0
+2,Virginia population,people,8811195.0
+3,Countries in UN,countries,193.0
+4,Diameter of basketball hoop,inches,18.0
+5,Charlemagne,year,800.0
+6,Cups of coffee,cups,3.0
+7,Cat lifespan,lifespan,15.0
+8,Friends episodes,episodes,236.0
+9,Episode length,minutes,23.0
+10,Steps per day,steps,4500.0
+11,"Height, male",inches,69.0
+12,"Height, female",inches,63.5
+13,Front page words,words,1700.0
+14,Word per day,words,16000.0

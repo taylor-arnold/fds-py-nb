@@ -2189,7 +2189,8 @@ class DSTorch:
             .map_elements(tokens_to_indices, return_dtype=pl.List(pl.Int64))
             .alias("indices"),
             label_expr
-            .map_elements(lambda x: label_to_idx[x], return_dtype=pl.Int64)
+            .replace_strict(label_to_idx)
+            #.map_elements(lambda x: label_to_idx[x], return_dtype=pl.Int64)
             .alias("y"),
         )
 
