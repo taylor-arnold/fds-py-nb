@@ -2243,41 +2243,52 @@ class DSTorch:
             return (pred == y).float().mean().item()
 
     @staticmethod
-    def score_text(model, X, y):
+    def score_text(model, X, y, batch_size=512):
         import torch
 
         model.eval()
+        all_preds = []
         with torch.no_grad():
-            outputs = model(X)
-            predictions = outputs.argmax(dim=1)
-            accuracy = (predictions == y).float().mean().item()
+            for i in range(0, len(X), batch_size):
+                outputs = model(X[i:i+batch_size])
+                all_preds.append(outputs.argmax(dim=1))
+        predictions = torch.cat(all_preds)
+        accuracy = (predictions == y).float().mean().item()
         return accuracy
 
     @staticmethod
-    def predict(model, X, y, cn):
+    def predict(model, X, y, cn, batch_size=512):
         import torch
 
         model.eval()
+        all_preds = []
         with torch.no_grad():
-            logits = model(X)
+            for i in range(0, len(X), batch_size):
+                logits = model(X[i:i+batch_size])
+                all_preds.append(logits.argmax(dim=1))
         y_idx = y.numpy()
-        pred_idx = logits.argmax(dim=1).numpy()
+        pred_idx = torch.cat(all_preds).numpy()
         return pl.DataFrame({
             "target_": [cn[i] for i in y_idx],
             "prediction_": [cn[i] for i in pred_idx]
         })
 
     @staticmethod
-    def predict_proba(model, X, y, cn):
+    def predict_proba(model, X, y, cn, batch_size=512):
         import torch
+        import numpy as np
 
         model.eval()
+        all_logits = []
+        all_probs = []
         with torch.no_grad():
-            logits = model(X)
-            probs = torch.softmax(logits, dim=1)
+            for i in range(0, len(X), batch_size):
+                logits = model(X[i:i+batch_size])
+                all_logits.append(logits.argmax(dim=1))
+                all_probs.append(torch.softmax(logits, dim=1))
         y_idx = y.numpy()
-        pred_idx = logits.argmax(dim=1).numpy()
-        probs_np = probs.numpy()
+        pred_idx = torch.cat(all_logits).numpy()
+        probs_np = torch.cat(all_probs).numpy()
         max_probs = probs_np.max(axis=1)
         data = {
             "target_": [cn[i] for i in y_idx],
@@ -2289,15 +2300,18 @@ class DSTorch:
         return pl.DataFrame(data)
 
     @staticmethod
-    def confusion_matrix(model, X, y, cn):
+    def confusion_matrix(model, X, y, cn, batch_size=512):
         import torch
         from sklearn.metrics import ConfusionMatrixDisplay
 
         model.eval()
+        all_preds = []
         with torch.no_grad():
-            logits = model(X)
+            for i in range(0, len(X), batch_size):
+                logits = model(X[i:i+batch_size])
+                all_preds.append(logits.argmax(dim=1))
+        pred_idx = torch.cat(all_preds).numpy()
         y_idx = y.numpy()
-        pred_idx = logits.argmax(dim=1).numpy()
         y_true = [cn[i] for i in y_idx]
         y_pred = [cn[i] for i in pred_idx]
         return ConfusionMatrixDisplay.from_predictions(y_true, y_pred, xticks_rotation="vertical")
