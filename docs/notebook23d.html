@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>notebook23d – Foundations of Data Science: Notebooks</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-77a666a5542a07a54dbe0a7f6e3b86cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./notebook23d.html">notebook23d</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Foundations of Data Science: Notebooks</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook01a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook01a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook01b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook01b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook02a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook02a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook02b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook02b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook02c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook02c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook02d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook02d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook03a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook03a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook03b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook03b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook03c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook03c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook03d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook03d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook03e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook03e</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook04a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook04a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook04b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook04b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook04c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook04c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook05a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook05a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook05b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook05b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook06a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook06a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook06b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook06b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook07a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook07a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook07b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook07b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook08a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook08a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook08b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook08b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook09a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook09a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook09b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook09b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook10a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook10a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook10b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook10b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook11a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook11a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook11b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook11b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook12a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook12a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook12b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook12b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook13a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook13a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook13b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook13b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook14a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook14a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook14b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook14b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook15a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook15a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook15b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook15b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook16a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook16a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook16b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook16b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook17a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook17a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook17b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook17b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook18a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook18a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook18b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook18b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook19a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook19a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook19b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook19b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook20a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook20a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook20b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook20b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23d.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">notebook23d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23e</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Notebook23d</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this notebook, we will see how to build a model to detect bounding boxes in a collection of images of birds.</p>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run all of the following before starting the notebook.</p>
+<div id="2347eced" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="abbfbf87" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ultralytics <span class="im">import</span> YOLO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="d03002dc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>birds <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/birds10.parquet"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>birds_bbox <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/birds_1000.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="data-format" class="level3">
+<h3 class="anchored" data-anchor-id="data-format">Data Format</h3>
+<p>So far in this course, our image tasks have involved assigning a single label to an entire image. For example, “this is a cardinal” or “this is a blue jay.” Bounding box detection is a fundamentally different task: instead of classifying the whole image, the model must locate <em>where</em> in the image the object of interest appears and draw a tight rectangle around it. This means each training example needs four numbers (the coordinates of the box corners) in addition to a class label.</p>
+<p>Our bird bounding box dataset contains exactly this information. Each row specifies an image filepath, a species label, and four coordinates defining the corners of a bounding box around the bird.</p>
+<div id="c8df42ff" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>birds_bbox</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_000, 7)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th">filepath</th>
+<th data-quarto-table-cell-role="th">bbox_x0</th>
+<th data-quarto-table-cell-role="th">bbox_y0</th>
+<th data-quarto-table-cell-role="th">bbox_x1</th>
+<th data-quarto-table-cell-role="th">bbox_y1</th>
+<th data-quarto-table-cell-role="th">index</th>
+</tr>
+<tr class="even">
+<td>str</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Gray_Catbird"</td>
+<td>"media/birds_1000/00000.png"</td>
+<td>15.0</td>
+<td>44.0</td>
+<td>480.0</td>
+<td>331.0</td>
+<td>"train"</td>
+</tr>
+<tr class="even">
+<td>"Sayornis"</td>
+<td>"media/birds_1000/00001.png"</td>
+<td>131.0</td>
+<td>85.0</td>
+<td>488.0</td>
+<td>326.0</td>
+<td>"train"</td>
+</tr>
+<tr class="odd">
+<td>"Tennessee_Warbler"</td>
+<td>"media/birds_1000/00002.png"</td>
+<td>40.0</td>
+<td>5.0</td>
+<td>345.0</td>
+<td>239.0</td>
+<td>"test"</td>
+</tr>
+<tr class="even">
+<td>"White_throated_Sparrow"</td>
+<td>"media/birds_1000/00003.png"</td>
+<td>99.0</td>
+<td>42.0</td>
+<td>448.0</td>
+<td>344.0</td>
+<td>"train"</td>
+</tr>
+<tr class="odd">
+<td>"Ring_billed_Gull"</td>
+<td>"media/birds_1000/00004.png"</td>
+<td>104.0</td>
+<td>32.0</td>
+<td>451.0</td>
+<td>284.0</td>
+<td>"train"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"White_breasted_Kingfisher"</td>
+<td>"media/birds_1000/00995.png"</td>
+<td>17.0</td>
+<td>105.0</td>
+<td>419.0</td>
+<td>336.0</td>
+<td>"test"</td>
+</tr>
+<tr class="even">
+<td>"Blue_Grosbeak"</td>
+<td>"media/birds_1000/00996.png"</td>
+<td>96.0</td>
+<td>102.0</td>
+<td>361.0</td>
+<td>338.0</td>
+<td>"test"</td>
+</tr>
+<tr class="odd">
+<td>"Yellow_headed_Blackbird"</td>
+<td>"media/birds_1000/00997.png"</td>
+<td>53.0</td>
+<td>42.0</td>
+<td>424.0</td>
+<td>208.0</td>
+<td>"train"</td>
+</tr>
+<tr class="even">
+<td>"Tree_Sparrow"</td>
+<td>"media/birds_1000/00998.png"</td>
+<td>47.0</td>
+<td>11.0</td>
+<td>450.0</td>
+<td>427.0</td>
+<td>"train"</td>
+</tr>
+<tr class="odd">
+<td>"Cliff_Swallow"</td>
+<td>"media/birds_1000/00999.png"</td>
+<td>158.0</td>
+<td>50.0</td>
+<td>352.0</td>
+<td>316.0</td>
+<td>"train"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="preparing-the-yolo-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-yolo-dataset">Preparing the YOLO Dataset</h3>
+<p>We will use <strong>YOLO</strong> (You Only Look Once), one of the most widely used object detection architectures. YOLO expects training data in a very specific directory layout: images and label files organized into <code>train</code>, <code>val</code>, and <code>test</code> splits, with a YAML configuration file that describes the dataset. Rather than setting this up by hand, we use a helper function that takes our Polars DataFrame and reorganizes it into the format YOLO requires.</p>
+<div id="81fd1cf4" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DSImage.prepare_yolo_dataset(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    birds_bbox, root<span class="op">=</span><span class="st">"media/yolo_birds"</span>, yaml_name<span class="op">=</span><span class="st">"birds.yaml"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>PosixPath('media/yolo_birds/birds.yaml')</code></pre>
+</div>
+</div>
+</section>
+<section id="training-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="training-the-model">Training the Model</h3>
+<p>YOLO models are typically not trained from scratch. Instead, we start from a <strong>pre-trained checkpoint</strong> (<code>yolo11n.pt</code>) that has already learned general-purpose visual features on a large dataset, and then fine-tune it on our bird data. This is the same transfer learning idea we’ve seen before — the early layers already know how to detect edges, textures, and shapes, so we only need to teach the final layers what a “cardinal” or “blue jay” bounding box looks like.</p>
+<p>Training runs for 50 epochs over our dataset. Since this takes a while, we wrap it in a try/except block that first checks for previously saved weights. If the trained model file already exists, we load it directly; otherwise we train from scratch and save the result.</p>
+<div id="a7009f99" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> YOLO(<span class="st">"models/yolo_birds_final.pt"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> YOLO(<span class="st">"models/yolo11n.pt"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    model.train(data<span class="op">=</span><span class="st">"media/yolo_birds/birds.yaml"</span>, epochs<span class="op">=</span><span class="dv">50</span>, imgsz<span class="op">=</span><span class="dv">640</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    model.save(<span class="st">"models/yolo_birds_final.pt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="visualizing-ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-ground-truth">Visualizing Ground Truth</h3>
+<p>Before looking at what the model predicts, let’s visualize the ground truth bounding boxes — the hand-labeled rectangles that tell us where the bird actually is in each image. This gives us a baseline to compare against and helps us understand what the model is trying to learn.</p>
+<div id="66749c2d" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> birds_bbox.<span class="bu">filter</span>(c(<span class="st">"index"</span>) <span class="op">==</span> <span class="st">"test"</span>).head(<span class="dv">9</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> <span class="bu">enumerate</span>(sample.iter_rows(named<span class="op">=</span><span class="va">True</span>)):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(row[<span class="st">"filepath"</span>])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    x0, y0, x1, y1 <span class="op">=</span> row[<span class="st">"bbox_x0"</span>], row[<span class="st">"bbox_y0"</span>], row[<span class="st">"bbox_x1"</span>], row[<span class="st">"bbox_y1"</span>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    rect <span class="op">=</span> patches.Rectangle(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        (x0, y0), x1 <span class="op">-</span> x0, y1 <span class="op">-</span> y0,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"olive"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(rect)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    ax.set_title(row[<span class="st">"label"</span>], fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Ground Truth Bounding Boxes"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="notebook23d_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="notebook23d_files/figure-html/cell-9-output-1.png" width="854" height="852" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-predictions-to-ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-predictions-to-ground-truth">Comparing Predictions to Ground Truth</h3>
+<p>Now we run the trained model on the same images and overlay its predicted bounding boxes (in salmon) alongside the ground truth boxes (in olive). This side-by-side comparison lets us visually assess how well the model is doing. Ideally, the two rectangles should overlap closely — but you’ll notice that they rarely match perfectly, and occasionally the model may detect multiple objects or miss the bird entirely.</p>
+<div id="87136560" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>filepaths <span class="op">=</span> sample[<span class="st">"filepath"</span>].to_list()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.predict(filepaths, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (result, row) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(results, sample.iter_rows(named<span class="op">=</span><span class="va">True</span>))):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(row[<span class="st">"filepath"</span>])</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    gt_x0, gt_y0, gt_x1, gt_y1 <span class="op">=</span> row[<span class="st">"bbox_x0"</span>], row[<span class="st">"bbox_y0"</span>], row[<span class="st">"bbox_x1"</span>], row[<span class="st">"bbox_y1"</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(patches.Rectangle(</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        (gt_x0, gt_y0), gt_x1 <span class="op">-</span> gt_x0, gt_y1 <span class="op">-</span> gt_y0,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"olive"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> box <span class="kw">in</span> result.boxes.xyxy.tolist():</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        x0, y0, x1, y1 <span class="op">=</span> box</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        ax.add_patch(patches.Rectangle(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            (x0, y0), x1 <span class="op">-</span> x0, y1 <span class="op">-</span> y0,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"salmon"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        ))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    ax.set_title(row[<span class="st">"label"</span>], fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Predicted Bounding Boxes"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="notebook23d_files/figure-html/cell-10-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="notebook23d_files/figure-html/cell-10-output-1.png" width="854" height="852" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-predictions-on-the-full-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="generating-predictions-on-the-full-dataset">Generating Predictions on the Full Dataset</h3>
+<p>To evaluate the model quantitatively, we need predictions on every image — not just the nine we visualized. The code below runs the model across the full dataset and collects the top-confidence predicted bounding box for each image into a new DataFrame. We take only the highest-confidence box per image because our dataset has exactly one bird per image, so we’re asking: “where does the model think the bird most likely is?”</p>
+<p>As with our other notebooks, we cache the results to a Parquet file so that re-running the notebook doesn’t require re-computing all the predictions.</p>
+<div id="55aa4b07" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cache_path <span class="op">=</span> Path(<span class="st">"cache/birds_bbox_pred.parquet"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> cache_path.exists():</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred <span class="op">=</span> pl.read_parquet(cache_path)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    filepaths_all <span class="op">=</span> birds_bbox[<span class="st">"filepath"</span>].to_list()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    results_all <span class="op">=</span> model.predict(filepaths_all, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> result, fp <span class="kw">in</span> <span class="bu">zip</span>(results_all, filepaths_all):</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        boxes <span class="op">=</span> result.boxes.xyxy.tolist()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        confs <span class="op">=</span> result.boxes.conf.tolist()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> boxes:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            x0, y0, x1, y1 <span class="op">=</span> boxes[<span class="dv">0</span>]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            conf <span class="op">=</span> confs[<span class="dv">0</span>]</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            x0, y0, x1, y1, conf <span class="op">=</span> <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"filepath"</span>: fp, <span class="st">"pred_x0"</span>: x0, <span class="st">"pred_y0"</span>: y0, <span class="st">"pred_x1"</span>: x1, <span class="st">"pred_y1"</span>: y1, <span class="st">"conf"</span>: conf})</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred <span class="op">=</span> birds_bbox.join(</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        pl.DataFrame(rows, schema<span class="op">=</span>{<span class="st">"filepath"</span>: pl.String, <span class="st">"pred_x0"</span>: pl.Float64, <span class="st">"pred_y0"</span>: pl.Float64, <span class="st">"pred_x1"</span>: pl.Float64, <span class="st">"pred_y1"</span>: pl.Float64, <span class="st">"conf"</span>: pl.Float64}),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        on<span class="op">=</span><span class="st">"filepath"</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    cache_path.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred.write_parquet(cache_path)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>birds_bbox_pred</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_000, 12)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th">filepath</th>
+<th data-quarto-table-cell-role="th">bbox_x0</th>
+<th data-quarto-table-cell-role="th">bbox_y0</th>
+<th data-quarto-table-cell-role="th">bbox_x1</th>
+<th data-quarto-table-cell-role="th">bbox_y1</th>
+<th data-quarto-table-cell-role="th">index</th>
+<th data-quarto-table-cell-role="th">pred_x0</th>
+<th data-quarto-table-cell-role="th">pred_y0</th>
+<th data-quarto-table-cell-role="th">pred_x1</th>
+<th data-quarto-table-cell-role="th">pred_y1</th>
+<th data-quarto-table-cell-role="th">conf</th>
+</tr>
+<tr class="even">
+<td>str</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Gray_Catbird"</td>
+<td>"media/birds_1000/00000.png"</td>
+<td>15.0</td>
+<td>44.0</td>
+<td>480.0</td>
+<td>331.0</td>
+<td>"train"</td>
+<td>5.080748</td>
+<td>73.671638</td>
+<td>479.402802</td>
+<td>325.331116</td>
+<td>0.915543</td>
+</tr>
+<tr class="even">
+<td>"Sayornis"</td>
+<td>"media/birds_1000/00001.png"</td>
+<td>131.0</td>
+<td>85.0</td>
+<td>488.0</td>
+<td>326.0</td>
+<td>"train"</td>
+<td>128.148651</td>
+<td>81.870644</td>
+<td>486.42804</td>
+<td>329.292297</td>
+<td>0.94386</td>
+</tr>
+<tr class="odd">
+<td>"Tennessee_Warbler"</td>
+<td>"media/birds_1000/00002.png"</td>
+<td>40.0</td>
+<td>5.0</td>
+<td>345.0</td>
+<td>239.0</td>
+<td>"test"</td>
+<td>37.34095</td>
+<td>4.857699</td>
+<td>342.479767</td>
+<td>231.392563</td>
+<td>0.893643</td>
+</tr>
+<tr class="even">
+<td>"White_throated_Sparrow"</td>
+<td>"media/birds_1000/00003.png"</td>
+<td>99.0</td>
+<td>42.0</td>
+<td>448.0</td>
+<td>344.0</td>
+<td>"train"</td>
+<td>96.486084</td>
+<td>37.147369</td>
+<td>451.479065</td>
+<td>346.191162</td>
+<td>0.945133</td>
+</tr>
+<tr class="odd">
+<td>"Ring_billed_Gull"</td>
+<td>"media/birds_1000/00004.png"</td>
+<td>104.0</td>
+<td>32.0</td>
+<td>451.0</td>
+<td>284.0</td>
+<td>"train"</td>
+<td>108.761978</td>
+<td>30.04632</td>
+<td>448.953156</td>
+<td>280.531281</td>
+<td>0.944009</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"White_breasted_Kingfisher"</td>
+<td>"media/birds_1000/00995.png"</td>
+<td>17.0</td>
+<td>105.0</td>
+<td>419.0</td>
+<td>336.0</td>
+<td>"test"</td>
+<td>15.030384</td>
+<td>102.125076</td>
+<td>423.004639</td>
+<td>329.46109</td>
+<td>0.934306</td>
+</tr>
+<tr class="even">
+<td>"Blue_Grosbeak"</td>
+<td>"media/birds_1000/00996.png"</td>
+<td>96.0</td>
+<td>102.0</td>
+<td>361.0</td>
+<td>338.0</td>
+<td>"test"</td>
+<td>77.614479</td>
+<td>97.907738</td>
+<td>361.942322</td>
+<td>358.410126</td>
+<td>0.880564</td>
+</tr>
+<tr class="odd">
+<td>"Yellow_headed_Blackbird"</td>
+<td>"media/birds_1000/00997.png"</td>
+<td>53.0</td>
+<td>42.0</td>
+<td>424.0</td>
+<td>208.0</td>
+<td>"train"</td>
+<td>79.36747</td>
+<td>51.5322</td>
+<td>372.670532</td>
+<td>215.014206</td>
+<td>0.815949</td>
+</tr>
+<tr class="even">
+<td>"Tree_Sparrow"</td>
+<td>"media/birds_1000/00998.png"</td>
+<td>47.0</td>
+<td>11.0</td>
+<td>450.0</td>
+<td>427.0</td>
+<td>"train"</td>
+<td>0.0</td>
+<td>4.573202</td>
+<td>481.839722</td>
+<td>421.523621</td>
+<td>0.932447</td>
+</tr>
+<tr class="odd">
+<td>"Cliff_Swallow"</td>
+<td>"media/birds_1000/00999.png"</td>
+<td>158.0</td>
+<td>50.0</td>
+<td>352.0</td>
+<td>316.0</td>
+<td>"train"</td>
+<td>155.636337</td>
+<td>47.183514</td>
+<td>351.697662</td>
+<td>315.846985</td>
+<td>0.873668</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="intersection-over-union-iou" class="level3">
+<h3 class="anchored" data-anchor-id="intersection-over-union-iou">Intersection over Union (IoU)</h3>
+<p>How do we measure whether a predicted bounding box is “correct”? We can’t require an exact match — even human annotators would draw slightly different boxes. Instead, we use <strong>Intersection over Union (IoU)</strong>, the standard metric for bounding box quality.</p>
+<p>IoU is the ratio of the area where the predicted and ground truth boxes overlap (the intersection) to the total area covered by both boxes combined (the union). An IoU of 1.0 means perfect overlap; an IoU of 0.0 means the boxes don’t overlap at all. The standard threshold for counting a prediction as “correct” is IoU ≥ 0.5, meaning the predicted box must overlap with at least half of the ground truth box’s area.</p>
+<p>The computation below calculates the intersection rectangle (by taking the max of the left edges and the min of the right edges), computes its area, and then divides by the union area.</p>
+<div id="7c275594" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>birds_bbox_iou <span class="op">=</span> (</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        pl.max_horizontal(c(<span class="st">"bbox_x0"</span>), c(<span class="st">"pred_x0"</span>)).alias(<span class="st">"inter_x0"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        pl.max_horizontal(c(<span class="st">"bbox_y0"</span>), c(<span class="st">"pred_y0"</span>)).alias(<span class="st">"inter_y0"</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        pl.min_horizontal(c(<span class="st">"bbox_x1"</span>), c(<span class="st">"pred_x1"</span>)).alias(<span class="st">"inter_x1"</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        pl.min_horizontal(c(<span class="st">"bbox_y1"</span>), c(<span class="st">"pred_y1"</span>)).alias(<span class="st">"inter_y1"</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        (</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>            pl.max_horizontal(pl.lit(<span class="fl">0.0</span>), c(<span class="st">"inter_x1"</span>) <span class="op">-</span> c(<span class="st">"inter_x0"</span>)) <span class="op">*</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            pl.max_horizontal(pl.lit(<span class="fl">0.0</span>), c(<span class="st">"inter_y1"</span>) <span class="op">-</span> c(<span class="st">"inter_y0"</span>))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        ).alias(<span class="st">"inter_area"</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        ((c(<span class="st">"bbox_x1"</span>) <span class="op">-</span> c(<span class="st">"bbox_x0"</span>)) <span class="op">*</span> (c(<span class="st">"bbox_y1"</span>) <span class="op">-</span> c(<span class="st">"bbox_y0"</span>))).alias(<span class="st">"gt_area"</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        ((c(<span class="st">"pred_x1"</span>) <span class="op">-</span> c(<span class="st">"pred_x0"</span>)) <span class="op">*</span> (c(<span class="st">"pred_y1"</span>) <span class="op">-</span> c(<span class="st">"pred_y0"</span>))).alias(<span class="st">"pred_area"</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        (c(<span class="st">"inter_area"</span>) <span class="op">/</span> (c(<span class="st">"gt_area"</span>) <span class="op">+</span> c(<span class="st">"pred_area"</span>) <span class="op">-</span> c(<span class="st">"inter_area"</span>)))</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        .fill_null(<span class="fl">0.0</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        .alias(<span class="st">"iou"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    .drop([<span class="st">"inter_x0"</span>, <span class="st">"inter_y0"</span>, <span class="st">"inter_x1"</span>, <span class="st">"inter_y1"</span>, <span class="st">"inter_area"</span>, <span class="st">"gt_area"</span>, <span class="st">"pred_area"</span>])</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>birds_bbox_iou</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_000, 13)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th">filepath</th>
+<th data-quarto-table-cell-role="th">bbox_x0</th>
+<th data-quarto-table-cell-role="th">bbox_y0</th>
+<th data-quarto-table-cell-role="th">bbox_x1</th>
+<th data-quarto-table-cell-role="th">bbox_y1</th>
+<th data-quarto-table-cell-role="th">index</th>
+<th data-quarto-table-cell-role="th">pred_x0</th>
+<th data-quarto-table-cell-role="th">pred_y0</th>
+<th data-quarto-table-cell-role="th">pred_x1</th>
+<th data-quarto-table-cell-role="th">pred_y1</th>
+<th data-quarto-table-cell-role="th">conf</th>
+<th data-quarto-table-cell-role="th">iou</th>
+</tr>
+<tr class="even">
+<td>str</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Gray_Catbird"</td>
+<td>"media/birds_1000/00000.png"</td>
+<td>15.0</td>
+<td>44.0</td>
+<td>480.0</td>
+<td>331.0</td>
+<td>"train"</td>
+<td>5.080748</td>
+<td>73.671638</td>
+<td>479.402802</td>
+<td>325.331116</td>
+<td>0.915543</td>
+<td>0.859656</td>
+</tr>
+<tr class="even">
+<td>"Sayornis"</td>
+<td>"media/birds_1000/00001.png"</td>
+<td>131.0</td>
+<td>85.0</td>
+<td>488.0</td>
+<td>326.0</td>
+<td>"train"</td>
+<td>128.148651</td>
+<td>81.870644</td>
+<td>486.42804</td>
+<td>329.292297</td>
+<td>0.94386</td>
+<td>0.962182</td>
+</tr>
+<tr class="odd">
+<td>"Tennessee_Warbler"</td>
+<td>"media/birds_1000/00002.png"</td>
+<td>40.0</td>
+<td>5.0</td>
+<td>345.0</td>
+<td>239.0</td>
+<td>"test"</td>
+<td>37.34095</td>
+<td>4.857699</td>
+<td>342.479767</td>
+<td>231.392563</td>
+<td>0.893643</td>
+<td>0.950896</td>
+</tr>
+<tr class="even">
+<td>"White_throated_Sparrow"</td>
+<td>"media/birds_1000/00003.png"</td>
+<td>99.0</td>
+<td>42.0</td>
+<td>448.0</td>
+<td>344.0</td>
+<td>"train"</td>
+<td>96.486084</td>
+<td>37.147369</td>
+<td>451.479065</td>
+<td>346.191162</td>
+<td>0.945133</td>
+<td>0.960711</td>
+</tr>
+<tr class="odd">
+<td>"Ring_billed_Gull"</td>
+<td>"media/birds_1000/00004.png"</td>
+<td>104.0</td>
+<td>32.0</td>
+<td>451.0</td>
+<td>284.0</td>
+<td>"train"</td>
+<td>108.761978</td>
+<td>30.04632</td>
+<td>448.953156</td>
+<td>280.531281</td>
+<td>0.944009</td>
+<td>0.95959</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"White_breasted_Kingfisher"</td>
+<td>"media/birds_1000/00995.png"</td>
+<td>17.0</td>
+<td>105.0</td>
+<td>419.0</td>
+<td>336.0</td>
+<td>"test"</td>
+<td>15.030384</td>
+<td>102.125076</td>
+<td>423.004639</td>
+<td>329.46109</td>
+<td>0.934306</td>
+<td>0.946082</td>
+</tr>
+<tr class="even">
+<td>"Blue_Grosbeak"</td>
+<td>"media/birds_1000/00996.png"</td>
+<td>96.0</td>
+<td>102.0</td>
+<td>361.0</td>
+<td>338.0</td>
+<td>"test"</td>
+<td>77.614479</td>
+<td>97.907738</td>
+<td>361.942322</td>
+<td>358.410126</td>
+<td>0.880564</td>
+<td>0.844358</td>
+</tr>
+<tr class="odd">
+<td>"Yellow_headed_Blackbird"</td>
+<td>"media/birds_1000/00997.png"</td>
+<td>53.0</td>
+<td>42.0</td>
+<td>424.0</td>
+<td>208.0</td>
+<td>"train"</td>
+<td>79.36747</td>
+<td>51.5322</td>
+<td>372.670532</td>
+<td>215.014206</td>
+<td>0.815949</td>
+<td>0.721089</td>
+</tr>
+<tr class="even">
+<td>"Tree_Sparrow"</td>
+<td>"media/birds_1000/00998.png"</td>
+<td>47.0</td>
+<td>11.0</td>
+<td>450.0</td>
+<td>427.0</td>
+<td>"train"</td>
+<td>0.0</td>
+<td>4.573202</td>
+<td>481.839722</td>
+<td>421.523621</td>
+<td>0.932447</td>
+<td>0.814538</td>
+</tr>
+<tr class="odd">
+<td>"Cliff_Swallow"</td>
+<td>"media/birds_1000/00999.png"</td>
+<td>158.0</td>
+<td>50.0</td>
+<td>352.0</td>
+<td>316.0</td>
+<td>"train"</td>
+<td>155.636337</td>
+<td>47.183514</td>
+<td>351.697662</td>
+<td>315.846985</td>
+<td>0.873668</td>
+<td>0.975549</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="precision-recall-and-f1" class="level3">
+<h3 class="anchored" data-anchor-id="precision-recall-and-f1">Precision, Recall, and F1</h3>
+<p>Finally, we compute the same classification metrics we’ve used throughout the course — precision, recall, and F1 — but adapted for bounding box detection. A prediction counts as a <strong>true positive</strong> if the model produced a box with IoU ≥ some threshold against the ground truth. A <strong>false positive</strong> means the model predicted a box but it didn’t sufficiently overlap with the true location. A <strong>false negative</strong> means the model failed to locate the bird at all (or its box was too far off). We will write a function for this:</p>
+<div id="1e899da7" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_one_metrics(iou_thresh<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> (</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        birds_bbox_iou</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"conf"</span>).is_not_null() <span class="op">&amp;</span> (c(<span class="st">"iou"</span>) <span class="op">&gt;=</span> iou_thresh)).alias(<span class="st">"tp"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"conf"</span>).is_not_null() <span class="op">&amp;</span> (c(<span class="st">"iou"</span>) <span class="op">&lt;</span> iou_thresh)).alias(<span class="st">"fp"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"iou"</span>) <span class="op">&lt;</span> iou_thresh).alias(<span class="st">"fn"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        .group_by(<span class="st">"index"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        .agg(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"tp"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"fp"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"fn"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"tp"</span>) <span class="op">/</span> (c(<span class="st">"tp"</span>) <span class="op">+</span> c(<span class="st">"fp"</span>))).alias(<span class="st">"precision"</span>),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"tp"</span>) <span class="op">/</span> (c(<span class="st">"tp"</span>) <span class="op">+</span> c(<span class="st">"fn"</span>))).alias(<span class="st">"recall"</span>),</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">2</span> <span class="op">*</span> c(<span class="st">"precision"</span>) <span class="op">*</span> c(<span class="st">"recall"</span>) <span class="op">/</span> (c(<span class="st">"precision"</span>) <span class="op">+</span> c(<span class="st">"recall"</span>))).alias(<span class="st">"f1"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            cutoff <span class="op">=</span> pl.lit(iou_thresh)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        .sort(<span class="st">"index"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> metrics</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_metrics(iou_thresh_list):</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pl.concat([compute_one_metrics(x) <span class="cf">for</span> x <span class="kw">in</span> iou_thresh_list])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now, let’s compute the function for a large set of cut-off values.</p>
+<div id="a0990afa" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> compute_metrics([x <span class="op">/</span> <span class="dv">100</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>, <span class="dv">100</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Common cut-off values to care about include 0.5, 0.8, and 0.95:</p>
+<div id="71999118" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.cutoff.is_in([<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.95</span>]))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .sort(c.index, c.cutoff)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6, 8)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">index</th>
+<th data-quarto-table-cell-role="th">tp</th>
+<th data-quarto-table-cell-role="th">fp</th>
+<th data-quarto-table-cell-role="th">fn</th>
+<th data-quarto-table-cell-role="th">precision</th>
+<th data-quarto-table-cell-role="th">recall</th>
+<th data-quarto-table-cell-role="th">f1</th>
+<th data-quarto-table-cell-role="th">cutoff</th>
+</tr>
+<tr class="even">
+<td>str</td>
+<td>u32</td>
+<td>u32</td>
+<td>u32</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"test"</td>
+<td>239</td>
+<td>9</td>
+<td>11</td>
+<td>0.96371</td>
+<td>0.956</td>
+<td>0.959839</td>
+<td>0.5</td>
+</tr>
+<tr class="even">
+<td>"test"</td>
+<td>215</td>
+<td>33</td>
+<td>35</td>
+<td>0.866935</td>
+<td>0.86</td>
+<td>0.863454</td>
+<td>0.8</td>
+</tr>
+<tr class="odd">
+<td>"test"</td>
+<td>85</td>
+<td>163</td>
+<td>165</td>
+<td>0.342742</td>
+<td>0.34</td>
+<td>0.341365</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td>"train"</td>
+<td>749</td>
+<td>1</td>
+<td>1</td>
+<td>0.998667</td>
+<td>0.998667</td>
+<td>0.998667</td>
+<td>0.5</td>
+</tr>
+<tr class="odd">
+<td>"train"</td>
+<td>728</td>
+<td>22</td>
+<td>22</td>
+<td>0.970667</td>
+<td>0.970667</td>
+<td>0.970667</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td>"train"</td>
+<td>384</td>
+<td>366</td>
+<td>366</td>
+<td>0.512</td>
+<td>0.512</td>
+<td>0.512</td>
+<td>0.95</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We could also visualize the metrics as a function of the cutoff value.</p>
+<div id="06d82f7a" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"cutoff"</span>, <span class="st">"recall"</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(color<span class="op">=</span><span class="st">"index"</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<figure class="figure">
+<p><a href="notebook23d_files/figure-html/cell-16-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="notebook23d_files/figure-html/cell-16-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="9e6a0d0b" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>View code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"cutoff"</span>, <span class="st">"f1"</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(color<span class="op">=</span><span class="st">"index"</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+<figure class="figure">
+<p><a href="notebook23d_files/figure-html/cell-17-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="notebook23d_files/figure-html/cell-17-output-1.png" width="672" height="480" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode");
+      for (let i = 0; i < detailsSrc.length; i++) {
+        const details = detailsSrc[i].closest('details');
+        if (details) {
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+      }
+      return false;
+    };
+  }
+  // Replace buttons to strip the broken listeners Quarto attached, then re-add fixed ones
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    const fresh = hideAllCode.cloneNode(true);
+    hideAllCode.parentNode.replaceChild(fresh, hideAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    const fresh = showAllCode.cloneNode(true);
+    showAllCode.parentNode.replaceChild(fresh, showAllCode);
+    fresh.addEventListener("click", toggleCodeHandler(true));
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook23d</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>In this notebook, we will see how to build a model to detect bounding boxes in a collection of images of birds.</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>Run all of the following before starting the notebook.</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ultralytics <span class="im">import</span> YOLO</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funs <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> polars <span class="im">import</span> col <span class="im">as</span> c</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal())</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [remove]</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>birds <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/birds10.parquet"</span>)</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>birds_bbox <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/birds_1000.csv"</span>)</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Format</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>So far in this course, our image tasks have involved assigning a single label to an entire image. For example, "this is a cardinal" or "this is a blue jay." Bounding box detection is a fundamentally different task: instead of classifying the whole image, the model must locate *where* in the image the object of interest appears and draw a tight rectangle around it. This means each training example needs four numbers (the coordinates of the box corners) in addition to a class label.</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>Our bird bounding box dataset contains exactly this information. Each row specifies an image filepath, a species label, and four coordinates defining the corners of a bounding box around the bird.</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>birds_bbox</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparing the YOLO Dataset</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>We will use **YOLO** (You Only Look Once), one of the most widely used object detection architectures. YOLO expects training data in a very specific directory layout: images and label files organized into <span class="in">`train`</span>, <span class="in">`val`</span>, and <span class="in">`test`</span> splits, with a YAML configuration file that describes the dataset. Rather than setting this up by hand, we use a helper function that takes our Polars DataFrame and reorganizes it into the format YOLO requires.</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>DSImage.prepare_yolo_dataset(</span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>    birds_bbox, root<span class="op">=</span><span class="st">"media/yolo_birds"</span>, yaml_name<span class="op">=</span><span class="st">"birds.yaml"</span></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### Training the Model</span></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>YOLO models are typically not trained from scratch. Instead, we start from a **pre-trained checkpoint** (<span class="in">`yolo11n.pt`</span>) that has already learned general-purpose visual features on a large dataset, and then fine-tune it on our bird data. This is the same transfer learning idea we've seen before — the early layers already know how to detect edges, textures, and shapes, so we only need to teach the final layers what a "cardinal" or "blue jay" bounding box looks like.</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>Training runs for 50 epochs over our dataset. Since this takes a while, we wrap it in a try/except block that first checks for previously saved weights. If the trained model file already exists, we load it directly; otherwise we train from scratch and save the result.</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> YOLO(<span class="st">"models/yolo_birds_final.pt"</span>)</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> YOLO(<span class="st">"models/yolo11n.pt"</span>)</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>    model.train(data<span class="op">=</span><span class="st">"media/yolo_birds/birds.yaml"</span>, epochs<span class="op">=</span><span class="dv">50</span>, imgsz<span class="op">=</span><span class="dv">640</span>)</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>    model.save(<span class="st">"models/yolo_birds_final.pt"</span>)</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualizing Ground Truth</span></span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>Before looking at what the model predicts, let's visualize the ground truth bounding boxes — the hand-labeled rectangles that tell us where the bird actually is in each image. This gives us a baseline to compare against and helps us understand what the model is trying to learn.</span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> birds_bbox.<span class="bu">filter</span>(c(<span class="st">"index"</span>) <span class="op">==</span> <span class="st">"test"</span>).head(<span class="dv">9</span>)</span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> <span class="bu">enumerate</span>(sample.iter_rows(named<span class="op">=</span><span class="va">True</span>)):</span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(row[<span class="st">"filepath"</span>])</span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>    x0, y0, x1, y1 <span class="op">=</span> row[<span class="st">"bbox_x0"</span>], row[<span class="st">"bbox_y0"</span>], row[<span class="st">"bbox_x1"</span>], row[<span class="st">"bbox_y1"</span>]</span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>    rect <span class="op">=</span> patches.Rectangle(</span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>        (x0, y0), x1 <span class="op">-</span> x0, y1 <span class="op">-</span> y0,</span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"olive"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(rect)</span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>    ax.set_title(row[<span class="st">"label"</span>], fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Ground Truth Bounding Boxes"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparing Predictions to Ground Truth</span></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>Now we run the trained model on the same images and overlay its predicted bounding boxes (in salmon) alongside the ground truth boxes (in olive). This side-by-side comparison lets us visually assess how well the model is doing. Ideally, the two rectangles should overlap closely — but you'll notice that they rarely match perfectly, and occasionally the model may detect multiple objects or miss the bird entirely.</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>filepaths <span class="op">=</span> sample[<span class="st">"filepath"</span>].to_list()</span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.predict(filepaths, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (result, row) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(results, sample.iter_rows(named<span class="op">=</span><span class="va">True</span>))):</span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(row[<span class="st">"filepath"</span>])</span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>    gt_x0, gt_y0, gt_x1, gt_y1 <span class="op">=</span> row[<span class="st">"bbox_x0"</span>], row[<span class="st">"bbox_y0"</span>], row[<span class="st">"bbox_x1"</span>], row[<span class="st">"bbox_y1"</span>]</span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(patches.Rectangle(</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>        (gt_x0, gt_y0), gt_x1 <span class="op">-</span> gt_x0, gt_y1 <span class="op">-</span> gt_y0,</span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"olive"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> box <span class="kw">in</span> result.boxes.xyxy.tolist():</span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>        x0, y0, x1, y1 <span class="op">=</span> box</span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>        ax.add_patch(patches.Rectangle(</span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>            (x0, y0), x1 <span class="op">-</span> x0, y1 <span class="op">-</span> y0,</span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, edgecolor<span class="op">=</span><span class="st">"salmon"</span>, facecolor<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>        ))</span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a>    ax.set_title(row[<span class="st">"label"</span>], fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Predicted Bounding Boxes"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a><span class="fu">### Generating Predictions on the Full Dataset</span></span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>To evaluate the model quantitatively, we need predictions on every image — not just the nine we visualized. The code below runs the model across the full dataset and collects the top-confidence predicted bounding box for each image into a new DataFrame. We take only the highest-confidence box per image because our dataset has exactly one bird per image, so we're asking: "where does the model think the bird most likely is?"</span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>As with our other notebooks, we cache the results to a Parquet file so that re-running the notebook doesn't require re-computing all the predictions.</span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a>cache_path <span class="op">=</span> Path(<span class="st">"cache/birds_bbox_pred.parquet"</span>)</span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> cache_path.exists():</span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred <span class="op">=</span> pl.read_parquet(cache_path)</span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>    filepaths_all <span class="op">=</span> birds_bbox[<span class="st">"filepath"</span>].to_list()</span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>    results_all <span class="op">=</span> model.predict(filepaths_all, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> result, fp <span class="kw">in</span> <span class="bu">zip</span>(results_all, filepaths_all):</span>
+<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>        boxes <span class="op">=</span> result.boxes.xyxy.tolist()</span>
+<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>        confs <span class="op">=</span> result.boxes.conf.tolist()</span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> boxes:</span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a>            x0, y0, x1, y1 <span class="op">=</span> boxes[<span class="dv">0</span>]</span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>            conf <span class="op">=</span> confs[<span class="dv">0</span>]</span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a>            x0, y0, x1, y1, conf <span class="op">=</span> <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span></span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"filepath"</span>: fp, <span class="st">"pred_x0"</span>: x0, <span class="st">"pred_y0"</span>: y0, <span class="st">"pred_x1"</span>: x1, <span class="st">"pred_y1"</span>: y1, <span class="st">"conf"</span>: conf})</span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred <span class="op">=</span> birds_bbox.join(</span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>        pl.DataFrame(rows, schema<span class="op">=</span>{<span class="st">"filepath"</span>: pl.String, <span class="st">"pred_x0"</span>: pl.Float64, <span class="st">"pred_y0"</span>: pl.Float64, <span class="st">"pred_x1"</span>: pl.Float64, <span class="st">"pred_y1"</span>: pl.Float64, <span class="st">"conf"</span>: pl.Float64}),</span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>        on<span class="op">=</span><span class="st">"filepath"</span></span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>    cache_path.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred.write_parquet(cache_path)</span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>birds_bbox_pred</span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a><span class="fu">### Intersection over Union (IoU)</span></span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>How do we measure whether a predicted bounding box is "correct"? We can't require an exact match — even human annotators would draw slightly different boxes. Instead, we use **Intersection over Union (IoU)**, the standard metric for bounding box quality.</span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a>IoU is the ratio of the area where the predicted and ground truth boxes overlap (the intersection) to the total area covered by both boxes combined (the union). An IoU of 1.0 means perfect overlap; an IoU of 0.0 means the boxes don't overlap at all. The standard threshold for counting a prediction as "correct" is IoU ≥ 0.5, meaning the predicted box must overlap with at least half of the ground truth box's area.</span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a>The computation below calculates the intersection rectangle (by taking the max of the left edges and the min of the right edges), computes its area, and then divides by the union area.</span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a>birds_bbox_iou <span class="op">=</span> (</span>
+<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a>    birds_bbox_pred</span>
+<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a>        pl.max_horizontal(c(<span class="st">"bbox_x0"</span>), c(<span class="st">"pred_x0"</span>)).alias(<span class="st">"inter_x0"</span>),</span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a>        pl.max_horizontal(c(<span class="st">"bbox_y0"</span>), c(<span class="st">"pred_y0"</span>)).alias(<span class="st">"inter_y0"</span>),</span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a>        pl.min_horizontal(c(<span class="st">"bbox_x1"</span>), c(<span class="st">"pred_x1"</span>)).alias(<span class="st">"inter_x1"</span>),</span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a>        pl.min_horizontal(c(<span class="st">"bbox_y1"</span>), c(<span class="st">"pred_y1"</span>)).alias(<span class="st">"inter_y1"</span>),</span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a>        (</span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>            pl.max_horizontal(pl.lit(<span class="fl">0.0</span>), c(<span class="st">"inter_x1"</span>) <span class="op">-</span> c(<span class="st">"inter_x0"</span>)) <span class="op">*</span></span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a>            pl.max_horizontal(pl.lit(<span class="fl">0.0</span>), c(<span class="st">"inter_y1"</span>) <span class="op">-</span> c(<span class="st">"inter_y0"</span>))</span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>        ).alias(<span class="st">"inter_area"</span>),</span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a>        ((c(<span class="st">"bbox_x1"</span>) <span class="op">-</span> c(<span class="st">"bbox_x0"</span>)) <span class="op">*</span> (c(<span class="st">"bbox_y1"</span>) <span class="op">-</span> c(<span class="st">"bbox_y0"</span>))).alias(<span class="st">"gt_area"</span>),</span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>        ((c(<span class="st">"pred_x1"</span>) <span class="op">-</span> c(<span class="st">"pred_x0"</span>)) <span class="op">*</span> (c(<span class="st">"pred_y1"</span>) <span class="op">-</span> c(<span class="st">"pred_y0"</span>))).alias(<span class="st">"pred_area"</span>),</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>        (c(<span class="st">"inter_area"</span>) <span class="op">/</span> (c(<span class="st">"gt_area"</span>) <span class="op">+</span> c(<span class="st">"pred_area"</span>) <span class="op">-</span> c(<span class="st">"inter_area"</span>)))</span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>        .fill_null(<span class="fl">0.0</span>)</span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>        .alias(<span class="st">"iou"</span>)</span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>    .drop([<span class="st">"inter_x0"</span>, <span class="st">"inter_y0"</span>, <span class="st">"inter_x1"</span>, <span class="st">"inter_y1"</span>, <span class="st">"inter_area"</span>, <span class="st">"gt_area"</span>, <span class="st">"pred_area"</span>])</span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>birds_bbox_iou</span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a><span class="fu">### Precision, Recall, and F1</span></span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>Finally, we compute the same classification metrics we've used throughout the course — precision, recall, and F1 — but adapted for bounding box detection. A prediction counts as a **true positive** if the model produced a box with IoU ≥ some threshold against the ground truth. A **false positive** means the model predicted a box but it didn't sufficiently overlap with the true location. A **false negative** means the model failed to locate the bird at all (or its box was too far off). We will write a function for this: </span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_one_metrics(iou_thresh<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> (</span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>        birds_bbox_iou</span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"conf"</span>).is_not_null() <span class="op">&amp;</span> (c(<span class="st">"iou"</span>) <span class="op">&gt;=</span> iou_thresh)).alias(<span class="st">"tp"</span>),</span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"conf"</span>).is_not_null() <span class="op">&amp;</span> (c(<span class="st">"iou"</span>) <span class="op">&lt;</span> iou_thresh)).alias(<span class="st">"fp"</span>),</span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"iou"</span>) <span class="op">&lt;</span> iou_thresh).alias(<span class="st">"fn"</span>),</span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>        .group_by(<span class="st">"index"</span>)</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>        .agg(</span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"tp"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"fp"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>            c(<span class="st">"fn"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"tp"</span>) <span class="op">/</span> (c(<span class="st">"tp"</span>) <span class="op">+</span> c(<span class="st">"fp"</span>))).alias(<span class="st">"precision"</span>),</span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>            (c(<span class="st">"tp"</span>) <span class="op">/</span> (c(<span class="st">"tp"</span>) <span class="op">+</span> c(<span class="st">"fn"</span>))).alias(<span class="st">"recall"</span>),</span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">2</span> <span class="op">*</span> c(<span class="st">"precision"</span>) <span class="op">*</span> c(<span class="st">"recall"</span>) <span class="op">/</span> (c(<span class="st">"precision"</span>) <span class="op">+</span> c(<span class="st">"recall"</span>))).alias(<span class="st">"f1"</span>)</span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>        .with_columns(</span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a>            cutoff <span class="op">=</span> pl.lit(iou_thresh)</span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a>        .sort(<span class="st">"index"</span>)</span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> metrics</span>
+<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_metrics(iou_thresh_list):</span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pl.concat([compute_one_metrics(x) <span class="cf">for</span> x <span class="kw">in</span> iou_thresh_list])</span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>Now, let's compute the function for a large set of cut-off values.</span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> compute_metrics([x <span class="op">/</span> <span class="dv">100</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>, <span class="dv">100</span>)])</span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a>Common cut-off values to care about include 0.5, 0.8, and 0.95:</span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(c.cutoff.is_in([<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.95</span>]))</span>
+<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>    .sort(c.index, c.cutoff)</span>
+<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>We could also visualize the metrics as a function of the cutoff value.</span>
+<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"cutoff"</span>, <span class="st">"recall"</span>))</span>
+<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(color<span class="op">=</span><span class="st">"index"</span>))</span>
+<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-309"><a href="#cb17-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a>    metrics</span>
+<span id="cb17-312"><a href="#cb17-312" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"cutoff"</span>, <span class="st">"f1"</span>))</span>
+<span id="cb17-313"><a href="#cb17-313" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(color<span class="op">=</span><span class="st">"index"</span>))</span>
+<span id="cb17-314"><a href="#cb17-314" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-315"><a href="#cb17-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

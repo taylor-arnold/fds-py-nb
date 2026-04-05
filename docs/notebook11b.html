@@ -425,6 +425,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Notebook20b</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23e</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -456,13 +486,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="fbe41710" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="c3fb5df5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6a33f52e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="da4e52ae" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -477,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="35613512" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="a274b272" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/cities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -487,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="linear-penalization" class="level2">
 <h2 class="anchored" data-anchor-id="linear-penalization">Linear Penalization</h2>
 <p>Our data consists of the average temperature in world cities by month. To simplify the code, I’ve coded the months as mXX rather than their names.</p>
-<div id="3408044f" class="cell" data-execution_count="5">
+<div id="fb9a416b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>weather</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -781,7 +811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>One Month</strong> Throughout, we will try to predict the temperature of a city in June (month 6). Here is a linear regression of using just May (month 5) to do the prediction:</p>
-<div id="066725fc" class="cell" data-execution_count="6">
+<div id="bafd2326" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -829,7 +859,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Two months</strong> Now, what happens if we use May and July? Think about this… Does it make sense that we would use a combination of the two in this way?</p>
-<div id="7866eaf2" class="cell" data-execution_count="7">
+<div id="70444e9a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -882,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Linear Regression (unpenalized)</strong> Now, let’s use all of the months. But, rather than look at the values as a table, we will graph the data over the course of the year.</p>
-<div id="9a65c635" class="cell" data-execution_count="8">
+<div id="ad1da50a" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -911,7 +941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Lasso</strong> Now, what happens if we use the cross-validated lasso regression. Notice what happens to the estimates. Does this make sense based on what you might think from the other models and the data?</p>
-<div id="44811302" class="cell" data-execution_count="9">
+<div id="36e392a2" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -941,7 +971,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Ridge Regression</strong> Here is the cross-validated (almost) ridge regression model.</p>
-<div id="f8680245" class="cell" data-execution_count="10">
+<div id="046f8bc3" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -971,7 +1001,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Elastic Net</strong> And here is the elastic net model, with a ratio of 0.2.</p>
-<div id="e6010509" class="cell" data-execution_count="11">
+<div id="d6ba923a" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>

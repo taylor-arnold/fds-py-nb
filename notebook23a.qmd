@@ -1,0 +1,657 @@
+## Notebook23a
+
+In this notebook we will build a tiny language model from scratch. The process mirrors exactly what happens inside GPT, LLaMA, and every other modern large language model. The only difference is that we are doing so at a scale small enough to train on a laptop in under an hour.
+
+This notebook probably won't run if you try to actually execute the code on Colab, but you can see the output yourself by looking at the solutions. 
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
+import numpy as np
+import polars as pl
+
+from funs import *
+from plotnine import *
+from polars import col as c
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
+
+ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
+```
+
+### Overview
+
+The two big pieces to this task are:
+
+1. **Tokenization** — converting raw text into a sequence of integer IDs that a neural network can consume. We will use `tiktoken`, the same sub-word tokenizer that powers OpenAI's GPT models.
+2. **Next-token prediction** — training a small Transformer decoder to look at a sequence of tokens and predict what comes next. This is the *only* training objective used by GPT-style models.
+
+By the end you will have a model that can accept a short prompt and generate (somewhat coherent) news-like text, all trained on the AG News dataset.
+
+### Setup and Imports
+
+We start by importing everything we need. PyTorch is our deep learning framework, `tiktoken` handles tokenization, and `polars` is how our dataset is stored. On Apple Silicon Macs (M1–M4), PyTorch can use the **MPS** (Metal Performance Shaders) backend to run on the GPU — we detect that here automatically.
+
+```{python}
+#| tags: [noclear]
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
+import tiktoken
+import polars as pl
+import numpy as np
+import math
+import time
+
+device = (
+    torch.device("mps")
+    if torch.backends.mps.is_available()
+    else torch.device("cpu")
+)
+print(f"Using device: {device}")
+```
+
+### Loading the AG News Dataset
+
+Our dataset is a Polars DataFrame with a `text` column containing news articles. Let's load it and take a quick look.
+
+```{python}
+#| tags: [noclear]
+df = agnews
+
+print(f"Number of articles: {df.shape[0]:,}")
+print(f"Columns: {df.columns}")
+print()
+
+# peek at the first few articles
+for row in df.head(3).iter_rows(named=True):
+    snippet = row["text"][:120] + "..."
+    print(snippet)
+    print()
+```
+
+We will concatenate all of the text into one long string and then tokenize the whole thing. The model doesn't care about article boundaries — it just sees a stream of tokens and learns the statistical patterns of English news writing.
+
+```{python}
+#| tags: [noclear]
+corpus = "\n\n".join(df["text"].to_list())
+print(f"Total characters: {len(corpus):,}")
+```
+
+### What Is a Tokenizer?
+
+Before any text reaches a neural network, it must be converted into numbers. The mapping from text to numbers is called **tokenization**, and the choices made here have a profound effect on everything downstream.
+
+There are three broad strategies, each with trade-offs:
+
+- **Character-level**: every character (a, b, c, …) gets its own ID. The vocabulary is tiny (~256 entries), but sequences become very long, and the model has to learn how to spell words from scratch.
+- **Word-level**: every unique word gets its own ID. Sequences are short, but the vocabulary explodes (hundreds of thousands of entries), and any word not seen in training is unknown.
+- **Sub-word**: a middle ground. Common words like "the" stay as single tokens, but rare words are split into meaningful pieces — "tokenization" might become ["token", "ization"]. The vocabulary is manageable (tens of thousands), sequences are reasonably short, and there are no unknown words.
+
+Modern LLMs all use sub-word tokenization. The two most popular algorithms are **Byte Pair Encoding (BPE)** and **SentencePiece** (which can do BPE or Unigram). We'll use `tiktoken`, which implements BPE and is the tokenizer behind GPT-3.5 and GPT-4.
+
+### How Byte Pair Encoding Works
+
+BPE starts with individual bytes (or characters) and iteratively merges the most frequent adjacent pair into a new token. Imagine starting with the word "lowest":
+
+1. Start: `['l', 'o', 'w', 'e', 's', 't']`
+2. If `'e'+'s'` is the most frequent pair in the training corpus, merge → `['l', 'o', 'w', 'es', 't']`
+3. If `'es'+'t'` is next most frequent, merge → `['l', 'o', 'w', 'est']`
+4. If `'l'+'o'` is next, merge → `['lo', 'w', 'est']`
+5. Continue until the desired vocabulary size is reached.
+
+The result is a fixed vocabulary of sub-word pieces learned from data. Common words and fragments become single tokens; rare words get split into smaller known pieces. This is how a model can handle any input text without ever encountering an "unknown" token.
+
+### Loading tiktoken
+
+`tiktoken` comes with several pre-trained tokenizer encodings. We'll use `cl100k_base`, the encoding used by GPT-4 and GPT-3.5-turbo. It has a vocabulary of about 100,000 tokens.
+
+```{python}
+#| tags: [noclear]
+enc = tiktoken.get_encoding("cl100k_base")
+
+print(f"Vocabulary size: {enc.n_vocab:,}")
+```
+
+That's our entire tokenizer — pre-trained and ready to use. No fitting, no training. The BPE merge rules were learned on a massive text corpus by OpenAI, and we simply reuse them.
+
+### Encoding: Text to Token IDs
+
+The core operation is `.encode()`, which converts a string into a list of integer token IDs.
+
+```{python}
+#| tags: [noclear]
+sample = "The stock market often crashes on Tuesdays."
+
+token_ids = enc.encode(sample)
+print(f"Original text:  '{sample}'")
+print(f"Token IDs:      {token_ids}")
+print(f"Number of tokens: {len(token_ids)}")
+```
+
+Each integer maps to a sub-word piece in the vocabulary. Let's look at exactly which piece of text each token represents.
+
+```{python}
+#| tags: [noclear]
+for tid in token_ids:
+    piece = enc.decode([tid])
+    print(f"  ID {tid:>6d} → '{piece}'")
+```
+
+Notice a few things:
+
+- Common words like "The" and "on" are single tokens.
+- Some tokens include a leading space — the tokenizer treats the space as part of the token rather than a separate character.
+- Longer or less common words may be split into sub-word pieces.
+
+### Decoding: Token IDs Back to Text
+
+Decoding is the reverse — `.decode()` converts a list of token IDs back into a string. This round-trip is lossless: you always get back exactly the original text.
+
+```{python}
+#| tags: [noclear]
+reconstructed = enc.decode(token_ids)
+print(f"Decoded text: '{reconstructed}'")
+print(f"Perfect round-trip: {reconstructed == sample}")
+```
+
+### Exploring Tokenization Behavior
+
+Let's build some intuition for how the tokenizer handles different kinds of text. Sub-word tokenizers have interesting behaviors with numbers, punctuation, capitalization, and rare words.
+
+```{python}
+#| tags: [noclear]
+examples = [
+    "Hello world",
+    "antidisestablishmentarianism",
+    "GPT-4 is a large language model",
+    "The price is $42,567.89",
+    "日本語のテキスト",
+    "aaaaaaaaaa",
+    "   lots   of   spaces   ",
+    "def fibonacci(n): return n if n < 2 else fibonacci(n-1) + fibonacci(n-2)",
+]
+
+for text in examples:
+    ids = enc.encode(text)
+    pieces = [enc.decode([i]) for i in ids]
+    print(f"Text:   '{text}'")
+    print(f"Tokens: {pieces}")
+    print(f"Count:  {len(ids)}")
+    print()
+```
+
+Some things to watch for in the output above:
+
+- **Long rare words** get split into many sub-word pieces.
+- **Numbers** are often tokenized digit-by-digit or in small groups — the tokenizer has no concept of numeric magnitude.
+- **Non-Latin scripts** may consume many tokens per character.
+- **Repeated characters** show the BPE merge pattern clearly.
+- **Code** is tokenized reasonably well because the training corpus included lots of code.
+
+### Token Counts vs. Word Counts
+
+A practical question: how many tokens does our corpus contain? This matters because it determines how much data the model has to learn from.
+
+```{python}
+#| tags: [noclear]
+all_tokens = enc.encode(corpus)
+
+n_tokens = len(all_tokens)
+n_words = len(corpus.split())
+n_chars = len(corpus)
+
+print(f"Characters:         {n_chars:>12,}")
+print(f"Whitespace words:   {n_words:>12,}")
+print(f"Tokens (tiktoken):  {n_tokens:>12,}")
+print(f"Tokens per word:    {n_tokens / n_words:>12.2f}")
+print(f"Chars per token:    {n_chars / n_tokens:>12.2f}")
+```
+
+For English text, the typical ratio is about 1.2–1.5 tokens per word. Each token represents roughly 3–4 characters on average.
+
+### Preparing Training Data
+
+Now we turn the token stream into training examples for next-token prediction. The idea is simple: take a sliding window of `context_length` tokens as input, and use the *next* token as the target. The model learns to predict position $t+1$ given positions $1$ through $t$.
+
+For efficiency, we pack this into a PyTorch `Dataset` that returns chunks of `context_length + 1` tokens — the first `context_length` are the input, the last `context_length` are the target (shifted by one position).
+
+One practical detail: with a stride of 1, every single token position becomes a training example — which gives us millions of highly overlapping examples and makes training painfully slow. Instead we use a `stride` parameter so that consecutive examples start 16 tokens apart. This cuts the dataset size by 16x with very little loss of information, since adjacent examples still overlap by 48 out of 64 tokens.
+
+```{python}
+#| tags: [noclear]
+CONTEXT_LENGTH = 64
+STRIDE = 16  # step between consecutive training examples
+
+class TokenDataset(Dataset):
+    def __init__(self, tokens, context_length, stride=1):
+        self.tokens = torch.tensor(tokens, dtype=torch.long)
+        self.context_length = context_length
+        self.stride = stride
+        # number of valid starting positions
+        self.n_examples = (len(tokens) - context_length - 1) // stride + 1
+
+    def __len__(self):
+        return self.n_examples
+
+    def __getitem__(self, idx):
+        start = idx * self.stride
+        chunk = self.tokens[start : start + self.context_length + 1]
+        x = chunk[:-1]   # input:  tokens 0 .. context_length-1
+        y = chunk[1:]     # target: tokens 1 .. context_length
+        return x, y
+```
+
+Let's look at a single training example to make sure this is clear.
+
+```{python}
+#| tags: [noclear]
+dataset = TokenDataset(all_tokens, CONTEXT_LENGTH, stride=STRIDE)
+print(f"Total training examples: {len(dataset):,}")
+print()
+
+x_sample, y_sample = dataset[0]
+print("Input tokens (x): ", x_sample[:8].tolist(), "...")
+print("Target tokens (y):", y_sample[:8].tolist(), "...")
+print()
+print("In other words, given this text:")
+print(f"  '{enc.decode(x_sample[:8].tolist())}'")
+print("the model should predict this next token:")
+print(f"  '{enc.decode([y_sample[7].item()])}'")
+```
+
+Notice that `y` is simply `x` shifted one position to the right. At every position, the model predicts the next token — so a single sequence of 64 tokens gives us 64 training predictions.
+
+### Splitting Into Train and Validation
+
+We hold out the last 10% of the corpus as a validation set. Since language modeling is sequential, we don't shuffle — we just split at a fixed point.
+
+```{python}
+#| tags: [noclear]
+split_idx = int(0.9 * len(all_tokens))
+train_tokens = all_tokens[:split_idx]
+val_tokens = all_tokens[split_idx:]
+
+train_dataset = TokenDataset(train_tokens, CONTEXT_LENGTH, stride=STRIDE)
+val_dataset = TokenDataset(val_tokens, CONTEXT_LENGTH, stride=STRIDE)
+
+print(f"Train examples: {len(train_dataset):,}")
+print(f"Val examples:   {len(val_dataset):,}")
+```
+
+```{python}
+#| tags: [noclear]
+BATCH_SIZE = 128
+
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=BATCH_SIZE,
+    shuffle=True,
+    drop_last=True,
+)
+
+val_loader = DataLoader(
+    val_dataset,
+    batch_size=BATCH_SIZE,
+    shuffle=False,
+    drop_last=True,
+)
+
+print(f"Train batches per epoch: {len(train_loader):,}")
+print(f"Val batches per epoch:   {len(val_loader):,}")
+```
+
+### The Model: A Tiny Transformer Decoder
+
+Now we build the actual language model. This is a **decoder-only Transformer** — the same architecture used by GPT. The key components are:
+
+- **Token embeddings**: a lookup table that maps each token ID to a dense vector.
+- **Positional embeddings**: a lookup table that encodes the position of each token in the sequence.
+- **Transformer blocks**: each block contains multi-head causal self-attention and a feedforward network, with layer normalization and residual connections.
+- **Output head**: a linear layer that projects back to the vocabulary size, producing logits for the next token.
+
+The word "causal" is important: the attention mask ensures that position $t$ can only attend to positions $\leq t$, never to the future. This is what makes the model autoregressive.
+
+```{python}
+#| tags: [noclear]
+class CausalSelfAttention(nn.Module):
+    def __init__(self, d_model, n_heads, context_length, dropout=0.1):
+        super().__init__()
+        assert d_model % n_heads == 0
+        self.n_heads = n_heads
+        self.head_dim = d_model // n_heads
+
+        self.qkv = nn.Linear(d_model, 3 * d_model)
+        self.proj = nn.Linear(d_model, d_model)
+        self.dropout = nn.Dropout(dropout)
+
+        # causal mask: True means "do NOT attend"
+        mask = torch.triu(
+            torch.ones(context_length, context_length, dtype=torch.bool),
+            diagonal=1,
+        )
+        self.register_buffer("mask", mask)
+
+    def forward(self, x):
+        B, T, C = x.shape
+        qkv = self.qkv(x)
+        q, k, v = qkv.chunk(3, dim=-1)
+
+        # reshape to (B, n_heads, T, head_dim)
+        q = q.view(B, T, self.n_heads, self.head_dim).transpose(1, 2)
+        k = k.view(B, T, self.n_heads, self.head_dim).transpose(1, 2)
+        v = v.view(B, T, self.n_heads, self.head_dim).transpose(1, 2)
+
+        # scaled dot-product attention with causal mask
+        att = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_dim)
+        att = att.masked_fill(self.mask[:T, :T], float("-inf"))
+        att = F.softmax(att, dim=-1)
+        att = self.dropout(att)
+
+        out = att @ v  # (B, n_heads, T, head_dim)
+        out = out.transpose(1, 2).contiguous().view(B, T, C)
+        return self.proj(out)
+```
+
+The feedforward network is a simple two-layer MLP with a GELU activation — this is standard in modern Transformers.
+
+```{python}
+#| tags: [noclear]
+class FeedForward(nn.Module):
+    def __init__(self, d_model, dropout=0.1):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(d_model, 4 * d_model),
+            nn.GELU(),
+            nn.Linear(4 * d_model, d_model),
+            nn.Dropout(dropout),
+        )
+
+    def forward(self, x):
+        return self.net(x)
+```
+
+A single Transformer block combines attention and feedforward with residual connections and layer normalization (using the "pre-norm" convention, where we normalize *before* each sub-layer).
+
+```{python}
+#| tags: [noclear]
+class TransformerBlock(nn.Module):
+    def __init__(self, d_model, n_heads, context_length, dropout=0.1):
+        super().__init__()
+        self.ln1 = nn.LayerNorm(d_model)
+        self.attn = CausalSelfAttention(d_model, n_heads, context_length, dropout)
+        self.ln2 = nn.LayerNorm(d_model)
+        self.ff = FeedForward(d_model, dropout)
+
+    def forward(self, x):
+        x = x + self.attn(self.ln1(x))
+        x = x + self.ff(self.ln2(x))
+        return x
+```
+
+Finally, we assemble the full model by stacking token embeddings, positional embeddings, several Transformer blocks, and an output projection.
+
+```{python}
+#| tags: [noclear]
+class BabyLLM(nn.Module):
+    def __init__(self, vocab_size, d_model, n_heads, n_layers, context_length, dropout=0.1):
+        super().__init__()
+        self.context_length = context_length
+        self.token_emb = nn.Embedding(vocab_size, d_model)
+        self.pos_emb = nn.Embedding(context_length, d_model)
+        self.drop = nn.Dropout(dropout)
+
+        self.blocks = nn.Sequential(*[
+            TransformerBlock(d_model, n_heads, context_length, dropout)
+            for _ in range(n_layers)
+        ])
+
+        self.ln_final = nn.LayerNorm(d_model)
+        self.head = nn.Linear(d_model, vocab_size, bias=False)
+
+        # weight tying: share the token embedding weights with the output head
+        self.head.weight = self.token_emb.weight
+
+        self.apply(self._init_weights)
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            nn.init.normal_(module.weight, mean=0.0, std=0.02)
+            if module.bias is not None:
+                nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            nn.init.normal_(module.weight, mean=0.0, std=0.02)
+
+    def forward(self, idx):
+        B, T = idx.shape
+        tok = self.token_emb(idx)                          # (B, T, d_model)
+        pos = self.pos_emb(torch.arange(T, device=idx.device))  # (T, d_model)
+        x = self.drop(tok + pos)
+        x = self.blocks(x)
+        x = self.ln_final(x)
+        logits = self.head(x)                              # (B, T, vocab_size)
+        return logits
+```
+
+### Model Configuration
+
+Let's instantiate the model with modest hyperparameters. With 4 layers, 4 attention heads, and an embedding dimension of 128, this is a genuinely tiny model — but it contains every architectural element of GPT.
+
+```{python}
+#| tags: [noclear]
+VOCAB_SIZE = enc.n_vocab
+D_MODEL = 128
+N_HEADS = 4
+N_LAYERS = 4
+DROPOUT = 0.1
+
+model = BabyLLM(
+    vocab_size=VOCAB_SIZE,
+    d_model=D_MODEL,
+    n_heads=N_HEADS,
+    n_layers=N_LAYERS,
+    context_length=CONTEXT_LENGTH,
+    dropout=DROPOUT,
+).to(device)
+
+n_params = sum(p.numel() for p in model.parameters())
+print(f"Model parameters: {n_params:,}")
+print()
+print(model)
+```
+
+### Training Loop
+
+We train with the AdamW optimizer and a cosine learning rate schedule with warmup — both standard choices for Transformer training. The loss function is cross-entropy over the vocabulary at every position in the sequence.
+
+```{python}
+#| tags: [noclear]
+EPOCHS = 3
+LEARNING_RATE = 3e-4
+WARMUP_STEPS = 100
+
+optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.01)
+total_steps = EPOCHS * len(train_loader)
+
+def lr_schedule(step):
+    # linear warmup
+    if step < WARMUP_STEPS:
+        return step / WARMUP_STEPS
+    # cosine decay
+    progress = (step - WARMUP_STEPS) / (total_steps - WARMUP_STEPS)
+    return 0.5 * (1.0 + math.cos(math.pi * progress))
+
+scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_schedule)
+```
+
+Now the actual training, here is the function that we will use to train the model using our AG News data.
+
+```{python}
+#| tags: [noclear]
+
+def train_epoch(model, loader, optimizer, scheduler, epoch):
+    model.train()
+    total_loss = 0
+    n_batches = 0
+    start = time.time()
+
+    for i, (x, y) in enumerate(loader):
+        x, y = x.to(device), y.to(device)
+
+        logits = model(x)                          # (B, T, vocab_size)
+        loss = F.cross_entropy(
+            logits.view(-1, logits.size(-1)),      # flatten to (B*T, vocab_size)
+            y.view(-1),                            # flatten to (B*T,)
+        )
+
+        optimizer.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        optimizer.step()
+        scheduler.step()
+
+        total_loss += loss.item()
+        n_batches += 1
+
+        if (i + 1) % 100 == 0:
+            avg = total_loss / n_batches
+            elapsed = time.time() - start
+            print(
+                f"  Epoch {epoch+1} | batch {i+1:>5d}/{len(loader)} | "
+                f"loss {avg:.4f} | lr {scheduler.get_last_lr()[0]:.2e} | "
+                f"{elapsed:.1f}s"
+            )
+
+    return total_loss / n_batches
+
+
+@torch.no_grad()
+def eval_model(model, loader):
+    model.eval()
+    total_loss = 0
+    n_batches = 0
+    for x, y in loader:
+        x, y = x.to(device), y.to(device)
+        logits = model(x)
+        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), y.view(-1))
+        total_loss += loss.item()
+        n_batches += 1
+    return total_loss / n_batches
+```
+
+Now we either load previously saved weights or run the full training loop. This way, if you've already trained the model once, re-rendering the document skips straight to generation.
+
+```{python}
+#| tags: [noclear]
+import os
+
+MODEL_PATH = "models/baby_llm.pth"
+
+if os.path.exists(MODEL_PATH):
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
+    print(f"Loaded saved weights from {MODEL_PATH}")
+else:
+    print(f"No saved weights found at {MODEL_PATH} — training from scratch.")
+    print()
+
+    for epoch in range(EPOCHS):
+        train_loss = train_epoch(model, train_loader, optimizer, scheduler, epoch)
+        val_loss = eval_model(model, val_loader)
+        print(f"Epoch {epoch+1}/{EPOCHS} — train loss: {train_loss:.4f}, val loss: {val_loss:.4f}")
+        print()
+
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    torch.save(model.state_dict(), MODEL_PATH)
+    print(f"Saved model weights to {MODEL_PATH}")
+```
+
+### Generating Text
+
+The payoff: we can now generate text from our baby LLM. Generation works by feeding a prompt through the model, sampling from the predicted distribution over the next token, appending that token to the sequence, and repeating.
+
+We use **top-k sampling** with a **temperature** parameter. Temperature controls randomness (lower = more conservative, higher = more creative), and top-k restricts sampling to only the $k$ most probable tokens at each step.
+
+```{python}
+#| tags: [noclear]
+@torch.no_grad()
+def generate(model, prompt, max_new_tokens=100, temperature=0.8, top_k=40):
+    model.eval()
+    tokens = enc.encode(prompt)
+    tokens = torch.tensor(tokens, dtype=torch.long, device=device).unsqueeze(0)
+
+    for _ in range(max_new_tokens):
+        # crop to context length if necessary
+        context = tokens[:, -CONTEXT_LENGTH:]
+        logits = model(context)
+        logits = logits[:, -1, :] / temperature   # last position only
+
+        # top-k filtering
+        if top_k is not None:
+            v, _ = torch.topk(logits, top_k)
+            logits[logits < v[:, [-1]]] = float("-inf")
+
+        probs = F.softmax(logits, dim=-1)
+        next_token = torch.multinomial(probs, num_samples=1)
+        tokens = torch.cat([tokens, next_token], dim=1)
+
+    return enc.decode(tokens[0].tolist())
+```
+
+Let's try a few prompts. Remember, this model has only seen AG News articles, so it will tend to generate news-like text.
+
+```{python}
+#| tags: [noclear]
+prompts = [
+    "The stock market",
+    "Scientists have discovered",
+    "The president announced",
+    "In a surprising move",
+]
+
+for prompt in prompts:
+    print(f"Prompt: '{prompt}'")
+    print(generate(model, prompt, max_new_tokens=20))
+    print()
+    print("---")
+    print()
+```
+
+### What Just Happened?
+
+Let's step back and appreciate what we built:
+
+1. **Tokenization**: We used a pre-trained BPE tokenizer (`tiktoken`) to convert raw English text into integer sequences. This is the exact same tokenizer used by GPT-4 — our tokens are GPT-4's tokens.
+
+2. **Architecture**: We built a decoder-only Transformer with causal self-attention, positional embeddings, and weight tying. Every architectural choice here is the same as in real LLMs — we just used smaller dimensions.
+
+3. **Training objective**: The model learned to predict the next token given all preceding tokens in a sequence. This single objective — next-token prediction — is the *only* thing GPT-style models are trained on during pre-training. Everything else (instruction following, reasoning, conversation) comes later via fine-tuning.
+
+4. **Generation**: We generated text autoregressively — one token at a time, feeding each prediction back as input. The quality is limited by our tiny model size and small training set, but the *mechanism* is identical to how ChatGPT generates its responses.
+
+The difference between our baby LLM and GPT-4 is one of scale, not kind: more parameters, more layers, more data, more compute, and additional training stages (RLHF, instruction tuning). But the foundation is exactly what you see here.

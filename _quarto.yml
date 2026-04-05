@@ -102,6 +102,16 @@ website:
         text: Notebook20a
       - file: notebook20b.qmd
         text: Notebook20b
+      - file: notebook23a.qmd
+        text: notebook23a
+      - file: notebook23b.qmd
+        text: notebook23b
+      - file: notebook23c.qmd
+        text: notebook23c
+      - file: notebook23d.qmd
+        text: notebook23d
+      - file: notebook23e.qmd
+        text: notebook23e
 
 format:
   html:

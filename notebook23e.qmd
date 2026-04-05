@@ -1,0 +1,232 @@
+## Notebook23e
+
+In this notebook, we will ...
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! from ultralytics import YOLO
+```
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
+import numpy as np
+import polars as pl
+
+from funs import *
+from plotnine import *
+from polars import col as c
+
+from PIL import Image
+import cv2
+from ultralytics import YOLO
+
+theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
+
+ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| eval: false
+#| tags: [noclear]
+!wget -nc https://humanitiesdata.org/media/fsac.tar -P media/
+!tar -xf media/fsac.tar -C media/
+!mkdir -p models
+!wget -q -nc -P models https://humanitiesdata.org/models/yolo11n-seg.pt
+!wget -q -nc -P models https://humanitiesdata.org/models/yolo11n-pose.pt
+!wget -q -nc -P models https://humanitiesdata.org/models/yolo11n.pt
+```
+
+```{python}
+#| tags: [noclear]
+fsac = pl.read_csv(ub + "data/fsac.csv")
+```
+
+### Part 1: Introduction
+
+For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II. 
+
+```{python}
+fsac
+```
+
+Here are a few examples:
+
+```{python}
+(
+    fsac
+    .head(12)
+    .pipe(DSImage.plot_image_grid, ncol=4)
+)
+```
+
+### Part 2: Object Detection
+
+We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.
+
+```{python}
+model_obj = YOLO("media/yolo11n.pt")
+```
+
+We can apply the model to one of our images with the following:
+
+```{python}
+preds = model_obj.predict("media/fsac/1a35210v.jpg", verbose=False)[0]
+```
+
+Here is the structured data:
+
+```{python}
+preds.boxes.cls.tolist()
+```
+
+And, more interestingly, a visualization of the people found by the algorithm:
+
+```{python}
+rgb = cv2.cvtColor(preds.plot(), cv2.COLOR_BGR2RGB)
+pil_img = Image.fromarray(rgb)
+pil_img
+```
+
+We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.
+
+```{python}
+results = []
+
+for row in fsac.iter_rows(named=True):
+    preds = model_obj.predict(row["filepath"], verbose=False)[0]
+
+    if preds.boxes is None:
+        results.append(0)
+        continue
+
+    cls_ids = preds.boxes.cls.tolist()
+    names = preds.names
+    results.append(sum(names[int(c)] == "person" for c in cls_ids))
+
+
+fsac = fsac.with_columns(people = pl.Series(results))
+fsac
+```
+
+Here are some of the photos with the fewest people:
+
+```{python}
+(
+    fsac
+    .sort(c.people)
+    .head(12)
+    .pipe(DSImage.plot_image_grid, ncol=4)
+)
+```
+
+And, conversely, those with the most:
+
+```{python}
+(
+    fsac
+    .sort(c.people, descending=True)
+    .head(12)
+    .pipe(DSImage.plot_image_grid, ncol=4)
+)
+```
+
+And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.
+
+```{python}
+(
+    fsac
+    .pipe(ggplot, aes("reorder(photographer, people)", "people"))
+    + geom_boxplot()
+    + coord_flip()
+)
+```
+
+Some photographers specialized in intimate portraits with one or two subjects, while others captured street scenes and public gatherings. These patterns emerge clearly from the automated analysis.
+
+### Part 3: Segmentation
+
+Object detection tells us where objects are, but treats each detection as a simple rectangle. Instance segmentation goes further by identifying the exact pixels that belong to each object. Instead of a bounding box, segmentation produces a mask—a binary image where pixels belonging to the object are marked as 1 and background pixels as 0.
+
+YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.
+
+```{python}
+model_seg = YOLO("models/yolo11n-seg.pt")
+pred = model_seg.predict("media/fsac/1a35210v.jpg", verbose=False)[0]
+
+rgb = cv2.cvtColor(pred.plot(), cv2.COLOR_BGR2RGB)
+pil_img = Image.fromarray(rgb)
+pil_img
+```
+
+The visualization now shows colored masks overlaid on detected objects, precisely delineating their boundaries rather than just enclosing them in rectangles. This pixel-level precision enables more nuanced analysis of image content.
+
+We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.
+
+```{python}
+results = []
+for row in fsac.iter_rows(named=True):
+    preds = model_seg.predict(row["filepath"], verbose=False)[0]
+
+    cls_ids = preds.boxes.cls.to("cpu").numpy().astype(int)
+    names = preds.names
+
+    person_idx = np.where(np.array([names[c] == "person" for c in cls_ids]))[0]
+    if person_idx.size == 0:
+        results.append(0.0)
+        continue
+
+    masks = preds.masks.data[person_idx]
+    union = masks.any(dim=0)
+
+    coverage = union.float().mean().item()
+    results.append(coverage * 100)
+
+
+fsac = fsac.with_columns(people_prop=pl.Series(results))
+fsac
+```
+
+The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.
+
+```{python}
+(
+    fsac
+    .sort(c.people_prop, descending=True)
+    .head(8)
+    .pipe(DSImage.plot_image_grid, ncol=4, label_name="people_prop")
+)
+```
+
+These tend to be closely framed portraits where the subject fills most of the frame. The segmentation-based measure captures a different aspect of photographic style than simple person counts: a single person in a tight portrait can have higher coverage than a dozen people in a wide street scene.
+
+The relationship between person coverage and photographer reveals stylistic differences.
+
+```{python}
+(
+    fsac
+    .group_by(c.photographer)
+    .agg(avg_people = c.people_prop.mean())
+    .pipe(ggplot, aes("avg_people", "reorder(photographer, avg_people)"))
+    + geom_point()
+)
+```
+
+Photographers with higher average coverage tended toward portrait work, while those with lower coverage may have focused on environmental scenes, architecture, or wide-angle documentary shots. The measure is not always inversely related to person count; some photographers captured groups in intimate settings with high coverage, while others documented single individuals in expansive landscapes.

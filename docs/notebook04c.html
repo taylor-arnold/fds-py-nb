@@ -422,6 +422,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Notebook20b</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23e</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -453,13 +483,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="7f1bed51" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="9507afcd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="82bd5f26" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="94757a02" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -473,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5b4f9ceb" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="438939f4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rva <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/flightsrva_flights.csv.gz"</span>, null_values<span class="op">=</span>[<span class="st">"NA"</span>])</span>
@@ -486,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>In this notebook, we will analyze flight data from Richmond International Airport (RVA). The <code>rva</code> dataset contains information about individual flights including departure time, destination, delays, distance, and air time. We also have lookup tables: <code>airport</code> contains geographic information about airports, and <code>airline</code> maps carrier codes to airline names.</p>
 <p>Count the number of flights departing at each hour of the day and create a line plot showing this pattern.</p>
-<div id="7a0ee824" class="cell" data-execution_count="5">
+<div id="671ecccd" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -509,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Modify the previous plot to color the line using the hex color <code>#F54927</code>.</p>
-<div id="ae577b75" class="cell" data-execution_count="6">
+<div id="21254487" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -532,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now create a version that shows a separate line for each month, with each month in a different color.</p>
-<div id="a0286734" class="cell" data-execution_count="7">
+<div id="85b16540" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -556,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each destination, compute the average air time and average distance. Create a scatter plot of these averages and add a linear trend line.</p>
-<div id="957d604f" class="cell" data-execution_count="8">
+<div id="d7b6118b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -581,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each destination, compute the proportion of flights that arrive more than 15 minutes late and the proportion that depart more than 15 minutes late. Filter to destinations with more than 1000 flights. Create a scatter plot of these delay rates with destination labels.</p>
-<div id="cb866617" class="cell" data-execution_count="9">
+<div id="21e64489" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -607,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For each hour of the day, compute the proportion of flights that arrive more than 30 minutes late. Create a scatter plot showing this pattern.</p>
-<div id="f6a1dd57" class="cell" data-execution_count="10">
+<div id="094f22e1" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -629,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Count the number of flights for each carrier and join this to the airline table to get the full airline names. Create a horizontal bar chart of flight counts, ordered from fewest to most flights.</p>
-<div id="ddd28d3f" class="cell" data-execution_count="11">
+<div id="38c07e0a" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -651,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Count the number of flights to each destination and join this to the airport table to get the latitude and longitude of each destination. Create a scatter plot using longitude and latitude as the axes, with point sizes proportional to the number of flights. This creates a simple map of where flights from Richmond go.</p>
-<div id="d197e46b" class="cell" data-execution_count="12">
+<div id="a1465eb9" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>

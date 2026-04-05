@@ -530,12 +530,11 @@ class DSImage:
         # Write YAML config
         data_yaml = ROOT / yaml_name
         data_yaml.write_text(
-            f"""path: {ROOT.resolve()}
-    train: images/train
-    val: images/val
-    names:
-      0: {class_name}
-    """
+            f"path: {ROOT.resolve()}\n"
+            "train: images/train\n"
+            "val: images/val\n"
+            "names:\n"
+            f"  0: {class_name}\n"
         )
 
         return data_yaml

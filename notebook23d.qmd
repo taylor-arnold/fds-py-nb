@@ -1,0 +1,284 @@
+## Notebook23d
+
+In this notebook, we will see how to build a model to detect bounding boxes in a collection of images of birds.
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
+import numpy as np
+import polars as pl
+from ultralytics import YOLO
+
+from funs import *
+from plotnine import *
+from polars import col as c
+theme_set(theme_minimal())
+
+ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+birds = pl.read_parquet(ub + "data/birds10.parquet")
+birds_bbox = pl.read_csv(ub + "data/birds_1000.csv")
+```
+
+### Data Format
+
+So far in this course, our image tasks have involved assigning a single label to an entire image. For example, "this is a cardinal" or "this is a blue jay." Bounding box detection is a fundamentally different task: instead of classifying the whole image, the model must locate *where* in the image the object of interest appears and draw a tight rectangle around it. This means each training example needs four numbers (the coordinates of the box corners) in addition to a class label.
+
+Our bird bounding box dataset contains exactly this information. Each row specifies an image filepath, a species label, and four coordinates defining the corners of a bounding box around the bird.
+
+```{python}
+birds_bbox
+```
+
+### Preparing the YOLO Dataset
+
+We will use **YOLO** (You Only Look Once), one of the most widely used object detection architectures. YOLO expects training data in a very specific directory layout: images and label files organized into `train`, `val`, and `test` splits, with a YAML configuration file that describes the dataset. Rather than setting this up by hand, we use a helper function that takes our Polars DataFrame and reorganizes it into the format YOLO requires.
+
+```{python}
+DSImage.prepare_yolo_dataset(
+    birds_bbox, root="media/yolo_birds", yaml_name="birds.yaml"
+)
+```
+
+### Training the Model
+
+YOLO models are typically not trained from scratch. Instead, we start from a **pre-trained checkpoint** (`yolo11n.pt`) that has already learned general-purpose visual features on a large dataset, and then fine-tune it on our bird data. This is the same transfer learning idea we've seen before — the early layers already know how to detect edges, textures, and shapes, so we only need to teach the final layers what a "cardinal" or "blue jay" bounding box looks like.
+
+Training runs for 50 epochs over our dataset. Since this takes a while, we wrap it in a try/except block that first checks for previously saved weights. If the trained model file already exists, we load it directly; otherwise we train from scratch and save the result.
+
+```{python}
+try:
+    model = YOLO("models/yolo_birds_final.pt")
+except FileNotFoundError:
+    model = YOLO("models/yolo11n.pt")
+    model.train(data="media/yolo_birds/birds.yaml", epochs=50, imgsz=640)
+    model.save("models/yolo_birds_final.pt")
+```
+
+### Visualizing Ground Truth
+
+Before looking at what the model predicts, let's visualize the ground truth bounding boxes — the hand-labeled rectangles that tell us where the bird actually is in each image. This gives us a baseline to compare against and helps us understand what the model is trying to learn.
+
+```{python}
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from PIL import Image
+
+sample = birds_bbox.filter(c("index") == "test").head(9)
+
+fig, axes = plt.subplots(3, 3, figsize=(9, 9))
+axes = axes.ravel()
+
+for i, row in enumerate(sample.iter_rows(named=True)):
+    img = Image.open(row["filepath"])
+    ax = axes[i]
+    ax.imshow(img)
+    x0, y0, x1, y1 = row["bbox_x0"], row["bbox_y0"], row["bbox_x1"], row["bbox_y1"]
+    rect = patches.Rectangle(
+        (x0, y0), x1 - x0, y1 - y0,
+        linewidth=2, edgecolor="olive", facecolor="none"
+    )
+    ax.add_patch(rect)
+    ax.set_title(row["label"], fontsize=8)
+    ax.axis("off")
+
+fig.suptitle("Ground Truth Bounding Boxes", fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+
+### Comparing Predictions to Ground Truth
+
+Now we run the trained model on the same images and overlay its predicted bounding boxes (in salmon) alongside the ground truth boxes (in olive). This side-by-side comparison lets us visually assess how well the model is doing. Ideally, the two rectangles should overlap closely — but you'll notice that they rarely match perfectly, and occasionally the model may detect multiple objects or miss the bird entirely.
+
+```{python}
+fig, axes = plt.subplots(3, 3, figsize=(9, 9))
+axes = axes.ravel()
+
+filepaths = sample["filepath"].to_list()
+results = model.predict(filepaths, verbose=False)
+
+for i, (result, row) in enumerate(zip(results, sample.iter_rows(named=True))):
+    img = Image.open(row["filepath"])
+    ax = axes[i]
+    ax.imshow(img)
+    gt_x0, gt_y0, gt_x1, gt_y1 = row["bbox_x0"], row["bbox_y0"], row["bbox_x1"], row["bbox_y1"]
+    ax.add_patch(patches.Rectangle(
+        (gt_x0, gt_y0), gt_x1 - gt_x0, gt_y1 - gt_y0,
+        linewidth=2, edgecolor="olive", facecolor="none"
+    ))
+    for box in result.boxes.xyxy.tolist():
+        x0, y0, x1, y1 = box
+        ax.add_patch(patches.Rectangle(
+            (x0, y0), x1 - x0, y1 - y0,
+            linewidth=2, edgecolor="salmon", facecolor="none"
+        ))
+    ax.set_title(row["label"], fontsize=8)
+    ax.axis("off")
+
+fig.suptitle("Predicted Bounding Boxes", fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+
+### Generating Predictions on the Full Dataset
+
+To evaluate the model quantitatively, we need predictions on every image — not just the nine we visualized. The code below runs the model across the full dataset and collects the top-confidence predicted bounding box for each image into a new DataFrame. We take only the highest-confidence box per image because our dataset has exactly one bird per image, so we're asking: "where does the model think the bird most likely is?"
+
+As with our other notebooks, we cache the results to a Parquet file so that re-running the notebook doesn't require re-computing all the predictions.
+
+```{python}
+cache_path = Path("cache/birds_bbox_pred.parquet")
+
+if cache_path.exists():
+    birds_bbox_pred = pl.read_parquet(cache_path)
+else:
+    filepaths_all = birds_bbox["filepath"].to_list()
+    results_all = model.predict(filepaths_all, verbose=False)
+
+    rows = []
+    for result, fp in zip(results_all, filepaths_all):
+        boxes = result.boxes.xyxy.tolist()
+        confs = result.boxes.conf.tolist()
+        if boxes:
+            x0, y0, x1, y1 = boxes[0]
+            conf = confs[0]
+        else:
+            x0, y0, x1, y1, conf = None, None, None, None, None
+        rows.append({"filepath": fp, "pred_x0": x0, "pred_y0": y0, "pred_x1": x1, "pred_y1": y1, "conf": conf})
+
+    birds_bbox_pred = birds_bbox.join(
+        pl.DataFrame(rows, schema={"filepath": pl.String, "pred_x0": pl.Float64, "pred_y0": pl.Float64, "pred_x1": pl.Float64, "pred_y1": pl.Float64, "conf": pl.Float64}),
+        on="filepath"
+    )
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    birds_bbox_pred.write_parquet(cache_path)
+
+birds_bbox_pred
+```
+
+### Intersection over Union (IoU)
+
+How do we measure whether a predicted bounding box is "correct"? We can't require an exact match — even human annotators would draw slightly different boxes. Instead, we use **Intersection over Union (IoU)**, the standard metric for bounding box quality.
+
+IoU is the ratio of the area where the predicted and ground truth boxes overlap (the intersection) to the total area covered by both boxes combined (the union). An IoU of 1.0 means perfect overlap; an IoU of 0.0 means the boxes don't overlap at all. The standard threshold for counting a prediction as "correct" is IoU ≥ 0.5, meaning the predicted box must overlap with at least half of the ground truth box's area.
+
+The computation below calculates the intersection rectangle (by taking the max of the left edges and the min of the right edges), computes its area, and then divides by the union area.
+
+```{python}
+birds_bbox_iou = (
+    birds_bbox_pred
+    .with_columns(
+        pl.max_horizontal(c("bbox_x0"), c("pred_x0")).alias("inter_x0"),
+        pl.max_horizontal(c("bbox_y0"), c("pred_y0")).alias("inter_y0"),
+        pl.min_horizontal(c("bbox_x1"), c("pred_x1")).alias("inter_x1"),
+        pl.min_horizontal(c("bbox_y1"), c("pred_y1")).alias("inter_y1"),
+    )
+    .with_columns(
+        (
+            pl.max_horizontal(pl.lit(0.0), c("inter_x1") - c("inter_x0")) *
+            pl.max_horizontal(pl.lit(0.0), c("inter_y1") - c("inter_y0"))
+        ).alias("inter_area"),
+        ((c("bbox_x1") - c("bbox_x0")) * (c("bbox_y1") - c("bbox_y0"))).alias("gt_area"),
+        ((c("pred_x1") - c("pred_x0")) * (c("pred_y1") - c("pred_y0"))).alias("pred_area"),
+    )
+    .with_columns(
+        (c("inter_area") / (c("gt_area") + c("pred_area") - c("inter_area")))
+        .fill_null(0.0)
+        .alias("iou")
+    )
+    .drop(["inter_x0", "inter_y0", "inter_x1", "inter_y1", "inter_area", "gt_area", "pred_area"])
+)
+
+birds_bbox_iou
+```
+
+### Precision, Recall, and F1
+
+Finally, we compute the same classification metrics we've used throughout the course — precision, recall, and F1 — but adapted for bounding box detection. A prediction counts as a **true positive** if the model produced a box with IoU ≥ some threshold against the ground truth. A **false positive** means the model predicted a box but it didn't sufficiently overlap with the true location. A **false negative** means the model failed to locate the bird at all (or its box was too far off). We will write a function for this: 
+
+```{python}
+def compute_one_metrics(iou_thresh=0.5):
+    metrics = (
+        birds_bbox_iou
+        .with_columns(
+            (c("conf").is_not_null() & (c("iou") >= iou_thresh)).alias("tp"),
+            (c("conf").is_not_null() & (c("iou") < iou_thresh)).alias("fp"),
+            (c("iou") < iou_thresh).alias("fn"),
+        )
+        .group_by("index")
+        .agg(
+            c("tp").sum(),
+            c("fp").sum(),
+            c("fn").sum(),
+        )
+        .with_columns(
+            (c("tp") / (c("tp") + c("fp"))).alias("precision"),
+            (c("tp") / (c("tp") + c("fn"))).alias("recall"),
+        )
+        .with_columns(
+            (2 * c("precision") * c("recall") / (c("precision") + c("recall"))).alias("f1")
+        )
+        .with_columns(
+            cutoff = pl.lit(iou_thresh)
+        )
+        .sort("index")
+    )
+    return metrics
+
+def compute_metrics(iou_thresh_list):
+    return pl.concat([compute_one_metrics(x) for x in iou_thresh_list])
+```
+
+Now, let's compute the function for a large set of cut-off values.
+
+```{python}
+metrics = compute_metrics([x / 100 for x in range(3, 100)])
+```
+
+Common cut-off values to care about include 0.5, 0.8, and 0.95:
+
+```{python}
+(
+    metrics
+    .filter(c.cutoff.is_in([0.5, 0.8, 0.95]))
+    .sort(c.index, c.cutoff)
+)
+```
+
+We could also visualize the metrics as a function of the cutoff value.
+
+```{python}
+(
+    metrics
+    .pipe(ggplot, aes("cutoff", "recall"))
+    + geom_line(aes(color="index"))
+)
+```
+
+```{python}
+(
+    metrics
+    .pipe(ggplot, aes("cutoff", "f1"))
+    + geom_line(aes(color="index"))
+)
+```
+

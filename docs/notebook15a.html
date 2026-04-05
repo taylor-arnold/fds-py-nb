@@ -425,6 +425,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Notebook20b</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23a</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23b</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23c</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23d</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebook23e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">notebook23e</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -456,13 +486,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="cfec9b4c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="994305c2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a5391bac" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="3cd7a38c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -482,13 +512,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="eef7e50b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="77f16609" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/agnews_pca.parquet"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amazon <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/amazon_pca.parquet"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>inet <span class="op">=</span> pl.read_parquet(<span class="st">"data/imagenette_1000.parquet"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>woof <span class="op">=</span> pl.read_parquet(<span class="st">"data/imagewoof_1000.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>inet <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/imagenette_1000.parquet"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>woof <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/imagewoof_1000.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -497,19 +527,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We will start by plotting the UMAP embedding of the E5 embedding vectors from the AG News dataset. How much structure is captured already by the embedding vectors?</li>
 </ol>
-<div id="998bdaff" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="88a6eef3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    agnews</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .sample(n<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -522,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Now let’s fit a shallow logistic regression model on the data.</li>
 </ol>
-<div id="b3a9d058" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="45b4e89f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -532,28 +563,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1780: FutureWarning: The default value for l1_ratios will change from None to (0.0,) in version 1.10. From version 1.10 onwards, only array-like with values in [0, 1] will be allowed, None will be forbidden. To avoid this warning, explicitly set a value, e.g. l1_ratios=(0,).
+/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
 <li>And look at its score and confusion matrix. Notice that it does as well, but not noticably better, than our previous model. It’s likely the miscategorized examples are really edge cases between the two categories.</li>
 </ol>
-<div id="f303632a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="e6819ef2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>{'train': 0.9093708016121809, 'test': 0.9064524555903867}</code></pre>
+<pre><code>{'train': 0.9093708016121809, 'test': 0.9064002089864159}</code></pre>
 </div>
 </div>
-<div id="f07d9b96" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="052f5390" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -572,19 +603,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Let’s move on to another dataset, this time product categories from Amazon reviews. We’ll mostly follow the same steps again, starting with a plot:</li>
 </ol>
-<div id="b303ac12" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="2f006d4f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    amazon</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .sample(n<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -597,7 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Next, build a model.</li>
 </ol>
-<div id="1c482273" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
+<div id="47a61f35" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -607,19 +639,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1780: FutureWarning: The default value for l1_ratios will change from None to (0.0,) in version 1.10. From version 1.10 onwards, only array-like with values in [0, 1] will be allowed, None will be forbidden. To avoid this warning, explicitly set a value, e.g. l1_ratios=(0,).
+/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
 </div>
 </div>
 <ol start="6" type="1">
 <li>And then see how well it performs. This is clearly a harder task from the classification rates. Was that also clear from the plot above?</li>
 </ol>
-<div id="9eb6be25" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
+<div id="465c8859" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -628,7 +660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>{'train': 0.784, 'test': 0.7473333333333333}</code></pre>
 </div>
 </div>
-<div id="24f5d626" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="ecc35e3a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -647,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Let’s move on to an image dataset. Here we have a subset of the Imagenet challenge, consisting of only 10 fairly distinct categories. Let’s build a similar plot as with the text data using the <code>vit</code> embeddings. How does this compare to the embedding of the text. Why do you think this is?</li>
 </ol>
-<div id="dbca7376" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="b57599ba" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -672,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Now, fit a model on the image data to predict the category.</li>
 </ol>
-<div id="6caa1ed1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="24cda27f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -682,33 +714,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit],</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        max_iter<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge</code></pre>
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1780: FutureWarning: The default value for l1_ratios will change from None to (0.0,) in version 1.10. From version 1.10 onwards, only array-like with values in [0, 1] will be allowed, None will be forbidden. To avoid this warning, explicitly set a value, e.g. l1_ratios=(0,).
+/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
 </div>
 </div>
 <ol start="10" type="1">
 <li>Check the score and confusion matrix. Does this surprise you at all?</li>
 </ol>
-<div id="20966076" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="3d852660" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>{'train': 0.9957142857142857, 'test': 0.9933333333333333}</code></pre>
+<pre><code>{'train': 1.0, 'test': 0.9933333333333333}</code></pre>
 </div>
 </div>
-<div id="c9d90fe5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
+<div id="ba566c1f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -724,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Alright, so we can do classification very well with the training data. What about <em>without</em> training data? Run the following the get the embedding of the phrase “a photo of a French horn”.</li>
 </ol>
-<div id="d45cce99" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
+<div id="76588686" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
@@ -743,7 +772,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>And visualize how related the embeddings are to the labels. How well do you think the unsupervised model will do at prediction with no training data?</li>
 </ol>
-<div id="0a4c3f35" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
+<div id="2f18d83e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -767,7 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li>Now, we will embed the name of each label and store all of the embeddings.</li>
 </ol>
-<div id="7a250b6e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="444fd191" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
@@ -784,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="14" type="1">
 <li>And then compute all of the pairs of scores, recording how often the top score corresponds to the correct label.</li>
 </ol>
-<div id="d0b6c4f3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="09fcc792" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -832,7 +861,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="15" type="1">
 <li>We will finish by doing the same thing with a dataset that is considered more difficult. It’s another subset of Imagenet, called called Image Woof, with 10 select labels from the set. However, this time we have ten dog breeds, which all look much more similar that the Imagenette categories. So, in theory, this will be harder. Let’s see a plot.</li>
 </ol>
-<div id="32ab1af6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
+<div id="e3df2266" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -857,7 +886,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="16" type="1">
 <li>Well, let’s make a model, which should be fairly good again given the plot.</li>
 </ol>
-<div id="3c1ceaa6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
+<div id="087ff043" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -867,24 +896,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit],</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        max_iter<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_sag.py:348: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge</code></pre>
+<pre><code>/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1780: FutureWarning: The default value for l1_ratios will change from None to (0.0,) in version 1.10. From version 1.10 onwards, only array-like with values in [0, 1] will be allowed, None will be forbidden. To avoid this warning, explicitly set a value, e.g. l1_ratios=(0,).
+/Users/admin/gh/fds-py-nb/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.</code></pre>
 </div>
 </div>
 <ol start="17" type="1">
 <li>And verify that it does work well:</li>
 </ol>
-<div id="4df8f6cc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
+<div id="fdd3c54a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -893,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>{'train': 0.9928571428571429, 'test': 0.9666666666666667}</code></pre>
 </div>
 </div>
-<div id="34e75420" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
+<div id="f8f743e2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -909,7 +935,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="18" type="1">
 <li>Now, as before, let’s try a zero-shot model. We’ll start with a visualization of the phrase “a golden retriever”.</li>
 </ol>
-<div id="6bf53f1b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
+<div id="ed6db574" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
@@ -928,7 +954,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="19" type="1">
 <li>Looking at the visualization, how does this this compare to the example from before?</li>
 </ol>
-<div id="75fc369b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
+<div id="b166baa4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -952,7 +978,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="20" type="1">
 <li>As before, let’s try to get an embedding of each text and build a full zero-shot model</li>
 </ol>
-<div id="29548304" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
+<div id="fc773015" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
@@ -969,7 +995,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="21" type="1">
 <li>Now, evaluate how well the model works:</li>
 </ol>
-<div id="5f047450" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
+<div id="85e2dd46" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1014,7 +1040,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="22" type="1">
 <li>You should see that the model does well, but isn’t perfect. This final visualization shows that the SigLIP space is not a perfect model of the categories of dog breeds. The reason is that it isn’t trained to categorize that way; it encodes a lot of other information that degrades the performance for simple category look-ups.</li>
 </ol>
-<div id="463ed448" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
+<div id="a9a03053" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1537,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span>
 <span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
@@ -1569,8 +1595,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
 <span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/agnews_pca.parquet"</span>)</span>
 <span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a>amazon <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/amazon_pca.parquet"</span>)</span>
-<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a>inet <span class="op">=</span> pl.read_parquet(<span class="st">"data/imagenette_1000.parquet"</span>)</span>
-<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>woof <span class="op">=</span> pl.read_parquet(<span class="st">"data/imagewoof_1000.parquet"</span>)</span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a>inet <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/imagenette_1000.parquet"</span>)</span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>woof <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/imagewoof_1000.parquet"</span>)</span>
 <span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### AG News</span></span>
@@ -1581,28 +1607,28 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
 <span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>    agnews</span>
-<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
-<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Now let's fit a shallow logistic regression model on the data.</span>
-<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
-<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>    agnews</span>
-<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
-<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
-<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
-<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>    .sample(n<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Now let's fit a shallow logistic regression model on the data.</span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>    agnews</span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
 <span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
 <span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1629,28 +1655,28 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb37-118"><a href="#cb37-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
 <span id="cb37-119"><a href="#cb37-119" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb37-120"><a href="#cb37-120" aria-hidden="true" tabindex="-1"></a>    amazon</span>
-<span id="cb37-121"><a href="#cb37-121" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-122"><a href="#cb37-122" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb37-123"><a href="#cb37-123" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
-<span id="cb37-124"><a href="#cb37-124" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-125"><a href="#cb37-125" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-126"><a href="#cb37-126" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb37-127"><a href="#cb37-127" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb37-128"><a href="#cb37-128" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-129"><a href="#cb37-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-130"><a href="#cb37-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-131"><a href="#cb37-131" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Next, build a model.</span>
-<span id="cb37-132"><a href="#cb37-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-135"><a href="#cb37-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-136"><a href="#cb37-136" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-137"><a href="#cb37-137" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
-<span id="cb37-138"><a href="#cb37-138" aria-hidden="true" tabindex="-1"></a>    amazon</span>
-<span id="cb37-139"><a href="#cb37-139" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-140"><a href="#cb37-140" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
-<span id="cb37-141"><a href="#cb37-141" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
-<span id="cb37-142"><a href="#cb37-142" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
-<span id="cb37-143"><a href="#cb37-143" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb37-144"><a href="#cb37-144" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
+<span id="cb37-121"><a href="#cb37-121" aria-hidden="true" tabindex="-1"></a>    .sample(n<span class="op">=</span><span class="dv">5000</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb37-122"><a href="#cb37-122" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-123"><a href="#cb37-123" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb37-124"><a href="#cb37-124" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5]</span>
+<span id="cb37-125"><a href="#cb37-125" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-126"><a href="#cb37-126" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-127"><a href="#cb37-127" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb37-128"><a href="#cb37-128" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb37-129"><a href="#cb37-129" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-130"><a href="#cb37-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-131"><a href="#cb37-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-132"><a href="#cb37-132" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Next, build a model.</span>
+<span id="cb37-133"><a href="#cb37-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-136"><a href="#cb37-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-137"><a href="#cb37-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-138"><a href="#cb37-138" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
+<span id="cb37-139"><a href="#cb37-139" aria-hidden="true" tabindex="-1"></a>    amazon</span>
+<span id="cb37-140"><a href="#cb37-140" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-141"><a href="#cb37-141" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
+<span id="cb37-142"><a href="#cb37-142" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
+<span id="cb37-143"><a href="#cb37-143" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.e5],</span>
+<span id="cb37-144"><a href="#cb37-144" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
 <span id="cb37-145"><a href="#cb37-145" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
 <span id="cb37-146"><a href="#cb37-146" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb37-147"><a href="#cb37-147" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1697,214 +1723,216 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb37-196"><a href="#cb37-196" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
 <span id="cb37-197"><a href="#cb37-197" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit],</span>
 <span id="cb37-198"><a href="#cb37-198" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb37-199"><a href="#cb37-199" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb37-200"><a href="#cb37-200" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb37-201"><a href="#cb37-201" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-202"><a href="#cb37-202" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-203"><a href="#cb37-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-204"><a href="#cb37-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-205"><a href="#cb37-205" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Check the score and confusion matrix. Does this surprise you at all?</span>
-<span id="cb37-206"><a href="#cb37-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-209"><a href="#cb37-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-210"><a href="#cb37-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-211"><a href="#cb37-211" aria-hidden="true" tabindex="-1"></a>model.score()</span>
-<span id="cb37-212"><a href="#cb37-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-213"><a href="#cb37-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-216"><a href="#cb37-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-217"><a href="#cb37-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-218"><a href="#cb37-218" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span>
-<span id="cb37-219"><a href="#cb37-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-220"><a href="#cb37-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-221"><a href="#cb37-221" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>Alright, so we can do classification very well with the training data. What about *without* training data? Run the following the get the embedding of the phrase "a photo of a French horn".</span>
-<span id="cb37-222"><a href="#cb37-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-225"><a href="#cb37-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-226"><a href="#cb37-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-227"><a href="#cb37-227" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
-<span id="cb37-228"><a href="#cb37-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-229"><a href="#cb37-229" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
-<span id="cb37-230"><a href="#cb37-230" aria-hidden="true" tabindex="-1"></a>    pl.DataFrame({<span class="st">"text"</span>: [<span class="st">"a photo of a French horn"</span>]})</span>
-<span id="cb37-231"><a href="#cb37-231" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-232"><a href="#cb37-232" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
-<span id="cb37-233"><a href="#cb37-233" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text,</span>
-<span id="cb37-234"><a href="#cb37-234" aria-hidden="true" tabindex="-1"></a>            return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
-<span id="cb37-235"><a href="#cb37-235" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb37-236"><a href="#cb37-236" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-237"><a href="#cb37-237" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-238"><a href="#cb37-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-239"><a href="#cb37-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-240"><a href="#cb37-240" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>And visualize how related the embeddings are to the labels. How well do you think the unsupervised model will do at prediction with no training data?</span>
-<span id="cb37-241"><a href="#cb37-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-244"><a href="#cb37-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-245"><a href="#cb37-245" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-246"><a href="#cb37-246" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-247"><a href="#cb37-247" aria-hidden="true" tabindex="-1"></a>    inet</span>
-<span id="cb37-248"><a href="#cb37-248" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
-<span id="cb37-249"><a href="#cb37-249" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-250"><a href="#cb37-250" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
-<span id="cb37-251"><a href="#cb37-251" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-252"><a href="#cb37-252" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"sim_score"</span>, <span class="st">"label"</span>))</span>
-<span id="cb37-253"><a href="#cb37-253" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
-<span id="cb37-254"><a href="#cb37-254" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-255"><a href="#cb37-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-256"><a href="#cb37-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-257"><a href="#cb37-257" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>Now, we will embed the name of each label and store all of the embeddings.</span>
-<span id="cb37-258"><a href="#cb37-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-261"><a href="#cb37-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-262"><a href="#cb37-262" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-263"><a href="#cb37-263" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
-<span id="cb37-264"><a href="#cb37-264" aria-hidden="true" tabindex="-1"></a>    inet</span>
-<span id="cb37-265"><a href="#cb37-265" aria-hidden="true" tabindex="-1"></a>    .select(text <span class="op">=</span> c.label.unique())</span>
-<span id="cb37-266"><a href="#cb37-266" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-267"><a href="#cb37-267" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
-<span id="cb37-268"><a href="#cb37-268" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text, return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
-<span id="cb37-269"><a href="#cb37-269" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb37-270"><a href="#cb37-270" aria-hidden="true" tabindex="-1"></a>    )    </span>
-<span id="cb37-271"><a href="#cb37-271" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-272"><a href="#cb37-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-273"><a href="#cb37-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-274"><a href="#cb37-274" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>And then compute all of the pairs of scores, recording how often the top score corresponds to the correct label.</span>
-<span id="cb37-275"><a href="#cb37-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-278"><a href="#cb37-278" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-279"><a href="#cb37-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-280"><a href="#cb37-280" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-281"><a href="#cb37-281" aria-hidden="true" tabindex="-1"></a>    inet</span>
-<span id="cb37-282"><a href="#cb37-282" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
-<span id="cb37-283"><a href="#cb37-283" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-284"><a href="#cb37-284" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
-<span id="cb37-285"><a href="#cb37-285" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-286"><a href="#cb37-286" aria-hidden="true" tabindex="-1"></a>    .sort(c.sim_score, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-287"><a href="#cb37-287" aria-hidden="true" tabindex="-1"></a>    .group_by(c.filepath)</span>
-<span id="cb37-288"><a href="#cb37-288" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
-<span id="cb37-289"><a href="#cb37-289" aria-hidden="true" tabindex="-1"></a>    .select(class_rate <span class="op">=</span> (c.label <span class="op">==</span> c.text).mean())</span>
-<span id="cb37-290"><a href="#cb37-290" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-291"><a href="#cb37-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-292"><a href="#cb37-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-293"><a href="#cb37-293" aria-hidden="true" tabindex="-1"></a><span class="fu">### Image Woof</span></span>
-<span id="cb37-294"><a href="#cb37-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-295"><a href="#cb37-295" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>We will finish by doing the same thing with a dataset that is considered more difficult. It's another subset of Imagenet, called called Image Woof, with 10 select labels from the set. However, this time we have ten dog breeds, which all look much more similar that the Imagenette categories. So, in theory, this will be harder. Let's see a plot.</span>
-<span id="cb37-296"><a href="#cb37-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-299"><a href="#cb37-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-300"><a href="#cb37-300" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-301"><a href="#cb37-301" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-302"><a href="#cb37-302" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-303"><a href="#cb37-303" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-304"><a href="#cb37-304" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb37-305"><a href="#cb37-305" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit]</span>
-<span id="cb37-306"><a href="#cb37-306" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-307"><a href="#cb37-307" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-308"><a href="#cb37-308" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb37-309"><a href="#cb37-309" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb37-310"><a href="#cb37-310" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-311"><a href="#cb37-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-312"><a href="#cb37-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-313"><a href="#cb37-313" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Well, let's make a model, which should be fairly good again given the plot.</span>
-<span id="cb37-314"><a href="#cb37-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-317"><a href="#cb37-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-318"><a href="#cb37-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-319"><a href="#cb37-319" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
-<span id="cb37-320"><a href="#cb37-320" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-321"><a href="#cb37-321" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-322"><a href="#cb37-322" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
-<span id="cb37-323"><a href="#cb37-323" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
-<span id="cb37-324"><a href="#cb37-324" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit],</span>
-<span id="cb37-325"><a href="#cb37-325" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
-<span id="cb37-326"><a href="#cb37-326" aria-hidden="true" tabindex="-1"></a>        l1_ratios<span class="op">=</span>[<span class="dv">0</span>],</span>
-<span id="cb37-327"><a href="#cb37-327" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span></span>
-<span id="cb37-328"><a href="#cb37-328" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-329"><a href="#cb37-329" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-330"><a href="#cb37-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-331"><a href="#cb37-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-332"><a href="#cb37-332" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>And verify that it does work well:</span>
+<span id="cb37-199"><a href="#cb37-199" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span>,</span>
+<span id="cb37-200"><a href="#cb37-200" aria-hidden="true" tabindex="-1"></a>        max_iter<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb37-201"><a href="#cb37-201" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb37-202"><a href="#cb37-202" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-203"><a href="#cb37-203" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-204"><a href="#cb37-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-205"><a href="#cb37-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-206"><a href="#cb37-206" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Check the score and confusion matrix. Does this surprise you at all?</span>
+<span id="cb37-207"><a href="#cb37-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-210"><a href="#cb37-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-211"><a href="#cb37-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-212"><a href="#cb37-212" aria-hidden="true" tabindex="-1"></a>model.score()</span>
+<span id="cb37-213"><a href="#cb37-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-214"><a href="#cb37-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-217"><a href="#cb37-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-218"><a href="#cb37-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-219"><a href="#cb37-219" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span>
+<span id="cb37-220"><a href="#cb37-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-221"><a href="#cb37-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-222"><a href="#cb37-222" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>Alright, so we can do classification very well with the training data. What about *without* training data? Run the following the get the embedding of the phrase "a photo of a French horn".</span>
+<span id="cb37-223"><a href="#cb37-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-226"><a href="#cb37-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-227"><a href="#cb37-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-228"><a href="#cb37-228" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
+<span id="cb37-229"><a href="#cb37-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-230"><a href="#cb37-230" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
+<span id="cb37-231"><a href="#cb37-231" aria-hidden="true" tabindex="-1"></a>    pl.DataFrame({<span class="st">"text"</span>: [<span class="st">"a photo of a French horn"</span>]})</span>
+<span id="cb37-232"><a href="#cb37-232" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-233"><a href="#cb37-233" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
+<span id="cb37-234"><a href="#cb37-234" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text,</span>
+<span id="cb37-235"><a href="#cb37-235" aria-hidden="true" tabindex="-1"></a>            return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
+<span id="cb37-236"><a href="#cb37-236" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-237"><a href="#cb37-237" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-238"><a href="#cb37-238" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-239"><a href="#cb37-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-240"><a href="#cb37-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-241"><a href="#cb37-241" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>And visualize how related the embeddings are to the labels. How well do you think the unsupervised model will do at prediction with no training data?</span>
+<span id="cb37-242"><a href="#cb37-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-245"><a href="#cb37-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-246"><a href="#cb37-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-247"><a href="#cb37-247" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-248"><a href="#cb37-248" aria-hidden="true" tabindex="-1"></a>    inet</span>
+<span id="cb37-249"><a href="#cb37-249" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
+<span id="cb37-250"><a href="#cb37-250" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-251"><a href="#cb37-251" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
+<span id="cb37-252"><a href="#cb37-252" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-253"><a href="#cb37-253" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"sim_score"</span>, <span class="st">"label"</span>))</span>
+<span id="cb37-254"><a href="#cb37-254" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb37-255"><a href="#cb37-255" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-256"><a href="#cb37-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-257"><a href="#cb37-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-258"><a href="#cb37-258" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>Now, we will embed the name of each label and store all of the embeddings.</span>
+<span id="cb37-259"><a href="#cb37-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-262"><a href="#cb37-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-263"><a href="#cb37-263" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-264"><a href="#cb37-264" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
+<span id="cb37-265"><a href="#cb37-265" aria-hidden="true" tabindex="-1"></a>    inet</span>
+<span id="cb37-266"><a href="#cb37-266" aria-hidden="true" tabindex="-1"></a>    .select(text <span class="op">=</span> c.label.unique())</span>
+<span id="cb37-267"><a href="#cb37-267" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-268"><a href="#cb37-268" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
+<span id="cb37-269"><a href="#cb37-269" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text, return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
+<span id="cb37-270"><a href="#cb37-270" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-271"><a href="#cb37-271" aria-hidden="true" tabindex="-1"></a>    )    </span>
+<span id="cb37-272"><a href="#cb37-272" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-273"><a href="#cb37-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-274"><a href="#cb37-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-275"><a href="#cb37-275" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>And then compute all of the pairs of scores, recording how often the top score corresponds to the correct label.</span>
+<span id="cb37-276"><a href="#cb37-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-279"><a href="#cb37-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-280"><a href="#cb37-280" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-281"><a href="#cb37-281" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-282"><a href="#cb37-282" aria-hidden="true" tabindex="-1"></a>    inet</span>
+<span id="cb37-283"><a href="#cb37-283" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
+<span id="cb37-284"><a href="#cb37-284" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-285"><a href="#cb37-285" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
+<span id="cb37-286"><a href="#cb37-286" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-287"><a href="#cb37-287" aria-hidden="true" tabindex="-1"></a>    .sort(c.sim_score, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-288"><a href="#cb37-288" aria-hidden="true" tabindex="-1"></a>    .group_by(c.filepath)</span>
+<span id="cb37-289"><a href="#cb37-289" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb37-290"><a href="#cb37-290" aria-hidden="true" tabindex="-1"></a>    .select(class_rate <span class="op">=</span> (c.label <span class="op">==</span> c.text).mean())</span>
+<span id="cb37-291"><a href="#cb37-291" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-292"><a href="#cb37-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-293"><a href="#cb37-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-294"><a href="#cb37-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### Image Woof</span></span>
+<span id="cb37-295"><a href="#cb37-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-296"><a href="#cb37-296" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>We will finish by doing the same thing with a dataset that is considered more difficult. It's another subset of Imagenet, called called Image Woof, with 10 select labels from the set. However, this time we have ten dog breeds, which all look much more similar that the Imagenette categories. So, in theory, this will be harder. Let's see a plot.</span>
+<span id="cb37-297"><a href="#cb37-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-300"><a href="#cb37-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-301"><a href="#cb37-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-302"><a href="#cb37-302" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-303"><a href="#cb37-303" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-304"><a href="#cb37-304" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-305"><a href="#cb37-305" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb37-306"><a href="#cb37-306" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit]</span>
+<span id="cb37-307"><a href="#cb37-307" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-308"><a href="#cb37-308" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-309"><a href="#cb37-309" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb37-310"><a href="#cb37-310" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb37-311"><a href="#cb37-311" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-312"><a href="#cb37-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-313"><a href="#cb37-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-314"><a href="#cb37-314" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Well, let's make a model, which should be fairly good again given the plot.</span>
+<span id="cb37-315"><a href="#cb37-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-318"><a href="#cb37-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-319"><a href="#cb37-319" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-320"><a href="#cb37-320" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
+<span id="cb37-321"><a href="#cb37-321" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-322"><a href="#cb37-322" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-323"><a href="#cb37-323" aria-hidden="true" tabindex="-1"></a>        DSSklearn.logistic_regression_cv,</span>
+<span id="cb37-324"><a href="#cb37-324" aria-hidden="true" tabindex="-1"></a>        target<span class="op">=</span>c.label,</span>
+<span id="cb37-325"><a href="#cb37-325" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.vit],</span>
+<span id="cb37-326"><a href="#cb37-326" aria-hidden="true" tabindex="-1"></a>        stratify<span class="op">=</span>c.label,</span>
+<span id="cb37-327"><a href="#cb37-327" aria-hidden="true" tabindex="-1"></a>        solver<span class="op">=</span><span class="st">"saga"</span>,</span>
+<span id="cb37-328"><a href="#cb37-328" aria-hidden="true" tabindex="-1"></a>        max_iter<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb37-329"><a href="#cb37-329" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb37-330"><a href="#cb37-330" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-331"><a href="#cb37-331" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-332"><a href="#cb37-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-333"><a href="#cb37-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-336"><a href="#cb37-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-337"><a href="#cb37-337" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-338"><a href="#cb37-338" aria-hidden="true" tabindex="-1"></a>model.score()</span>
-<span id="cb37-339"><a href="#cb37-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-340"><a href="#cb37-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-343"><a href="#cb37-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-344"><a href="#cb37-344" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-345"><a href="#cb37-345" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span>
-<span id="cb37-346"><a href="#cb37-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-347"><a href="#cb37-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-348"><a href="#cb37-348" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>Now, as before, let's try a zero-shot model. We'll start with a visualization of the phrase "a golden retriever". </span>
+<span id="cb37-334"><a href="#cb37-334" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>And verify that it does work well:</span>
+<span id="cb37-335"><a href="#cb37-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-338"><a href="#cb37-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-339"><a href="#cb37-339" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-340"><a href="#cb37-340" aria-hidden="true" tabindex="-1"></a>model.score()</span>
+<span id="cb37-341"><a href="#cb37-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-342"><a href="#cb37-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-345"><a href="#cb37-345" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-346"><a href="#cb37-346" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-347"><a href="#cb37-347" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span>
+<span id="cb37-348"><a href="#cb37-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-349"><a href="#cb37-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-352"><a href="#cb37-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-353"><a href="#cb37-353" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-354"><a href="#cb37-354" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
-<span id="cb37-355"><a href="#cb37-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-356"><a href="#cb37-356" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
-<span id="cb37-357"><a href="#cb37-357" aria-hidden="true" tabindex="-1"></a>    pl.DataFrame({<span class="st">"text"</span>: [<span class="st">"a golden retriever"</span>]})</span>
-<span id="cb37-358"><a href="#cb37-358" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-359"><a href="#cb37-359" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
-<span id="cb37-360"><a href="#cb37-360" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text,</span>
-<span id="cb37-361"><a href="#cb37-361" aria-hidden="true" tabindex="-1"></a>            return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
-<span id="cb37-362"><a href="#cb37-362" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb37-363"><a href="#cb37-363" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-364"><a href="#cb37-364" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-365"><a href="#cb37-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-366"><a href="#cb37-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-367"><a href="#cb37-367" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>Looking at the visualization, how does this this compare to the example from before?</span>
+<span id="cb37-350"><a href="#cb37-350" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>Now, as before, let's try a zero-shot model. We'll start with a visualization of the phrase "a golden retriever". </span>
+<span id="cb37-351"><a href="#cb37-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-354"><a href="#cb37-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-355"><a href="#cb37-355" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-356"><a href="#cb37-356" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
+<span id="cb37-357"><a href="#cb37-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-358"><a href="#cb37-358" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
+<span id="cb37-359"><a href="#cb37-359" aria-hidden="true" tabindex="-1"></a>    pl.DataFrame({<span class="st">"text"</span>: [<span class="st">"a golden retriever"</span>]})</span>
+<span id="cb37-360"><a href="#cb37-360" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-361"><a href="#cb37-361" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
+<span id="cb37-362"><a href="#cb37-362" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text,</span>
+<span id="cb37-363"><a href="#cb37-363" aria-hidden="true" tabindex="-1"></a>            return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
+<span id="cb37-364"><a href="#cb37-364" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-365"><a href="#cb37-365" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-366"><a href="#cb37-366" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-367"><a href="#cb37-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-368"><a href="#cb37-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-371"><a href="#cb37-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-372"><a href="#cb37-372" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-373"><a href="#cb37-373" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-374"><a href="#cb37-374" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-375"><a href="#cb37-375" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
-<span id="cb37-376"><a href="#cb37-376" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-377"><a href="#cb37-377" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
-<span id="cb37-378"><a href="#cb37-378" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-379"><a href="#cb37-379" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"sim_score"</span>, <span class="st">"label"</span>))</span>
-<span id="cb37-380"><a href="#cb37-380" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
-<span id="cb37-381"><a href="#cb37-381" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-382"><a href="#cb37-382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-383"><a href="#cb37-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-384"><a href="#cb37-384" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>As before, let's try to get an embedding of each text and build a full zero-shot model</span>
+<span id="cb37-369"><a href="#cb37-369" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>Looking at the visualization, how does this this compare to the example from before?</span>
+<span id="cb37-370"><a href="#cb37-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-373"><a href="#cb37-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-374"><a href="#cb37-374" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-375"><a href="#cb37-375" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-376"><a href="#cb37-376" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-377"><a href="#cb37-377" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
+<span id="cb37-378"><a href="#cb37-378" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-379"><a href="#cb37-379" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
+<span id="cb37-380"><a href="#cb37-380" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-381"><a href="#cb37-381" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"sim_score"</span>, <span class="st">"label"</span>))</span>
+<span id="cb37-382"><a href="#cb37-382" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb37-383"><a href="#cb37-383" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-384"><a href="#cb37-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-385"><a href="#cb37-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-388"><a href="#cb37-388" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-389"><a href="#cb37-389" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-390"><a href="#cb37-390" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
-<span id="cb37-391"><a href="#cb37-391" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-392"><a href="#cb37-392" aria-hidden="true" tabindex="-1"></a>    .select(text <span class="op">=</span> c.label.unique())</span>
-<span id="cb37-393"><a href="#cb37-393" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-394"><a href="#cb37-394" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
-<span id="cb37-395"><a href="#cb37-395" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text, return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
-<span id="cb37-396"><a href="#cb37-396" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb37-397"><a href="#cb37-397" aria-hidden="true" tabindex="-1"></a>    )    </span>
-<span id="cb37-398"><a href="#cb37-398" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-399"><a href="#cb37-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-400"><a href="#cb37-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-401"><a href="#cb37-401" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>Now, evaluate how well the model works:</span>
+<span id="cb37-386"><a href="#cb37-386" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>As before, let's try to get an embedding of each text and build a full zero-shot model</span>
+<span id="cb37-387"><a href="#cb37-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-390"><a href="#cb37-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-391"><a href="#cb37-391" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-392"><a href="#cb37-392" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
+<span id="cb37-393"><a href="#cb37-393" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-394"><a href="#cb37-394" aria-hidden="true" tabindex="-1"></a>    .select(text <span class="op">=</span> c.label.unique())</span>
+<span id="cb37-395"><a href="#cb37-395" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-396"><a href="#cb37-396" aria-hidden="true" tabindex="-1"></a>        siglip_txt <span class="op">=</span> c.text.map_elements(</span>
+<span id="cb37-397"><a href="#cb37-397" aria-hidden="true" tabindex="-1"></a>            siglip.embed_text, return_dtype<span class="op">=</span>pl.List(pl.Float32)</span>
+<span id="cb37-398"><a href="#cb37-398" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-399"><a href="#cb37-399" aria-hidden="true" tabindex="-1"></a>    )    </span>
+<span id="cb37-400"><a href="#cb37-400" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-401"><a href="#cb37-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-402"><a href="#cb37-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-405"><a href="#cb37-405" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-406"><a href="#cb37-406" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-407"><a href="#cb37-407" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-408"><a href="#cb37-408" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-409"><a href="#cb37-409" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
-<span id="cb37-410"><a href="#cb37-410" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb37-411"><a href="#cb37-411" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
-<span id="cb37-412"><a href="#cb37-412" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-413"><a href="#cb37-413" aria-hidden="true" tabindex="-1"></a>    .sort(c.sim_score, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-414"><a href="#cb37-414" aria-hidden="true" tabindex="-1"></a>    .group_by(c.filepath)</span>
-<span id="cb37-415"><a href="#cb37-415" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
-<span id="cb37-416"><a href="#cb37-416" aria-hidden="true" tabindex="-1"></a>    .select(class_rate <span class="op">=</span> (c.label <span class="op">==</span> c.text).mean())</span>
-<span id="cb37-417"><a href="#cb37-417" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-418"><a href="#cb37-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb37-419"><a href="#cb37-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-420"><a href="#cb37-420" aria-hidden="true" tabindex="-1"></a><span class="ss">22. </span>You should see that the model does well, but isn't perfect. This final visualization shows that the SigLIP space is not a perfect model of the categories of dog breeds. The reason is that it isn't trained to categorize that way; it encodes a lot of other information that degrades the performance for simple category look-ups.</span>
+<span id="cb37-403"><a href="#cb37-403" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>Now, evaluate how well the model works:</span>
+<span id="cb37-404"><a href="#cb37-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-407"><a href="#cb37-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-408"><a href="#cb37-408" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-409"><a href="#cb37-409" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-410"><a href="#cb37-410" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-411"><a href="#cb37-411" aria-hidden="true" tabindex="-1"></a>    .join(embed, how<span class="op">=</span><span class="st">"cross"</span>)</span>
+<span id="cb37-412"><a href="#cb37-412" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb37-413"><a href="#cb37-413" aria-hidden="true" tabindex="-1"></a>        sim_score <span class="op">=</span> dot_product(c.siglip, c.siglip_txt)   </span>
+<span id="cb37-414"><a href="#cb37-414" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-415"><a href="#cb37-415" aria-hidden="true" tabindex="-1"></a>    .sort(c.sim_score, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-416"><a href="#cb37-416" aria-hidden="true" tabindex="-1"></a>    .group_by(c.filepath)</span>
+<span id="cb37-417"><a href="#cb37-417" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">1</span>)</span>
+<span id="cb37-418"><a href="#cb37-418" aria-hidden="true" tabindex="-1"></a>    .select(class_rate <span class="op">=</span> (c.label <span class="op">==</span> c.text).mean())</span>
+<span id="cb37-419"><a href="#cb37-419" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-420"><a href="#cb37-420" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb37-421"><a href="#cb37-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-424"><a href="#cb37-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-425"><a href="#cb37-425" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
-<span id="cb37-426"><a href="#cb37-426" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb37-427"><a href="#cb37-427" aria-hidden="true" tabindex="-1"></a>    woof</span>
-<span id="cb37-428"><a href="#cb37-428" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
-<span id="cb37-429"><a href="#cb37-429" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
-<span id="cb37-430"><a href="#cb37-430" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.siglip]</span>
-<span id="cb37-431"><a href="#cb37-431" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb37-432"><a href="#cb37-432" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-433"><a href="#cb37-433" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
-<span id="cb37-434"><a href="#cb37-434" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
-<span id="cb37-435"><a href="#cb37-435" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-436"><a href="#cb37-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-422"><a href="#cb37-422" aria-hidden="true" tabindex="-1"></a><span class="ss">22. </span>You should see that the model does well, but isn't perfect. This final visualization shows that the SigLIP space is not a perfect model of the categories of dog breeds. The reason is that it isn't trained to categorize that way; it encodes a lot of other information that degrades the performance for simple category look-ups.</span>
+<span id="cb37-423"><a href="#cb37-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-426"><a href="#cb37-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-427"><a href="#cb37-427" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb37-428"><a href="#cb37-428" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-429"><a href="#cb37-429" aria-hidden="true" tabindex="-1"></a>    woof</span>
+<span id="cb37-430"><a href="#cb37-430" aria-hidden="true" tabindex="-1"></a>    .pipe(</span>
+<span id="cb37-431"><a href="#cb37-431" aria-hidden="true" tabindex="-1"></a>        DSSklearn.umap,</span>
+<span id="cb37-432"><a href="#cb37-432" aria-hidden="true" tabindex="-1"></a>        features<span class="op">=</span>[c.siglip]</span>
+<span id="cb37-433"><a href="#cb37-433" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-434"><a href="#cb37-434" aria-hidden="true" tabindex="-1"></a>    .predict(full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-435"><a href="#cb37-435" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"dr0"</span>, <span class="st">"dr1"</span>))</span>
+<span id="cb37-436"><a href="#cb37-436" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"label"</span>))</span>
+<span id="cb37-437"><a href="#cb37-437" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-438"><a href="#cb37-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

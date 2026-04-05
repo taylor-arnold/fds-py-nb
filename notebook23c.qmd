@@ -1,0 +1,364 @@
+## Notebook23c
+
+In this notebook, we will see how to call an API to use a large language model that cannot easily run locally on our machine.
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/funs.py
+```
+
+```{python}
+#| tags: [noclear]
+import json
+import os
+import time
+from pathlib import Path
+
+import numpy as np
+import polars as pl
+from openai import OpenAI
+from pydantic import BaseModel, Field
+from enum import Enum
+
+from funs import *
+from plotnine import *
+from polars import col as c
+
+theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
+
+ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
+```
+
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| tags: [noclear]
+agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
+```
+
+### Overview
+
+In this notebook we use a large language model as a **zero-shot text classifier**. Rather than training a model from scratch (as we did with our baby LLM), we send text to a pre-trained model through an API and ask it to assign a category — no training data, no fine-tuning, no gradient descent.
+
+The interesting parts are:
+
+1. **Structured outputs with Pydantic** — instead of hoping the model returns nicely formatted text, we define a schema that forces the response into a predictable shape we can work with programmatically.
+2. **Evaluation** — we compare the model's predictions against the true labels in AG News using standard classification metrics (precision, recall, F1).
+3. **Caching** — API calls cost money and take time, so we save results to disk and reload them on subsequent runs.
+
+The AG News dataset has four categories: **World**, **Sports**, **Business**, and **Sci/Tech**. Each article was originally labeled by humans, so we have ground truth to compare against.
+
+
+### Connecting to the OpenAI API
+
+The `openai` Python package handles all communication with OpenAI's models. You create a client object, and then call methods on it to send requests. The API key is already loaded in our environment.
+
+```{python}
+client = OpenAI()
+```
+
+That's it — the client picks up the `OPENAI_API_KEY` environment variable automatically. No key management code needed in the notebook.
+
+### The AG News Dataset
+
+We have the same AG News dataset from our baby LLM notebook. Let's take a quick look at its structure.
+
+```{python}
+df = pl.read_parquet("data/agnews_pca.parquet")
+
+print(f"Shape: {df.shape}")
+print(f"Columns: {df.columns}")
+print()
+df.head(5)
+```
+
+### Sampling a Subset
+
+Classifying the full dataset through an API would be slow and expensive. Instead we'll pull a small stratified subset (~100 rows) so each category is represented equally.
+
+```{python}
+def stratified_sample(df, n_per_class, seed=42):
+    return (
+        df.group_by("label")
+        .agg(pl.all().sample(n=n_per_class, seed=seed))
+        .explode(pl.all().exclude("label"))
+        .sample(fraction=1.0, seed=seed)
+    )
+
+sample_small = stratified_sample(df, n_per_class=25)
+
+print(f"Sample size: {sample_small.shape[0]} rows")
+```
+
+### Defining Structured Output with Pydantic
+
+Here's the core idea: instead of asking the model to return free text and then parsing it ourselves, we define a **Pydantic model** that describes exactly what we want back. The OpenAI API can enforce this schema, guaranteeing that the response is valid structured data.
+
+First, we define an enum for the four categories. This constrains the model to only these choices — it literally cannot return anything else.
+
+```{python}
+class NewsCategory(str, Enum):
+    world = "World"
+    sports = "Sports"
+    business = "Business"
+    sci_tech = "Sci/Tech"
+```
+
+Now we define a Pydantic model for the full response. Beyond just the category, we ask for a brief `reasoning` field. This serves two purposes: it gives us insight into *why* the model chose a category, and it actually tends to improve accuracy because the model "thinks through" its answer before committing.
+
+```{python}
+class ArticleClassification(BaseModel):
+    reasoning: str = Field(description="One sentence explaining why this category was chosen")
+    category: NewsCategory = Field(description="The news category for this article")
+```
+
+Let's look at the JSON schema that Pydantic generates from this. This is exactly what gets sent to the API to enforce the response structure.
+
+```{python}
+print(json.dumps(ArticleClassification.model_json_schema(), indent=2))
+```
+
+### Making a Single Classification
+
+Before we classify hundreds of articles, let's walk through a single API call to see how all the pieces fit together.
+
+```{python}
+sample_text = sample_small.row(0, named=True)["text"]
+print(f"Article text:\n{sample_text[:200]}...")
+```
+
+We call `client.beta.chat.completions.parse()` instead of the usual `client.chat.completions.create()`. The `parse` method accepts a `response_format` parameter that takes our Pydantic model and enforces the schema on the response.
+
+```{python}
+single_cache = Path("cache/single_result.json")
+
+if single_cache.exists():
+    with open(single_cache) as f:
+        data = json.load(f)
+else:
+    response = client.beta.chat.completions.parse(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are a news article classifier. "
+                    "Classify the given article into exactly one category. "
+                    "Think step by step before choosing."
+                ),
+            },
+            {
+                "role": "user",
+                "content": sample_text,
+            },
+        ],
+        response_format=ArticleClassification,
+    )
+    parsed = response.choices[0].message.parsed
+    data = {"category": parsed.category.value, "reasoning": parsed.reasoning}
+    single_cache.parent.mkdir(parents=True, exist_ok=True)
+    with open(single_cache, "w") as f:
+        json.dump(data, f)
+
+print(f"Category:  {data['category']}")
+print(f"Reasoning: {data['reasoning']}")
+```
+
+The response is a proper `ArticleClassification` object — not a string we need to parse. The `category` field is guaranteed to be one of our four enum values. This is what makes structured outputs so powerful for data pipelines: no regex, no "please format your answer as JSON", no error handling for malformed responses.
+
+### Classifying a Batch with Caching
+
+Now we scale this up to our full samples. The function below classifies a list of articles and caches the results to a JSON file. On subsequent runs it loads from the cache instead of hitting the API again.
+
+```{python}
+def classify_articles(
+    texts,
+    cache_path,
+    model="gpt-4o-mini",
+    delay=0.1,
+):
+    cache_file = Path(cache_path)
+
+    if cache_file.exists():
+        with open(cache_file, "r") as f:
+            cached = json.load(f)
+        print(f"Loaded {len(cached)} cached results from {cache_path}")
+        return cached
+
+    print(f"Classifying {len(texts)} articles (this may take a few minutes)...")
+    results = []
+
+    for i, text in enumerate(texts):
+        try:
+            response = client.beta.chat.completions.parse(
+                model=model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a news article classifier. "
+                            "Classify the given article into exactly one category. "
+                            "Think step by step before choosing."
+                        ),
+                    },
+                    {"role": "user", "content": text},
+                ],
+                response_format=ArticleClassification,
+            )
+            parsed = response.choices[0].message.parsed
+            results.append({
+                "category": parsed.category.value,
+                "reasoning": parsed.reasoning,
+            })
+        except Exception as e:
+            print(f"  Error on article {i}: {e}")
+            results.append({"category": None, "reasoning": str(e)})
+
+        time.sleep(delay)
+
+        if (i + 1) % 50 == 0:
+            print(f"  Processed {i + 1}/{len(texts)}")
+
+    cache_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(cache_file, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"Saved results to {cache_path}")
+
+    return results
+```
+
+A few things to note about this function:
+
+- **Caching**: results are saved as a JSON file. If the file exists on the next run, we skip the API entirely. Delete the cache file to re-classify.
+- **Rate limiting**: the `time.sleep(delay)` adds a small pause between requests to avoid hitting rate limits.
+- **Error handling**: if a single request fails, we record the error and continue rather than crashing the whole batch.
+
+### Running the Small Sample
+
+Let's classify the small sample first. This should take about 30 seconds.
+
+```{python}
+small_results = classify_articles(
+    texts=sample_small["text"].to_list(),
+    cache_path="cache/small_sample_results.json",
+)
+```
+
+We add the predictions back to our Polars DataFrame as a new column.
+
+```{python}
+sample_small = sample_small.with_columns(
+    pl.Series("predicted", [r["category"] for r in small_results]),
+    pl.Series("reasoning", [r["reasoning"] for r in small_results]),
+)
+
+sample_small.select("label", "predicted", "reasoning", "text").head(10)
+```
+
+### Evaluating Performance
+
+How well did the model do? Let's start with simple accuracy, then look at per-class precision, recall, and F1.
+
+```{python}
+def compute_metrics(df, actual_col, predicted_col):
+    categories = sorted(df[actual_col].unique().to_list())
+    rows = []
+
+    for cat in categories:
+        tp = df.filter((pl.col(actual_col) == cat) & (pl.col(predicted_col) == cat)).shape[0]
+        fp = df.filter((pl.col(actual_col) != cat) & (pl.col(predicted_col) == cat)).shape[0]
+        fn = df.filter((pl.col(actual_col) == cat) & (pl.col(predicted_col) != cat)).shape[0]
+
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+        rows.append({
+            "Category": cat,
+            "Precision": round(precision, 3),
+            "Recall": round(recall, 3),
+            "F1": round(f1, 3),
+            "Support": tp + fn,
+        })
+
+    return pl.DataFrame(rows)
+```
+
+```{python}
+valid_small = sample_small.filter(pl.col("predicted").is_not_null())
+
+accuracy = valid_small.filter(pl.col("label") == pl.col("predicted")).shape[0] / valid_small.shape[0]
+print(f"Overall accuracy: {accuracy:.1%}")
+print()
+
+metrics_small = compute_metrics(valid_small, "label", "predicted")
+metrics_small
+```
+
+For a model that has never seen a single training example from this dataset, these numbers are typically very strong — often above 85% accuracy. The model is relying entirely on its pre-training knowledge of what "business news" or "sports news" looks like.
+
+### Looking at Mistakes
+
+The misclassifications are often more interesting than the correct ones. Let's see where the model struggled.
+
+```{python}
+mistakes = valid_small.filter(pl.col("label") != pl.col("predicted"))
+print(f"Number of mistakes: {mistakes.shape[0]} out of {valid_small.shape[0]}")
+print()
+
+for row in mistakes.head(10).iter_rows(named=True):
+    print(f"True: {row['label']:>10}  |  Predicted: {row['predicted']:>10}")
+    print(f"Reasoning: {row['reasoning']}")
+    print(f"Text: {row['text'][:120]}...")
+    print()
+```
+
+You'll often find that the mistakes are on genuinely ambiguous articles — a story about a tech company's stock price could reasonably be "Business" or "Sci/Tech", for example. This is a useful discussion point: the model isn't always *wrong* when it disagrees with the label; sometimes the original label is debatable.
+
+### Cost and Latency
+
+A practical consideration: how much did this cost? The `gpt-4o-mini` model is very cheap, but it's still worth tracking.
+
+```{python}
+avg_chars = valid_small["text"].str.len_chars().mean()
+avg_tokens_est = avg_chars / 4
+
+total_input_tokens = avg_tokens_est * valid_small.shape[0]
+total_output_tokens = 50 * valid_small.shape[0]
+
+input_cost = (total_input_tokens / 1_000_000) * 0.15
+output_cost = (total_output_tokens / 1_000_000) * 0.60
+
+print(f"Estimated average tokens per article: {avg_tokens_est:,.0f}")
+print(f"Estimated total input tokens:  {total_input_tokens:,.0f}")
+print(f"Estimated total output tokens: {total_output_tokens:,.0f}")
+print()
+print(f"Estimated cost (input):  ${input_cost:.4f}")
+print(f"Estimated cost (output): ${output_cost:.4f}")
+print(f"Estimated total cost:    ${input_cost + output_cost:.4f}")
+```
+
+### What We Learned
+
+This notebook demonstrated a fundamentally different approach to NLP compared to training your own model:
+
+**Zero-shot classification** — we never showed the model a single labeled example from AG News. It classified articles based entirely on its pre-existing understanding of language and news categories. This is only possible because the model was pre-trained on a massive corpus that included similar content.
+
+**Structured outputs** — by defining a Pydantic schema, we got guaranteed-valid structured data back from the API. No parsing, no regex, no error handling for malformed responses. The `reasoning` field also serves as a form of chain-of-thought prompting, which tends to improve accuracy.
+
+**The trade-offs** are clear:
+
+- We need no training data or compute for model training.
+- But we pay per request, we depend on an external service, and we have limited control over the model's behavior.
+- Latency is much higher than a local model — seconds per article versus microseconds.
+- For a production system with millions of articles, you would probably train a specialized model. For 500 articles or ad-hoc analysis, the API approach is dramatically faster to set up.
