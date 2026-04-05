@@ -63,12 +63,14 @@ agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
 2. Once the library is install, load the `Word2Vec` model.
 
 ```{python}
+#| tags: [noclear]
 from gensim.models import Word2Vec
 ```
 
 3. As we did in the text with the IMDb data, we want to compute the tokens in the AG News dataset.
 
 ```{python}
+#| tags: [noclear]
 agnews = (
     agnews
     .with_columns(
@@ -81,6 +83,7 @@ agnews
 4. Next, we build the Word2Vec model. Here, we use the same settings as in the text except that we increase the minimum word count due to the increased size of the texts. The code here will only build the model if it has not already been run to save some time in future runs.
 
 ```{python}
+#| tags: [noclear]
 try:
     model = Word2Vec.load("models/word2vec.model")
 except FileNotFoundError:
@@ -98,12 +101,14 @@ except FileNotFoundError:
 5. Check the length of the embedding. These are the number of words in the text.
 
 ```{python}
+#| tags: [noclear]
 len(model.wv)
 ```
 
 6. Now that we have the embedding, we will apply it to all of the texts.
 
 ```{python}
+#| tags: [noclear]
 embed = pl.DataFrame({
     "word": list(set(model.wv.key_to_index)),
     "embedding": [model.wv[w].tolist() for w in set(model.wv.key_to_index)],
@@ -114,6 +119,7 @@ embed
 7. And finally, we can check how the embedding works by seeing what words are similar to one another. Start with my intial suggestion, but play around with different word choices.
 
 ```{python}
+#| tags: [noclear]
 model.wv.most_similar("good", topn=10)
 ```
 
@@ -122,6 +128,7 @@ model.wv.most_similar("good", topn=10)
 8. Now let's create the training and testing data for our AG News corpus.
 
 ```{python}
+#| tags: [noclear]
 X, X_train, X_test, y, y_train, y_test, cn = DSTorch.load_text(
     df=agnews,
     model=model,
@@ -136,6 +143,7 @@ embedding_matrix.shape
 9. Here is the Torch CNN model that we will use to train the AG News corpus to detect the category of an article.
 
 ```{python}
+#| tags: [noclear]
 class TextCNN(nn.Module):
     def __init__(self, embedding_matrix, num_classes, num_filters=100, filter_size=3):
         super().__init__()
@@ -173,6 +181,7 @@ class TextCNN(nn.Module):
 10. And then we create an instance of the model.
 
 ```{python}
+#| tags: [noclear]
 model_cnn = TextCNN(
     embedding_matrix,
     num_classes=len(cn),
@@ -185,6 +194,7 @@ optimizer = optim.Adam(model_cnn.parameters(), lr=0.0003)
 11. Finally, train the data. If the model already exists, just read in the weights. This saves time on re-runs.
 
 ```{python}
+#| tags: [noclear]
 try:
     model_cnn.load_state_dict(torch.load("models/model_cnn_agnews.pt"))
 except FileNotFoundError:
@@ -195,16 +205,19 @@ except FileNotFoundError:
 12. Here are the training and validation error rates:
 
 ```{python}
+#| tags: [noclear]
 DSTorch.score_text(model_cnn, X_train, y_train)
 ```
 
 ```{python}
+#| tags: [noclear]
 DSTorch.score_text(model_cnn, X_test, y_test)
 ```
 
 13. As well as the confusion matrix:
 
 ```{python}
+#| tags: [noclear]
 DSTorch.confusion_matrix(model_cnn, X_test, y_test, cn)
 ```
 
@@ -222,26 +235,31 @@ print(list(api.info()['models'].keys()))
 15. We will load the `glove-wiki-gigaword-100` model here. It needs to download the first time, so it may take a few moments to finish.
 
 ```{python}
+#| tags: [noclear]
 pretrained = api.load("glove-wiki-gigaword-100")
 ```
 
 16. Find the closest words to banana, orange, and apple. Notice that these are not context specific, leading to some inconsistent results in the three fruit names.
 
 ```{python}
+#| tags: [noclear]
 pretrained.most_similar("banana", topn=10)
 ```
 
 ```{python}
+#| tags: [noclear]
 pretrained.most_similar("orange", topn=10)
 ```
 
 ```{python}
+#| tags: [noclear]
 pretrained.most_similar("apple", topn=10)
 ```
 
 17. Try your own words as well and see what other terms the model places it next to.
 
 ```{python}
+#| tags: [noclear]
 pretrained.most_similar("good", topn=10)
 ```
 
@@ -250,6 +268,7 @@ pretrained.most_similar("good", topn=10)
 18. In this final section, we will embed the AG News data using the pretrained embeddings. Here is the code to match the words with the available vocabulary.
 
 ```{python}
+#| tags: [noclear]
 vocab = list(model.wv.key_to_index.keys())
 embedding_dim = pretrained.vector_size
 
@@ -270,6 +289,7 @@ pretrained_matrix = torch.tensor(pretrained_matrix, dtype=torch.float32)
 19. And again, we can create a similar model. 
 
 ```{python}
+#| tags: [noclear]
 model_pretrained = TextCNN(
     pretrained_matrix,
     num_classes=len(cn),
@@ -282,25 +302,35 @@ optimizer_pretrained = optim.Adam(model_pretrained.parameters(), lr=0.0003)
 20. And train it, using the saved weights if they are available.
 
 ```{python}
+#| tags: [noclear]
 try:
     model_pretrained.load_state_dict(torch.load("models/model_pre_agnews.pt"))
 except FileNotFoundError:
-    DSTorch.train(model_pretrained, optimizer, X_train, y_train, num_epochs=10)
+    DSTorch.train(
+        model_pretrained,
+        optimizer_pretrained,
+        X_train,
+        y_train,
+        num_epochs=10
+    )
     torch.save(model_pretrained.state_dict(), "models/model_pre_agnews.pt")
 ```
 
 21. Compare the error rates to the embeddings we trained ourselves:
 
 ```{python}
-DSTorch.score_text(model_cnn, X_train, y_train)
+#| tags: [noclear]
+DSTorch.score_text(model_pretrained, X_train, y_train)
 ```
 
 ```{python}
-DSTorch.score_text(model_cnn, X_test, y_test)
+#| tags: [noclear]
+DSTorch.score_text(model_pretrained, X_test, y_test)
 ```
 
 22. As well as the confusion matrix to the previous model.
 
 ```{python}
-DSTorch.confusion_matrix(model_cnn, X_test, y_test, cn)
+#| tags: [noclear]
+DSTorch.confusion_matrix(model_pretrained, X_test, y_test, cn)
 ```

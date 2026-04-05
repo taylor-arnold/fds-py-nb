@@ -2014,7 +2014,12 @@ class ViTEmbedder:
 class SigLIPEmbedder:
     def __init__(self, model_name="google/siglip-base-patch16-256", device=None):
         from transformers import AutoProcessor, SiglipModel
-        import torch 
+        import torch
+        import warnings
+        import logging
+
+        warnings.filterwarnings("ignore", message=".*HF_TOKEN.*", category=UserWarning)
+        logging.getLogger("huggingface_hub").setLevel(logging.ERROR)
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.processor = AutoProcessor.from_pretrained(model_name, use_fast=True)
@@ -2025,10 +2030,12 @@ class SigLIPEmbedder:
         from PIL import Image
 
         with torch.inference_mode():
-
             inputs = self.processor(images=Image.open(image_path).convert("RGB"), return_tensors="pt")
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            vec = torch.nn.functional.normalize(self.model.get_image_features(**inputs), p=2, dim=-1)
+            out = self.model.get_image_features(**inputs)
+            if not isinstance(out, torch.Tensor):
+                out = out.pooler_output
+            vec = torch.nn.functional.normalize(out, p=2, dim=-1)
             return vec.squeeze(0).cpu().numpy()
 
     def embed_text(self, text):
@@ -2037,7 +2044,10 @@ class SigLIPEmbedder:
         with torch.inference_mode():
             inputs = self.processor(text=text, return_tensors="pt", padding="max_length")
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            vec = torch.nn.functional.normalize(self.model.get_text_features(**inputs), p=2, dim=-1)
+            out = self.model.get_text_features(**inputs)
+            if not isinstance(out, torch.Tensor):
+                out = out.pooler_output
+            vec = torch.nn.functional.normalize(out, p=2, dim=-1)
             return vec.squeeze(0).cpu().numpy()
 
 

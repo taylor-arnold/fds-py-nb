@@ -8,7 +8,7 @@ Run all of the following before starting the notebook.
 ```{python}
 #| tags: [noclear]
 #| eval: false
-! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py/refs/heads/main/funs.py
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/funs.py
 ```
 
 ```{python}
@@ -40,8 +40,8 @@ ub = ""
 #| tags: [noclear]
 agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
 amazon = pl.read_parquet(ub + "data/amazon_pca.parquet")
-inet = pl.read_parquet("data/imagenette_1000.parquet")
-woof = pl.read_parquet("data/imagewoof_1000.parquet")
+inet = pl.read_parquet(ub + "data/imagenette_1000.parquet")
+woof = pl.read_parquet(ub + "data/imagewoof_1000.parquet")
 ```
 
 ### AG News
@@ -52,6 +52,7 @@ woof = pl.read_parquet("data/imagewoof_1000.parquet")
 #| tags: [noclear]
 (
     agnews
+    .sample(n=5000, seed=42)
     .pipe(
         DSSklearn.umap,
         features=[c.e5]
@@ -73,7 +74,6 @@ model = (
         target=c.label,
         features=[c.e5],
         stratify=c.label,
-        l1_ratios=[0],
         solver="saga"
     )
 )
@@ -100,6 +100,7 @@ model.confusion_matrix()
 #| tags: [noclear]
 (
     amazon
+    .sample(n=5000, seed=42)
     .pipe(
         DSSklearn.umap,
         features=[c.e5]
@@ -121,7 +122,6 @@ model = (
         target=c.label,
         features=[c.e5],
         stratify=c.label,
-        l1_ratios=[0],
         solver="saga"
     )
 )
@@ -168,8 +168,9 @@ model = (
         target=c.label,
         features=[c.vit],
         stratify=c.label,
-        l1_ratios=[0],
-        solver="saga"
+        solver="saga",
+        max_iter=1000,
+        cv=3
     )
 )
 ```
@@ -279,8 +280,9 @@ model = (
         target=c.label,
         features=[c.vit],
         stratify=c.label,
-        l1_ratios=[0],
-        solver="saga"
+        solver="saga",
+        max_iter=1000,
+        cv=3
     )
 )
 ```
