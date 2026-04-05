@@ -37,6 +37,15 @@ ub = ""
 ```
 
 ```{python}
+#| eval: false
+#| tags: [noclear]
+!mkdir -p models
+!wget -q -nc -P models https://humanitiesdata.org/models/model_cnn_agnews.pt
+!wget -q -nc -P models https://humanitiesdata.org/models/model_pre_agnews.pt
+!wget -q -nc -P models https://humanitiesdata.org/models/word2vec.model
+```
+
+```{python}
 #| tags: [noclear]
 agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
 ```

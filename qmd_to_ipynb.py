@@ -8,7 +8,8 @@ Usage:
     Without arguments, converts all .qmd files in the current directory.
 
 Behavior:
-- Converts a Quarto .qmd to a Jupyter .ipynb in OUTPUT_DIR
+- Converts a Quarto .qmd to a Jupyter .ipynb in OUTPUT_DIR (student version)
+  and also to OUTPUT_DIR_FULL (solutions version, all code blocks kept)
 - Executable code blocks -> code cells
 - All code cells are cleared EXCEPT those marked to keep via:
     #| tags: [noclear]   OR   #| keep: true
@@ -27,8 +28,9 @@ import os
 import json
 import re
 
-# ===== Hard-coded output directory =====
+# ===== Hard-coded output directories =====
 OUTPUT_DIR = "nb"
+OUTPUT_DIR_FULL = "nb_full"
 
 # --- Helpers -----------------------------------------------------------------
 
@@ -119,12 +121,12 @@ FENCE_RE = re.compile(
     re.DOTALL
 )
 
-def qmd_to_ipynb(filepath: str):
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+def _build_cells(content: str, noclear_all: bool = False) -> list:
+    """Parse content and return notebook cells.
 
-    with open(filepath, "r", encoding="utf-8") as f:
-        content = f.read()
-
+    If noclear_all is True, every executable block is treated as if it has
+    the [noclear] tag (i.e. code is always kept).
+    """
     cells = []
     pos = 0
 
@@ -139,7 +141,7 @@ def qmd_to_ipynb(filepath: str):
             for para in _split_into_paragraphs(text_chunk):
                 cells.append({
                     "cell_type": "markdown",
-                    "metadata": {},  # no tags/metadata carried over
+                    "metadata": {},
                     "source": _strip_answer_content(para.splitlines(keepends=True))
                 })
 
@@ -152,7 +154,7 @@ def qmd_to_ipynb(filepath: str):
                 pos = end + (len(trailing) - len(stripped))
                 continue
 
-            keep_code = _has_keep_signal(body)
+            keep_code = noclear_all or _has_keep_signal(body)
             if keep_code:
                 raw_lines = body.splitlines(keepends=True)
                 code_source = _strip_quarto_option_lines(raw_lines)
@@ -163,7 +165,7 @@ def qmd_to_ipynb(filepath: str):
             cells.append({
                 "cell_type": "code",
                 "execution_count": None,
-                "metadata": {},  # keep empty to avoid ipynb tags
+                "metadata": {},
                 "outputs": [],
                 "source": code_source
             })
@@ -188,6 +190,10 @@ def qmd_to_ipynb(filepath: str):
                 "source": _strip_answer_content(para.splitlines(keepends=True))
             })
 
+    return cells
+
+
+def _write_notebook(cells: list, out_path: str):
     notebook = {
         "cells": cells,
         "metadata": {
@@ -197,14 +203,26 @@ def qmd_to_ipynb(filepath: str):
         "nbformat": 4,
         "nbformat_minor": 5
     }
-
-    base = os.path.splitext(os.path.basename(filepath))[0]
-    out_path = os.path.join(OUTPUT_DIR, base + ".ipynb")
-
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(notebook, f, indent=2)
 
+
+def qmd_to_ipynb(filepath: str):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(OUTPUT_DIR_FULL, exist_ok=True)
+
+    with open(filepath, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    base = os.path.splitext(os.path.basename(filepath))[0]
+
+    out_path = os.path.join(OUTPUT_DIR, base + ".ipynb")
+    _write_notebook(_build_cells(content, noclear_all=False), out_path)
     print(f"Notebook saved to {out_path}")
+
+    out_path_full = os.path.join(OUTPUT_DIR_FULL, base + ".ipynb")
+    _write_notebook(_build_cells(content, noclear_all=True), out_path_full)
+    print(f"Notebook saved to {out_path_full}")
 
 # --- CLI ---------------------------------------------------------------------
 
