@@ -62,6 +62,8 @@ website:
         text: Notebook10a
       - file: notebook10b.qmd
         text: Notebook10b
+      - file: notebook10c.qmd
+        text: Notebook10c
       - file: notebook11a.qmd
         text: Notebook11a
       - file: notebook11b.qmd

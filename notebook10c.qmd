@@ -112,7 +112,7 @@ g1
     .join(g1_meta, on=c.question)
     .with_columns(
         correct = (c.answer >= c.low) & (c.answer <= c.high),
-        too_low = (c.answer > c.high)
+        too_low = (c.answer < c.high)
     )
     .filter(~c.correct)
     .group_by(c.question_desc)
