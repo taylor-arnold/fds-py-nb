@@ -41,7 +41,8 @@ ub = ""
 
 ```{python}
 #| tags: [noclear]
-agnews = pl.read_parquet(ub + "data/agnews_pca.parquet")
+plays = pl.read_csv(ub + "data/shakespeare_lines.csv.gz")
+plays = plays.filter(~c.text.is_null())
 ```
 
 ### Overview
@@ -51,7 +52,7 @@ The two big pieces to this task are:
 1. **Tokenization** — converting raw text into a sequence of integer IDs that a neural network can consume. We will use `tiktoken`, the same sub-word tokenizer that powers OpenAI's GPT models.
 2. **Next-token prediction** — training a small Transformer decoder to look at a sequence of tokens and predict what comes next. This is the *only* training objective used by GPT-style models.
 
-By the end you will have a model that can accept a short prompt and generate (somewhat coherent) news-like text, all trained on the AG News dataset.
+By the end you will have a model that can accept a short prompt and generate (somewhat coherent) news-like text, all trained on the Shakespeare dataset.
 
 ### Setup and Imports
 
@@ -77,13 +78,13 @@ device = (
 print(f"Using device: {device}")
 ```
 
-### Loading the AG News Dataset
+### Loading the Dataset
 
 Our dataset is a Polars DataFrame with a `text` column containing news articles. Let's load it and take a quick look.
 
 ```{python}
 #| tags: [noclear]
-df = agnews
+df = plays
 
 print(f"Number of articles: {df.shape[0]:,}")
 print(f"Columns: {df.columns}")
@@ -100,7 +101,7 @@ We will concatenate all of the text into one long string and then tokenize the w
 
 ```{python}
 #| tags: [noclear]
-corpus = "\n\n".join(df["text"].to_list())
+corpus = "\n".join(df["text"].to_list())
 print(f"Total characters: {len(corpus):,}")
 ```
 
@@ -247,7 +248,7 @@ One practical detail: with a stride of 1, every single token position becomes a 
 ```{python}
 #| tags: [noclear]
 CONTEXT_LENGTH = 64
-STRIDE = 16  # step between consecutive training examples
+STRIDE = 8
 
 class TokenDataset(Dataset):
     def __init__(self, tokens, context_length, stride=1):
@@ -277,13 +278,13 @@ print(f"Total training examples: {len(dataset):,}")
 print()
 
 x_sample, y_sample = dataset[0]
-print("Input tokens (x): ", x_sample[:8].tolist(), "...")
-print("Target tokens (y):", y_sample[:8].tolist(), "...")
+print("Input tokens (x): ", x_sample[:10].tolist(), "...")
+print("Target tokens (y):", y_sample[:10].tolist(), "...")
 print()
 print("In other words, given this text:")
-print(f"  '{enc.decode(x_sample[:8].tolist())}'")
+print(f"  '{enc.decode(x_sample[:10].tolist())}'")
 print("the model should predict this next token:")
-print(f"  '{enc.decode([y_sample[7].item()])}'")
+print(f"  '{enc.decode([y_sample[9].item()])}'")
 ```
 
 Notice that `y` is simply `x` shifted one position to the right. At every position, the model predicts the next token — so a single sequence of 64 tokens gives us 64 training predictions.
@@ -450,12 +451,12 @@ class BabyLLM(nn.Module):
 
     def forward(self, idx):
         B, T = idx.shape
-        tok = self.token_emb(idx)                          # (B, T, d_model)
-        pos = self.pos_emb(torch.arange(T, device=idx.device))  # (T, d_model)
+        tok = self.token_emb(idx)
+        pos = self.pos_emb(torch.arange(T, device=idx.device))
         x = self.drop(tok + pos)
         x = self.blocks(x)
         x = self.ln_final(x)
-        logits = self.head(x)                              # (B, T, vocab_size)
+        logits = self.head(x)
         return logits
 ```
 
@@ -466,9 +467,9 @@ Let's instantiate the model with modest hyperparameters. With 4 layers, 4 attent
 ```{python}
 #| tags: [noclear]
 VOCAB_SIZE = enc.n_vocab
-D_MODEL = 128
-N_HEADS = 4
-N_LAYERS = 4
+D_MODEL = 384
+N_HEADS = 8
+N_LAYERS = 6
 DROPOUT = 0.1
 
 model = BabyLLM(
@@ -492,25 +493,23 @@ We train with the AdamW optimizer and a cosine learning rate schedule with warmu
 
 ```{python}
 #| tags: [noclear]
-EPOCHS = 3
+EPOCHS = 10
 LEARNING_RATE = 3e-4
-WARMUP_STEPS = 100
+WARMUP_STEPS = 300
 
 optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.01)
 total_steps = EPOCHS * len(train_loader)
 
 def lr_schedule(step):
-    # linear warmup
     if step < WARMUP_STEPS:
         return step / WARMUP_STEPS
-    # cosine decay
     progress = (step - WARMUP_STEPS) / (total_steps - WARMUP_STEPS)
     return 0.5 * (1.0 + math.cos(math.pi * progress))
 
 scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_schedule)
 ```
 
-Now the actual training, here is the function that we will use to train the model using our AG News data.
+Now the actual training, here is the function that we will use to train the model using our data.
 
 ```{python}
 #| tags: [noclear]
@@ -524,10 +523,10 @@ def train_epoch(model, loader, optimizer, scheduler, epoch):
     for i, (x, y) in enumerate(loader):
         x, y = x.to(device), y.to(device)
 
-        logits = model(x)                          # (B, T, vocab_size)
+        logits = model(x)
         loss = F.cross_entropy(
-            logits.view(-1, logits.size(-1)),      # flatten to (B*T, vocab_size)
-            y.view(-1),                            # flatten to (B*T,)
+            logits.view(-1, logits.size(-1)),
+            y.view(-1),
         )
 
         optimizer.zero_grad()
@@ -539,7 +538,7 @@ def train_epoch(model, loader, optimizer, scheduler, epoch):
         total_loss += loss.item()
         n_batches += 1
 
-        if (i + 1) % 100 == 0:
+        if (i + 1) % 10 == 0:
             avg = total_loss / n_batches
             elapsed = time.time() - start
             print(
@@ -623,20 +622,21 @@ def generate(model, prompt, max_new_tokens=100, temperature=0.8, top_k=40):
     return enc.decode(tokens[0].tolist())
 ```
 
-Let's try a few prompts. Remember, this model has only seen AG News articles, so it will tend to generate news-like text.
+Let's try a few prompts. Remember, this model has only seen Shakespeare's text, so it will tend to produce text in a similar way and format.
 
 ```{python}
 #| tags: [noclear]
 prompts = [
-    "The stock market",
-    "Scientists have discovered",
-    "The president announced",
-    "In a surprising move",
+    "Oh what fair",
+    "Shall I compare thee",
+    "Tomorrow and tomorrow and",
+    "To be or not to be, that is",
+    "I am"
 ]
 
 for prompt in prompts:
     print(f"Prompt: '{prompt}'")
-    print(generate(model, prompt, max_new_tokens=20))
+    print(generate(model, prompt, max_new_tokens=100))
     print()
     print("---")
     print()
