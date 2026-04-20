@@ -9,7 +9,7 @@ Run all of the following before starting the notebook.
 ```{python}
 #| tags: [noclear]
 #| eval: false
-! from ultralytics import YOLO
+! pip install -U ultralytics
 ```
 
 ```{python}
