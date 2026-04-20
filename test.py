@@ -137,6 +137,10 @@ for epoch in range(1, EPOCHS + 1):
 # Save best model
 torch.save(model.state_dict(), 'models/shakespeare_gpt2_finetuned.pt')
 
+# Or, load it back in
+model.load_state_dict(torch.load('models/shakespeare_gpt2_finetuned.pt'))
+model.eval()
+
 # Generate some text to test
 model.eval()
 prompt = "To be or not to be"

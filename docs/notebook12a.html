@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="c69a1021" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="cb15985c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0a7b85fb" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="002ba754" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fc37a585" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="4c90b99c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Apply PCA (principal component analysis) to the <code>metro</code> dataset using the following features: density, median age, median household income, percent own, 1BR median rent, and rent as a percentage of income. Use the <code>.predict(full=True)</code> method to get the full dataset back with the new components. Then, create a scatter plot of the first two principal components (<code>dr0</code> and <code>dr1</code>) using text labels with the <code>name</code> column so we can see which metro regions are similar to one another. You may want to make the labels smaller to help read them.</li>
 </ol>
-<div id="6a779910" class="cell" data-execution_count="5">
+<div id="f586b943" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2a. Now, we will try two alternative dimensionality reduction techniques on the same set of features: UMAP and t-SNE. Start with UMAP. Create a scatter plot of the first two components. Compare the results visually to the PCA plot above. Notice how UMAP and t-SNE tend to create more distinct clusters while PCA preserves more of the global structure.</p>
-<div id="c5938547" class="cell" data-execution_count="6">
+<div id="4fbfaaac" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>2b. Now, try t-SNE.</p>
-<div id="8ab0f849" class="cell" data-execution_count="7">
+<div id="3e0ade22" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -605,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Now let’s try clustering the metro regions. Use K-Means clustering on the same six features from Part I, setting the number of clusters to 20. Save the result with full predictions as <code>metro_pca</code>.</li>
 </ol>
-<div id="f2a2de39" class="cell" data-execution_count="8">
+<div id="c2231dbc" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metro_pca <span class="op">=</span> (</span>
@@ -623,7 +623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>For each cluster label, display the names of the top 10 most populous metro regions (sorted by population in descending order). Look through the groupings and see if the clusters seem to be capturing meaningful similarities between regions.</li>
 </ol>
-<div id="8ec2040e" class="cell" data-execution_count="9">
+<div id="e4476772" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -659,83 +659,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>"Chicago,Dallas,Houston,Washing…</td>
+<td>"Oklahoma City,Tulsa,Albuquerqu…</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>"Brownsville,Florence,Jackson,A…</td>
+<td>"Chicago,Dallas,Houston,Philade…</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>"Tulsa,Knoxville,Little Rock,Wi…</td>
+<td>"Hickory,Kingsport,Pottsville,W…</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>"Salt Lake City,Omaha,Boise Cit…</td>
+<td>"Las Vegas,Memphis,New Orleans,…</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>"Atlanta,Phoenix,Riverside,Seat…</td>
+<td>"North Port,Deltona,Palm Bay,Po…</td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>"North Port,Deltona,Palm Bay,Po…</td>
+<td>"Fort Smith,Dothan,Texarkana,Da…</td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>"College Station,Jacksonville,M…</td>
+<td>"New York,Los Angeles"</td>
 </tr>
 <tr class="even">
 <td>7</td>
-<td>"Peoria,Duluth,Cedar Rapids,Dap…</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td>"Fayetteville,Amarillo,Yakima,F…</td>
-</tr>
-<tr class="even">
-<td>9</td>
 <td>"San Juan,Aguadilla,Ponce,Areci…</td>
 </tr>
 <tr class="odd">
+<td>8</td>
+<td>"Provo,Fayetteville,Killeen,Cla…</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>"Gainesville,College Station,Ch…</td>
+</tr>
+<tr class="odd">
 <td>10</td>
-<td>"Kingsport,Pottsville,Wheeling,…</td>
+<td>"Scranton,Youngstown,Peoria,Dav…</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>"New York,Los Angeles,San Franc…</td>
+<td>"Minneapolis,Salt Lake City,Ogd…</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>"Fayetteville,Killeen,Columbus,…</td>
+<td>"McAllen,Brownsville,Johnson Ci…</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>"St. Louis,Charlotte,Pittsburgh…</td>
+<td>"Green Bay,Cedar Rapids,Appleto…</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>"Green Bay,Appleton,Jefferson C…</td>
+<td>"Atlanta,Phoenix,Riverside,Seat…</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>"Hickory,Sioux City,Show Low,Cu…</td>
+<td>"Greenville,Selma,Natchitoches,…</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>"Youngstown,Ocala,Charleston,Bi…</td>
+<td>"St. Louis,Charlotte,San Antoni…</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>"McAllen,Lafayette,Springfield,…</td>
+<td>"Fayetteville,Sioux Falls,Yuma,…</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>"San Antonio,Las Vegas,Memphis,…</td>
+<td>"Washington,Boston,San Francisc…</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>"Monroe,Boone,Greenville,Selma,…</td>
+<td>"Monroe,Florence,Jackson,Alexan…</td>
 </tr>
 </tbody>
 </table>
@@ -745,7 +745,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Visualize the clustering results by applying PCA to the same six features on the <code>metro_pca</code> data. Create a scatter plot of the first two principal components, coloring the points by their cluster label. This lets us see how well the K-Means clusters correspond to the structure found by PCA.</li>
 </ol>
-<div id="e98ecb4a" class="cell" data-execution_count="10">
+<div id="8af2a1de" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -771,7 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Compute the mean of each of the six features grouped by cluster label. This gives us a profile of each cluster and helps us interpret what makes regions in the same cluster similar.</li>
 </ol>
-<div id="638953b7" class="cell" data-execution_count="11">
+<div id="9c8eb43e" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -819,87 +819,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>444.739282</td>
-<td>42.821053</td>
-<td>78910.947368</td>
-<td>67.284211</td>
-<td>1092.210526</td>
-<td>30.531579</td>
+<td>38.391916</td>
+<td>40.784416</td>
+<td>60721.597403</td>
+<td>69.720779</td>
+<td>726.714286</td>
+<td>28.67013</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>32.752577</td>
-<td>43.507143</td>
-<td>43205.589286</td>
-<td>65.148214</td>
-<td>521.607143</td>
-<td>30.164286</td>
+<td>424.681479</td>
+<td>42.853333</td>
+<td>73014.866667</td>
+<td>67.593333</td>
+<td>1002.2</td>
+<td>30.413333</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>47.888263</td>
-<td>42.604902</td>
-<td>56488.558824</td>
-<td>71.157843</td>
-<td>639.647059</td>
-<td>27.958824</td>
+<td>29.416882</td>
+<td>44.66383</td>
+<td>52935.93617</td>
+<td>77.468085</td>
+<td>517.904255</td>
+<td>26.948936</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>33.810935</td>
-<td>39.54</td>
-<td>73771.5</td>
-<td>70.17</td>
-<td>852.7</td>
-<td>26.8325</td>
+<td>55.228228</td>
+<td>40.139216</td>
+<td>55289.843137</td>
+<td>62.298039</td>
+<td>739.784314</td>
+<td>31.370588</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>132.951071</td>
-<td>41.408889</td>
-<td>85198.355556</td>
-<td>65.871111</td>
-<td>1242.044444</td>
-<td>30.931111</td>
+<td>65.889581</td>
+<td>45.373913</td>
+<td>68757.021739</td>
+<td>76.995652</td>
+<td>877.282609</td>
+<td>31.358696</td>
 </tr>
 <tr class="even">
 <td>5</td>
-<td>71.105001</td>
-<td>45.353846</td>
-<td>70440.74359</td>
-<td>75.958974</td>
-<td>922.974359</td>
-<td>31.576923</td>
+<td>30.488159</td>
+<td>42.32</td>
+<td>48204.3</td>
+<td>66.653333</td>
+<td>506.466667</td>
+<td>26.081667</td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>35.347952</td>
-<td>34.058333</td>
-<td>48605.416667</td>
-<td>55.716667</td>
-<td>716.666667</td>
-<td>34.975</td>
+<td>1045.976874</td>
+<td>42.25</td>
+<td>84048.5</td>
+<td>53.3</td>
+<td>1449.0</td>
+<td>32.3</td>
 </tr>
 <tr class="even">
 <td>7</td>
-<td>38.00275</td>
-<td>42.708065</td>
-<td>64892.532258</td>
-<td>77.1</td>
-<td>674.064516</td>
-<td>27.824194</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td>22.254744</td>
-<td>40.901639</td>
-<td>53566.967213</td>
-<td>66.180328</td>
-<td>562.770492</td>
-<td>25.22459</td>
-</tr>
-<tr class="even">
-<td>9</td>
 <td>264.556687</td>
 <td>42.15</td>
 <td>18796.2</td>
@@ -908,94 +890,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>30.61</td>
 </tr>
 <tr class="odd">
+<td>8</td>
+<td>31.153104</td>
+<td>36.022857</td>
+<td>59437.4</td>
+<td>60.862857</td>
+<td>690.171429</td>
+<td>28.045714</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>38.4891</td>
+<td>36.885</td>
+<td>51666.15</td>
+<td>59.225</td>
+<td>792.15</td>
+<td>36.36</td>
+</tr>
+<tr class="odd">
 <td>10</td>
-<td>28.552676</td>
-<td>44.704878</td>
-<td>53103.317073</td>
-<td>77.642683</td>
-<td>514.52439</td>
-<td>26.846341</td>
+<td>40.896976</td>
+<td>43.270536</td>
+<td>56572.098214</td>
+<td>73.580357</td>
+<td>625.526786</td>
+<td>28.692857</td>
 </tr>
 <tr class="even">
 <td>11</td>
-<td>934.982173</td>
-<td>42.133333</td>
-<td>95548.0</td>
-<td>55.0</td>
-<td>1612.666667</td>
-<td>30.966667</td>
+<td>40.757574</td>
+<td>40.876471</td>
+<td>89125.411765</td>
+<td>72.352941</td>
+<td>1050.705882</td>
+<td>26.876471</td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>31.031776</td>
-<td>37.0</td>
-<td>55653.897436</td>
-<td>61.294872</td>
-<td>654.282051</td>
-<td>28.525641</td>
+<td>32.439496</td>
+<td>40.728169</td>
+<td>46658.408451</td>
+<td>70.969014</td>
+<td>501.042254</td>
+<td>29.347887</td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>155.763586</td>
-<td>42.215385</td>
-<td>65402.115385</td>
-<td>70.465385</td>
-<td>798.942308</td>
-<td>28.684615</td>
+<td>34.841857</td>
+<td>42.772632</td>
+<td>63935.4</td>
+<td>76.924211</td>
+<td>593.631579</td>
+<td>24.726316</td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>33.791579</td>
-<td>43.104651</td>
-<td>67551.162791</td>
-<td>78.162791</td>
-<td>578.627907</td>
-<td>23.672093</td>
+<td>129.731464</td>
+<td>41.247826</td>
+<td>80558.152174</td>
+<td>65.278261</td>
+<td>1186.956522</td>
+<td>31.365217</td>
 </tr>
 <tr class="even">
 <td>15</td>
-<td>24.407278</td>
-<td>42.458182</td>
-<td>55165.490909</td>
-<td>73.441818</td>
-<td>545.0</td>
-<td>24.423636</td>
+<td>17.13144</td>
+<td>42.308333</td>
+<td>34896.916667</td>
+<td>56.816667</td>
+<td>454.083333</td>
+<td>34.133333</td>
 </tr>
 <tr class="odd">
 <td>16</td>
-<td>34.623847</td>
-<td>44.438182</td>
-<td>51687.4</td>
-<td>74.025455</td>
-<td>600.381818</td>
-<td>30.556364</td>
+<td>150.252073</td>
+<td>42.291379</td>
+<td>65432.482759</td>
+<td>70.496552</td>
+<td>802.517241</td>
+<td>28.682759</td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>30.460602</td>
-<td>40.62375</td>
-<td>47804.6</td>
-<td>70.6625</td>
-<td>516.6375</td>
-<td>29.17875</td>
+<td>19.00414</td>
+<td>40.476471</td>
+<td>59346.313725</td>
+<td>69.066667</td>
+<td>619.54902</td>
+<td>24.27451</td>
 </tr>
 <tr class="odd">
 <td>18</td>
-<td>59.161159</td>
-<td>40.221538</td>
-<td>58432.738462</td>
-<td>63.695385</td>
-<td>819.046154</td>
-<td>31.978462</td>
+<td>513.205771</td>
+<td>42.35</td>
+<td>110167.0</td>
+<td>63.566667</td>
+<td>1647.666667</td>
+<td>30.0</td>
 </tr>
 <tr class="even">
 <td>19</td>
-<td>21.751061</td>
-<td>41.992857</td>
-<td>37109.714286</td>
-<td>58.242857</td>
-<td>474.571429</td>
-<td>35.05</td>
+<td>28.829767</td>
+<td>44.030357</td>
+<td>44189.75</td>
+<td>67.357143</td>
+<td>537.392857</td>
+<td>30.896429</td>
 </tr>
 </tbody>
 </table>
@@ -1008,7 +1008,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Now let’s apply dimensionality reduction to text data. Using the <code>anno</code> annotation dataset, filter to only nouns (<code>upos == "NOUN"</code>) and apply UMAP via the <code>DSSklearnText.umap</code> wrapper. Use <code>doc_id</code> as the document identifier and <code>lemma</code> as the term identifier. See if authors who write about similar topics end up near each other.</li>
 </ol>
-<div id="a8de0c23" class="cell" data-execution_count="12">
+<div id="f9e94192" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1035,7 +1035,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Repeat the UMAP analysis on the same filtered noun annotations, but this time use custom values for <code>n_neighbors</code> and <code>min_dist</code>. Play around with the values until you get something more interesting that the default.</li>
 </ol>
-<div id="aac3b2b2" class="cell" data-execution_count="13">
+<div id="98e1470d" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>

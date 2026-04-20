@@ -489,23 +489,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we will …</p>
+<p>In this notebook, we will explore ways to apply computer vision algorithms for images to the analysis of an historic collection of documentary photographs.</p>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="149d037e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="7cc31d43" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> <span class="im">from</span> ultralytics <span class="im">import</span> YOLO</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c60d4451" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="f5513a16" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="1fe633db" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="3">
+<div id="8bd2e05e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="3">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="492186dc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="319b13a2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>humanitiesdata.org<span class="op">/</span>media<span class="op">/</span>fsac.tar <span class="op">-</span>P media<span class="op">/</span></span>
@@ -536,7 +536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>q <span class="op">-</span>nc <span class="op">-</span>P models https:<span class="op">//</span>humanitiesdata.org<span class="op">/</span>models<span class="op">/</span>yolo11n.pt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="de2a5ed3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="e02c3d59" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fsac <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/fsac.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -545,8 +545,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="part-1-introduction" class="level3">
 <h3 class="anchored" data-anchor-id="part-1-introduction">Part 1: Introduction</h3>
-<p>For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II.</p>
-<div id="6ff01f9a" class="cell" data-execution_count="7">
+<ol type="1">
+<li>For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II.</li>
+</ol>
+<div id="04a26312" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fsac</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -933,8 +935,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Here are a few examples:</p>
-<div id="0254180a" class="cell" data-execution_count="8">
+<ol start="2" type="1">
+<li>Here are a few examples:</li>
+</ol>
+<div id="ed78e496" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -954,22 +958,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="part-2-object-detection" class="level3">
 <h3 class="anchored" data-anchor-id="part-2-object-detection">Part 2: Object Detection</h3>
-<p>We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.</p>
-<div id="ed2bf2d3" class="cell" data-execution_count="9">
+<ol start="3" type="1">
+<li>We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.</li>
+</ol>
+<div id="6bb038b7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model_obj <span class="op">=</span> YOLO(<span class="st">"media/yolo11n.pt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>We can apply the model to one of our images with the following:</p>
-<div id="0c7c8470" class="cell" data-execution_count="10">
+<ol start="4" type="1">
+<li>We can apply the model to one of our images with the following:</li>
+</ol>
+<div id="37b41117" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> model_obj.predict(<span class="st">"media/fsac/1a35210v.jpg"</span>, verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Here is the structured data:</p>
-<div id="4f21a833" class="cell" data-execution_count="11">
+<ol start="5" type="1">
+<li>Here is the structured data:</li>
+</ol>
+<div id="6620e5b5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>preds.boxes.cls.tolist()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -978,8 +988,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[0.0, 0.0, 0.0]</code></pre>
 </div>
 </div>
-<p>And, more interestingly, a visualization of the people found by the algorithm:</p>
-<div id="95c55fc2" class="cell" data-execution_count="12">
+<ol start="6" type="1">
+<li>And, more interestingly, a visualization of the people found by the algorithm:</li>
+</ol>
+<div id="681ec44e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> cv2.cvtColor(preds.plot(), cv2.COLOR_BGR2RGB)</span>
@@ -994,8 +1006,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.</p>
-<div id="41898fed" class="cell" data-execution_count="13">
+<ol start="7" type="1">
+<li>We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.</li>
+</ol>
+<div id="41fac1cd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
@@ -1425,8 +1439,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Here are some of the photos with the fewest people:</p>
-<div id="ee2a617e" class="cell" data-execution_count="14">
+<ol start="8" type="1">
+<li>Here are some of the photos with the fewest people:</li>
+</ol>
+<div id="58157edd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1444,8 +1460,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>And, conversely, those with the most:</p>
-<div id="97637b71" class="cell" data-execution_count="15">
+<ol start="9" type="1">
+<li>And, conversely, those with the most:</li>
+</ol>
+<div id="f5c6574b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1463,8 +1481,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.</p>
-<div id="909f3224" class="cell" data-execution_count="16">
+<ol start="10" type="1">
+<li>And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.</li>
+</ol>
+<div id="30e1db7a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1487,8 +1507,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="part-3-segmentation" class="level3">
 <h3 class="anchored" data-anchor-id="part-3-segmentation">Part 3: Segmentation</h3>
 <p>Object detection tells us where objects are, but treats each detection as a simple rectangle. Instance segmentation goes further by identifying the exact pixels that belong to each object. Instead of a bounding box, segmentation produces a mask—a binary image where pixels belonging to the object are marked as 1 and background pixels as 0.</p>
-<p>YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.</p>
-<div id="8b4d1981" class="cell" data-execution_count="17">
+<ol start="11" type="1">
+<li>YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.</li>
+</ol>
+<div id="23ef87cd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_seg <span class="op">=</span> YOLO(<span class="st">"models/yolo11n-seg.pt"</span>)</span>
@@ -1507,8 +1529,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The visualization now shows colored masks overlaid on detected objects, precisely delineating their boundaries rather than just enclosing them in rectangles. This pixel-level precision enables more nuanced analysis of image content.</p>
-<p>We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.</p>
-<div id="c5c88cf9" class="cell" data-execution_count="18">
+<ol start="12" type="1">
+<li>We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.</li>
+</ol>
+<div id="70644c7e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
@@ -1971,8 +1995,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.</p>
-<div id="802357db" class="cell" data-execution_count="19">
+<ol start="13" type="1">
+<li>The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.</li>
+</ol>
+<div id="5ed4f2d6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1991,8 +2017,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>These tend to be closely framed portraits where the subject fills most of the frame. The segmentation-based measure captures a different aspect of photographic style than simple person counts: a single person in a tight portrait can have higher coverage than a dozen people in a wide street scene.</p>
-<p>The relationship between person coverage and photographer reveals stylistic differences.</p>
-<div id="9f5b9d78" class="cell" data-execution_count="20">
+<ol start="14" type="1">
+<li>The relationship between person coverage and photographer reveals stylistic differences.</li>
+</ol>
+<div id="a2319912" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -2505,7 +2533,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook23e</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>In this notebook, we will ...</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>In this notebook, we will explore ways to apply computer vision algorithms for images to the analysis of an historic collection of documentary photographs.</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Setup</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -2566,175 +2594,189 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 1: Introduction</span></span>
 <span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II. </span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II. </span>
 <span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a>fsac</span>
-<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a>Here are a few examples:</span>
-<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
-<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Object Detection</span></span>
+<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a>fsac</span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Here are a few examples:</span>
+<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
+<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a>We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.</span>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Object Detection</span></span>
 <span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-102"><a href="#cb21-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-103"><a href="#cb21-103" aria-hidden="true" tabindex="-1"></a>model_obj <span class="op">=</span> YOLO(<span class="st">"media/yolo11n.pt"</span>)</span>
-<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a>We can apply the model to one of our images with the following:</span>
-<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> model_obj.predict(<span class="st">"media/fsac/1a35210v.jpg"</span>, verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
-<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a>Here is the structured data:</span>
-<span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a>preds.boxes.cls.tolist()</span>
-<span id="cb21-120"><a href="#cb21-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-121"><a href="#cb21-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a>And, more interestingly, a visualization of the people found by the algorithm:</span>
-<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-126"><a href="#cb21-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-127"><a href="#cb21-127" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> cv2.cvtColor(preds.plot(), cv2.COLOR_BGR2RGB)</span>
-<span id="cb21-128"><a href="#cb21-128" aria-hidden="true" tabindex="-1"></a>pil_img <span class="op">=</span> Image.fromarray(rgb)</span>
-<span id="cb21-129"><a href="#cb21-129" aria-hidden="true" tabindex="-1"></a>pil_img</span>
-<span id="cb21-130"><a href="#cb21-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-131"><a href="#cb21-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-132"><a href="#cb21-132" aria-hidden="true" tabindex="-1"></a>We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.</span>
-<span id="cb21-133"><a href="#cb21-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-136"><a href="#cb21-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-137"><a href="#cb21-137" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
-<span id="cb21-138"><a href="#cb21-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-139"><a href="#cb21-139" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> fsac.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb21-140"><a href="#cb21-140" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> model_obj.predict(row[<span class="st">"filepath"</span>], verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
-<span id="cb21-141"><a href="#cb21-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-142"><a href="#cb21-142" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> preds.boxes <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb21-143"><a href="#cb21-143" aria-hidden="true" tabindex="-1"></a>        results.append(<span class="dv">0</span>)</span>
-<span id="cb21-144"><a href="#cb21-144" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.</span>
+<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a>model_obj <span class="op">=</span> YOLO(<span class="st">"media/yolo11n.pt"</span>)</span>
+<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>We can apply the model to one of our images with the following:</span>
+<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> model_obj.predict(<span class="st">"media/fsac/1a35210v.jpg"</span>, verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-116"><a href="#cb21-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-117"><a href="#cb21-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Here is the structured data:</span>
+<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-124"><a href="#cb21-124" aria-hidden="true" tabindex="-1"></a>preds.boxes.cls.tolist()</span>
+<span id="cb21-125"><a href="#cb21-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-126"><a href="#cb21-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-127"><a href="#cb21-127" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>And, more interestingly, a visualization of the people found by the algorithm:</span>
+<span id="cb21-128"><a href="#cb21-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-131"><a href="#cb21-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-132"><a href="#cb21-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-133"><a href="#cb21-133" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> cv2.cvtColor(preds.plot(), cv2.COLOR_BGR2RGB)</span>
+<span id="cb21-134"><a href="#cb21-134" aria-hidden="true" tabindex="-1"></a>pil_img <span class="op">=</span> Image.fromarray(rgb)</span>
+<span id="cb21-135"><a href="#cb21-135" aria-hidden="true" tabindex="-1"></a>pil_img</span>
+<span id="cb21-136"><a href="#cb21-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-137"><a href="#cb21-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-138"><a href="#cb21-138" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.</span>
+<span id="cb21-139"><a href="#cb21-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-142"><a href="#cb21-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-143"><a href="#cb21-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-144"><a href="#cb21-144" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
 <span id="cb21-145"><a href="#cb21-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-146"><a href="#cb21-146" aria-hidden="true" tabindex="-1"></a>    cls_ids <span class="op">=</span> preds.boxes.cls.tolist()</span>
-<span id="cb21-147"><a href="#cb21-147" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> preds.names</span>
-<span id="cb21-148"><a href="#cb21-148" aria-hidden="true" tabindex="-1"></a>    results.append(<span class="bu">sum</span>(names[<span class="bu">int</span>(c)] <span class="op">==</span> <span class="st">"person"</span> <span class="cf">for</span> c <span class="kw">in</span> cls_ids))</span>
-<span id="cb21-149"><a href="#cb21-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-150"><a href="#cb21-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-151"><a href="#cb21-151" aria-hidden="true" tabindex="-1"></a>fsac <span class="op">=</span> fsac.with_columns(people <span class="op">=</span> pl.Series(results))</span>
-<span id="cb21-152"><a href="#cb21-152" aria-hidden="true" tabindex="-1"></a>fsac</span>
-<span id="cb21-153"><a href="#cb21-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-154"><a href="#cb21-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-155"><a href="#cb21-155" aria-hidden="true" tabindex="-1"></a>Here are some of the photos with the fewest people:</span>
+<span id="cb21-146"><a href="#cb21-146" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> fsac.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb21-147"><a href="#cb21-147" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> model_obj.predict(row[<span class="st">"filepath"</span>], verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-148"><a href="#cb21-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-149"><a href="#cb21-149" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> preds.boxes <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb21-150"><a href="#cb21-150" aria-hidden="true" tabindex="-1"></a>        results.append(<span class="dv">0</span>)</span>
+<span id="cb21-151"><a href="#cb21-151" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb21-152"><a href="#cb21-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-153"><a href="#cb21-153" aria-hidden="true" tabindex="-1"></a>    cls_ids <span class="op">=</span> preds.boxes.cls.tolist()</span>
+<span id="cb21-154"><a href="#cb21-154" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> preds.names</span>
+<span id="cb21-155"><a href="#cb21-155" aria-hidden="true" tabindex="-1"></a>    results.append(<span class="bu">sum</span>(names[<span class="bu">int</span>(c)] <span class="op">==</span> <span class="st">"person"</span> <span class="cf">for</span> c <span class="kw">in</span> cls_ids))</span>
 <span id="cb21-156"><a href="#cb21-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-159"><a href="#cb21-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-160"><a href="#cb21-160" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-161"><a href="#cb21-161" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-162"><a href="#cb21-162" aria-hidden="true" tabindex="-1"></a>    .sort(c.people)</span>
-<span id="cb21-163"><a href="#cb21-163" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
-<span id="cb21-164"><a href="#cb21-164" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb21-165"><a href="#cb21-165" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-166"><a href="#cb21-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-167"><a href="#cb21-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-168"><a href="#cb21-168" aria-hidden="true" tabindex="-1"></a>And, conversely, those with the most:</span>
-<span id="cb21-169"><a href="#cb21-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-172"><a href="#cb21-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-173"><a href="#cb21-173" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-174"><a href="#cb21-174" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-175"><a href="#cb21-175" aria-hidden="true" tabindex="-1"></a>    .sort(c.people, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-176"><a href="#cb21-176" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
-<span id="cb21-177"><a href="#cb21-177" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb21-178"><a href="#cb21-178" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-179"><a href="#cb21-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-180"><a href="#cb21-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-181"><a href="#cb21-181" aria-hidden="true" tabindex="-1"></a>And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.</span>
-<span id="cb21-182"><a href="#cb21-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-185"><a href="#cb21-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-186"><a href="#cb21-186" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-187"><a href="#cb21-187" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-188"><a href="#cb21-188" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"reorder(photographer, people)"</span>, <span class="st">"people"</span>))</span>
-<span id="cb21-189"><a href="#cb21-189" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
-<span id="cb21-190"><a href="#cb21-190" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> coord_flip()</span>
-<span id="cb21-191"><a href="#cb21-191" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-192"><a href="#cb21-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-193"><a href="#cb21-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-194"><a href="#cb21-194" aria-hidden="true" tabindex="-1"></a>Some photographers specialized in intimate portraits with one or two subjects, while others captured street scenes and public gatherings. These patterns emerge clearly from the automated analysis.</span>
-<span id="cb21-195"><a href="#cb21-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-196"><a href="#cb21-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Segmentation</span></span>
-<span id="cb21-197"><a href="#cb21-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-198"><a href="#cb21-198" aria-hidden="true" tabindex="-1"></a>Object detection tells us where objects are, but treats each detection as a simple rectangle. Instance segmentation goes further by identifying the exact pixels that belong to each object. Instead of a bounding box, segmentation produces a mask—a binary image where pixels belonging to the object are marked as 1 and background pixels as 0.</span>
-<span id="cb21-199"><a href="#cb21-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-200"><a href="#cb21-200" aria-hidden="true" tabindex="-1"></a>YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.</span>
-<span id="cb21-201"><a href="#cb21-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-204"><a href="#cb21-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-205"><a href="#cb21-205" aria-hidden="true" tabindex="-1"></a>model_seg <span class="op">=</span> YOLO(<span class="st">"models/yolo11n-seg.pt"</span>)</span>
-<span id="cb21-206"><a href="#cb21-206" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model_seg.predict(<span class="st">"media/fsac/1a35210v.jpg"</span>, verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-157"><a href="#cb21-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-158"><a href="#cb21-158" aria-hidden="true" tabindex="-1"></a>fsac <span class="op">=</span> fsac.with_columns(people <span class="op">=</span> pl.Series(results))</span>
+<span id="cb21-159"><a href="#cb21-159" aria-hidden="true" tabindex="-1"></a>fsac</span>
+<span id="cb21-160"><a href="#cb21-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-161"><a href="#cb21-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-162"><a href="#cb21-162" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Here are some of the photos with the fewest people:</span>
+<span id="cb21-163"><a href="#cb21-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-166"><a href="#cb21-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-167"><a href="#cb21-167" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-168"><a href="#cb21-168" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-169"><a href="#cb21-169" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-170"><a href="#cb21-170" aria-hidden="true" tabindex="-1"></a>    .sort(c.people)</span>
+<span id="cb21-171"><a href="#cb21-171" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
+<span id="cb21-172"><a href="#cb21-172" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb21-173"><a href="#cb21-173" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-174"><a href="#cb21-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-175"><a href="#cb21-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-176"><a href="#cb21-176" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>And, conversely, those with the most:</span>
+<span id="cb21-177"><a href="#cb21-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-180"><a href="#cb21-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-181"><a href="#cb21-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-182"><a href="#cb21-182" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-183"><a href="#cb21-183" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-184"><a href="#cb21-184" aria-hidden="true" tabindex="-1"></a>    .sort(c.people, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-185"><a href="#cb21-185" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">12</span>)</span>
+<span id="cb21-186"><a href="#cb21-186" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb21-187"><a href="#cb21-187" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-188"><a href="#cb21-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-189"><a href="#cb21-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-190"><a href="#cb21-190" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.</span>
+<span id="cb21-191"><a href="#cb21-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-194"><a href="#cb21-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-195"><a href="#cb21-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-196"><a href="#cb21-196" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-197"><a href="#cb21-197" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-198"><a href="#cb21-198" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"reorder(photographer, people)"</span>, <span class="st">"people"</span>))</span>
+<span id="cb21-199"><a href="#cb21-199" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb21-200"><a href="#cb21-200" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> coord_flip()</span>
+<span id="cb21-201"><a href="#cb21-201" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-202"><a href="#cb21-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-203"><a href="#cb21-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-204"><a href="#cb21-204" aria-hidden="true" tabindex="-1"></a>Some photographers specialized in intimate portraits with one or two subjects, while others captured street scenes and public gatherings. These patterns emerge clearly from the automated analysis.</span>
+<span id="cb21-205"><a href="#cb21-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-206"><a href="#cb21-206" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Segmentation</span></span>
 <span id="cb21-207"><a href="#cb21-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-208"><a href="#cb21-208" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> cv2.cvtColor(pred.plot(), cv2.COLOR_BGR2RGB)</span>
-<span id="cb21-209"><a href="#cb21-209" aria-hidden="true" tabindex="-1"></a>pil_img <span class="op">=</span> Image.fromarray(rgb)</span>
-<span id="cb21-210"><a href="#cb21-210" aria-hidden="true" tabindex="-1"></a>pil_img</span>
-<span id="cb21-211"><a href="#cb21-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-212"><a href="#cb21-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-213"><a href="#cb21-213" aria-hidden="true" tabindex="-1"></a>The visualization now shows colored masks overlaid on detected objects, precisely delineating their boundaries rather than just enclosing them in rectangles. This pixel-level precision enables more nuanced analysis of image content.</span>
-<span id="cb21-214"><a href="#cb21-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-215"><a href="#cb21-215" aria-hidden="true" tabindex="-1"></a>We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.</span>
-<span id="cb21-216"><a href="#cb21-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-219"><a href="#cb21-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-220"><a href="#cb21-220" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
-<span id="cb21-221"><a href="#cb21-221" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> fsac.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb21-222"><a href="#cb21-222" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> model_seg.predict(row[<span class="st">"filepath"</span>], verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-208"><a href="#cb21-208" aria-hidden="true" tabindex="-1"></a>Object detection tells us where objects are, but treats each detection as a simple rectangle. Instance segmentation goes further by identifying the exact pixels that belong to each object. Instead of a bounding box, segmentation produces a mask—a binary image where pixels belonging to the object are marked as 1 and background pixels as 0.</span>
+<span id="cb21-209"><a href="#cb21-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-210"><a href="#cb21-210" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.</span>
+<span id="cb21-211"><a href="#cb21-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-214"><a href="#cb21-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-215"><a href="#cb21-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-216"><a href="#cb21-216" aria-hidden="true" tabindex="-1"></a>model_seg <span class="op">=</span> YOLO(<span class="st">"models/yolo11n-seg.pt"</span>)</span>
+<span id="cb21-217"><a href="#cb21-217" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model_seg.predict(<span class="st">"media/fsac/1a35210v.jpg"</span>, verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-218"><a href="#cb21-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-219"><a href="#cb21-219" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> cv2.cvtColor(pred.plot(), cv2.COLOR_BGR2RGB)</span>
+<span id="cb21-220"><a href="#cb21-220" aria-hidden="true" tabindex="-1"></a>pil_img <span class="op">=</span> Image.fromarray(rgb)</span>
+<span id="cb21-221"><a href="#cb21-221" aria-hidden="true" tabindex="-1"></a>pil_img</span>
+<span id="cb21-222"><a href="#cb21-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb21-223"><a href="#cb21-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-224"><a href="#cb21-224" aria-hidden="true" tabindex="-1"></a>    cls_ids <span class="op">=</span> preds.boxes.cls.to(<span class="st">"cpu"</span>).numpy().astype(<span class="bu">int</span>)</span>
-<span id="cb21-225"><a href="#cb21-225" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> preds.names</span>
-<span id="cb21-226"><a href="#cb21-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-227"><a href="#cb21-227" aria-hidden="true" tabindex="-1"></a>    person_idx <span class="op">=</span> np.where(np.array([names[c] <span class="op">==</span> <span class="st">"person"</span> <span class="cf">for</span> c <span class="kw">in</span> cls_ids]))[<span class="dv">0</span>]</span>
-<span id="cb21-228"><a href="#cb21-228" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> person_idx.size <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb21-229"><a href="#cb21-229" aria-hidden="true" tabindex="-1"></a>        results.append(<span class="fl">0.0</span>)</span>
-<span id="cb21-230"><a href="#cb21-230" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb21-231"><a href="#cb21-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-232"><a href="#cb21-232" aria-hidden="true" tabindex="-1"></a>    masks <span class="op">=</span> preds.masks.data[person_idx]</span>
-<span id="cb21-233"><a href="#cb21-233" aria-hidden="true" tabindex="-1"></a>    union <span class="op">=</span> masks.<span class="bu">any</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb21-234"><a href="#cb21-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-235"><a href="#cb21-235" aria-hidden="true" tabindex="-1"></a>    coverage <span class="op">=</span> union.<span class="bu">float</span>().mean().item()</span>
-<span id="cb21-236"><a href="#cb21-236" aria-hidden="true" tabindex="-1"></a>    results.append(coverage <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb21-237"><a href="#cb21-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-224"><a href="#cb21-224" aria-hidden="true" tabindex="-1"></a>The visualization now shows colored masks overlaid on detected objects, precisely delineating their boundaries rather than just enclosing them in rectangles. This pixel-level precision enables more nuanced analysis of image content.</span>
+<span id="cb21-225"><a href="#cb21-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-226"><a href="#cb21-226" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.</span>
+<span id="cb21-227"><a href="#cb21-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-230"><a href="#cb21-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-231"><a href="#cb21-231" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-232"><a href="#cb21-232" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb21-233"><a href="#cb21-233" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> fsac.iter_rows(named<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb21-234"><a href="#cb21-234" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> model_seg.predict(row[<span class="st">"filepath"</span>], verbose<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb21-235"><a href="#cb21-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-236"><a href="#cb21-236" aria-hidden="true" tabindex="-1"></a>    cls_ids <span class="op">=</span> preds.boxes.cls.to(<span class="st">"cpu"</span>).numpy().astype(<span class="bu">int</span>)</span>
+<span id="cb21-237"><a href="#cb21-237" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> preds.names</span>
 <span id="cb21-238"><a href="#cb21-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-239"><a href="#cb21-239" aria-hidden="true" tabindex="-1"></a>fsac <span class="op">=</span> fsac.with_columns(people_prop<span class="op">=</span>pl.Series(results))</span>
-<span id="cb21-240"><a href="#cb21-240" aria-hidden="true" tabindex="-1"></a>fsac</span>
-<span id="cb21-241"><a href="#cb21-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-242"><a href="#cb21-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-243"><a href="#cb21-243" aria-hidden="true" tabindex="-1"></a>The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.</span>
-<span id="cb21-244"><a href="#cb21-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-247"><a href="#cb21-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-248"><a href="#cb21-248" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-249"><a href="#cb21-249" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-250"><a href="#cb21-250" aria-hidden="true" tabindex="-1"></a>    .sort(c.people_prop, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-251"><a href="#cb21-251" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">8</span>)</span>
-<span id="cb21-252"><a href="#cb21-252" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>, label_name<span class="op">=</span><span class="st">"people_prop"</span>)</span>
-<span id="cb21-253"><a href="#cb21-253" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-254"><a href="#cb21-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-255"><a href="#cb21-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-256"><a href="#cb21-256" aria-hidden="true" tabindex="-1"></a>These tend to be closely framed portraits where the subject fills most of the frame. The segmentation-based measure captures a different aspect of photographic style than simple person counts: a single person in a tight portrait can have higher coverage than a dozen people in a wide street scene.</span>
-<span id="cb21-257"><a href="#cb21-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-258"><a href="#cb21-258" aria-hidden="true" tabindex="-1"></a>The relationship between person coverage and photographer reveals stylistic differences.</span>
-<span id="cb21-259"><a href="#cb21-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-262"><a href="#cb21-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb21-263"><a href="#cb21-263" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-264"><a href="#cb21-264" aria-hidden="true" tabindex="-1"></a>    fsac</span>
-<span id="cb21-265"><a href="#cb21-265" aria-hidden="true" tabindex="-1"></a>    .group_by(c.photographer)</span>
-<span id="cb21-266"><a href="#cb21-266" aria-hidden="true" tabindex="-1"></a>    .agg(avg_people <span class="op">=</span> c.people_prop.mean())</span>
-<span id="cb21-267"><a href="#cb21-267" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"avg_people"</span>, <span class="st">"reorder(photographer, avg_people)"</span>))</span>
-<span id="cb21-268"><a href="#cb21-268" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
-<span id="cb21-269"><a href="#cb21-269" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-270"><a href="#cb21-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-271"><a href="#cb21-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-272"><a href="#cb21-272" aria-hidden="true" tabindex="-1"></a>Photographers with higher average coverage tended toward portrait work, while those with lower coverage may have focused on environmental scenes, architecture, or wide-angle documentary shots. The measure is not always inversely related to person count; some photographers captured groups in intimate settings with high coverage, while others documented single individuals in expansive landscapes.</span>
+<span id="cb21-239"><a href="#cb21-239" aria-hidden="true" tabindex="-1"></a>    person_idx <span class="op">=</span> np.where(np.array([names[c] <span class="op">==</span> <span class="st">"person"</span> <span class="cf">for</span> c <span class="kw">in</span> cls_ids]))[<span class="dv">0</span>]</span>
+<span id="cb21-240"><a href="#cb21-240" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> person_idx.size <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb21-241"><a href="#cb21-241" aria-hidden="true" tabindex="-1"></a>        results.append(<span class="fl">0.0</span>)</span>
+<span id="cb21-242"><a href="#cb21-242" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb21-243"><a href="#cb21-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-244"><a href="#cb21-244" aria-hidden="true" tabindex="-1"></a>    masks <span class="op">=</span> preds.masks.data[person_idx]</span>
+<span id="cb21-245"><a href="#cb21-245" aria-hidden="true" tabindex="-1"></a>    union <span class="op">=</span> masks.<span class="bu">any</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb21-246"><a href="#cb21-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-247"><a href="#cb21-247" aria-hidden="true" tabindex="-1"></a>    coverage <span class="op">=</span> union.<span class="bu">float</span>().mean().item()</span>
+<span id="cb21-248"><a href="#cb21-248" aria-hidden="true" tabindex="-1"></a>    results.append(coverage <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb21-249"><a href="#cb21-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-250"><a href="#cb21-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-251"><a href="#cb21-251" aria-hidden="true" tabindex="-1"></a>fsac <span class="op">=</span> fsac.with_columns(people_prop<span class="op">=</span>pl.Series(results))</span>
+<span id="cb21-252"><a href="#cb21-252" aria-hidden="true" tabindex="-1"></a>fsac</span>
+<span id="cb21-253"><a href="#cb21-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-254"><a href="#cb21-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-255"><a href="#cb21-255" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.</span>
+<span id="cb21-256"><a href="#cb21-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-259"><a href="#cb21-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-260"><a href="#cb21-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-261"><a href="#cb21-261" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-262"><a href="#cb21-262" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-263"><a href="#cb21-263" aria-hidden="true" tabindex="-1"></a>    .sort(c.people_prop, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-264"><a href="#cb21-264" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">8</span>)</span>
+<span id="cb21-265"><a href="#cb21-265" aria-hidden="true" tabindex="-1"></a>    .pipe(DSImage.plot_image_grid, ncol<span class="op">=</span><span class="dv">4</span>, label_name<span class="op">=</span><span class="st">"people_prop"</span>)</span>
+<span id="cb21-266"><a href="#cb21-266" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-267"><a href="#cb21-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-268"><a href="#cb21-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-269"><a href="#cb21-269" aria-hidden="true" tabindex="-1"></a>These tend to be closely framed portraits where the subject fills most of the frame. The segmentation-based measure captures a different aspect of photographic style than simple person counts: a single person in a tight portrait can have higher coverage than a dozen people in a wide street scene.</span>
+<span id="cb21-270"><a href="#cb21-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-271"><a href="#cb21-271" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>The relationship between person coverage and photographer reveals stylistic differences.</span>
+<span id="cb21-272"><a href="#cb21-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-275"><a href="#cb21-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-276"><a href="#cb21-276" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: [noclear]</span></span>
+<span id="cb21-277"><a href="#cb21-277" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-278"><a href="#cb21-278" aria-hidden="true" tabindex="-1"></a>    fsac</span>
+<span id="cb21-279"><a href="#cb21-279" aria-hidden="true" tabindex="-1"></a>    .group_by(c.photographer)</span>
+<span id="cb21-280"><a href="#cb21-280" aria-hidden="true" tabindex="-1"></a>    .agg(avg_people <span class="op">=</span> c.people_prop.mean())</span>
+<span id="cb21-281"><a href="#cb21-281" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(<span class="st">"avg_people"</span>, <span class="st">"reorder(photographer, avg_people)"</span>))</span>
+<span id="cb21-282"><a href="#cb21-282" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point()</span>
+<span id="cb21-283"><a href="#cb21-283" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-284"><a href="#cb21-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-285"><a href="#cb21-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-286"><a href="#cb21-286" aria-hidden="true" tabindex="-1"></a>Photographers with higher average coverage tended toward portrait work, while those with lower coverage may have focused on environmental scenes, architecture, or wide-angle documentary shots. The measure is not always inversely related to person count; some photographers captured groups in intimate settings with high coverage, while others documented single individuals in expansive landscapes.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

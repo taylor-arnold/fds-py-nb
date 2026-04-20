@@ -1,6 +1,6 @@
 ## Notebook23e
 
-In this notebook, we will ...
+In this notebook, we will explore ways to apply computer vision algorithms for images to the analysis of an historic collection of documentary photographs.
 
 ### Setup
 
@@ -61,15 +61,17 @@ fsac = pl.read_csv(ub + "data/fsac.csv")
 
 ### Part 1: Introduction
 
-For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II. 
+1. For this analysis, we will use a collection of color photographs from the FSA-OWI (Farm Security Administration - Office of War Information) project, a remarkable documentary photography initiative from the 1930s and 1940s. These images captured American life during the Great Depression and World War II. 
 
 ```{python}
+#| tags: [noclear]
 fsac
 ```
 
-Here are a few examples:
+2. Here are a few examples:
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .head(12)
@@ -79,35 +81,40 @@ Here are a few examples:
 
 ### Part 2: Object Detection
 
-We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.
+3. We can load a pre-build YOLO model that detects several default categories, including the important category of people. Here is the code to load in the data.
 
 ```{python}
+#| tags: [noclear]
 model_obj = YOLO("media/yolo11n.pt")
 ```
 
-We can apply the model to one of our images with the following:
+4. We can apply the model to one of our images with the following:
 
 ```{python}
+#| tags: [noclear]
 preds = model_obj.predict("media/fsac/1a35210v.jpg", verbose=False)[0]
 ```
 
-Here is the structured data:
+5. Here is the structured data:
 
 ```{python}
+#| tags: [noclear]
 preds.boxes.cls.tolist()
 ```
 
-And, more interestingly, a visualization of the people found by the algorithm:
+6. And, more interestingly, a visualization of the people found by the algorithm:
 
 ```{python}
+#| tags: [noclear]
 rgb = cv2.cvtColor(preds.plot(), cv2.COLOR_BGR2RGB)
 pil_img = Image.fromarray(rgb)
 pil_img
 ```
 
-We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.
+7. We can run this through the entire corpus with the following code. We will store an indicator showing how many people are found in each image.
 
 ```{python}
+#| tags: [noclear]
 results = []
 
 for row in fsac.iter_rows(named=True):
@@ -126,9 +133,10 @@ fsac = fsac.with_columns(people = pl.Series(results))
 fsac
 ```
 
-Here are some of the photos with the fewest people:
+8. Here are some of the photos with the fewest people:
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .sort(c.people)
@@ -137,9 +145,10 @@ Here are some of the photos with the fewest people:
 )
 ```
 
-And, conversely, those with the most:
+9. And, conversely, those with the most:
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .sort(c.people, descending=True)
@@ -148,9 +157,10 @@ And, conversely, those with the most:
 )
 ```
 
-And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.
+10. And, we can begin to do some real analysis with this data to see the different kinds of styles that each photographer exhibits.
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .pipe(ggplot, aes("reorder(photographer, people)", "people"))
@@ -165,9 +175,10 @@ Some photographers specialized in intimate portraits with one or two subjects, w
 
 Object detection tells us where objects are, but treats each detection as a simple rectangle. Instance segmentation goes further by identifying the exact pixels that belong to each object. Instead of a bounding box, segmentation produces a mask—a binary image where pixels belonging to the object are marked as 1 and background pixels as 0.
 
-YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.
+11. YOLO includes segmentation variants that maintain real-time performance while producing pixel-accurate masks.
 
 ```{python}
+#| tags: [noclear]
 model_seg = YOLO("models/yolo11n-seg.pt")
 pred = model_seg.predict("media/fsac/1a35210v.jpg", verbose=False)[0]
 
@@ -178,9 +189,10 @@ pil_img
 
 The visualization now shows colored masks overlaid on detected objects, precisely delineating their boundaries rather than just enclosing them in rectangles. This pixel-level precision enables more nuanced analysis of image content.
 
-We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.
+12. We can use segmentation to compute what percentage of each image is occupied by people, providing a measure of how prominently human figures feature in the composition.
 
 ```{python}
+#| tags: [noclear]
 results = []
 for row in fsac.iter_rows(named=True):
     preds = model_seg.predict(row["filepath"], verbose=False)[0]
@@ -204,9 +216,10 @@ fsac = fsac.with_columns(people_prop=pl.Series(results))
 fsac
 ```
 
-The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.
+13. The people_prop column now contains the percentage of each image covered by detected people. Let’s see which images have the highest human coverage.
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .sort(c.people_prop, descending=True)
@@ -217,9 +230,10 @@ The people_prop column now contains the percentage of each image covered by dete
 
 These tend to be closely framed portraits where the subject fills most of the frame. The segmentation-based measure captures a different aspect of photographic style than simple person counts: a single person in a tight portrait can have higher coverage than a dozen people in a wide street scene.
 
-The relationship between person coverage and photographer reveals stylistic differences.
+14. The relationship between person coverage and photographer reveals stylistic differences.
 
 ```{python}
+#| tags: [noclear]
 (
     fsac
     .group_by(c.photographer)

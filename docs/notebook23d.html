@@ -493,13 +493,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="1576046e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="7f7c3ac3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d0a841fa" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="95548323" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -514,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="7bd8ad14" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="ff3eceba" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>birds <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/birds10.parquet"</span>)</span>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data-format">Data Format</h3>
 <p>So far in this course, our image tasks have involved assigning a single label to an entire image. For example, “this is a cardinal” or “this is a blue jay.” Bounding box detection is a fundamentally different task: instead of classifying the whole image, the model must locate <em>where</em> in the image the object of interest appears and draw a tight rectangle around it. This means each training example needs four numbers (the coordinates of the box corners) in addition to a class label.</p>
 <p>Our bird bounding box dataset contains exactly this information. Each row specifies an image filepath, a species label, and four coordinates defining the corners of a bounding box around the bird.</p>
-<div id="1d6b9887" class="cell" data-execution_count="5">
+<div id="0adee81b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>birds_bbox</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -670,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparing-the-yolo-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="preparing-the-yolo-dataset">Preparing the YOLO Dataset</h3>
 <p>We will use <strong>YOLO</strong> (You Only Look Once), one of the most widely used object detection architectures. YOLO expects training data in a very specific directory layout: images and label files organized into <code>train</code>, <code>val</code>, and <code>test</code> splits, with a YAML configuration file that describes the dataset. Rather than setting this up by hand, we use a helper function that takes our Polars DataFrame and reorganizes it into the format YOLO requires.</p>
-<div id="2ade392b" class="cell" data-execution_count="6">
+<div id="1dd7715c" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DSImage.prepare_yolo_dataset(</span>
@@ -686,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="training-the-model">Training the Model</h3>
 <p>YOLO models are typically not trained from scratch. Instead, we start from a <strong>pre-trained checkpoint</strong> (<code>yolo11n.pt</code>) that has already learned general-purpose visual features on a large dataset, and then fine-tune it on our bird data. This is the same transfer learning idea we’ve seen before — the early layers already know how to detect edges, textures, and shapes, so we only need to teach the final layers what a “cardinal” or “blue jay” bounding box looks like.</p>
 <p>Training runs for 50 epochs over our dataset. Since this takes a while, we wrap it in a try/except block that first checks for previously saved weights. If the trained model file already exists, we load it directly; otherwise we train from scratch and save the result.</p>
-<div id="18ed6a3e" class="cell" data-execution_count="7">
+<div id="f278557c" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -701,7 +701,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualizing-ground-truth" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-ground-truth">Visualizing Ground Truth</h3>
 <p>Before looking at what the model predicts, let’s visualize the ground truth bounding boxes — the hand-labeled rectangles that tell us where the bird actually is in each image. This gives us a baseline to compare against and helps us understand what the model is trying to learn.</p>
-<div id="c356a21e" class="cell" data-execution_count="8">
+<div id="7d15970f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -742,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="comparing-predictions-to-ground-truth" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-predictions-to-ground-truth">Comparing Predictions to Ground Truth</h3>
 <p>Now we run the trained model on the same images and overlay its predicted bounding boxes (in salmon) alongside the ground truth boxes (in olive). This side-by-side comparison lets us visually assess how well the model is doing. Ideally, the two rectangles should overlap closely — but you’ll notice that they rarely match perfectly, and occasionally the model may detect multiple objects or miss the bird entirely.</p>
-<div id="1503054a" class="cell" data-execution_count="9">
+<div id="56a31414" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
@@ -786,7 +786,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="generating-predictions-on-the-full-dataset">Generating Predictions on the Full Dataset</h3>
 <p>To evaluate the model quantitatively, we need predictions on every image — not just the nine we visualized. The code below runs the model across the full dataset and collects the top-confidence predicted bounding box for each image into a new DataFrame. We take only the highest-confidence box per image because our dataset has exactly one bird per image, so we’re asking: “where does the model think the bird most likely is?”</p>
 <p>As with our other notebooks, we cache the results to a Parquet file so that re-running the notebook doesn’t require re-computing all the predictions.</p>
-<div id="fd56e010" class="cell" data-execution_count="10">
+<div id="af06e3ba" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cache_path <span class="op">=</span> Path(<span class="st">"cache/birds_bbox_pred.parquet"</span>)</span>
@@ -1023,7 +1023,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How do we measure whether a predicted bounding box is “correct”? We can’t require an exact match — even human annotators would draw slightly different boxes. Instead, we use <strong>Intersection over Union (IoU)</strong>, the standard metric for bounding box quality.</p>
 <p>IoU is the ratio of the area where the predicted and ground truth boxes overlap (the intersection) to the total area covered by both boxes combined (the union). An IoU of 1.0 means perfect overlap; an IoU of 0.0 means the boxes don’t overlap at all. The standard threshold for counting a prediction as “correct” is IoU ≥ 0.5, meaning the predicted box must overlap with at least half of the ground truth box’s area.</p>
 <p>The computation below calculates the intersection rectangle (by taking the max of the left edges and the min of the right edges), computes its area, and then divides by the union area.</p>
-<div id="6af0fdb2" class="cell" data-execution_count="11">
+<div id="3726af0e" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>birds_bbox_iou <span class="op">=</span> (</span>
@@ -1269,7 +1269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="precision-recall-and-f1" class="level3">
 <h3 class="anchored" data-anchor-id="precision-recall-and-f1">Precision, Recall, and F1</h3>
 <p>Finally, we compute the same classification metrics we’ve used throughout the course — precision, recall, and F1 — but adapted for bounding box detection. A prediction counts as a <strong>true positive</strong> if the model produced a box with IoU ≥ some threshold against the ground truth. A <strong>false positive</strong> means the model predicted a box but it didn’t sufficiently overlap with the true location. A <strong>false negative</strong> means the model failed to locate the bird at all (or its box was too far off). We will write a function for this:</p>
-<div id="66260106" class="cell" data-execution_count="12">
+<div id="cb6e7f17" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_one_metrics(iou_thresh<span class="op">=</span><span class="fl">0.5</span>):</span>
@@ -1305,14 +1305,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Now, let’s compute the function for a large set of cut-off values.</p>
-<div id="65e085c6" class="cell" data-execution_count="13">
+<div id="db3ae888" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> compute_metrics([x <span class="op">/</span> <span class="dv">100</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>, <span class="dv">100</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Common cut-off values to care about include 0.5, 0.8, and 0.95:</p>
-<div id="21368f94" class="cell" data-execution_count="14">
+<div id="4565c3b2" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1420,7 +1420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We could also visualize the metrics as a function of the cutoff value.</p>
-<div id="c474dd35" class="cell" data-execution_count="15">
+<div id="40630d5c" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1437,7 +1437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="54e01c12" class="cell" data-execution_count="16">
+<div id="47822da5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>

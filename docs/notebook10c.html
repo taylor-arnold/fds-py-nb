@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="72813581" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="477592a4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="f7f3a522" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="0b695f35" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="4ac13f69" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="d3c8b182" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>g1_orig <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/game01.csv"</span>)</span>
@@ -530,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We start by doing some data cleaning. In this case, we need to convert the metric answers into inches so that all of our data is on the same scale. We save the dataset as <code>g1</code> and then are ready to do some analysis.</li>
 </ol>
-<div id="7d262794" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="9c26802d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> (</span>
@@ -724,7 +724,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Join <code>g1</code> to the <code>g1_meta</code> data using the key <code>c.question</code>. Create a new column called <code>correct</code> that is True when the answer is in the bounds and False otherwise. Group by student and compute the average value of the correct variable (this is the proportion of correct responses). Sort the output by score.</li>
 </ol>
-<div id="bf5b96a8" class="cell" data-execution_count="6">
+<div id="b708727c" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -772,19 +772,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.214286</td>
 </tr>
 <tr class="even">
-<td>"esoteric_emerald_eel"</td>
-<td>0.285714</td>
-</tr>
-<tr class="odd">
 <td>"epic_green_cat"</td>
 <td>0.285714</td>
 </tr>
+<tr class="odd">
+<td>"esoteric_emerald_eel"</td>
+<td>0.285714</td>
+</tr>
 <tr class="even">
-<td>"beautiful-black&amp;white_dog"</td>
+<td>"Theo"</td>
 <td>0.357143</td>
 </tr>
 <tr class="odd">
-<td>"Theo"</td>
+<td>"beautiful-black&amp;white_dog"</td>
 <td>0.357143</td>
 </tr>
 <tr class="even">
@@ -808,19 +808,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.5</td>
 </tr>
 <tr class="odd">
-<td>"kind_pink_butterfly"</td>
-<td>0.571429</td>
-</tr>
-<tr class="even">
 <td>"old_pink_crocodile"</td>
 <td>0.571429</td>
 </tr>
+<tr class="even">
+<td>"kind_pink_butterfly"</td>
+<td>0.571429</td>
+</tr>
 <tr class="odd">
-<td>"beautiful_brown_bear"</td>
+<td>"robotic_blue_dog"</td>
 <td>0.642857</td>
 </tr>
 <tr class="even">
-<td>"robotic_blue_dog"</td>
+<td>"beautiful_brown_bear"</td>
 <td>0.642857</td>
 </tr>
 </tbody>
@@ -831,7 +831,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Repeat what you did above, but this time group by <code>question_desc</code> to see how difficult each question was.</li>
 </ol>
-<div id="2e6727b7" class="cell" data-execution_count="7">
+<div id="072e9282" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -868,11 +868,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Word per day"</td>
+<td>"Charlemagne"</td>
 <td>0.125</td>
 </tr>
 <tr class="even">
-<td>"Charlemagne"</td>
+<td>"Word per day"</td>
 <td>0.125</td>
 </tr>
 <tr class="odd">
@@ -888,11 +888,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.25</td>
 </tr>
 <tr class="even">
-<td>"Richmond population"</td>
+<td>"Countries in UN"</td>
 <td>0.3125</td>
 </tr>
 <tr class="odd">
-<td>"Countries in UN"</td>
+<td>"Richmond population"</td>
 <td>0.3125</td>
 </tr>
 <tr class="even">
@@ -900,11 +900,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.4375</td>
 </tr>
 <tr class="odd">
-<td>"Steps per day"</td>
+<td>"Cat lifespan"</td>
 <td>0.5</td>
 </tr>
 <tr class="even">
-<td>"Cat lifespan"</td>
+<td>"Steps per day"</td>
 <td>0.5</td>
 </tr>
 <tr class="odd">
@@ -931,7 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Next, modify the code you’ve been building to include a metric <code>too_low</code> that is True when the guess was too low and False otherwise. Filter out the incorrect responses, and for each student see the proportion of times they guessed to low. Sort again by the proportion. Find yourself on the list.</li>
 </ol>
-<div id="019f2357" class="cell" data-execution_count="8">
+<div id="b761a658" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -977,23 +977,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.285714</td>
 </tr>
 <tr class="odd">
+<td>"kind_pink_butterfly"</td>
+<td>0.333333</td>
+</tr>
+<tr class="even">
+<td>"Scary_dark_shark"</td>
+<td>0.333333</td>
+</tr>
+<tr class="odd">
 <td>"Theo"</td>
 <td>0.333333</td>
 </tr>
 <tr class="even">
-<td>"kind_pink_butterfly"</td>
-<td>0.333333</td>
-</tr>
-<tr class="odd">
-<td>"Scary_dark_shark"</td>
-<td>0.333333</td>
-</tr>
-<tr class="even">
-<td>"beautiful_brown_bear"</td>
+<td>"robotic_blue_dog"</td>
 <td>0.4</td>
 </tr>
 <tr class="odd">
-<td>"robotic_blue_dog"</td>
+<td>"beautiful_brown_bear"</td>
 <td>0.4</td>
 </tr>
 <tr class="even">
@@ -1005,11 +1005,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.454545</td>
 </tr>
 <tr class="even">
-<td>"esoteric_emerald_eel"</td>
+<td>"crazy_blue_monkey"</td>
 <td>0.5</td>
 </tr>
 <tr class="odd">
-<td>"crazy_blue_monkey"</td>
+<td>"esoteric_emerald_eel"</td>
 <td>0.5</td>
 </tr>
 <tr class="even">
@@ -1040,7 +1040,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Repeat what you did above, but do it by question. Do any of the responses suprise you?</li>
 </ol>
-<div id="8da2d4d4" class="cell" data-execution_count="9">
+<div id="47925962" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1142,7 +1142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>We want to run an ANOVA test to see if there is a statistically significant relationship between whether the answer was correct and the student. To do this we need to add a with_column statement that converts the data type of the correct indicator from a Boolean value to a numeric one. You will need <code>correct = c.correct.cast(pl.Int64)</code>. Then, run the ANOVA and interpret the results.</li>
 </ol>
-<div id="1798b132" class="cell" data-execution_count="10">
+<div id="53434222" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1206,7 +1206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Repeat the previous question, but run ANOVA with the <code>question_desc</code> variable</li>
 </ol>
-<div id="7740a653" class="cell" data-execution_count="11">
+<div id="5dd1716c" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1273,7 +1273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>We need to do some cleaning of the next dataset as well to remove answers where someone responded twice with the same guess.</li>
 </ol>
-<div id="73fa5424" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="5fb6e161" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> (</span>
@@ -1420,7 +1420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Now, join <code>g2</code> to <code>g2_meta</code>. Note that these use different key names. Group by student, and compute a variable called <code>num_remembered</code> equal to the number of words the student remembered. Save the output as a dataset called <code>g2_student</code> and then print it out. We will need this later.</li>
 </ol>
-<div id="7b9c1f4e" class="cell" data-execution_count="13">
+<div id="f2f24144" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g2_student <span class="op">=</span> (</span>
@@ -1523,7 +1523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Join <code>g2</code> and <code>g2_meta</code> again. This time, group by <code>guess</code> and compute the number of guesses for each word divided by 15 (the number of students who responded). Sort by the score.</li>
 </ol>
-<div id="7751f47c" class="cell" data-execution_count="14">
+<div id="73a528ee" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1564,15 +1564,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.266667</td>
 </tr>
 <tr class="odd">
-<td>"wooden"</td>
+<td>"circle"</td>
 <td>0.533333</td>
 </tr>
 <tr class="even">
-<td>"stone"</td>
+<td>"wooden"</td>
 <td>0.533333</td>
 </tr>
 <tr class="odd">
-<td>"circle"</td>
+<td>"stone"</td>
 <td>0.533333</td>
 </tr>
 <tr class="even">
@@ -1596,27 +1596,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.666667</td>
 </tr>
 <tr class="odd">
+<td>"cloud"</td>
+<td>0.733333</td>
+</tr>
+<tr class="even">
+<td>"heavy"</td>
+<td>0.733333</td>
+</tr>
+<tr class="odd">
 <td>"river"</td>
 <td>0.733333</td>
 </tr>
 <tr class="even">
-<td>"cloud"</td>
-<td>0.733333</td>
+<td>"yellow"</td>
+<td>0.8</td>
 </tr>
 <tr class="odd">
-<td>"heavy"</td>
-<td>0.733333</td>
-</tr>
-<tr class="even">
 <td>"smooth"</td>
 <td>0.8</td>
 </tr>
-<tr class="odd">
-<td>"window"</td>
-<td>0.8</td>
-</tr>
 <tr class="even">
-<td>"yellow"</td>
+<td>"window"</td>
 <td>0.8</td>
 </tr>
 <tr class="odd">
@@ -1643,7 +1643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Repeat the previous task, but now group by guess and part of speech. Run a two-sample T-test to see if there is a statistically significant different between the scores of adjectives and the scores of nouns.</li>
 </ol>
-<div id="0029ddf6" class="cell" data-execution_count="15">
+<div id="4f3da161" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1711,7 +1711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>Create a dataset called <code>g3_student</code> that has one row for each student in the <code>g3</code> dataset and a column called <code>score</code> that gives the proportion of responses equal to “yes”.</li>
 </ol>
-<div id="f8669933" class="cell" data-execution_count="16">
+<div id="f315d6a7" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g3_student <span class="op">=</span> (</span>
@@ -1744,11 +1744,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"beautiful_brown_bear"</td>
+<td>"Scary_dark-shark"</td>
 <td>0.416667</td>
 </tr>
 <tr class="even">
-<td>"Scary_dark-shark"</td>
+<td>"beautiful_brown_bear"</td>
 <td>0.416667</td>
 </tr>
 <tr class="odd">
@@ -1756,11 +1756,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.5</td>
 </tr>
 <tr class="even">
-<td>"black_shiny_frog"</td>
+<td>"epic_green_cat"</td>
 <td>0.583333</td>
 </tr>
 <tr class="odd">
-<td>"epic_green_cat"</td>
+<td>"black_shiny_frog"</td>
 <td>0.583333</td>
 </tr>
 <tr class="even">
@@ -1768,23 +1768,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.666667</td>
 </tr>
 <tr class="odd">
-<td>"small_gray_pika"</td>
-<td>0.666667</td>
-</tr>
-<tr class="even">
 <td>"pink_puffy_penguin"</td>
 <td>0.666667</td>
 </tr>
-<tr class="odd">
-<td>"little_green_turtle"</td>
-<td>0.75</td>
-</tr>
 <tr class="even">
-<td>"old_pink_crocodile"</td>
-<td>0.75</td>
+<td>"small_gray_pika"</td>
+<td>0.666667</td>
 </tr>
 <tr class="odd">
 <td>"kind_pink_butterfly"</td>
+<td>0.75</td>
+</tr>
+<tr class="even">
+<td>"little_green_turtle"</td>
+<td>0.75</td>
+</tr>
+<tr class="odd">
+<td>"old_pink_crocodile"</td>
 <td>0.75</td>
 </tr>
 <tr class="even">
@@ -1796,11 +1796,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.916667</td>
 </tr>
 <tr class="even">
-<td>"crazy_blue_monkey"</td>
+<td>"fuzzy_blue_rhino"</td>
 <td>0.916667</td>
 </tr>
 <tr class="odd">
-<td>"fuzzy_blue_rhino"</td>
+<td>"crazy_blue_monkey"</td>
 <td>0.916667</td>
 </tr>
 </tbody>
@@ -1811,7 +1811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li>Join <code>g2_student</code> to <code>g3_student</code>. Plot the “num_remembered” on the x-axis and the “score” on the y-axis. Add a linear regression line.</li>
 </ol>
-<div id="f5ddebab" class="cell" data-execution_count="17">
+<div id="413b8965" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1833,7 +1833,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="14" type="1">
 <li>Finally, compute the regression you have above using <code>DSStatsmodels.ols</code>. Do you see a statistically significant affect between the two variables?</li>
 </ol>
-<div id="07935daa" class="cell" data-execution_count="18">
+<div id="5f1390e4" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>

@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="299417d5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="d7a9b44e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2d4ab299" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="31b0d6a0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -517,14 +517,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="7fde5d61" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="40af237f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>humanitiesdata.org<span class="op">/</span>media<span class="op">/</span>fashionmnist_10000.tar <span class="op">-</span>P media<span class="op">/</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>tar <span class="op">-</span>xf media<span class="op">/</span>fashionmnist_10000.tar <span class="op">-</span>C media<span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e42e22ce" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="772e4671" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fmnist <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/fashionmnist_10000.csv"</span>)</span>
@@ -694,7 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Let’s start by getting a feel for the Fashion MNIST dataset. Use <code>DSImage.plot_image_grid</code> to display a random sample of 30 images in a grid with 10 columns.</li>
 </ol>
-<div id="fbd268e7" class="cell" data-execution_count="6">
+<div id="ebd009c1" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DSImage.plot_image_grid(fmnist.sample(<span class="dv">30</span>), ncol<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Filter the dataset to only the “sneaker” label, take a random sample of 30, and display the images in a grid. This gives us a sense of what a single category looks like.</li>
 </ol>
-<div id="bd1da116" class="cell" data-execution_count="7">
+<div id="68a9df16" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -731,7 +731,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Use <code>DSTorch.load_image</code> to prepare the image data for modeling. Set <code>scale=True</code> and <code>flatten=True</code>. This returns the full feature matrices (<code>X</code>, <code>X_train</code>, <code>X_test</code>), label vectors (<code>y</code>, <code>y_train</code>, <code>y_test</code>), and the class names (<code>cn</code>).</li>
 </ol>
-<div id="918a3224" class="cell" data-execution_count="8">
+<div id="09e10c02" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X, X_train, X_test, y, y_train, y_test, cn <span class="op">=</span> DSTorch.load_image(</span>
@@ -742,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>This code shows how to add the matrix data directly into a data frame object. Run it and make sure you understand how it works. We will use it in the next few examples.</li>
 </ol>
-<div id="dadfbb0d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="c79861e8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -941,7 +941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Let’s visualize how the different clothing categories relate to each other. Add the pixel features as a column, take 10 images from each label, run UMAP (an unsupervised dimensionality reduction method) using <code>DSSklearn.umap</code> with <code>features=[c.pixels]</code>, call <code>.predict(full=True)</code>, and plot the result using <code>geom_text</code> with the label as the text. Which categories cluster together?</li>
 </ol>
-<div id="21de3f9d" class="cell" data-execution_count="10">
+<div id="45844ba3" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -971,7 +971,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Now let’s try a supervised approach. Add the pixel features as a column, then use <code>DSSklearn.logistic_regression_cv</code> with <code>target=c.label</code>, <code>stratify=c.label</code>, <code>features=[c.pixels]</code>, and <code>l1_ratios=[0]</code>. This fits a regularized logistic regression with cross-validation. Save the result as <code>model</code>.</li>
 </ol>
-<div id="c3b8353d" class="cell" data-execution_count="11">
+<div id="70f1e269" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -1043,7 +1043,7 @@ Please also refer to the documentation for alternative solver options:
 <ol start="7" type="1">
 <li>Check the accuracy of the logistic regression model using <code>.score()</code>.</li>
 </ol>
-<div id="4f7030d0" class="cell" data-execution_count="12">
+<div id="cd92635c" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1055,7 +1055,7 @@ Please also refer to the documentation for alternative solver options:
 <ol start="8" type="1">
 <li>Display the confusion matrix to see which categories the model tends to mix up.</li>
 </ol>
-<div id="699be274" class="cell" data-execution_count="13">
+<div id="500409e7" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1074,7 +1074,7 @@ Please also refer to the documentation for alternative solver options:
 <ol start="9" type="1">
 <li>Now let’s build a neural network. Define a <code>DenseNet</code> class that follows the same structure from the notes: a sequential network with a linear layer from 784 to 128 units, ReLU activation, a linear layer from 128 to 64, ReLU activation, and a final linear layer from 64 to 10 (one per class). Try to adapt the parameters to see if you can improve the results.</li>
 </ol>
-<div id="72d392e6" class="cell" data-execution_count="14">
+<div id="613a5199" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DenseNet(nn.Module):</span>
@@ -1095,7 +1095,7 @@ Please also refer to the documentation for alternative solver options:
 <ol start="10" type="1">
 <li>Create an instance of your <code>DenseNet</code> model and set up the Adam optimizer with a learning rate of 0.001, as in the notes. You can try adjusting the learning rate later to see how it affects training.</li>
 </ol>
-<div id="6a209f3c" class="cell" data-execution_count="15">
+<div id="5f5f9fd5" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> DenseNet()</span>
@@ -1105,7 +1105,7 @@ Please also refer to the documentation for alternative solver options:
 <ol start="11" type="1">
 <li>Train the model using <code>DSTorch.train</code> with the training data. Start with <code>num_epochs=20</code> and <code>batch_size=64</code> as in the notes. You can experiment with different values to try to improve performance.</li>
 </ol>
-<div id="d5c132fc" class="cell" data-execution_count="16">
+<div id="8ba87e80" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>DSTorch.train(</span>
@@ -1113,53 +1113,53 @@ Please also refer to the documentation for alternative solver options:
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1/20, Loss: 1.0501
-Epoch 2/20, Loss: 0.6082
-Epoch 3/20, Loss: 0.5206
-Epoch 4/20, Loss: 0.5014
-Epoch 5/20, Loss: 0.4450
-Epoch 6/20, Loss: 0.4203
-Epoch 7/20, Loss: 0.3995
-Epoch 8/20, Loss: 0.3825
-Epoch 9/20, Loss: 0.3657
-Epoch 10/20, Loss: 0.3532
-Epoch 11/20, Loss: 0.3383
-Epoch 12/20, Loss: 0.3277
-Epoch 13/20, Loss: 0.3094
-Epoch 14/20, Loss: 0.2962
-Epoch 15/20, Loss: 0.2880
-Epoch 16/20, Loss: 0.2757
-Epoch 17/20, Loss: 0.2700
-Epoch 18/20, Loss: 0.2605
-Epoch 19/20, Loss: 0.2527
-Epoch 20/20, Loss: 0.2463</code></pre>
+<pre><code>Epoch 1/20, Loss: 1.0298
+Epoch 2/20, Loss: 0.6010
+Epoch 3/20, Loss: 0.5376
+Epoch 4/20, Loss: 0.4830
+Epoch 5/20, Loss: 0.4523
+Epoch 6/20, Loss: 0.4290
+Epoch 7/20, Loss: 0.4049
+Epoch 8/20, Loss: 0.3847
+Epoch 9/20, Loss: 0.3669
+Epoch 10/20, Loss: 0.3537
+Epoch 11/20, Loss: 0.3313
+Epoch 12/20, Loss: 0.3298
+Epoch 13/20, Loss: 0.3176
+Epoch 14/20, Loss: 0.3089
+Epoch 15/20, Loss: 0.2911
+Epoch 16/20, Loss: 0.2754
+Epoch 17/20, Loss: 0.2663
+Epoch 18/20, Loss: 0.2659
+Epoch 19/20, Loss: 0.2545
+Epoch 20/20, Loss: 0.2332</code></pre>
 </div>
 </div>
 <ol start="12" type="1">
 <li>Score the model on both the training set and the test set using <code>DSTorch.score_image</code>. Compare the two — how much does accuracy drop on the test set? If there is a big gap, the model may be overfitting.</li>
 </ol>
-<div id="ee87d3ef" class="cell" data-execution_count="17">
+<div id="4e37cdf8" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_train, y_train, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>0.9103999733924866</code></pre>
+<pre><code>0.9214666485786438</code></pre>
 </div>
 </div>
-<div id="d50f0d5e" class="cell" data-execution_count="18">
+<div id="aee83d09" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_image(model, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>0.8568000197410583</code></pre>
+<pre><code>0.8668000102043152</code></pre>
 </div>
 </div>
 <ol start="13" type="1">
 <li>Display the confusion matrix for the neural network on the test set. Compare it with the logistic regression confusion matrix from question 8 — does the neural network do better on certain categories?</li>
 </ol>
-<div id="964b998c" class="cell" data-execution_count="19">
+<div id="28a62421" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>DSTorch.confusion_matrix(model, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

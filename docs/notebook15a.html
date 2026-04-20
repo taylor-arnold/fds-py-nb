@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="1c172a49" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="220a9fbc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0cf7d11e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="03810523" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -518,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="8d6f6db9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="e8b01669" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/agnews_pca.parquet"</span>)</span>
@@ -533,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We will start by plotting the UMAP embedding of the E5 embedding vectors from the AG News dataset. How much structure is captured already by the embedding vectors?</li>
 </ol>
-<div id="9345ac4a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="49ca90c8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -559,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Now let’s fit a shallow logistic regression model on the data.</li>
 </ol>
-<div id="8f5ada95" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="bc7459d0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -581,16 +581,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>And look at its score and confusion matrix. Notice that it does as well, but not noticably better, than our previous model. It’s likely the miscategorized examples are really edge cases between the two categories.</li>
 </ol>
-<div id="dc029482" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="7523f229" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>{'train': 0.9093708016121809, 'test': 0.9064524555903867}</code></pre>
+<pre><code>{'train': 0.9093931930138827, 'test': 0.9064263322884013}</code></pre>
 </div>
 </div>
-<div id="8a4ab795" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="0e466095" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -609,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Let’s move on to another dataset, this time product categories from Amazon reviews. We’ll mostly follow the same steps again, starting with a plot:</li>
 </ol>
-<div id="00152778" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="2881d7d8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -635,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Next, build a model.</li>
 </ol>
-<div id="b444ed9d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
+<div id="b15ab363" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -657,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>And then see how well it performs. This is clearly a harder task from the classification rates. Was that also clear from the plot above?</li>
 </ol>
-<div id="213a2310" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
+<div id="90c22a24" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -666,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>{'train': 0.784, 'test': 0.7473333333333333}</code></pre>
 </div>
 </div>
-<div id="5d22a97a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="da0b6eb7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Let’s move on to an image dataset. Here we have a subset of the Imagenet challenge, consisting of only 10 fairly distinct categories. Let’s build a similar plot as with the text data using the <code>vit</code> embeddings. How does this compare to the embedding of the text. Why do you think this is?</li>
 </ol>
-<div id="a0292834" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="05550ee2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Now, fit a model on the image data to predict the category.</li>
 </ol>
-<div id="7f793aae" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="16a6a032" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -734,7 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Check the score and confusion matrix. Does this surprise you at all?</li>
 </ol>
-<div id="c1720827" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="a5259434" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -743,7 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>{'train': 1.0, 'test': 0.9933333333333333}</code></pre>
 </div>
 </div>
-<div id="225ef9b8" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
+<div id="d8b2ce91" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -759,7 +759,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Alright, so we can do classification very well with the training data. What about <em>without</em> training data? Run the following the get the embedding of the phrase “a photo of a French horn”.</li>
 </ol>
-<div id="950eed4e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
+<div id="81f49176" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
@@ -778,7 +778,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>And visualize how related the embeddings are to the labels. How well do you think the unsupervised model will do at prediction with no training data?</li>
 </ol>
-<div id="951af5bd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
+<div id="f75459b9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -802,7 +802,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li>Now, we will embed the name of each label and store all of the embeddings.</li>
 </ol>
-<div id="102f7cb1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="d221f37b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
@@ -819,7 +819,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="14" type="1">
 <li>And then compute all of the pairs of scores, recording how often the top score corresponds to the correct label.</li>
 </ol>
-<div id="fdad78ed" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="0f269563" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -867,7 +867,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="15" type="1">
 <li>We will finish by doing the same thing with a dataset that is considered more difficult. It’s another subset of Imagenet, called called Image Woof, with 10 select labels from the set. However, this time we have ten dog breeds, which all look much more similar that the Imagenette categories. So, in theory, this will be harder. Let’s see a plot.</li>
 </ol>
-<div id="43dac673" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
+<div id="9509504d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -892,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="16" type="1">
 <li>Well, let’s make a model, which should be fairly good again given the plot.</li>
 </ol>
-<div id="7f73d4dc" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
+<div id="9b350fa7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -916,7 +916,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="17" type="1">
 <li>And verify that it does work well:</li>
 </ol>
-<div id="80175d59" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
+<div id="010cf07e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -925,7 +925,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>{'train': 0.9928571428571429, 'test': 0.9666666666666667}</code></pre>
 </div>
 </div>
-<div id="84100979" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
+<div id="b7163231" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -941,7 +941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="18" type="1">
 <li>Now, as before, let’s try a zero-shot model. We’ll start with a visualization of the phrase “a golden retriever”.</li>
 </ol>
-<div id="99493a1e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
+<div id="0e9e6c88" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>siglip <span class="op">=</span> SigLIPEmbedder()</span>
@@ -960,7 +960,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="19" type="1">
 <li>Looking at the visualization, how does this this compare to the example from before?</li>
 </ol>
-<div id="7c12e133" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
+<div id="bb8b8107" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -984,7 +984,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="20" type="1">
 <li>As before, let’s try to get an embedding of each text and build a full zero-shot model</li>
 </ol>
-<div id="987d86f0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
+<div id="a7653d51" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> (</span>
@@ -1001,7 +1001,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="21" type="1">
 <li>Now, evaluate how well the model works:</li>
 </ol>
-<div id="ba5ffc16" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
+<div id="7a6bd7b7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1046,7 +1046,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="22" type="1">
 <li>You should see that the model does well, but isn’t perfect. This final visualization shows that the SigLIP space is not a perfect model of the categories of dog breeds. The reason is that it isn’t trained to categorize that way; it encodes a lot of other information that degrades the performance for simple category look-ups.</li>
 </ol>
-<div id="9a7b0d51" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
+<div id="ec6630e4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>

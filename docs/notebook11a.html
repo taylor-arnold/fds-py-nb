@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="5bd2d22c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="3ca1a185" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="57be8b79" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="5981721d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -512,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5ef9c104" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="c1331ff7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metro <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/acs_cbsa.csv"</span>)</span>
@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Start by building a model object that uses linear regression to predict the household median income using the 1 bedroom median rent. Save the model as an object <code>model</code>.</li>
 </ol>
-<div id="244e0433" class="cell" data-execution_count="5">
+<div id="27e7a27d" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -543,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Compute the score of the model object. This is easy, but take a moment to make sure you understand what this means.</li>
 </ol>
-<div id="6dc536cc" class="cell" data-execution_count="6">
+<div id="a489fd00" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -555,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Take the <code>metro</code> data and direclty comput the root mean squared error (RMSE) without using the <code>.score()</code> method. Verify that it matches what you had in the previous question.</li>
 </ol>
-<div id="6a293da1" class="cell" data-execution_count="7">
+<div id="198bff98" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -591,12 +591,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"test"</td>
-<td>7625.932504</td>
-</tr>
-<tr class="even">
 <td>"train"</td>
 <td>8142.396015</td>
+</tr>
+<tr class="even">
+<td>"test"</td>
+<td>7625.932504</td>
 </tr>
 </tbody>
 </table>
@@ -606,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Print out the coefficents from the model. Make sure you understand what these mean and how they relate to the notes from today.</li>
 </ol>
-<div id="56ad44be" class="cell" data-execution_count="8">
+<div id="6f19f11f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model.coef()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -648,7 +648,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Redefine <code>model</code> to be a linear regression predicting household median income using three variables: 1BR median rent, the percentage of income used for rent, and the percentage of people who own their homes.</li>
 </ol>
-<div id="05bd1b3e" class="cell" data-execution_count="9">
+<div id="ed622fdc" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -664,7 +664,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Compute the score of this model (you may use <code>.score()</code> again). Visually compare to the model with just one predictor.</li>
 </ol>
-<div id="567d8810" class="cell" data-execution_count="10">
+<div id="da9ab941" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -676,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>Look at the coefficents of the new model. What do their signs tell us about the relationship between these three predictor variables and the household median income?</li>
 </ol>
-<div id="fd9f2cc8" class="cell" data-execution_count="11">
+<div id="61909997" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model.coef()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -726,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Next, redefine <code>model</code>. We will still predict household median income using 1BR median rent, percentage spent on housing, and percentage of people owning their house. But, now use the <code>DSSklearn.elastic_net_cv</code> model.</li>
 </ol>
-<div id="d2b7876a" class="cell" data-execution_count="12">
+<div id="dc89099d" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -742,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Look at the coefficents of the elastic net model. You should see that they are much smaller in magnitude than the logistic regression model.</li>
 </ol>
-<div id="d883b126" class="cell" data-execution_count="13">
+<div id="c93d1e4c" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model.coef()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -792,7 +792,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>Look at the score of the model. It’s not very good (probably) because the cross-validation system is not optimized for models this small. We would need to modify some inputs to get better values.</li>
 </ol>
-<div id="f9d91b4c" class="cell" data-execution_count="14">
+<div id="1aba7aee" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -808,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Now, use logistic regression to predict the quadrant (<code>quad</code>) that a region is from using the density, percentage owned, and household median income. Save the model again as <code>model</code>.</li>
 </ol>
-<div id="222f77b9" class="cell" data-execution_count="15">
+<div id="d3ef01a9" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> (</span>
@@ -824,7 +824,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>Now look at the coefficents of the model. Try your best to make some sense of them.</li>
 </ol>
-<div id="62b1403a" class="cell" data-execution_count="16">
+<div id="eea84e87" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model.coef()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -898,7 +898,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li>Compute the scores for this model. Make sure you understand what these numbers represent! Hint: It’s easier to understand than in the previous examples.</li>
 </ol>
-<div id="22ff1b36" class="cell" data-execution_count="17">
+<div id="8b64c4ae" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model.score()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -910,7 +910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="14" type="1">
 <li>Print out the confusion matrix. Make sure you also understand what it represents.</li>
 </ol>
-<div id="b18f5e53" class="cell" data-execution_count="18">
+<div id="0fe3203c" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -929,7 +929,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="15" type="1">
 <li>Let’s load in the annotation data from the sentator dataset we built previously. (This code and the remaining ones I have already filled in for you)</li>
 </ol>
-<div id="44a414f7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="6a3a0688" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>anno <span class="op">=</span> (</span>
@@ -1193,7 +1193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="16" type="1">
 <li>We can fit a penalised logistic model using the term-frequency matrix by calling the function <code>DSSklearnText.logistic_regression_cv</code>. It works just like the logistic regression model above, but accepts an annotation object and does the creation of the TF matrix internally for us. We will do more with these in future notebooks.</li>
 </ol>
-<div id="54524267" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="87c3b6a0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span>(</span>
@@ -1224,7 +1224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="17" type="1">
 <li>Look at the confusion matrix:</li>
 </ol>
-<div id="ef183e76" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
+<div id="0f3d15e1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model.confusion_matrix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1240,7 +1240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="18" type="1">
 <li>Finally, look at the non-zero coefficents. Notice that the table has a very specific (where Republican values are all the negative of the Democratic ones) due to the way the data is balanced between the categories.</li>
 </ol>
-<div id="6883f790" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
+<div id="2ac626db" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -1280,38 +1280,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>"conservative"</td>
-<td>-0.252853</td>
+<td>-0.252347</td>
 <td>0.0</td>
-<td>0.268434</td>
-<td>0.521287</td>
+<td>0.268437</td>
+<td>0.520783</td>
 </tr>
 <tr class="even">
 <td>"republican"</td>
-<td>-0.247428</td>
+<td>-0.247153</td>
 <td>0.0</td>
-<td>0.369632</td>
-<td>0.61706</td>
+<td>0.369952</td>
+<td>0.617106</td>
 </tr>
 <tr class="odd">
 <td>"rural"</td>
-<td>-0.116276</td>
-<td>0.029691</td>
+<td>-0.116853</td>
+<td>0.029806</td>
 <td>0.0</td>
-<td>0.116276</td>
+<td>0.116853</td>
 </tr>
 <tr class="even">
 <td>"unconstitutional"</td>
-<td>-0.11542</td>
+<td>-0.114754</td>
 <td>0.0</td>
-<td>0.182296</td>
-<td>0.297717</td>
+<td>0.18242</td>
+<td>0.297174</td>
 </tr>
 <tr class="odd">
 <td>"presidential"</td>
-<td>-0.092507</td>
+<td>-0.092462</td>
 <td>0.0</td>
-<td>0.109433</td>
-<td>0.201941</td>
+<td>0.109847</td>
+<td>0.202309</td>
 </tr>
 <tr class="even">
 <td>…</td>
@@ -1322,38 +1322,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>"reproductive"</td>
-<td>0.206391</td>
+<td>0.205219</td>
 <td>0.0</td>
-<td>-0.142613</td>
-<td>0.349004</td>
+<td>-0.142286</td>
+<td>0.347504</td>
 </tr>
 <tr class="even">
 <td>"flawed"</td>
-<td>0.213934</td>
+<td>0.214653</td>
 <td>0.0</td>
-<td>-0.107621</td>
-<td>0.321554</td>
+<td>-0.10812</td>
+<td>0.322773</td>
 </tr>
 <tr class="odd">
 <td>"democratic"</td>
-<td>0.244112</td>
+<td>0.243569</td>
 <td>0.0</td>
-<td>-0.365333</td>
-<td>0.609445</td>
+<td>-0.366101</td>
+<td>0.60967</td>
 </tr>
 <tr class="even">
 <td>"nonprofit"</td>
-<td>0.273694</td>
+<td>0.274014</td>
 <td>0.0</td>
-<td>-0.257416</td>
-<td>0.531109</td>
+<td>-0.257303</td>
+<td>0.531317</td>
 </tr>
 <tr class="odd">
 <td>"Intercept"</td>
-<td>0.411092</td>
-<td>-1.39331</td>
-<td>0.982219</td>
-<td>1.39331</td>
+<td>0.413775</td>
+<td>-1.397092</td>
+<td>0.983317</td>
+<td>1.397092</td>
 </tr>
 </tbody>
 </table>

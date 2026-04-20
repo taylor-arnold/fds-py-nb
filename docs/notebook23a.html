@@ -517,13 +517,13 @@ window.Quarto = {
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="b2cf36ec" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="b29d5bb5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9554e75a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="66fbe7ce" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -543,7 +543,7 @@ window.Quarto = {
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="4508575c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="bccaf3f0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plays <span class="op">=</span> pl.read_csv(ub <span class="op">+</span> <span class="st">"data/shakespeare_lines.csv.gz"</span>)</span>
@@ -563,7 +563,7 @@ window.Quarto = {
 <section id="setup-and-imports" class="level3">
 <h3 class="anchored" data-anchor-id="setup-and-imports">Setup and Imports</h3>
 <p>We start by importing everything we need. PyTorch is our deep learning framework, <code>tiktoken</code> handles tokenization, and <code>polars</code> is how our dataset is stored. On Apple Silicon Macs (M1–M4), PyTorch can use the <strong>MPS</strong> (Metal Performance Shaders) backend to run on the GPU — we detect that here automatically.</p>
-<div id="3b60d7b1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="f89e80ce" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
@@ -591,7 +591,7 @@ window.Quarto = {
 <section id="loading-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="loading-the-dataset">Loading the Dataset</h3>
 <p>Our dataset is a Polars DataFrame with a <code>text</code> column containing news articles. Let’s load it and take a quick look.</p>
-<div id="09b40f47" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="4630cc54" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> plays</span>
@@ -619,7 +619,7 @@ Another moon. But, O, methinks how slow...
 </div>
 </div>
 <p>We will concatenate all of the text into one long string and then tokenize the whole thing. The model doesn’t care about article boundaries — it just sees a stream of tokens and learns the statistical patterns of English news writing.</p>
-<div id="94b292e6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="6be956fa" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(df[<span class="st">"text"</span>].to_list())</span>
@@ -656,7 +656,7 @@ Another moon. But, O, methinks how slow...
 <section id="loading-tiktoken" class="level3">
 <h3 class="anchored" data-anchor-id="loading-tiktoken">Loading tiktoken</h3>
 <p><code>tiktoken</code> comes with several pre-trained tokenizer encodings. We’ll use <code>cl100k_base</code>, the encoding used by GPT-4 and GPT-3.5-turbo. It has a vocabulary of about 100,000 tokens.</p>
-<div id="899ffbec" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="e73a3bc5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>enc <span class="op">=</span> tiktoken.get_encoding(<span class="st">"cl100k_base"</span>)</span>
@@ -672,7 +672,7 @@ Another moon. But, O, methinks how slow...
 <section id="encoding-text-to-token-ids" class="level3">
 <h3 class="anchored" data-anchor-id="encoding-text-to-token-ids">Encoding: Text to Token IDs</h3>
 <p>The core operation is <code>.encode()</code>, which converts a string into a list of integer token IDs.</p>
-<div id="d984e5a1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="af25d110" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> <span class="st">"The stock market often crashes on Tuesdays."</span></span>
@@ -689,7 +689,7 @@ Number of tokens: 9</code></pre>
 </div>
 </div>
 <p>Each integer maps to a sub-word piece in the vocabulary. Let’s look at exactly which piece of text each token represents.</p>
-<div id="22efb709" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
+<div id="cb3ca568" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tid <span class="kw">in</span> token_ids:</span>
@@ -718,7 +718,7 @@ Number of tokens: 9</code></pre>
 <section id="decoding-token-ids-back-to-text" class="level3">
 <h3 class="anchored" data-anchor-id="decoding-token-ids-back-to-text">Decoding: Token IDs Back to Text</h3>
 <p>Decoding is the reverse — <code>.decode()</code> converts a list of token IDs back into a string. This round-trip is lossless: you always get back exactly the original text.</p>
-<div id="1d549ea2" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
+<div id="5a483696" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>reconstructed <span class="op">=</span> enc.decode(token_ids)</span>
@@ -734,7 +734,7 @@ Perfect round-trip: True</code></pre>
 <section id="exploring-tokenization-behavior" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-tokenization-behavior">Exploring Tokenization Behavior</h3>
 <p>Let’s build some intuition for how the tokenizer handles different kinds of text. Sub-word tokenizers have interesting behaviors with numbers, punctuation, capitalization, and rare words.</p>
-<div id="7624c143" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="028c1990" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>examples <span class="op">=</span> [</span>
@@ -803,7 +803,7 @@ Count:  23
 <section id="token-counts-vs.-word-counts" class="level3">
 <h3 class="anchored" data-anchor-id="token-counts-vs.-word-counts">Token Counts vs.&nbsp;Word Counts</h3>
 <p>A practical question: how many tokens does our corpus contain? This matters because it determines how much data the model has to learn from.</p>
-<div id="125f621a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="8605a1d9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>all_tokens <span class="op">=</span> enc.encode(corpus)</span>
@@ -833,7 +833,7 @@ Chars per token:            3.86</code></pre>
 <p>Now we turn the token stream into training examples for next-token prediction. The idea is simple: take a sliding window of <code>context_length</code> tokens as input, and use the <em>next</em> token as the target. The model learns to predict position <span class="math inline">\(t+1\)</span> given positions <span class="math inline">\(1\)</span> through <span class="math inline">\(t\)</span>.</p>
 <p>For efficiency, we pack this into a PyTorch <code>Dataset</code> that returns chunks of <code>context_length + 1</code> tokens — the first <code>context_length</code> are the input, the last <code>context_length</code> are the target (shifted by one position).</p>
 <p>One practical detail: with a stride of 1, every single token position becomes a training example — which gives us millions of highly overlapping examples and makes training painfully slow. Instead we use a <code>stride</code> parameter so that consecutive examples start 16 tokens apart. This cuts the dataset size by 16x with very little loss of information, since adjacent examples still overlap by 48 out of 64 tokens.</p>
-<div id="6f498386" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="fb300295" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>CONTEXT_LENGTH <span class="op">=</span> <span class="dv">64</span></span>
@@ -859,7 +859,7 @@ Chars per token:            3.86</code></pre>
 </details>
 </div>
 <p>Let’s look at a single training example to make sure this is clear.</p>
-<div id="0aab5e0a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="be5a9a54" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> TokenDataset(all_tokens, CONTEXT_LENGTH, stride<span class="op">=</span>STRIDE)</span>
@@ -892,7 +892,7 @@ the model should predict this next token:
 <section id="splitting-into-train-and-validation" class="level3">
 <h3 class="anchored" data-anchor-id="splitting-into-train-and-validation">Splitting Into Train and Validation</h3>
 <p>We hold out the last 10% of the corpus as a validation set. Since language modeling is sequential, we don’t shuffle — we just split at a fixed point.</p>
-<div id="9b562af7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
+<div id="55cff6e6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>split_idx <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.9</span> <span class="op">*</span> <span class="bu">len</span>(all_tokens))</span>
@@ -910,7 +910,7 @@ the model should predict this next token:
 Val examples:   10,363</code></pre>
 </div>
 </div>
-<div id="69def390" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
+<div id="9b2cbd5f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>BATCH_SIZE <span class="op">=</span> <span class="dv">128</span></span>
@@ -948,7 +948,7 @@ Val batches per epoch:   80</code></pre>
 <li><strong>Output head</strong>: a linear layer that projects back to the vocabulary size, producing logits for the next token.</li>
 </ul>
 <p>The word “causal” is important: the attention mask ensures that position <span class="math inline">\(t\)</span> can only attend to positions <span class="math inline">\(\leq t\)</span>, never to the future. This is what makes the model autoregressive.</p>
-<div id="0f145666" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
+<div id="ea98cce9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CausalSelfAttention(nn.Module):</span>
@@ -991,7 +991,7 @@ Val batches per epoch:   80</code></pre>
 </details>
 </div>
 <p>The feedforward network is a simple two-layer MLP with a GELU activation — this is standard in modern Transformers.</p>
-<div id="abe11a9b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="b2f138d4" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FeedForward(nn.Module):</span>
@@ -1009,7 +1009,7 @@ Val batches per epoch:   80</code></pre>
 </details>
 </div>
 <p>A single Transformer block combines attention and feedforward with residual connections and layer normalization (using the “pre-norm” convention, where we normalize <em>before</em> each sub-layer).</p>
-<div id="be367101" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="af4bb682" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransformerBlock(nn.Module):</span>
@@ -1027,7 +1027,7 @@ Val batches per epoch:   80</code></pre>
 </details>
 </div>
 <p>Finally, we assemble the full model by stacking token embeddings, positional embeddings, several Transformer blocks, and an output projection.</p>
-<div id="6c06f3a9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
+<div id="2a966905" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BabyLLM(nn.Module):</span>
@@ -1074,7 +1074,7 @@ Val batches per epoch:   80</code></pre>
 <section id="model-configuration" class="level3">
 <h3 class="anchored" data-anchor-id="model-configuration">Model Configuration</h3>
 <p>Let’s instantiate the model with modest hyperparameters. With 4 layers, 4 attention heads, and an embedding dimension of 128, this is a genuinely tiny model — but it contains every architectural element of GPT.</p>
-<div id="6e520f70" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
+<div id="66221faf" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>VOCAB_SIZE <span class="op">=</span> enc.n_vocab</span>
@@ -1217,7 +1217,7 @@ BabyLLM(
 <section id="training-loop" class="level3">
 <h3 class="anchored" data-anchor-id="training-loop">Training Loop</h3>
 <p>We train with the AdamW optimizer and a cosine learning rate schedule with warmup — both standard choices for Transformer training. The loss function is cross-entropy over the vocabulary at every position in the sequence.</p>
-<div id="bc19e964" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
+<div id="7156a313" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>EPOCHS <span class="op">=</span> <span class="dv">10</span></span>
@@ -1237,7 +1237,7 @@ BabyLLM(
 </details>
 </div>
 <p>Now the actual training, here is the function that we will use to train the model using our data.</p>
-<div id="d9aedf1f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
+<div id="f3c728ba" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_epoch(model, loader, optimizer, scheduler, epoch):</span>
@@ -1291,7 +1291,7 @@ BabyLLM(
 </details>
 </div>
 <p>Now we either load previously saved weights or run the full training loop. This way, if you’ve already trained the model once, re-rendering the document skips straight to generation.</p>
-<div id="e6dd2ca9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
+<div id="4175b0aa" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -1324,7 +1324,7 @@ BabyLLM(
 <h3 class="anchored" data-anchor-id="generating-text">Generating Text</h3>
 <p>The payoff: we can now generate text from our baby LLM. Generation works by feeding a prompt through the model, sampling from the predicted distribution over the next token, appending that token to the sequence, and repeating.</p>
 <p>We use <strong>top-k sampling</strong> with a <strong>temperature</strong> parameter. Temperature controls randomness (lower = more conservative, higher = more creative), and top-k restricts sampling to only the <span class="math inline">\(k\)</span> most probable tokens at each step.</p>
-<div id="360a7b93" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
+<div id="1de53791" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="at">@torch.no_grad</span>()</span>
@@ -1352,7 +1352,7 @@ BabyLLM(
 </details>
 </div>
 <p>Let’s try a few prompts. Remember, this model has only seen Shakespeare’s text, so it will tend to produce text in a similar way and format.</p>
-<div id="86628b82" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
+<div id="84e6a622" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>prompts <span class="op">=</span> [</span>
@@ -1372,75 +1372,80 @@ BabyLLM(
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prompt: 'Oh what fair'
-Oh what fair lady!
-O dear sir, but this is strange.
-Why, that’s her lord that knows what she doth know,
-She doth not like her child. Yet he’s gone.
-I will attend her. She shall have her
-Like a most royal princess, whom she may not
-The very part of her. She is for Claudio,
-And she will not come with thee, the more in her
-Of her that with her, which is her son,
-All the world the world
+Oh what fairies look, lest you see
+What table is put in her fair eyes on her.
+Nay, then ’tis done.
+But if you stand upon the rack of this:
+’Tis like an ass, there is no maid
+More than his cheek bids example for
+But the poor worm of legs and ewes will neuile
+Another ne’er shook to pop; for as if
+The man should say “ It is a gentle queen. ”
+Nay, rather
 
 ---
 
 Prompt: 'Shall I compare thee'
-Shall I compare thee? What are you? Do you see?
-No, no, no.
-I love thee as it is. I do beseech you
-To be a noble’ring subject to,
-But to the nature of your high nature
-Who hath in her worth and life, of her;
-She is her daughter, and her son’s heir,
-Her father, your daughter, and her brother, her father,
-Her, her son, her honor, and her lord,
-Hath now in her the
+Shall I compare thee from this fair book?
+What’s this, ho!
+Why, how now, Octavia?
+O gods that’s a worthy gentleman!
+Come not within; go in. The Moor will swear.
+Forbear, and we will go.
+Why, you we have done, but well at liberty,
+And, at their sleep, may sleep. A sad farewell!
+There’s nothing can be said in our country health
+That, being here.
+How goes it thus?
+It may be said so.
+It
 
 ---
 
 Prompt: 'Tomorrow and tomorrow and'
-Tomorrow and tomorrow and the day
-We will away here tomorrow.
-We must, sir.
-There’s none in this.
-Do this, Messala,
-And I shall ask of you again in the world.
-And then as well as I shall do in this
-As this I am in the world, and I for myself
-Are in the use of such as you, as you
-Bathed into your hand, and with your love
-Were in a husband or a friend, a man
-That did but think
+Tomorrow and tomorrow and tomorrow
+We shall be found in our several quests
+To search you out.
+I will omit him straight.
+It is but now.
+Come, come, you talk.
+I will not stir today.
+I will not trouble thee.
+Will not you leave this?
+Yes, the fool and take thy sword.
+And is ’t I should, my lord?
+Ay, in a dream that which the young priest
+Had not disposed to shames at you.
+God knows, my lord, when you both
 
 ---
 
 Prompt: 'To be or not to be, that is'
-To be or not to be, that is not for
-But to be known and trouble. Therefore, good lady,
-I will become to speak.
-What is ’t?
-I am alone.
-I will not speak.
-No, ’tis impossible.
-You were there, for the gods should have a hand
-But in his heart, ’mongst all things that know
-There is a poor thief and nature, that she knew
-The act of nature, not o’ th’ world,
-But to be heard, and to make her
+To be or not to be, that is most true
+To be revenged on him that killed th’ ensuing hour
+Becomes a world and aught in honor
+As that is by a god, and that is the face
+Which you have have in my command. There is but gold.
+I thank you, gentle sir.
+And you are welcome.
+My mistress, welcome, sir, I pray you.
+You see I shall not stay till you return.
+I pray you, sir, but swear I love you not.
+
 
 ---
 
 Prompt: 'I am'
-I am sorry for ’t, my lord,
-I would not fail so long as my content
-As much as you. Give me leave.
-I have been bold to know, my lord, to know the truth.
-My lord, this is the same, and ’tis fit
-Is the best part in this act. This is no matter
-If the whole court were here. We’ll to the King,
-The other, the Queen, to the Queen, and Queen
-The Queen of France.
+I am resolved to hear what you intend.
+Well then, and therefore, for this but be done
+As will not fail but by no means of death.
+What is ’t, my lord?
+I am a stranger, but I know not.
+She has spoke of me, but she hath been
+A woman to me. She did confess it.
+I had a ring, and yet the ring being hers,
+She had not. I gave it to her, and ’tis hers,
+Of this,
 
 ---
 </code></pre>

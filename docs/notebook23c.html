@@ -490,13 +490,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="505904d3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="6676738a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="353b08b7" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="fd4a9798" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
@@ -520,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5061c293" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="eea3b363" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/agnews_pca.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -541,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="connecting-to-the-openai-api" class="level3">
 <h3 class="anchored" data-anchor-id="connecting-to-the-openai-api">Connecting to the OpenAI API</h3>
 <p>The <code>openai</code> Python package handles all communication with OpenAI’s models. You create a client object, and then call methods on it to send requests. The API key is already loaded in our environment.</p>
-<div id="a8b0588c" class="cell" data-execution_count="5">
+<div id="416414df" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-ag-news-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="the-ag-news-dataset">The AG News Dataset</h3>
 <p>We have the same AG News dataset from our baby LLM notebook. Let’s take a quick look at its structure.</p>
-<div id="c04ac663" class="cell" data-execution_count="6">
+<div id="2214e65a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.read_parquet(<span class="st">"data/agnews_pca.parquet"</span>)</span>
@@ -638,7 +638,7 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 <section id="sampling-a-subset" class="level3">
 <h3 class="anchored" data-anchor-id="sampling-a-subset">Sampling a Subset</h3>
 <p>Classifying the full dataset through an API would be slow and expensive. Instead we’ll pull a small stratified subset (~100 rows) so each category is represented equally.</p>
-<div id="8a765d2c" class="cell" data-execution_count="7">
+<div id="663c3483" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stratified_sample(df, n_per_class, seed<span class="op">=</span><span class="dv">42</span>):</span>
@@ -662,7 +662,7 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 <h3 class="anchored" data-anchor-id="defining-structured-output-with-pydantic">Defining Structured Output with Pydantic</h3>
 <p>Here’s the core idea: instead of asking the model to return free text and then parsing it ourselves, we define a <strong>Pydantic model</strong> that describes exactly what we want back. The OpenAI API can enforce this schema, guaranteeing that the response is valid structured data.</p>
 <p>First, we define an enum for the four categories. This constrains the model to only these choices — it literally cannot return anything else.</p>
-<div id="fded418a" class="cell" data-execution_count="8">
+<div id="c34cebeb" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewsCategory(<span class="bu">str</span>, Enum):</span>
@@ -673,7 +673,7 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 </details>
 </div>
 <p>Now we define a Pydantic model for the full response. Beyond just the category, we ask for a brief <code>reasoning</code> field. This serves two purposes: it gives us insight into <em>why</em> the model chose a category, and it actually tends to improve accuracy because the model “thinks through” its answer before committing.</p>
-<div id="50e19c51" class="cell" data-execution_count="9">
+<div id="d17cd767" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArticleClassification(BaseModel):</span>
@@ -682,7 +682,7 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 </details>
 </div>
 <p>Let’s look at the JSON schema that Pydantic generates from this. This is exactly what gets sent to the API to enforce the response structure.</p>
-<div id="d09e7e5a" class="cell" data-execution_count="10">
+<div id="84a246a1" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(ArticleClassification.model_json_schema(), indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -725,7 +725,7 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 <section id="making-a-single-classification" class="level3">
 <h3 class="anchored" data-anchor-id="making-a-single-classification">Making a Single Classification</h3>
 <p>Before we classify hundreds of articles, let’s walk through a single API call to see how all the pieces fit together.</p>
-<div id="ab38677f" class="cell" data-execution_count="11">
+<div id="c0329ce5" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sample_text <span class="op">=</span> sample_small.row(<span class="dv">0</span>, named<span class="op">=</span><span class="va">True</span>)[<span class="st">"text"</span>]</span>
@@ -733,11 +733,11 @@ Columns: ['id', 'label', 'text', 'index', 'e5']
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Article text:
-Oil Prices Hover Just Below \$50 a Barrel US oil prices hovered just below \$50 a barrel on Tuesday, holding recent gains on a rash of crude supply outages and fears over thin heating oil tanks....</code></pre>
+O #39;Neal Wants More From Team MIAMI -- Shaquille O #39;Neal thinks Miami #39;s opponents are rising to the challenge of playing against him and Dwyane Wade. And right now, the Heat aren #39;t respon...</code></pre>
 </div>
 </div>
 <p>We call <code>client.beta.chat.completions.parse()</code> instead of the usual <code>client.chat.completions.create()</code>. The <code>parse</code> method accepts a <code>response_format</code> parameter that takes our Pydantic model and enforces the schema on the response.</p>
-<div id="261118e1" class="cell" data-execution_count="12">
+<div id="0bbe17b3" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>single_cache <span class="op">=</span> Path(<span class="st">"cache/single_result.json"</span>)</span>
@@ -783,7 +783,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <section id="classifying-a-batch-with-caching" class="level3">
 <h3 class="anchored" data-anchor-id="classifying-a-batch-with-caching">Classifying a Batch with Caching</h3>
 <p>Now we scale this up to our full samples. The function below classifies a list of articles and caches the results to a JSON file. On subsequent runs it loads from the cache instead of hitting the API again.</p>
-<div id="bf265b77" class="cell" data-execution_count="13">
+<div id="1fc122c0" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_articles(</span>
@@ -852,7 +852,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <section id="running-the-small-sample" class="level3">
 <h3 class="anchored" data-anchor-id="running-the-small-sample">Running the Small Sample</h3>
 <p>Let’s classify the small sample first. This should take about 30 seconds.</p>
-<div id="84bcb07d" class="cell" data-execution_count="14">
+<div id="24baa9c5" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>small_results <span class="op">=</span> classify_articles(</span>
@@ -865,7 +865,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 </div>
 </div>
 <p>We add the predictions back to our Polars DataFrame as a new column.</p>
-<div id="a020c7de" class="cell" data-execution_count="15">
+<div id="9e336293" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sample_small <span class="op">=</span> sample_small.with_columns(</span>
@@ -901,64 +901,64 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"The article discusses a politi…</td>
-<td>"Oil Prices Hover Just Below \$…</td>
+<td>"O #39;Neal Wants More From Tea…</td>
 </tr>
 <tr class="even">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article relates to a crim…</td>
-<td>"Delta CEO declines pay ATLANTA…</td>
+<td>"NBA Wrap: Suns Scorch Trail Bl…</td>
 </tr>
 <tr class="odd">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article discusses a polit…</td>
-<td>"Agilent Guides Sharply Lower A…</td>
+<td>"Showalter edges Twins #39; Gar…</td>
 </tr>
 <tr class="even">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article relates to an inc…</td>
-<td>"Dollar Hits 7-Month Low Vs Yen…</td>
+<td>"CORKY: Dogfight turns to USC c…</td>
 </tr>
 <tr class="odd">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"The article discusses Iran's m…</td>
-<td>"Dollar hits new low, then hits…</td>
+<td>"Little Boise St. is thinking b…</td>
 </tr>
 <tr class="even">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article discusses interna…</td>
-<td>"Black offers to take Hollinger…</td>
+<td>"Beltran, Beltre Among Those El…</td>
 </tr>
 <tr class="odd">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article focuses on diplom…</td>
-<td>"Stocks End Mixed Amid Rising O…</td>
+<td>"Cubs Get Grieve From Brewers, …</td>
 </tr>
 <tr class="even">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"The article discusses military…</td>
-<td>"Update 1: Volkswagen Workers S…</td>
+<td>"Kicker Treat: Heels boot Miami…</td>
 </tr>
 <tr class="odd">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"Business"</td>
 <td>"The article discusses a financ…</td>
-<td>"Gap to Launch Store for 'Boome…</td>
+<td>"Finnish line: They don #39;t f…</td>
 </tr>
 <tr class="even">
-<td>"Business"</td>
+<td>"Sports"</td>
 <td>"World"</td>
 <td>"This article discusses politic…</td>
-<td>"InterContinental Sells 13 Hote…</td>
+<td>"Liverpool V Bayer Leverkusen K…</td>
 </tr>
 </tbody>
 </table>
@@ -969,7 +969,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <section id="evaluating-performance" class="level3">
 <h3 class="anchored" data-anchor-id="evaluating-performance">Evaluating Performance</h3>
 <p>How well did the model do? Let’s start with simple accuracy, then look at per-class precision, recall, and F1.</p>
-<div id="ffaaf66f" class="cell" data-execution_count="16">
+<div id="54c8b789" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_metrics(df, actual_col, predicted_col):</span>
@@ -996,7 +996,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pl.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="66e5a942" class="cell" data-execution_count="17">
+<div id="52c7c55f" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>valid_small <span class="op">=</span> sample_small.<span class="bu">filter</span>(pl.col(<span class="st">"predicted"</span>).is_not_null())</span>
@@ -1009,7 +1009,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>metrics_small</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Overall accuracy: 2.0%
+<pre><code>Overall accuracy: 26.0%
 </code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -1041,9 +1041,9 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <tbody>
 <tr class="odd">
 <td>"Business"</td>
-<td>0.067</td>
-<td>0.08</td>
-<td>0.073</td>
+<td>0.8</td>
+<td>0.96</td>
+<td>0.873</td>
 <td>25</td>
 </tr>
 <tr class="even">
@@ -1055,16 +1055,16 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 </tr>
 <tr class="odd">
 <td>"Sports"</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>0.038</td>
+<td>0.04</td>
+<td>0.039</td>
 <td>25</td>
 </tr>
 <tr class="even">
 <td>"World"</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>0.045</td>
+<td>0.04</td>
+<td>0.043</td>
 <td>25</td>
 </tr>
 </tbody>
@@ -1077,7 +1077,7 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <section id="looking-at-mistakes" class="level3">
 <h3 class="anchored" data-anchor-id="looking-at-mistakes">Looking at Mistakes</h3>
 <p>The misclassifications are often more interesting than the correct ones. Let’s see where the model struggled.</p>
-<div id="d3bc19cc" class="cell" data-execution_count="18">
+<div id="0d4ac9aa" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mistakes <span class="op">=</span> valid_small.<span class="bu">filter</span>(pl.col(<span class="st">"label"</span>) <span class="op">!=</span> pl.col(<span class="st">"predicted"</span>))</span>
@@ -1091,47 +1091,47 @@ Reasoning: The article discusses oil prices and factors affecting the oil market
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Number of mistakes: 98 out of 100
+<pre><code>Number of mistakes: 74 out of 100
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: The article discusses a political event within Ukraine, specifically regarding a presidential election, which falls under the world news category.
-Text: Oil Prices Hover Just Below \$50 a Barrel US oil prices hovered just below \$50 a barrel on Tuesday, holding recent gain...
+Text: O #39;Neal Wants More From Team MIAMI -- Shaquille O #39;Neal thinks Miami #39;s opponents are rising to the challenge o...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: This article relates to a criminal investigation concerning bomb attacks and a fugitive, which fits under the broader category of world news as it discusses security and terrorism issues.
-Text: Delta CEO declines pay ATLANTA Delta Air Lines Inc. #39;s chief executive said yesterday he is declining his six-figure ...
+Text: NBA Wrap: Suns Scorch Trail Blazers, Kings Beat Celtics  NEW YORK (Reuters) - Quentin Richardson poured in 37  points, i...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: This article discusses a political intervention in a foreign country, which falls under global affairs and international relations.
-Text: Agilent Guides Sharply Lower Agilent #39;s (A:NYSE - news - research) fiscal fourth quarter came up light, and the compa...
+Text: Showalter edges Twins #39; Gardenhire in AL Texas #39; Buck Showalter and Atlanta #39;s Bobby Cox were named managers of...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: This article relates to an incident involving students and a bus crash, which primarily concerns broader event news, thus fitting into the category of World news.
-Text: Dollar Hits 7-Month Low Vs Yen  TOKYO (Reuters) - The dollar fell to a seven-month low  against the yen and was within s...
+Text: CORKY: Dogfight turns to USC cakewalk Southern California, the best college football team in the country, overwhelmed Pa...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: The article discusses Iran's military posture and nuclear program, which fall under international political and military issues, categorizing it as a World news article.
-Text: Dollar hits new low, then hits back The dollar hit a record low against the euro for a fourth day running on Friday but ...
+Text: Little Boise St. is thinking big Once again, they are knocking on the door, nattily attired, a smile on their face, eage...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: This article discusses international diplomatic negotiations concerning North Korea, which falls under the category of World news.
-Text: Black offers to take Hollinger private Former press baron Conrad Black has made a proposal to buy out the minority share...
+Text: Beltran, Beltre Among Those Electing Free Agency (Reuters) Reuters - Houston Astros centerfielder\Carlos Beltran and Los...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: This article focuses on diplomatic efforts and political developments in the Democratic Republic of Congo, making it relevant to global affairs rather than sports, business, or technology.
-Text: Stocks End Mixed Amid Rising Oil Prices Stocks staggered to a mixed finish Wednesday as lower-than-expected manufacturin...
+Text: Cubs Get Grieve From Brewers, Backup Catcher From Tigers The Cubs made a pair of trades yesterday, getting OF Ben Grieve...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:      World
 Reasoning: The article discusses military developments in Iraq, relating to troop movements and strategic military operations.
-Text: Update 1: Volkswagen Workers Stage New Stoppages Volkswagen AG workers staged a new round of brief stoppages early Monda...
+Text: Kicker Treat: Heels boot Miami It was meant to bring a little levity to a potentially uncomfortable situation, a joke th...
 
-True:   Business  |  Predicted:      World
+True:     Sports  |  Predicted:   Business
+Reasoning: The article discusses a financial situation involving a company's bankruptcy filing, which falls under business news.
+Text: Finnish line: They don #39;t feel pressure The focus here the last couple of days has been on the health of Canada goali...
+
+True:     Sports  |  Predicted:      World
 Reasoning: This article discusses political developments and implications concerning Israel and Palestine, thus it fits under the World category.
-Text: InterContinental Sells 13 Hotels  LONDON (Reuters) - The world's biggest hotelier  InterContinental Hotels Group Plc sai...
-
-True:   Business  |  Predicted:      World
-Reasoning: The article discusses the situation in Iraq and its impact on European Muslims, which relates to global socio-political dynamics.
-Text: AT amp;T Settles Shareholder Lawsuit Telecommunications giant AT amp;T Corp. said Tuesday that it agreed to pay \$100 mi...
+Text: Liverpool V Bayer Leverkusen Key Battles Liverpool seem to have been handed one of the easier last-16 draws after the gr...
 </code></pre>
 </div>
 </div>
@@ -1140,7 +1140,7 @@ Text: AT amp;T Settles Shareholder Lawsuit Telecommunications giant AT amp;T Cor
 <section id="cost-and-latency" class="level3">
 <h3 class="anchored" data-anchor-id="cost-and-latency">Cost and Latency</h3>
 <p>A practical consideration: how much did this cost? The <code>gpt-4o-mini</code> model is very cheap, but it’s still worth tracking.</p>
-<div id="3ade320e" class="cell" data-execution_count="19">
+<div id="7bc0a268" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>avg_chars <span class="op">=</span> valid_small[<span class="st">"text"</span>].<span class="bu">str</span>.len_chars().mean()</span>

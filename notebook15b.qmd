@@ -1,5 +1,16 @@
 ## Notebook15b
 
+
+### Setup
+
+Run all of the following before starting the notebook.
+
+```{python}
+#| tags: [noclear]
+#| eval: false
+! wget -q -nc https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/funs.py
+```
+
 ```{python}
 #| tags: [noclear]
 import numpy as np
@@ -8,8 +19,258 @@ import polars as pl
 from funs import *
 from plotnine import *
 from polars import col as c
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
 theme_set(theme_minimal())
+pl.Config(tbl_rows=25)
 
 ub = "https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"
 ```
 
+```{python}
+#| tags: [remove]
+#| include: false
+ub = ""
+```
+
+```{python}
+#| eval: false
+#| tags: [noclear]
+!wget -nc https://humanitiesdata.org/media/class_data.tar -P media/
+!tar -xf media/class_data.tar -C media/
+```
+
+```{python}
+#| tags: [noclear]
+imgs = pl.read_parquet(ub + "data/class_images.parquet")
+```
+
+### Class Images
+
+1. We will work with a dataset of images collected in class. Let's start by looking at the data to understand what we have.
+
+```{python}
+#| tags: [noclear]
+imgs
+```
+
+2. Let's look at the unique categories in our dataset.
+
+```{python}
+#| tags: [noclear]
+imgs.group_by("label").len().sort("label")
+```
+
+3. We can display one example image from each category to see what kinds of photos were taken.
+
+```{python}
+#| tags: [noclear]
+DSImage.plot_image_grid(imgs.group_by("label").first(), ncol=3)
+```
+
+### ViT Embedding
+
+4. Our first approach is **transfer learning** using a pre-trained image model. We will extract embeddings from the Vision Transformer (ViT) model — a deep network trained on 14 million images — and use those embeddings as features for a logistic regression classifier. First, load the model.
+
+```{python}
+#| tags: [noclear]
+vit = ViTEmbedder()
+```
+
+5. Now we compute a 768-dimensional embedding for every image in the dataset. Because this step may take a few minutes, I've added the embeddings into the raw data for your.
+
+```{python}
+#| tags: [noclear]
+#imgs = (
+#    imgs
+#    .with_columns(
+#        vit = c.filepath.map_elements(
+#            vit, return_dtype=pl.List(pl.Float32)
+#        )
+#    )
+#)
+```
+
+6. With embeddings in hand, we can train a logistic regression classifier. The model automatically splits the data into training and test sets.
+
+```{python}
+#| tags: [noclear]
+model = (
+    imgs
+    .pipe(
+        DSSklearn.logistic_regression_cv,
+        target=c.label,
+        features=[c.vit],
+        stratify=c.label,
+        solver="saga",
+        max_iter=1000
+    )
+)
+```
+
+7. Let's see how well the model performs on the training and test data.
+
+```{python}
+#| tags: [noclear]
+model.score()
+```
+
+8. The confusion matrix shows which categories are most often confused with each other.
+
+```{python}
+#| tags: [noclear]
+model.confusion_matrix()
+```
+
+9. We can also visualize the ViT embedding space using UMAP. Images with similar content will appear close together in this two-dimensional projection.
+
+```{python}
+#| tags: [noclear]
+(
+    imgs
+    .sample(100)
+    .pipe(
+        DSSklearn.umap,
+        features=[c.vit]
+    )
+    .predict(full=True)
+    .pipe(ggplot, aes("dr0", "dr1"))
+    + geom_point(aes(color="label"))
+)
+```
+
+### SigLIP Zero-shot
+
+10. Our second approach is **zero-shot classification** using SigLIP, a multimodal model that embeds both images and text into the same space. This means we can classify images using only text descriptions of the categories — no labeled training examples needed. Load the model here.
+
+```{python}
+#| tags: [noclear]
+siglip = SigLIPEmbedder()
+```
+
+11. Compute SigLIP embeddings for all of the images. As with ViT, I already ran this and cached the results to speed up the analysis.
+
+```{python}
+#| tags: [noclear]
+#imgs = (
+#    imgs
+#    .with_columns(
+#        siglip = c.filepath.map_elements(
+#            siglip.embed_image, return_dtype=pl.List(pl.Float32)
+#        )
+#    )
+#)
+```
+
+12. To get a feel for what SigLIP has learned, pick a text prompt and display the images whose embeddings are most similar to it.
+
+```{python}
+#| tags: [noclear]
+prompt = "a photo of a shoe"
+
+embed_prompt = (
+    pl.DataFrame({"text": [prompt]})
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text, return_dtype=pl.List(pl.Float32)
+        )
+    )
+)
+
+(
+    imgs
+    .join(embed_prompt, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)
+    )
+    .sort(c.sim_score, descending=True)
+    .head(9)
+    .pipe(DSImage.plot_image_grid, ncol=3)
+)
+```
+
+14. Let's start with a single text prompt to get a feel for how the similarity scores work. We'll embed the phrase "a photo of a hand" and compute its similarity to every image.
+
+```{python}
+#| tags: [noclear]
+embed = (
+    pl.DataFrame({"text": ["a photo of a hand"]})
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text,
+            return_dtype=pl.List(pl.Float32)
+        )
+    )
+)
+```
+
+15. Plotting the similarity scores by category shows that hand images score highest against this text prompt. This is exactly what we would hope for.
+
+```{python}
+#| tags: [noclear]
+(
+    imgs
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)
+    )
+    .pipe(ggplot, aes("sim_score", "label"))
+    + geom_point()
+)
+```
+
+16. To classify all images, we embed every category label as text and store the results.
+
+```{python}
+#| tags: [noclear]
+embed = (
+    imgs
+    .select(text = c.label.unique())
+    .with_columns(
+        siglip_txt = c.text.map_elements(
+            siglip.embed_text, return_dtype=pl.List(pl.Float32)
+        )
+    )
+)
+```
+
+17. For each image, we assign the category whose text embedding has the highest similarity score. The classification rate tells us how often this zero-shot approach gets it right.
+
+```{python}
+#| tags: [noclear]
+(
+    imgs
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)
+    )
+    .sort(c.sim_score, descending=True)
+    .group_by(c.filepath)
+    .head(1)
+    .select(class_rate = (c.label == c.text).mean())
+)
+```
+
+18. Finally, let's look at the images the zero-shot classifier got wrong.
+
+```{python}
+#| tags: [noclear]
+(
+    imgs
+    .join(embed, how="cross")
+    .with_columns(
+        sim_score = dot_product(c.siglip, c.siglip_txt)
+    )
+    .sort(c.sim_score, descending=True)
+    .group_by(c.filepath)
+    .head(1)
+    .filter(c.label != c.text)
+    .with_columns(
+        desc = pl.concat_str("label", "text", separator=" => ")
+    )
+    .pipe(DSImage.plot_image_grid, label_name="desc", ncol=3)
+)
+```

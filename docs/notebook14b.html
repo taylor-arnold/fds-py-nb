@@ -492,13 +492,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>Run all of the following before starting the notebook.</p>
-<div id="607de088" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
+<div id="a4c7326b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="1">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> wget <span class="op">-</span>q <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>taylor<span class="op">-</span>arnold<span class="op">/</span>fds<span class="op">-</span>py<span class="op">-</span>nb<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>funs.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="f72749f0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
+<div id="ddbba388" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="2">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -518,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/taylor-arnold/fds-py-nb/refs/heads/main/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="407db27a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
+<div id="1dabc7ea" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="4">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p models</span>
@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>q <span class="op">-</span>nc <span class="op">-</span>P models https:<span class="op">//</span>humanitiesdata.org<span class="op">/</span>models<span class="op">/</span>word2vec.model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b83b356c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
+<div id="7cb2c18d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="5">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> pl.read_parquet(ub <span class="op">+</span> <span class="st">"data/agnews_pca.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We will start by installing the gensim library, which is not one of the libraries available by default on Colab.</li>
 </ol>
-<div id="a164d32d" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
+<div id="c9ddf453" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="6">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install gensim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Once the library is install, load the <code>Word2Vec</code> model.</li>
 </ol>
-<div id="ee8022a1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
+<div id="fec430b9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="7">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gensim.models <span class="im">import</span> Word2Vec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -557,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>As we did in the text with the IMDb data, we want to compute the tokens in the AG News dataset.</li>
 </ol>
-<div id="0c718e60" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
+<div id="30731338" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="8">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>agnews <span class="op">=</span> (</span>
@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Next, we build the Word2Vec model. Here, we use the same settings as in the text except that we increase the minimum word count due to the increased size of the texts. The code here will only build the model if it has not already been run to save some time in future runs.</li>
 </ol>
-<div id="fe206118" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
+<div id="68aabd6a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="9">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -833,7 +833,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li>Check the length of the embedding. These are the number of words in the text.</li>
 </ol>
-<div id="6bada156" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
+<div id="def25371" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="10">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(model.wv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -845,7 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="6" type="1">
 <li>Now that we have the embedding, we will apply it to all of the texts.</li>
 </ol>
-<div id="a95c4e48" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
+<div id="54dd52da" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="11">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> pl.DataFrame({</span>
@@ -876,108 +876,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>"marvin"</td>
-<td>[-0.087362, 0.599872, … 0.025053]</td>
+<td>"law"</td>
+<td>[0.636002, -0.157328, … 0.153997]</td>
 </tr>
 <tr class="even">
-<td>"detainees"</td>
-<td>[-0.066284, -0.306162, … 0.272331]</td>
+<td>"map"</td>
+<td>[-0.025123, 0.317976, … 0.81119]</td>
 </tr>
 <tr class="odd">
-<td>"provisional"</td>
-<td>[0.028947, -0.512258, … -0.019267]</td>
+<td>"award"</td>
+<td>[0.749533, -0.113096, … -0.183347]</td>
 </tr>
 <tr class="even">
-<td>"zayed"</td>
-<td>[-0.012501, 1.127103, … 0.662793]</td>
+<td>"offered"</td>
+<td>[0.418303, 0.604449, … -0.160134]</td>
 </tr>
 <tr class="odd">
-<td>"envoy"</td>
-<td>[-0.038625, 0.413241, … 0.34093]</td>
+<td>"static"</td>
+<td>[-0.104594, 0.982517, … 0.627537]</td>
 </tr>
 <tr class="even">
-<td>"revelations"</td>
-<td>[0.423633, -0.329614, … -0.169044]</td>
+<td>"core"</td>
+<td>[-0.412965, 1.018788, … 0.653513]</td>
 </tr>
 <tr class="odd">
-<td>"cincinnati"</td>
-<td>[-0.343843, 0.561069, … 0.41984]</td>
+<td>"trek"</td>
+<td>[-0.175681, 0.366813, … 0.673867]</td>
 </tr>
 <tr class="even">
-<td>"epa"</td>
-<td>[0.198807, 0.096234, … 0.314376]</td>
+<td>"downs"</td>
+<td>[-0.725921, -0.059251, … 0.154893]</td>
 </tr>
 <tr class="odd">
-<td>"cyclist"</td>
-<td>[0.894478, 0.267498, … -0.038825]</td>
+<td>"enjoying"</td>
+<td>[0.065548, 0.385558, … -0.310439]</td>
 </tr>
 <tr class="even">
-<td>"lured"</td>
-<td>[0.459946, -0.062226, … 0.207201]</td>
+<td>"envoys"</td>
+<td>[-0.232644, 0.241136, … 0.722359]</td>
 </tr>
 <tr class="odd">
-<td>"designer"</td>
-<td>[0.070491, 0.186192, … 0.072896]</td>
+<td>"routine"</td>
+<td>[0.40503, 0.04619, … -0.315424]</td>
 </tr>
 <tr class="even">
-<td>"territory"</td>
-<td>[-0.328692, 0.205334, … 0.518911]</td>
+<td>"byron"</td>
+<td>[-0.708897, 0.33516, … 0.598887]</td>
 </tr>
 <tr class="odd">
-<td>"registration"</td>
-<td>[-0.362714, -0.029158, … 0.365303]</td>
+<td>"kansas"</td>
+<td>[0.480454, 0.273565, … 0.142053]</td>
 </tr>
 <tr class="even">
 <td>…</td>
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"myers"</td>
-<td>[-0.44653, 0.33123, … 0.235933]</td>
+<td>"grown"</td>
+<td>[-0.308289, 0.716539, … 0.392225]</td>
 </tr>
 <tr class="even">
-<td>"obvious"</td>
-<td>[0.109494, 0.386705, … -0.581402]</td>
+<td>"blaming"</td>
+<td>[-0.190264, 0.27531, … 0.123445]</td>
 </tr>
 <tr class="odd">
-<td>"really"</td>
-<td>[-0.122997, 0.191316, … -0.085114]</td>
+<td>"airborne"</td>
+<td>[-0.090837, 0.547244, … -0.136497]</td>
 </tr>
 <tr class="even">
-<td>"hunger"</td>
-<td>[-0.138733, -0.296369, … 0.425051]</td>
+<td>"stealing"</td>
+<td>[-0.093911, -0.182524, … -0.005621]</td>
 </tr>
 <tr class="odd">
-<td>"spray"</td>
-<td>[-0.241099, -0.724651, … 0.690183]</td>
+<td>"anonymity"</td>
+<td>[-0.245218, -0.173137, … 0.633425]</td>
 </tr>
 <tr class="even">
-<td>"set"</td>
-<td>[-0.105968, 0.467065, … 0.466871]</td>
+<td>"deputy"</td>
+<td>[0.162699, 0.095755, … 0.80273]</td>
 </tr>
 <tr class="odd">
-<td>"mogul"</td>
-<td>[0.324366, 0.27259, … 0.453979]</td>
+<td>"reds"</td>
+<td>[-0.282193, 0.808726, … 0.060781]</td>
 </tr>
 <tr class="even">
-<td>"dope"</td>
-<td>[0.634374, -0.436914, … 0.139827]</td>
+<td>"doubleclick"</td>
+<td>[0.172293, 0.353599, … 0.690397]</td>
 </tr>
 <tr class="odd">
-<td>"cluster"</td>
-<td>[-0.221067, 0.260096, … 0.667637]</td>
+<td>"unbeatable"</td>
+<td>[0.165164, 0.406347, … -0.121059]</td>
 </tr>
 <tr class="even">
-<td>"severely"</td>
-<td>[0.459689, -0.400945, … -0.031536]</td>
+<td>"dell"</td>
+<td>[-0.478875, 0.287246, … 0.307536]</td>
 </tr>
 <tr class="odd">
-<td>"town"</td>
-<td>[-0.061013, -0.090078, … 1.009136]</td>
+<td>"alou"</td>
+<td>[-0.309265, 0.749577, … -0.283191]</td>
 </tr>
 <tr class="even">
-<td>"nowitzki"</td>
-<td>[-0.010238, 0.764735, … 0.29487]</td>
+<td>"me"</td>
+<td>[0.193898, 0.709788, … 0.114348]</td>
 </tr>
 </tbody>
 </table>
@@ -987,7 +987,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="7" type="1">
 <li>And finally, we can check how the embedding works by seeing what words are similar to one another. Start with my intial suggestion, but play around with different word choices.</li>
 </ol>
-<div id="693ee266" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
+<div id="2b75ab66" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="12">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model.wv.most_similar(<span class="st">"good"</span>, topn<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1011,7 +1011,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="8" type="1">
 <li>Now let’s create the training and testing data for our AG News corpus.</li>
 </ol>
-<div id="deeed704" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
+<div id="839f24f6" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="13">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X, X_train, X_test, y, y_train, y_test, cn <span class="op">=</span> DSTorch.load_text(</span>
@@ -1031,7 +1031,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li>Here is the Torch CNN model that we will use to train the AG News corpus to detect the category of an article.</li>
 </ol>
-<div id="6bfb7832" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
+<div id="cc82e7ca" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="14">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TextCNN(nn.Module):</span>
@@ -1071,7 +1071,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li>And then we create an instance of the model.</li>
 </ol>
-<div id="ca030036" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
+<div id="8509b6c1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="15">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_cnn <span class="op">=</span> TextCNN(</span>
@@ -1086,7 +1086,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li>Finally, train the data. If the model already exists, just read in the weights. This saves time on re-runs.</li>
 </ol>
-<div id="26d35e3e" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
+<div id="e59f4c17" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="16">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -1099,7 +1099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="12" type="1">
 <li>Here are the training and validation error rates:</li>
 </ol>
-<div id="20ea4636" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
+<div id="f1f2d05c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="17">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_text(model_cnn, X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1108,7 +1108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>0.9284580945968628</code></pre>
 </div>
 </div>
-<div id="0a6d9e73" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
+<div id="b76f32b0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="18">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_text(model_cnn, X_test, y_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1120,7 +1120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li>As well as the confusion matrix:</li>
 </ol>
-<div id="d50d3c8c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
+<div id="746ce850" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="19">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>DSTorch.confusion_matrix(model_cnn, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1139,7 +1139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="14" type="1">
 <li>We saw in the text the precomputed embeddings are faster and often more accurate for downstream models. Look at all of the available models from gensim:</li>
 </ol>
-<div id="77f3b006" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
+<div id="675ae5ba" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="20">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gensim.downloader <span class="im">as</span> api</span>
@@ -1153,7 +1153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="15" type="1">
 <li>We will load the <code>glove-wiki-gigaword-100</code> model here. It needs to download the first time, so it may take a few moments to finish.</li>
 </ol>
-<div id="eafbdf1a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
+<div id="f2df5c58" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="21">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pretrained <span class="op">=</span> api.load(<span class="st">"glove-wiki-gigaword-100"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1162,7 +1162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="16" type="1">
 <li>Find the closest words to banana, orange, and apple. Notice that these are not context specific, leading to some inconsistent results in the three fruit names.</li>
 </ol>
-<div id="0cfbb4e0" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
+<div id="9878f7d1" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="22">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pretrained.most_similar(<span class="st">"banana"</span>, topn<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1180,7 +1180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  ('papaya', 0.6246591210365295)]</code></pre>
 </div>
 </div>
-<div id="09051413" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
+<div id="cefd426a" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="23">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pretrained.most_similar(<span class="st">"orange"</span>, topn<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1198,7 +1198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  ('peach', 0.6168624758720398)]</code></pre>
 </div>
 </div>
-<div id="8505ef90" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
+<div id="bbb0d7bf" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="24">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pretrained.most_similar(<span class="st">"apple"</span>, topn<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1219,7 +1219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="17" type="1">
 <li>Try your own words as well and see what other terms the model places it next to.</li>
 </ol>
-<div id="2f813204" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
+<div id="2b7342f3" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="25">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pretrained.most_similar(<span class="st">"good"</span>, topn<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1243,7 +1243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="18" type="1">
 <li>In this final section, we will embed the AG News data using the pretrained embeddings. Here is the code to match the words with the available vocabulary.</li>
 </ol>
-<div id="6f7a07b5" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
+<div id="0bc1c997" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="26">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> <span class="bu">list</span>(model.wv.key_to_index.keys())</span>
@@ -1269,7 +1269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="19" type="1">
 <li>And again, we can create a similar model.</li>
 </ol>
-<div id="b30a3f5f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
+<div id="80f59c32" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="27">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model_pretrained <span class="op">=</span> TextCNN(</span>
@@ -1284,7 +1284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="20" type="1">
 <li>And train it, using the saved weights if they are available.</li>
 </ol>
-<div id="934d3e4b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
+<div id="1d2c8c1b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="28">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -1303,7 +1303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="21" type="1">
 <li>Compare the error rates to the embeddings we trained ourselves:</li>
 </ol>
-<div id="fca612e9" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
+<div id="1e0eea5f" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="29">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_text(model_pretrained, X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1312,7 +1312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>0.928360104560852</code></pre>
 </div>
 </div>
-<div id="e35552cd" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="30">
+<div id="ba4a075c" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="30">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>DSTorch.score_text(model_pretrained, X_test, y_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1324,7 +1324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="22" type="1">
 <li>As well as the confusion matrix to the previous model.</li>
 </ol>
-<div id="73c05d16" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="31">
+<div id="cad9975b" class="cell" data-tags="[&quot;noclear&quot;]" data-execution_count="31">
 <details class="code-fold">
 <summary>View code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>DSTorch.confusion_matrix(model_pretrained, X_test, y_test, cn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
